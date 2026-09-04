@@ -4,6 +4,7 @@
 - 主题位置：大数据平台 / 企业语义层 / 数据应用 / AI Agent
 - 产品范围：Palantir Foundry、AIP 与 Ontology
 - 说明：本文将“plantier”按 **Palantir** 理解
+- 相关主题：[Palantir FDE 与 AI FDE](palantir-fde.md)
 
 ## 结论先行
 
@@ -774,4 +775,3 @@ Palantir Ontology 最值得学习的不是某个产品界面，而是一个架�
 - 案例效果数字主要来自 Palantir 或客户联合材料。
 - 公开资料缺少同规模、同场景的长期 TCO、迁移成本和跨平台性能基准。
 - 本文中的架构比较是基于公开功能边界的分析，不是对未公开内部实现的断言。
-
