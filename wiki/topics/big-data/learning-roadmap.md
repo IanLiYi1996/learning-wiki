@@ -81,6 +81,7 @@
 - 受控写回、审批、决策血缘和操作审计
 - 面向 AI Agent 的业务上下文与工具接口
 - Forward Deployed Engineering 的问题发现、交付、采用和产品反馈闭环
+- Account-centric matrix、任务小队、field-to-product 与平台产品化
 - 元数据、血缘、数据目录和数据所有权
 - 数据质量、数据契约和变更管理
 - 权限、脱敏、加密、审计和合规

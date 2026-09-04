@@ -3,7 +3,7 @@
 - 调研日期：2026-09-04
 - 主题位置：企业软件交付 / 数据与 AI 工程 / 平台产品化 / Agent 工程
 - 核心术语：FDE、FDSE、Deployment Strategist、AI FDE
-- 相关主题：[Palantir Ontology](palantir-ontology.md)
+- 相关主题：[Palantir Ontology](palantir-ontology.md)、[Palantir Operating Model](palantir-operating-model.md)
 
 ## 结论先行
 
@@ -1266,4 +1266,3 @@ AI 加速可审查的实现循环
 - 公开资料缺少跨公司的 FDE 利用率、毛利、离职率和客户 ROI 数据。
 - 行业“FDE 热潮”包含供应商、招聘机构和投资人的叙事，需要与实际生产结果区分。
 - AI FDE 能力正在快速更新，具体可用工具应以目标 Foundry enrollment 为准。
-

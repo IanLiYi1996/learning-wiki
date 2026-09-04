@@ -142,5 +142,6 @@
 - [技术版图研究](technology-landscape-research.md)：基于官方资料核对技术分层和代表性系统
 - [Palantir Ontology 深度调研](palantir-ontology.md)：企业业务语义、操作闭环与 AI Agent
 - [Palantir FDE 与 AI FDE](palantir-fde.md)：前线部署工程、产品化交付与 AI FDE Agent
+- [Palantir Operating Model](palantir-operating-model.md)：业务分层、账户经营、任务小队与产品反馈
 - [大数据学习路线](learning-roadmap.md)
 - [技术笔记模板](technology-note-template.md)

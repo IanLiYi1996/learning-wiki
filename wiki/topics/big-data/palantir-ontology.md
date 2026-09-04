@@ -4,7 +4,7 @@
 - 主题位置：大数据平台 / 企业语义层 / 数据应用 / AI Agent
 - 产品范围：Palantir Foundry、AIP 与 Ontology
 - 说明：本文将“plantier”按 **Palantir** 理解
-- 相关主题：[Palantir FDE 与 AI FDE](palantir-fde.md)
+- 相关主题：[Palantir FDE 与 AI FDE](palantir-fde.md)、[Palantir Operating Model](palantir-operating-model.md)
 
 ## 结论先行
 
