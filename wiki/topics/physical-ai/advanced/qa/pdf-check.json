@@ -1,0 +1,342 @@
+{
+  "pdf_pages": 55,
+  "source_entries": 109,
+  "unique_source_urls": 109,
+  "chinese_characters": 33387,
+  "bookmarks": 99,
+  "pdf_links": 398,
+  "citations_checked": 255,
+  "misbound_citations": 0,
+  "pages": [
+    {
+      "page": 1,
+      "characters": 292,
+      "content_bottom": 665.2,
+      "empty": false
+    },
+    {
+      "page": 2,
+      "characters": 610,
+      "content_bottom": 651.2,
+      "empty": false
+    },
+    {
+      "page": 3,
+      "characters": 967,
+      "content_bottom": 773.1,
+      "empty": false
+    },
+    {
+      "page": 4,
+      "characters": 750,
+      "content_bottom": 765.5,
+      "empty": false
+    },
+    {
+      "page": 5,
+      "characters": 899,
+      "content_bottom": 737.1,
+      "empty": false
+    },
+    {
+      "page": 6,
+      "characters": 1005,
+      "content_bottom": 759.5,
+      "empty": false
+    },
+    {
+      "page": 7,
+      "characters": 793,
+      "content_bottom": 748.3,
+      "empty": false
+    },
+    {
+      "page": 8,
+      "characters": 893,
+      "content_bottom": 632.4,
+      "empty": false
+    },
+    {
+      "page": 9,
+      "characters": 812,
+      "content_bottom": 669.5,
+      "empty": false
+    },
+    {
+      "page": 10,
+      "characters": 945,
+      "content_bottom": 689.7,
+      "empty": false
+    },
+    {
+      "page": 11,
+      "characters": 1344,
+      "content_bottom": 705.8,
+      "empty": false
+    },
+    {
+      "page": 12,
+      "characters": 828,
+      "content_bottom": 711.2,
+      "empty": false
+    },
+    {
+      "page": 13,
+      "characters": 873,
+      "content_bottom": 737.3,
+      "empty": false
+    },
+    {
+      "page": 14,
+      "characters": 912,
+      "content_bottom": 684.8,
+      "empty": false
+    },
+    {
+      "page": 15,
+      "characters": 790,
+      "content_bottom": 701.8,
+      "empty": false
+    },
+    {
+      "page": 16,
+      "characters": 1073,
+      "content_bottom": 758.3,
+      "empty": false
+    },
+    {
+      "page": 17,
+      "characters": 1048,
+      "content_bottom": 772.0,
+      "empty": false
+    },
+    {
+      "page": 18,
+      "characters": 1093,
+      "content_bottom": 761.7,
+      "empty": false
+    },
+    {
+      "page": 19,
+      "characters": 1091,
+      "content_bottom": 757.2,
+      "empty": false
+    },
+    {
+      "page": 20,
+      "characters": 862,
+      "content_bottom": 678.9,
+      "empty": false
+    },
+    {
+      "page": 21,
+      "characters": 1155,
+      "content_bottom": 753.6,
+      "empty": false
+    },
+    {
+      "page": 22,
+      "characters": 1194,
+      "content_bottom": 754.1,
+      "empty": false
+    },
+    {
+      "page": 23,
+      "characters": 1034,
+      "content_bottom": 766.1,
+      "empty": false
+    },
+    {
+      "page": 24,
+      "characters": 1125,
+      "content_bottom": 764.1,
+      "empty": false
+    },
+    {
+      "page": 25,
+      "characters": 1371,
+      "content_bottom": 750.3,
+      "empty": false
+    },
+    {
+      "page": 26,
+      "characters": 933,
+      "content_bottom": 746.2,
+      "empty": false
+    },
+    {
+      "page": 27,
+      "characters": 873,
+      "content_bottom": 602.0,
+      "empty": false
+    },
+    {
+      "page": 28,
+      "characters": 1577,
+      "content_bottom": 766.3,
+      "empty": false
+    },
+    {
+      "page": 29,
+      "characters": 1157,
+      "content_bottom": 771.9,
+      "empty": false
+    },
+    {
+      "page": 30,
+      "characters": 987,
+      "content_bottom": 743.7,
+      "empty": false
+    },
+    {
+      "page": 31,
+      "characters": 1218,
+      "content_bottom": 769.1,
+      "empty": false
+    },
+    {
+      "page": 32,
+      "characters": 1068,
+      "content_bottom": 701.6,
+      "empty": false
+    },
+    {
+      "page": 33,
+      "characters": 1313,
+      "content_bottom": 712.1,
+      "empty": false
+    },
+    {
+      "page": 34,
+      "characters": 1463,
+      "content_bottom": 753.4,
+      "empty": false
+    },
+    {
+      "page": 35,
+      "characters": 1332,
+      "content_bottom": 772.5,
+      "empty": false
+    },
+    {
+      "page": 36,
+      "characters": 1218,
+      "content_bottom": 731.7,
+      "empty": false
+    },
+    {
+      "page": 37,
+      "characters": 1083,
+      "content_bottom": 693.0,
+      "empty": false
+    },
+    {
+      "page": 38,
+      "characters": 1078,
+      "content_bottom": 660.0,
+      "empty": false
+    },
+    {
+      "page": 39,
+      "characters": 1189,
+      "content_bottom": 732.5,
+      "empty": false
+    },
+    {
+      "page": 40,
+      "characters": 1329,
+      "content_bottom": 742.6,
+      "empty": false
+    },
+    {
+      "page": 41,
+      "characters": 1052,
+      "content_bottom": 728.8,
+      "empty": false
+    },
+    {
+      "page": 42,
+      "characters": 1460,
+      "content_bottom": 706.9,
+      "empty": false
+    },
+    {
+      "page": 43,
+      "characters": 977,
+      "content_bottom": 751.8,
+      "empty": false
+    },
+    {
+      "page": 44,
+      "characters": 1518,
+      "content_bottom": 751.8,
+      "empty": false
+    },
+    {
+      "page": 45,
+      "characters": 1025,
+      "content_bottom": 763.2,
+      "empty": false
+    },
+    {
+      "page": 46,
+      "characters": 998,
+      "content_bottom": 758.5,
+      "empty": false
+    },
+    {
+      "page": 47,
+      "characters": 914,
+      "content_bottom": 741.0,
+      "empty": false
+    },
+    {
+      "page": 48,
+      "characters": 778,
+      "content_bottom": 690.0,
+      "empty": false
+    },
+    {
+      "page": 49,
+      "characters": 1037,
+      "content_bottom": 733.6,
+      "empty": false
+    },
+    {
+      "page": 50,
+      "characters": 728,
+      "content_bottom": 749.2,
+      "empty": false
+    },
+    {
+      "page": 51,
+      "characters": 814,
+      "content_bottom": 600.3,
+      "empty": false
+    },
+    {
+      "page": 52,
+      "characters": 1202,
+      "content_bottom": 758.4,
+      "empty": false
+    },
+    {
+      "page": 53,
+      "characters": 1139,
+      "content_bottom": 762.6,
+      "empty": false
+    },
+    {
+      "page": 54,
+      "characters": 895,
+      "content_bottom": 762.7,
+      "empty": false
+    },
+    {
+      "page": 55,
+      "characters": 593,
+      "content_bottom": 453.6,
+      "empty": false
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Proximal Policy Optimization Algorithms",
+    "authors": [
+      "John Schulman",
+      "Filip Wolski",
+      "Prafulla Dhariwal",
+      "Alec Radford",
+      "Oleg Klimov"
+    ],
+    "year": 2017,
+    "publication_date": "2017-07-20",
+    "publication_type": "preprint",
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "1707.06347",
+    "arxiv_version_read": "v2",
+    "arxiv_version_date": "2017-08-28",
+    "first_preprint_date": "2017-07-20",
+    "abstract": "Policy-gradient reinforcement-learning methods that alternate trajectory sampling and optimization of a surrogate objective, including a clipped-probability-ratio objective.",
+    "keywords": ["reinforcement learning", "policy gradient", "PPO"],
+    "citation_count": null,
+    "citation_count_status": "not queried; no estimated count",
+    "open_access_status": "green",
+    "license": "arXiv perpetual, non-exclusive license",
+    "full_text_status": "open_pdf",
+    "pdf_url": "https://arxiv.org/pdf/1707.06347v2",
+    "code_url": null,
+    "data_availability": "The paper describes benchmark environments; no experiment data were downloaded.",
+    "source_platforms": ["arxiv"],
+    "fetched_at": "2026-10-27",
+    "metadata_basis": "arXiv abstract page and v2 PDF; year/date use the first preprint.",
+    "version_notes": [
+      "No formal publisher DOI or venue independently verified.",
+      "Experimental arXiv HTML conversion lacks the paper body; mechanisms were checked in the PDF.",
+      "No implementation repository was independently verified."
+    ],
+    "sources": [
+      {"url": "https://arxiv.org/abs/1707.06347", "supports": "Title, authors, first submission and version dates."},
+      {"url": "https://arxiv.org/pdf/1707.06347v2", "supports": "Policy-gradient sampling/update loop and clipped surrogate objective."},
+      {"url": "https://arxiv.org/html/1707.06347v2", "supports": "License label; body conversion was incomplete."}
+    ]
+  },
+  {
+    "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+    "authors": ["Tuomas Haarnoja", "Aurick Zhou", "Pieter Abbeel", "Sergey Levine"],
+    "year": 2018,
+    "publication_date": null,
+    "publication_type": "conference",
+    "venue": "Proceedings of the 35th International Conference on Machine Learning, PMLR 80",
+    "doi": null,
+    "arxiv_id": "1801.01290",
+    "arxiv_version_read": "v2",
+    "arxiv_version_date": "2018-08-08",
+    "first_preprint_date": "2018-01-04",
+    "abstract": "An off-policy actor-critic method with a stochastic policy that combines expected reward and policy entropy in a maximum-entropy reinforcement-learning objective.",
+    "keywords": ["reinforcement learning", "actor-critic", "maximum entropy", "SAC"],
+    "citation_count": null,
+    "citation_count_status": "not queried; no estimated count",
+    "open_access_status": "gold",
+    "license": null,
+    "full_text_status": "open_pdf",
+    "pdf_url": "https://arxiv.org/pdf/1801.01290v2",
+    "code_url": null,
+    "data_availability": "Benchmark tasks described by authors; no task assets or datasets downloaded.",
+    "source_platforms": ["arxiv", "pmlr"],
+    "fetched_at": "2026-10-27",
+    "metadata_basis": "PMLR formal record for title, authors and publication year; arXiv for selected v2 and first preprint date.",
+    "version_notes": [
+      "This record is for the original SAC paper, not a later algorithms-and-applications paper.",
+      "PMLR lists conference dates 10–15 July 2018, not an independently verified single publication day.",
+      "Publisher license not independently verified; arXiv HTML identifies an arXiv non-exclusive license.",
+      "The paper links code, but that repository was not independently verified, so code_url remains null.",
+      "No formal publisher DOI independently verified."
+    ],
+    "sources": [
+      {"url": "https://proceedings.mlr.press/v80/haarnoja18b.html", "supports": "Formal title, four authors, venue, year, pages and abstract."},
+      {"url": "https://arxiv.org/abs/1801.01290", "supports": "First preprint and version dates."},
+      {"url": "https://arxiv.org/pdf/1801.01290v2", "supports": "Off-policy actor-critic and maximum-entropy mechanism."}
+    ]
+  }
+]

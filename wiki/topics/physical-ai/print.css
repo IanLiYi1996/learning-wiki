@@ -1,0 +1,74 @@
+@page {
+  size: A4;
+  margin: 23mm 25.4mm;
+  @top-left {
+    content: "Physical AI · 知识全景与学习指南";
+    font-family: "Noto Sans CJK SC", sans-serif;
+    font-size: 8pt; color: #667085;
+  }
+  @top-right {
+    content: "数据 · 模型 · 机器人";
+    font-family: "Noto Sans CJK SC", sans-serif;
+    font-size: 8pt; color: #667085;
+  }
+  @bottom-left {
+    content: "资料核实：2026-10-27";
+    font-family: "Noto Sans CJK SC", sans-serif;
+    font-size: 8pt; color: #667085;
+  }
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-family: "Noto Sans CJK SC", sans-serif;
+    font-size: 8pt; color: #667085;
+  }
+}
+@page cover {
+  @top-left { content: none; }
+  @top-right { content: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+html { font-family: "Noto Sans CJK SC", sans-serif; font-size: 10.5pt; line-height: 1.7; color: #182230; }
+body { margin: 0; }
+.cover { page: cover; break-after: page; padding-top: 17mm; }
+.eyebrow { font-size: 10pt; color: #245478; margin-bottom: 15mm; }
+.cover h1 { font-size: 29pt; line-height: 1.45; margin: 0 0 8mm; font-weight: 600; }
+.subtitle { font-size: 17pt; line-height: 1.6; color: #344054; }
+.cover-rule { width: 36mm; border-top: 2.5pt solid #245478; margin: 12mm 0; }
+.cover-message { font-size: 15pt; line-height: 1.8; margin-bottom: 10mm; }
+.cover-topics { font-size: 10.5pt; color: #586577; line-height: 1.8; }
+.cover-date { font-size: 10pt; margin-top: 17mm; line-height: 1.8; }
+.cover-note { font-size: 8.8pt; color: #667085; line-height: 1.7; }
+.contents-page { break-after: page; }
+.contents-title { font-size: 23pt; margin-top: 0; bookmark-level: none; }
+.reading-note { font-size: 9.8pt; color: #586577; margin-bottom: 7mm; }
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { border-bottom: 0.4pt solid #dce3e8; padding: 1.9mm 0; margin: 0; }
+.toc a { display: block; font-size: 9.8pt; color: #182230; }
+.toc a::after { content: target-counter(attr(href), page); float: right; color: #667085; }
+.chapter { break-before: auto; }
+.start-section { break-before: page; }
+h1, h2, h3 { break-after: avoid; font-weight: 600; }
+h2 { font-size: 19pt; line-height: 1.5; margin: 9mm 0 5.5mm; bookmark-level: 1; }
+.start-section > h2 { margin-top: 0; }
+h3 { font-size: 12pt; margin: 5.5mm 0 2.5mm; line-height: 1.55; bookmark-level: 2; }
+p { margin: 0 0 3mm; orphans: 3; widows: 3; text-align: left; }
+a { color: #245478; text-decoration: none; overflow-wrap: anywhere; }
+strong { font-weight: 600; }
+.citation { font-size: 7.2pt; line-height: 0; }
+table { width: 100%; border-collapse: collapse; margin: 4mm 0 5mm; font-size: 8.8pt; line-height: 1.55; break-inside: avoid; }
+thead { display: table-header-group; break-inside: avoid; break-after: avoid; }
+.glossary table { break-inside: auto; }
+tr { break-inside: avoid; }
+th, td { text-align: left; vertical-align: top; padding: 2.2mm 1.8mm; border-bottom: 0.5pt solid #cbd5df; overflow-wrap: anywhere; }
+th { background: #edf3f8; font-weight: 600; }
+code { font-family: "DejaVu Sans Mono", "Noto Sans CJK SC", monospace; font-size: 0.85em; overflow-wrap: anywhere; }
+ul, ol { padding-left: 5.5mm; margin: 2mm 0 4mm; }
+li { margin-bottom: 1.8mm; orphans: 2; widows: 2; }
+.sources li { font-size: 8.7pt; line-height: 1.56; margin-bottom: 1.7mm; break-inside: avoid; }
+pre { white-space: pre-wrap; padding: 3mm; background: #f3f6f8; line-height: 1.5; break-inside: avoid; }
+@media screen {
+  body { max-width: 880px; margin: 32px auto; padding: 0 24px; }
+  .cover, .contents-page, .chapter { margin-bottom: 36px; }
+  .toc a::after { content: ""; }
+}

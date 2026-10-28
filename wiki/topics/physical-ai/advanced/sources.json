@@ -1,0 +1,547 @@
+[
+  {
+    "key": "S1",
+    "title": "MIT 状态空间与欠驱动系统",
+    "url": "https://underactuated.mit.edu/intro.html"
+  },
+  {
+    "key": "S2",
+    "title": "MIT POMDP 与 belief",
+    "url": "https://underactuated.mit.edu/belief.html"
+  },
+  {
+    "key": "S3",
+    "title": "ros2_control 架构",
+    "url": "https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture"
+  },
+  {
+    "key": "S4",
+    "title": "ROS 2 实时系统说明",
+    "url": "https://design.ros2.org/articles/realtime_background.html"
+  },
+  {
+    "key": "S5",
+    "title": "Modern Robotics §3.2.1：旋转矩阵",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-2-1-rotation-matrices-part-1-of-2/"
+  },
+  {
+    "key": "S6",
+    "title": "Modern Robotics §3.3.1：齐次变换",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/"
+  },
+  {
+    "key": "S7",
+    "title": "Modern Robotics §4.1.1：空间指数积",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/4-1-1-product-of-exponentials-formula-in-the-space-frame/"
+  },
+  {
+    "key": "S8",
+    "title": "Modern Robotics §5.1.1：雅可比列的构造",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-1-1-space-jacobian/"
+  },
+  {
+    "key": "S9",
+    "title": "Modern Robotics §5.1.2：body 与 space 雅可比关系",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-1-2-body-jacobian/"
+  },
+  {
+    "key": "S10",
+    "title": "Modern Robotics §6.2：数值 IK 的局部线性化",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/6-2-numerical-inverse-kinematics-part-1-of-2/"
+  },
+  {
+    "key": "S11",
+    "title": "Modern Robotics §6.2：位姿 IK",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/6-2-numerical-inverse-kinematics-part-2-of-2/"
+  },
+  {
+    "key": "S12",
+    "title": "Modern Robotics §5.3：奇异性",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-3-singularities/"
+  },
+  {
+    "key": "S13",
+    "title": "Modern Robotics §8.1：动力学结构",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/chapter-8-1-lagrangian-formulation-of-dynamics-part-1-of-2/"
+  },
+  {
+    "key": "S14",
+    "title": "MIT：Manipulator Control",
+    "url": "https://manipulation.csail.mit.edu/force.html"
+  },
+  {
+    "key": "S15",
+    "title": "MIT：Multi-Body Dynamics，广义速度部分",
+    "url": "https://underactuated.mit.edu/multibody.html"
+  },
+  {
+    "key": "S16",
+    "title": "Modern Robotics §8.1.3：质量矩阵",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/8-1-3-understanding-the-mass-matrix/"
+  },
+  {
+    "key": "S17",
+    "title": "Modern Robotics §8.2：刚体惯量",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/8-2-dynamics-of-a-single-rigid-body-part-1-of-2/"
+  },
+  {
+    "key": "S18",
+    "title": "Modern Robotics §8.1，Part 2：速度乘积项",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/8-1-lagrangian-formulation-of-dynamics-part-2-of-2/"
+  },
+  {
+    "key": "S19",
+    "title": "MathWorks 官方：DC 电机电磁方程推导",
+    "url": "https://www.mathworks.com/help/control/getstart/linear-lti-models.html"
+  },
+  {
+    "key": "S20",
+    "title": "MathWorks 官方：DC Motor 的等效模型与假设",
+    "url": "https://www.mathworks.com/help/simscape-electrical/ref/dcmotor.html"
+  },
+  {
+    "key": "S21",
+    "title": "Modern Robotics §8.9：传动与反射惯量",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/8-9-actuation-gearing-and-friction/"
+  },
+  {
+    "key": "S22",
+    "title": "maxon 官方：电流内环的职责",
+    "url": "https://support.maxongroup.com/hc/en-us/articles/6726327972252-Meaning-and-impact-of-Cogging-torque-and-Ripple-torque"
+  },
+  {
+    "key": "S23",
+    "title": "maxon 官方：电流平方热负荷与限流",
+    "url": "https://support.maxongroup.com/hc/en-us/articles/4412763373970-maxon-controllers-I2t-Limitation-Motor-winding-protection"
+  },
+  {
+    "key": "S24",
+    "title": "maxon 官方：传动弹性、回差与速度测量",
+    "url": "https://support.maxongroup.com/hc/en-us/articles/360016541693-Speed-measurement-and-Accuracy-of-speed-control"
+  },
+  {
+    "key": "S25",
+    "title": "Modern Robotics §8.3：递归逆动力学",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/8-3-newton-euler-inverse-dynamics/"
+  },
+  {
+    "key": "S26",
+    "title": "Modern Robotics §12.2.1：摩擦锥与内接棱锥",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/12-2-1-friction/"
+  },
+  {
+    "key": "S27",
+    "title": "OpenCV 官方：针孔模型与内外参",
+    "url": "https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html"
+  },
+  {
+    "key": "S28",
+    "title": "MIT：深度图与点云",
+    "url": "https://manipulation.csail.mit.edu/pose.html"
+  },
+  {
+    "key": "S29",
+    "title": "ETH Kalibr 官方：Camera–IMU Calibration",
+    "url": "https://github.com/ethz-asl/kalibr/wiki/camera-imu-calibration"
+  },
+  {
+    "key": "S30",
+    "title": "GTSAM 作者官方教程：概率模型与因子图",
+    "url": "https://gtsam.org/tutorials/intro.html"
+  },
+  {
+    "key": "S31",
+    "title": "MIT 2.160：EKF 讲义",
+    "url": "https://ocw.mit.edu/courses/2-160-identification-estimation-and-learning-spring-2006/d9cba810f893379e8fc6c0ecb582766f_lecture_7_2.pdf"
+  },
+  {
+    "key": "S32",
+    "title": "GTSAM 官方：BetweenFactor 残差与坐标",
+    "url": "https://borglab.github.io/gtsam/betweenfactor/"
+  },
+  {
+    "key": "S33",
+    "title": "GTSAM 官方：不定线性系统与 gauge",
+    "url": "https://borglab.github.io/gtsam/indeterminatesystemexception/"
+  },
+  {
+    "key": "S34",
+    "title": "Modern Robotics §10.2.1：C-space 障碍",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-2-c-space-obstacles/"
+  },
+  {
+    "key": "S35",
+    "title": "Modern Robotics §10.2.4：A*",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-2-4-graph-search/"
+  },
+  {
+    "key": "S36",
+    "title": "Modern Robotics §10.5，Part 2：RRT",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-5-sampling-methods-for-motion-planning-part-2-of-2/"
+  },
+  {
+    "key": "S37",
+    "title": "Modern Robotics §9.4，Part 1：时间参数化",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/9-4-time-optimal-time-scaling-part-1-of-3/"
+  },
+  {
+    "key": "S38",
+    "title": "Modern Robotics §10.7：非线性优化",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-7-nonlinear-optimization/"
+  },
+  {
+    "key": "S39",
+    "title": "Modern Robotics §11.4，Part 2：PID 的作用与边界",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-2-of-3/"
+  },
+  {
+    "key": "S40",
+    "title": "MathWorks 官方：回算与条件积分",
+    "url": "https://www.mathworks.com/help/simulink/slref/anti-windup-control-using-a-pid-controller.html"
+  },
+  {
+    "key": "S41",
+    "title": "Modern Robotics §11.4，Part 3：计算力矩控制",
+    "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-3-of-3/"
+  },
+  {
+    "key": "S42",
+    "title": "MIT：轨迹优化与 MPC",
+    "url": "https://underactuated.mit.edu/trajopt.html"
+  },
+  {
+    "key": "S43",
+    "title": "DFKI/ARC-OPT 官方：WBC 任务、模型、约束与求解器",
+    "url": "https://arc-opt.github.io/Documentation/"
+  },
+  {
+    "key": "S44",
+    "title": "ARC-OPT 官方：动力学、接触与执行器约束接口",
+    "url": "https://arc-opt.github.io/wbc/namespacewbc.html"
+  },
+  {
+    "key": "S45",
+    "title": "ViT §3.1",
+    "url": "https://arxiv.org/pdf/2010.11929v2"
+  },
+  {
+    "key": "S46",
+    "title": "Transformer §3.4",
+    "url": "https://arxiv.org/pdf/1706.03762v7"
+  },
+  {
+    "key": "S47",
+    "title": "openpi 的 prefix／suffix 实现",
+    "url": "https://github.com/Physical-Intelligence/openpi/blob/main/src/openpi/models/pi0.py"
+  },
+  {
+    "key": "S48",
+    "title": "OpenVLA predict_action",
+    "url": "https://github.com/openvla/openvla/blob/main/prismatic/models/vlas/openvla.py"
+  },
+  {
+    "key": "S49",
+    "title": "旋转表示原论文 §4.2",
+    "url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Zhou_On_the_Continuity_of_Rotation_Representations_in_Neural_Networks_CVPR_2019_paper.pdf"
+  },
+  {
+    "key": "S50",
+    "title": "ActionTokenizer",
+    "url": "https://github.com/openvla/openvla/blob/main/prismatic/vla/action_tokenizer.py"
+  },
+  {
+    "key": "S51",
+    "title": "OpenVLA v3 §3、§6",
+    "url": "https://arxiv.org/pdf/2406.09246v3"
+  },
+  {
+    "key": "S52",
+    "title": "README 版本说明",
+    "url": "https://github.com/openvla/openvla/blob/main/README.md"
+  },
+  {
+    "key": "S53",
+    "title": "DAgger 原文 §2",
+    "url": "https://proceedings.mlr.press/v15/ross11a/ross11a.pdf"
+  },
+  {
+    "key": "S54",
+    "title": "Diffusion Policy §III",
+    "url": "https://arxiv.org/pdf/2303.04137v4"
+  },
+  {
+    "key": "S55",
+    "title": "图像策略代码",
+    "url": "https://github.com/real-stanford/diffusion_policy/blob/main/diffusion_policy/policy/diffusion_unet_image_policy.py"
+  },
+  {
+    "key": "S56",
+    "title": "ACT 原文 §IV、附录 C",
+    "url": "https://arxiv.org/pdf/2304.13705v1"
+  },
+  {
+    "key": "S57",
+    "title": "作者 policy.py",
+    "url": "https://github.com/tonyzhaozh/act/blob/main/policy.py"
+  },
+  {
+    "key": "S58",
+    "title": "DDPM §2、式 2–4",
+    "url": "https://arxiv.org/pdf/2006.11239v2"
+  },
+  {
+    "key": "S59",
+    "title": "DDIM §4.1",
+    "url": "https://arxiv.org/pdf/2010.02502v4"
+  },
+  {
+    "key": "S60",
+    "title": "Flow Matching §3–4",
+    "url": "https://arxiv.org/pdf/2210.02747v2"
+  },
+  {
+    "key": "S61",
+    "title": "π₀ §IV",
+    "url": "https://arxiv.org/pdf/2410.24164v4"
+  },
+  {
+    "key": "S62",
+    "title": "GAE 原论文 §2",
+    "url": "https://arxiv.org/pdf/1506.02438v6"
+  },
+  {
+    "key": "S63",
+    "title": "SAC 原文 §4",
+    "url": "https://arxiv.org/pdf/1801.01290v2"
+  },
+  {
+    "key": "S64",
+    "title": "作者团队 PPO 实现",
+    "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/ppo/ppo.py"
+  },
+  {
+    "key": "S65",
+    "title": "PPO §3、式 7",
+    "url": "https://arxiv.org/pdf/1707.06347v2"
+  },
+  {
+    "key": "S66",
+    "title": "SAC Algorithms and Applications §4–6",
+    "url": "https://arxiv.org/pdf/1812.05905v2"
+  },
+  {
+    "key": "S67",
+    "title": "官方 sac.py",
+    "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/sac/sac.py"
+  },
+  {
+    "key": "S68",
+    "title": "core.py",
+    "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/sac/core.py"
+  },
+  {
+    "key": "S69",
+    "title": "PlaNet §2–3",
+    "url": "https://arxiv.org/pdf/1811.04551v5"
+  },
+  {
+    "key": "S70",
+    "title": "DreamerV3 v2 式 1",
+    "url": "https://arxiv.org/pdf/2301.04104v2"
+  },
+  {
+    "key": "S71",
+    "title": "作者 RSSM 实现",
+    "url": "https://github.com/danijar/dreamerv3/blob/main/dreamerv3/rssm.py"
+  },
+  {
+    "key": "S72",
+    "title": "agent.py",
+    "url": "https://github.com/danijar/dreamerv3/blob/main/dreamerv3/agent.py"
+  },
+  {
+    "key": "S73",
+    "title": "关节状态定义",
+    "url": "https://github.com/ros2/common_interfaces/blob/jazzy/sensor_msgs/msg/JointState.msg"
+  },
+  {
+    "key": "S74",
+    "title": "图像定义",
+    "url": "https://github.com/ros2/common_interfaces/blob/jazzy/sensor_msgs/msg/Image.msg"
+  },
+  {
+    "key": "S75",
+    "title": "ROS 2 同步器源码",
+    "url": "https://github.com/ros2/message_filters/blob/jazzy/include/message_filters/sync_policies/approximate_time.h"
+  },
+  {
+    "key": "S76",
+    "title": "Isaac Lab v2.2.0 姿态工具",
+    "url": "https://github.com/isaac-sim/IsaacLab/blob/v2.2.0/source/isaaclab/isaaclab/utils/math.py"
+  },
+  {
+    "key": "S77",
+    "title": "PyTorch 2.9 数据加载",
+    "url": "https://docs.pytorch.org/docs/2.9/data.html"
+  },
+  {
+    "key": "S78",
+    "title": "Isaac Lab v2.2.0 Mimic",
+    "url": "https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html"
+  },
+  {
+    "key": "S79",
+    "title": "MuJoCo 3.3.5 计算框架",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#general-framework"
+  },
+  {
+    "key": "S80",
+    "title": "MuJoCo 积分器",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#numerical-integration"
+  },
+  {
+    "key": "S81",
+    "title": "Isaac Sim 5.1.0 仿真时间",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/5.1.0/physics/simulation_fundamentals.html#simulation-timeline"
+  },
+  {
+    "key": "S82",
+    "title": "MuJoCo 碰撞计算",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#collision-detection"
+  },
+  {
+    "key": "S83",
+    "title": "Isaac Sim 碰撞代理",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/5.1.0/physics/simulation_fundamentals.html#convex-hull"
+  },
+  {
+    "key": "S84",
+    "title": "MuJoCo 凸几何碰撞",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#convex-collisions"
+  },
+  {
+    "key": "S85",
+    "title": "MuJoCo 接触与求解器",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#constraint-solver"
+  },
+  {
+    "key": "S86",
+    "title": "MuJoCo 接触参数",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/computation/index.html#contact"
+  },
+  {
+    "key": "S87",
+    "title": "MuJoCo 约束参数",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/modeling.html#solver-parameters"
+  },
+  {
+    "key": "S88",
+    "title": "MuJoCo 可变形对象",
+    "url": "https://mujoco.readthedocs.io/en/3.3.5/modeling.html#deformable-objects"
+  },
+  {
+    "key": "S89",
+    "title": "Isaac Sim 物理 schema",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/5.1.0/physics/simulation_fundamentals.html#physics-in-usd-schemas"
+  },
+  {
+    "key": "S90",
+    "title": "Isaac Sim 物理 DR",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/5.1.0/py/source/extensions/isaacsim.replicator.domain_randomization/docs/index.html"
+  },
+  {
+    "key": "S91",
+    "title": "ROS 2 topics",
+    "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Basic/About-Topics.rst"
+  },
+  {
+    "key": "S92",
+    "title": "services",
+    "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Basic/About-Services.rst"
+  },
+  {
+    "key": "S93",
+    "title": "actions",
+    "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Basic/About-Actions.rst"
+  },
+  {
+    "key": "S94",
+    "title": "ROS 2 Jazzy QoS 定义",
+    "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Intermediate/About-Quality-of-Service-Settings.rst"
+  },
+  {
+    "key": "S95",
+    "title": "ROS 2 Jazzy Executors",
+    "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/jazzy/source/Concepts/Intermediate/About-Executors.rst"
+  },
+  {
+    "key": "S96",
+    "title": "ros2_control Jazzy 主循环",
+    "url": "https://github.com/ros-controls/ros2_control/blob/jazzy/controller_manager/src/ros2_control_node.cpp"
+  },
+  {
+    "key": "S97",
+    "title": "CUDA 12.8.1 内存与并发",
+    "url": "https://docs.nvidia.com/cuda/archive/12.8.1/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution"
+  },
+  {
+    "key": "S98",
+    "title": "PyTorch 2.9 CUDA semantics",
+    "url": "https://docs.pytorch.org/docs/2.9/notes/cuda.html#cuda-streams"
+  },
+  {
+    "key": "S99",
+    "title": "CUDA 拷贝重叠条件",
+    "url": "https://docs.nvidia.com/cuda/archive/12.8.1/cuda-c-programming-guide/index.html#overlap-of-data-transfer-and-kernel-execution"
+  },
+  {
+    "key": "S100",
+    "title": "PyTorch 异步计时",
+    "url": "https://docs.pytorch.org/docs/2.9/notes/cuda.html#asynchronous-execution"
+  },
+  {
+    "key": "S101",
+    "title": "PyTorch Profiler",
+    "url": "https://docs.pytorch.org/docs/2.9/profiler.html"
+  },
+  {
+    "key": "S102",
+    "title": "TensorRT 性能方法",
+    "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/performance/best-practices.html"
+  },
+  {
+    "key": "S103",
+    "title": "TensorRT INT8 数学",
+    "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/inference-library/quantized-types-schemes.html"
+  },
+  {
+    "key": "S104",
+    "title": "TensorRT 量化工作流",
+    "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/inference-library/quantized-types-workflows.html"
+  },
+  {
+    "key": "S105",
+    "title": "TensorRT 11.4.0 Engine Compatibility",
+    "url": "https://docs.nvidia.com/deeplearning/tensorrt/11.4.0/inference-library/engine-compatibility.html"
+  },
+  {
+    "key": "S106",
+    "title": "LIBERO 作者仓库",
+    "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+  },
+  {
+    "key": "S107",
+    "title": "NIST 比例置信区间",
+    "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm"
+  },
+  {
+    "key": "S108",
+    "title": "SciPy proportion_ci",
+    "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html"
+  },
+  {
+    "key": "S109",
+    "title": "CALVIN 原论文",
+    "url": "https://arxiv.org/abs/2112.03227"
+  }
+]

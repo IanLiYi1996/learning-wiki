@@ -1,0 +1,838 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Physical AI：知识全景与学习指南</title><link rel="stylesheet" href="print.css"></head><body>
+    <section class="cover">
+      <p class="eyebrow">从概念到系统 · Physical AI 学习资料</p>
+      <h1>Physical AI<br>知识全景与学习指南</h1>
+      <p class="subtitle">看懂数据、模型、仿真与机器人<br>怎样一起完成现实任务</p>
+      <div class="cover-rule"></div>
+      <p class="cover-message">用“拿起杯子”串起整套系统，<br>理解每一层的输入、输出和反馈。</p>
+      <p class="cover-topics">机器人基础 · 感知与控制 · VLA 与世界模型<br>
+      数据与训练 · 仿真与部署 · 评测与学习练习</p>
+      <p class="cover-date">资料核实：2026 年 10 月 27 日<br>
+      版本 1.0 · 以机制和原始资料为主</p>
+      <p class="cover-note">覆盖整个领域的主要知识模块，不限于 NVIDIA 或 GTC。<br>
+      配有阅读顺序、自测答案和不连接硬件的反馈实验。</p>
+    </section>
+    <section class="contents-page"><h2 class="contents-title">阅读目录</h2><p class="reading-note">先读第 1—2 章，建立概念和系统地图。<br>再按第 14 章的顺序学习；第 15 章提供练习和自测答案。<br>术语速查和一手来源在附录。</p><div class="toc">
+<ul>
+<li><a href="#physical-ai">一、先把 Physical AI 的范围弄清楚</a></li>
+<li><a href="#_1">二、一套系统怎样拿起杯子</a></li>
+<li><a href="#_2">三、机器人基础：坐标、关节和运动</a></li>
+<li><a href="#_3">四、感知、状态估计和定位</a></li>
+<li><a href="#_4">五、规划和控制：想做什么与怎样执行</a></li>
+<li><a href="#vlmvla">六、模型地图：VLM、VLA、策略和世界模型</a></li>
+<li><a href="#_5">七、学习方法：模型从哪里学会动作</a></li>
+<li><a href="#_6">八、世界模型：预测、想象和生成环境</a></li>
+<li><a href="#_7">九、数据：示范、视频和轨迹</a></li>
+<li><a href="#sim-to-real">十、仿真、数字孪生和 Sim-to-Real</a></li>
+<li><a href="#_8">十一、技术栈：每一层放什么</a></li>
+<li><a href="#_9">十二、部署：模型推理不是整个运行系统</a></li>
+<li><a href="#_10">十三、评测：怎样知道真的会做</a></li>
+<li><a href="#_11">十四、怎样系统学习</a></li>
+<li><a href="#_12">十五、练习与掌握程度检查</a></li>
+<li><a href="#a">附录 A：术语速查</a></li>
+<li><a href="#b">附录 B：论文、版本与资料边界</a></li>
+<li><a href="#c">附录 C：一手来源</a></li>
+</ul>
+</div>
+</section><section class="chapter start-section"><h2 id="physical-ai">一、先把 Physical AI 的范围弄清楚</h2>
+<h3 id="11">1.1 它在研究什么</h3>
+<p>Physical AI 通常指让智能系统感知、理解物理环境，并据此推理和行动的技术。机器人、自动驾驶车辆是常见应用。这里的“行动”会改变真实环境：夹爪合上、车轮转动、手臂推开门。身体的结构、接触、重力、传感器误差和执行时间都会影响结果。NVIDIA 的定义代表一种产业用法，不是全学界唯一的正式分类。<sup class="citation"><a href="https://www.nvidia.com/en-us/glossary/generative-physical-ai/">[1]</a></sup></p>
+<p>可以用一个问题辨认任务：<strong>系统只需给出信息，还是还要让某个物理设备在环境中完成动作？</strong> 看图回答“杯子在哪”主要涉及感知与理解；拿起杯子还需要知道身体怎样运动、抓取是否成功、杯子滑动后怎样调整。这是对系统职责的拆分，不是对技术高低的评价。</p>
+<h3 id="12">1.2 几个相邻概念</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>主要关注什么</th>
+<th>与 Physical AI 的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>具身智能，Embodied AI</td>
+<td>智能体通过身体、感知和环境交互获得或使用能力</td>
+<td>与 Physical AI 大量重叠，也研究仿真中的智能体</td>
+</tr>
+<tr>
+<td>机器人学，Robotics</td>
+<td>机构、运动学、动力学、感知、规划、控制和系统集成</td>
+<td>提供让智能能力落实为运动的基础</td>
+</tr>
+<tr>
+<td>机器人学习，Robot Learning</td>
+<td>从示范、交互或其他数据中学习感知和行为</td>
+<td>是实现 Physical AI 的一组方法，不覆盖全部机械与控制工作</td>
+</tr>
+<tr>
+<td>自动驾驶</td>
+<td>车辆感知、定位、预测、规划和执行</td>
+<td>是有自身任务、数据和约束的具体应用</td>
+</tr>
+<tr>
+<td>数字孪生，Digital Twin</td>
+<td>真实对象与数字表示、数据之间的对应</td>
+<td>可辅助开发和运行，但不是所有数字孪生都含自主行动</td>
+</tr>
+</tbody>
+</table>
+<p>表格用于阅读时区分关注点，不是互斥的学科边界。Habitat 的研究涵盖仿真中的具身导航与操作；机器人教材涵盖身体和运动；Autoware 展示车辆系统的模块划分。<sup class="citation"><a href="https://aihabitat.org/">[2]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/">[3]</a></sup>、<sup class="citation"><a href="https://github.com/autowarefoundation/autoware-documentation/blob/main/docs/design/autoware-architecture-v1/index.md">[43]</a></sup></p>
+<h3 id="13">1.3 “掌握”应落到具体能力</h3>
+<p>本指南用四个层次安排学习：</p>
+<ul>
+<li>能读懂：解释常用名词，以及模块的输入、输出。</li>
+<li>能设计：为一个任务选择信息流、数据格式和测试条件。</li>
+<li>能复现：在指定软件版本下复现一个离线或仿真实验。</li>
+<li>能验证：在真实系统中确认性能、故障处理和安全边界。</li>
+</ul>
+<p>这四项是本指南的学习检查方式。读完可以建立知识结构；是否具备实机工程能力，需要后续任务和证据来判断。</p>
+</section><section class="chapter"><h2 id="_1">二、一套系统怎样拿起杯子</h2>
+<h3 id="21">2.1 先看运行时的过程</h3>
+<p>假设用户说：“把桌上的蓝色杯子放到托盘里。”一种典型实现如下。</p>
+<p>第一步，传感器提供观测。相机给图像，编码器给关节角度，夹爪可提供开合状态或力信号。这些数据要有时间和坐标约定。</p>
+<p>第二步，系统识别目标并估计状态。它判断哪个是蓝色杯子、杯子大致在哪里、机械臂现在是什么姿态。物体的位置要转换到机器人使用的坐标系中。</p>
+<p>第三步，安排任务步骤：靠近杯子、选择抓取姿态、夹住、抬起、移到托盘、松开。抓取姿态不只是“物体中心”，还要考虑夹爪能从哪个方向接近。</p>
+<p>第四步，生成运动目标。一种方案是规划无碰撞的关节轨迹；另一种方案是让学习策略直接产生一段末端或关节动作。具体系统也可以把两种方案结合起来。</p>
+<p>第五步，控制器执行。它比较目标与实际关节状态，持续更新命令；硬件接口把命令送往驱动器，驱动器带动电机。</p>
+<p>第六步，重新观察。杯子有没有被夹住？抬起后是否滑动？托盘是否被人挪走？新的观测决定继续、调整、重试还是停止。命令成功发出、轨迹执行完毕和杯子成功放入托盘，是三个不同的判断。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">[4]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-1-of-3/">[6]</a></sup>、<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup></p>
+<p>最小的信息链可以写成：<strong>观察 → 状态估计 → 目标或动作 → 控制 → 运动 → 新观察</strong>。复杂系统会在这条链上增加语义理解、规划、监控和恢复模块。</p>
+<h3 id="22">2.2 三个符号，分清看见的、真实的和发出的</h3>
+<ul>
+<li><code>s_t</code>：时刻 t 的真实状态，如物体位置、速度和接触情况。系统通常不能完整知道它。</li>
+<li><code>o_t</code>：时刻 t 得到的观测，如图像、关节读数；它可能带噪声、延迟或遮挡。</li>
+<li><code>a_t</code>：系统发出的动作，如末端移动增量、关节目标或底盘速度。</li>
+</ul>
+<p>策略可以写成 <code>a_t = π(o_t, 历史, 任务)</code>。它根据可获得的信息决定做什么。环境受到动作后变化，再产生下一次观测。机器人学习中的模型输入可能包含历史帧、本体状态或语言，不是所有策略都只看当前一张图。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup></p>
+<p>“部分可观测”指当前观测不足以唯一确定真实状态。例如一张图未必能判断杯子是否还在滑动，也看不到夹爪背后的接触。历史观测、传感器融合或模型内部记忆可以补充信息，但不会自动消除全部不确定性。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup></p>
+<h3 id="23">2.3 不同模块按不同节奏工作</h3>
+<p>任务规划可以在事件发生时更新；视觉和策略按自己的处理周期运行；关节控制与驱动器可能使用更短的周期。动作分块可以使模型一次提供多个未来参考值，再由执行层消费。不能把“模型每秒输出几次”直接当成电机控制频率。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup></p>
+<p>部署时要问：新动作何时开始生效？执行旧动作时，新观测是否已经到来？模型超时以后是继续旧参考、保持还是触发保护？这些是接口和调度问题，不是只增加模型参数就能回答的问题。<sup class="citation"><a href="https://design.ros2.org/articles/realtime_background.html">[8]</a></sup>、<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup></p>
+<h3 id="24">2.4 开发时还有另一条过程</h3>
+<p>开发过程可以按“定义任务和动作接口 → 采集或生成数据 → 清洗与划分 → 训练 → 离线／仿真评测 → 部署验证 → 记录失败并补充材料”组织。这是本指南给出的工作流，具体项目可以只用其中一部分。运行时的反馈改变当前动作；开发时的迭代改变数据、模型或系统配置，两者不要混用。</p>
+</section><section class="chapter"><h2 id="_2">三、机器人基础：坐标、关节和运动</h2>
+<h3 id="31">3.1 位置、姿态和位姿</h3>
+<p>位置回答“在哪”，姿态回答“朝向哪里”，位姿是两者合在一起。一个杯子相对相机的位置，与相对机械臂底座的位置，数字通常不同。因此，任何“目标位姿”都必须说明参照坐标系。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/">[3]</a></sup></p>
+<p>坐标变换用于把不同参照下的描述对齐。三维刚体变换通常包含旋转 <code>R</code> 和平移 <code>t</code>：<code>p_基座 = R × p_相机 + t</code>。这是坐标表示的变化，不是让物体实际运动。旋转矩阵、欧拉角和四元数是常见的姿态表示；使用时应记录具体约定，不能只凭三个或四个数字猜其含义。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/">[3]</a></sup></p>
+<h3 id="32">3.2 关节空间和任务空间</h3>
+<p>关节空间描述每个关节的角度或位移；任务空间描述末端工具的位置、朝向等任务相关量。一个机械臂可能有多个关节，但用户通常关心夹爪怎样接近杯子。这两种描述需要通过机器人几何关系连接。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">[4]</a></sup></p>
+<p>自由度是描述可独立变化的运动变量的数量。末端工具的几何结构和可达范围属于身体条件；同样的目标位姿对不同机器人，可能可达、不可达，或需要不同关节配置。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">[4]</a></sup></p>
+<h3 id="33">3.3 正运动学、逆运动学和雅可比</h3>
+<p>正运动学，FK：给定关节配置，求末端位姿。</p>
+<p>逆运动学，IK：给定末端目标，找满足它的关节配置。可能多解，也可能无解；还可能受到关节限位和数值求解条件影响。IK 找到终点配置，不代表途中避开了杯子、桌面或其他物体。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">[4]</a></sup></p>
+<p>雅可比矩阵连接关节速度和末端运动速度。它也帮助分析某个姿态下机器人能向哪些方向运动，以及末端力与关节力矩的关系。接近运动学奇异姿态时，一些方向的运动会变得难以实现；这不是“语言理解错了”，而是机构的几何条件。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-1-1-space-jacobian/">[46]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-3-singularities/">[47]</a></sup></p>
+<h3 id="34">3.4 动力学比几何多了什么</h3>
+<p>运动学不问产生运动的力。动力学考虑质量、惯性、重力、摩擦、执行器和外力。相同的末端轨迹，空夹爪和夹住重物时，需要的力矩可能不同。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/chapter-8-1-lagrangian-formulation-of-dynamics-part-1-of-2/">[5]</a></sup></p>
+<p>接触还会改变问题。移动到杯子旁边主要是自由空间运动；夹住、推杯子或插入孔中，会涉及接触位置、力和摩擦。控制方式可能需要从单纯位置跟踪变为同时考虑接触力或柔顺性。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-1-of-3/">[6]</a></sup></p>
+<p>理解检查：相机报告“杯子在前方 30 厘米”，还缺哪些信息才能给机械臂？为什么 IK 有解，抓取仍可能失败？</p>
+</section><section class="chapter"><h2 id="_3">四、感知、状态估计和定位</h2>
+<h3 id="41">4.1 不同传感器看见不同东西</h3>
+<table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>常提供的信息</th>
+<th>不能单独确定什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RGB 相机</td>
+<td>颜色、纹理、物体和场景的视觉线索</td>
+<td>图像中的像素位置不直接等于三维位置</td>
+</tr>
+<tr>
+<td>深度相机</td>
+<td>场景点到相机的距离信息</td>
+<td>坐标变换和标定仍需另外提供</td>
+</tr>
+<tr>
+<td>LiDAR，激光雷达</td>
+<td>周围的距离或点云</td>
+<td>几何形状不自动等于物体语义</td>
+</tr>
+<tr>
+<td>IMU，惯性测量单元</td>
+<td>加速度和角速度等运动信息</td>
+<td>仅靠积分不能保证长期位置不漂移</td>
+</tr>
+<tr>
+<td>编码器等本体传感器</td>
+<td>关节或轮子的运动状态</td>
+<td>不能只据关节运动确认物体已被拿起</td>
+</tr>
+<tr>
+<td>力、力矩或触觉传感器</td>
+<td>接触、受力或表面局部信息</td>
+<td>接触信号本身不等于完整任务是否成功</td>
+</tr>
+</tbody>
+</table>
+<p>这是一种职责概括；具体可测量内容取决于硬件和数据接口。移动机器人通常融合里程计、IMU、定位等信息；机械臂操作需要结合图像、本体状态和任务反馈。<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/state_estimation/">[7]</a></sup>、<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html">[24]</a></sup></p>
+<h3 id="42">4.2 感知和状态估计有何区别</h3>
+<p>感知可以输出物体类别、分割区域、深度、物体位姿或障碍物。状态估计结合观测和运动模型，估计机器人的位置、朝向、速度等随时间变化的量。它们可以使用同一传感器，但目的不同。<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/state_estimation/">[7]</a></sup></p>
+<p>SLAM 是“同时定位与建图”。已有地图上的定位不一定需要重新建图；轮式里程计提供局部运动估计，也不等于 SLAM。Nav2 需要定位与里程计给出地图、里程计和车体等坐标之间的关系，使规划和局部控制使用一致的参照。<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/state_estimation/">[7]</a></sup></p>
+<h3 id="43">4.3 标定与时间同步</h3>
+<p>相机内参描述成像关系，外参描述相机与其他坐标系之间的位置和朝向关系。标定把这些关系测出来。系统应保留单位、坐标轴方向、相机模型和标定版本。<sup class="citation"><a href="https://droid-dataset.github.io/droid/camera-calibration.html">[23]</a></sup>、<sup class="citation"><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html">[24]</a></sup></p>
+<p>时间同步解决“这张图对应哪一个关节状态”。假如机械臂正在移动，却把较早的图像与较晚的关节状态拼在一起，物体相对夹爪的位置估计会错。训练数据对齐与部署时对齐都需要注意，不能只在数据表里存一个文件名。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://droid-dataset.github.io/droid/camera-calibration.html">[23]</a></sup></p>
+<p>理解检查：模型识别蓝色杯子很准确，但夹爪总偏到同一边，应检查哪些几何和时间接口？这是本指南提出的排查练习，不预设一定是模型问题。</p>
+</section><section class="chapter"><h2 id="_4">五、规划和控制：想做什么与怎样执行</h2>
+<h3 id="51">5.1 任务、路径和轨迹</h3>
+<p>任务规划安排子任务及其顺序，例如先抓取再搬运。运动规划寻找满足几何、碰撞和运动限制的运动方案。路径只描述经过哪里；轨迹还描述何时到达以及速度等随时间变化的量。<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://underactuated.mit.edu/trajopt.html">[35]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/chapters/chapter10/">[44]</a></sup></p>
+<p>一个目标位置不是完整轨迹，一条轨迹也不是成功证据。执行期间可能出现障碍变化、物体移动或跟踪误差；系统是否重新规划、由局部反馈调整或暂停，取决于具体架构。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup></p>
+<p>采样式运动规划通过探索可行配置和连接寻找路径；轨迹优化把运动目标、代价和约束写成求解问题。两者解决的问题可以重叠，也能组合；它们不是语言模型的不同大小版本。<sup class="citation"><a href="https://underactuated.mit.edu/trajopt.html">[35]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/chapters/chapter10/">[44]</a></sup></p>
+<h3 id="52">5.2 常见控制方法</h3>
+<p>PID 根据当前误差、累计误差和误差变化调整输出。以关节位置为例，误差是目标角度与当前角度之差。PID 不负责辨认杯子或决定先开抽屉，但可作为执行层的一部分。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-1-of-3/">[6]</a></sup></p>
+<p>模型预测控制，MPC，使用模型预测未来一段时间，在约束内选择控制量；执行开头一部分后，用新状态重新求解。因此每次预测都被新的反馈修正，而不是先算完一次、随后完全不看环境。<sup class="citation"><a href="https://underactuated.mit.edu/trajopt.html">[35]</a></sup></p>
+<p>阻抗控制把交互行为设为某种力与运动的关系，例如近似弹簧和阻尼，让机器人在接触时呈现设定的柔顺行为。它不是“用了力传感器就自动安全”，也不能取消硬件和任务的限制。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-1-control-system-overview/">[48]</a></sup></p>
+<p>全身控制，WBC，协调身体和四肢的多个目标，并考虑接触及执行器约束。它描述协调的范围；PID、MPC描述控制方法，因此这些概念不要求互相排斥。<sup class="citation"><a href="https://underactuated.mit.edu/humanoids.html">[12]</a></sup></p>
+<h3 id="53">5.3 学习策略怎样接到控制器</h3>
+<p>策略输出关节目标时，需要知道关节顺序、单位、限位和时间。输出末端位姿增量时，需要明确相对坐标系，再经运动学或任务空间控制转换。输出底盘速度时，需要底盘控制器执行。输出力矩时，则直接接近动力学和驱动边界。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">[11]</a></sup></p>
+<p>所以，“模型会输出动作”之后，还必须回答动作是什么，以及哪一层执行它。VLA 可以承担较大一部分决策和运动目标生成，也不意味着每个系统都取消了低层控制器。<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<h3 id="54">5.4 反馈、实时和安全</h3>
+<p>反馈控制根据执行后获得的状态继续调整。实时强调在规定的时间要求内完成处理；平均速度快不代表每次都能按时完成。延迟是处理或传输所花时间，抖动是延迟或间隔的变化。<sup class="citation"><a href="https://design.ros2.org/articles/realtime_background.html">[8]</a></sup></p>
+<p>安全保护应作为独立的工程职责来设计。规划避障、模型判断和普通软件监控，不能单独证明整机安全。实机还涉及急停、限位、驱动器保护和断联处理等。本指南不提供安全认证方案或真实机器人操作参数。<sup class="citation"><a href="https://design.ros2.org/articles/realtime_background.html">[8]</a></sup>、<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">[11]</a></sup></p>
+<h3 id="55">5.5 模块化、端到端与混合系统</h3>
+<p>模块化系统把感知、规划等职责分开；端到端训练把一段输入到输出的映射联合学习。首先要说明端到端的边界：从图像到末端动作，不一定等于从图像到电机电流。VLA 的输出仍可能由独立控制器执行。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<p>混合系统可以让模型理解任务、选择技能，再由规划和控制完成动作，也可以让策略提供参考轨迹。比较方案时记录模块与接口，不把“端到端”理解成没有反馈、没有控制器或没有其他程序。</p>
+</section><section class="chapter"><h2 id="vlmvla">六、模型地图：VLM、VLA、策略和世界模型</h2>
+<h3 id="61">6.1 先按输入输出分类</h3>
+<table>
+<thead>
+<tr>
+<th>模型角色</th>
+<th>常见输入</th>
+<th>常见输出</th>
+<th>在杯子任务中可承担什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>感知模型</td>
+<td>图像、深度或点云</td>
+<td>类别、区域、位姿等</td>
+<td>找到杯子及其几何信息</td>
+</tr>
+<tr>
+<td>VLM，视觉语言模型</td>
+<td>图像和语言</td>
+<td>文本、语义或推理结果</td>
+<td>理解“蓝色杯子”“放到托盘”的指代与条件</td>
+</tr>
+<tr>
+<td>行为策略，Policy</td>
+<td>观测、历史和任务条件</td>
+<td>动作或动作段</td>
+<td>决定接下来怎样移动或抓取</td>
+</tr>
+<tr>
+<td>VLA，视觉语言动作模型</td>
+<td>视觉、语言，可能还有本体状态</td>
+<td>机器人动作</td>
+<td>把任务和观测连接到可执行动作表示</td>
+</tr>
+<tr>
+<td>世界模型，World Model</td>
+<td>当前或历史状态、观测，可能加候选动作</td>
+<td>未来状态、观测、奖励等</td>
+<td>预测动作后可能发生什么，或辅助生成训练数据</td>
+</tr>
+</tbody>
+</table>
+<p>这是功能划分，不是固定的网络结构。模型可以共享骨干、分成多个头，也可由多个独立模型组合。Gemini Robotics 与 Robotics-ER 展示动作模型和具身推理角色的区别；Dreamer 展示世界模型参与强化学习的方式。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://github.com/NVIDIA/cosmos">[19]</a></sup>、<sup class="citation"><a href="https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/">[20]</a></sup></p>
+<h3 id="62-vlm-vla">6.2 VLM 怎样变成 VLA</h3>
+<p>VLM 学到图像和语言的关系；要控制机器人，还需要把它接到动作表示，并用机器人行为数据学习。</p>
+<p>RT-2 把动作离散成可输出的 token，与视觉语言任务共同训练。网页知识可以帮助理解新物体、关系和指令，但原论文没有把“理解新概念”写成“从网页学会任意全新运动技能”。<sup class="citation"><a href="https://arxiv.org/html/2307.15818">[14]</a></sup></p>
+<p>OpenVLA 的原始版本同样使用离散动作 token。阅读时应区分原论文与后来扩展：本指南选读的原始配置输入单张 RGB 图像和语言，输出单步七维动作；不能把后续的动作分块、多图输入能力倒填进去。<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup></p>
+<p>VLA 不要求只有离散 token。一种实现也可以用 VLM 特征，配上输出连续动作的专家网络。π₀ 用这一类结构，通过 flow matching 生成动作段。<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<h3 id="63">6.3 动作表示是核心接口</h3>
+<p>“七维动作”不是所有机器人的统一格式。它可能表示三维位置增量、三维旋转增量和夹爪量，也可能有不同约定。另一机器人可能使用双臂关节位置、底盘速度或全身关节命令。<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<p>阅读动作头时必须记录：绝对目标还是增量、位置还是速度还是力矩、参照坐标、旋转表示、单位、归一化方式、控制周期、夹爪编码。数值形状相同也不保证含义相同。这份字段清单是依据模型与数据接口整理的阅读工具。<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup></p>
+<h3 id="64">6.4 跨机器人适配在适配什么</h3>
+<p>适配不仅是修改机器人名称，还可能更换观测编码器或动作头、重新标定、调整动作尺度，并用目标机器人的示范微调。Octo 的模块化设计研究了新观察和动作空间的适配；Open X-Embodiment 则整理多机器人数据与模型实验。<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2310.08864">[21]</a></sup></p>
+<p>共同使用某种末端动作表示，不等于身体完全相同。机械臂长度、可达空间、相机视角和夹爪结构仍会变化。“跨机器人训练过”也不能直接推出对任意新机器人零样本可用。</p>
+<h3 id="65">6.5 读网络图时，追踪信息怎样走</h3>
+<p>视觉编码器把图像变成特征；语言编码或 token 表示把指令变成模型可处理的数值；本体状态也可以经编码加入。融合模块结合这些信息，动作头再输出动作 token、连续数值或生成动作段。编码后的向量不是关节命令，还需要动作头和相应解码。<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup></p>
+<p>Transformer 常用注意力机制，在一组表示之间计算关联并组合信息。多头注意力使用多组投影处理不同表示关系；它是计算机制，不是人类注意力或可靠推理的保证。看模型图时，进一步核对时间信息、模态、掩码及动作输出结构。<sup class="citation"><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.activation.MultiheadAttention.html">[52]</a></sup></p>
+</section><section class="chapter"><h2 id="_5">七、学习方法：模型从哪里学会动作</h2>
+<h3 id="71">7.1 行为克隆和模仿学习</h3>
+<p>行为克隆，BC，把示范中的观测与动作配对，学习在类似观测下输出示范动作。它属于模仿学习。监督可以是动作类别、连续动作数值，或一段动作的生成目标。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup></p>
+<p>一个基础写法是让模型输出与示范动作之间的误差尽量小。但执行时模型会影响下一次观测；一旦偏离示范轨迹，可能进入训练中少见的状态。多步任务中的误差积累，不能只靠一次离线预测准确率来判断。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup></p>
+<p>示范数据的覆盖、质量与动作定义因此很重要。学习了抓杯子的示范，不代表也学会杯子倒下后的恢复。恢复数据、交互训练或其他明确设计的方法，才可能覆盖这些情况。</p>
+<h3 id="72">7.2 强化学习</h3>
+<p>强化学习，RL，用奖励评价行为，学习使累计回报较高的策略。奖励可以来自任务成功、目标距离、能耗等定义；它是训练目标，不天然等于全部真实要求。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://underactuated.mit.edu/policy_search.html">[34]</a></sup></p>
+<p>无模型强化学习主要直接学习策略或价值函数；基于模型的强化学习还使用环境模型辅助学习或决策。模型可以是已知动力学，也可以从数据学习。策略、价值函数、环境模型分别回答“做什么”“预期回报多少”“之后会怎样”。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://underactuated.mit.edu/policy_search.html">[34]</a></sup></p>
+<p>RL 不等于“机器人随便在现实里试错”。交互可发生在仿真、受约束实验或已有数据的离线训练中。是否在线采集、奖励如何计算、谁承担探索限制，是不同的实验条件。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup></p>
+<h3 id="73">7.3 扩散策略为什么生成动作段</h3>
+<p>如果同一目标有多条可行路线，简单地平均示范动作可能得到一条并不可行的路线。Diffusion Policy 学习条件动作分布，从噪声开始逐步去噪，生成一段连续动作。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup></p>
+<p>动作分块，Action Chunking，是一次预测多个未来动作。执行其中一部分，再用新观测重新预测，可以保持动作连贯并引入反馈。一段动作不是完整任务计划；它的长度、执行前缀和更新时间都是实现条件。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup></p>
+<p>去噪需要计算时间。增加预测长度或采样步骤，不能不检查执行延迟；同时也不能把离线生成出的漂亮轨迹直接当成实际抓取成功。</p>
+<h3 id="74-flow-matching">7.4 Flow Matching 与扩散的关系</h3>
+<p>Flow matching 通过学习连续变换的向量场，把噪声分布变换为目标动作分布。π₀ 把它用于动作专家，原论文配置一次生成五十步动作。它与扩散策略都可以生成连续动作段，但训练目标和采样过程不能简单视为同一种算法。<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<p>“扩散”“Transformer”“VLA”“强化学习”处在不同分类层次：前两者涉及生成机制或网络结构，VLA描述输入输出角色，RL描述学习目标和数据使用方式。一套系统可以同时属于其中多个类别。</p>
+<h3 id="75">7.5 预训练、微调和后训练</h3>
+<p>预训练通常用较广的数据建立基础能力；微调针对目标任务或机器人调整参数；后训练描述预训练之后的训练阶段，可以包括示范微调、强化学习或其他目标。不能把“后训练”自动等同于 RL。<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<p>“零样本”也要看定义：没有目标任务数据，还是没有目标机器人数据？提示、标定、额外高层模块是否改变了？如果论文对某项复杂任务使用了任务示范，应把这个条件和结果一起读。</p>
+<h3 id="76">7.6 六篇论文各学什么</h3>
+<table>
+<thead>
+<tr>
+<th>选读论文；预印本首发年</th>
+<th>建议抓住的机制</th>
+<th>阅读时须记录的条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diffusion Policy；2023</td>
+<td>示范学习、动作分布、重规划式执行</td>
+<td>观测历史、动作段、执行前缀和采样开销</td>
+</tr>
+<tr>
+<td>RT-2；2023</td>
+<td>视觉语言知识与动作 token 的共同训练</td>
+<td>语义泛化与运动技能覆盖的区别</td>
+</tr>
+<tr>
+<td>OpenVLA；2024</td>
+<td>开放 VLA 与目标域微调</td>
+<td>原始版本的单图、单步动作配置</td>
+</tr>
+<tr>
+<td>Octo；2024</td>
+<td>多机器人策略与模块化输入输出</td>
+<td>新机器人是否新增编码器、动作头和训练</td>
+</tr>
+<tr>
+<td>π₀；2024</td>
+<td>VLM 加动作专家、flow matching</td>
+<td>预训练、任务后训练和高层指令条件</td>
+</tr>
+<tr>
+<td>DreamerV3；2023</td>
+<td>学习世界模型，在想象轨迹中训练行为</td>
+<td>测试环境、奖励、策略训练与执行的区别</td>
+</tr>
+</tbody>
+</table>
+<p>年份采用预印本首发年，不混用论文集出版年。论文完整元数据和版本差异见附录 B 与 <code>papers.json</code>。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2307.15818">[14]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup></p>
+<h3 id="77-pposac-actor-critic">7.7 再认识 PPO、SAC 和 Actor-Critic</h3>
+<p>Actor 是策略，critic 估计状态或动作的预期回报，用于帮助策略更新。它们是训练职责，不是机器人上两个不同的身体部件。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/1801.01290v2">[54]</a></sup></p>
+<p>同策略，on-policy，主要围绕当前采样策略的数据更新；异策略，off-policy，允许利用其他或较旧策略产生的数据。异策略不等于离线学习：它仍可以一边与环境交互，一边复用经验缓冲区。<sup class="citation"><a href="https://arxiv.org/pdf/1707.06347v2">[53]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/1801.01290v2">[54]</a></sup></p>
+<p>PPO 是策略梯度方法，交替采样和优化。其常用截断目标通过新旧动作概率比来抑制某些过大的更新激励；这不是严格保证所有策略变化都处于一个硬边界。<sup class="citation"><a href="https://arxiv.org/pdf/1707.06347v2">[53]</a></sup></p>
+<p>SAC 是异策略 actor-critic，在目标中结合奖励与策略熵。熵衡量动作分布的不确定程度；奖励项和熵项共同作用，不是要求机器人无条件随机运动。阅读时核对经验来源、奖励和动作边界。<sup class="citation"><a href="https://arxiv.org/pdf/1801.01290v2">[54]</a></sup></p>
+<p>它们与 BC、Diffusion Policy、Dreamer 处在不同方法组合中。理解算法名称以后，下一步是读训练目标、采样与更新循环，而不是把它们排成机器人能力等级。</p>
+</section><section class="chapter"><h2 id="_6">八、世界模型：预测、想象和生成环境</h2>
+<h3 id="81">8.1 它不只是“会生成视频”</h3>
+<p>世界模型可以预测未来图像，也可以预测潜在状态、奖励或其他与控制有关的量。潜在状态是模型内部的压缩表示，不要求每一维都对应人类可直接命名的物理量。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://github.com/NVIDIA/cosmos">[19]</a></sup></p>
+<p>还要问模型是否以动作为条件。只根据一段视频续写未来，与比较“左移”和“右移”两种动作的后果，要求不同。看起来符合常识的画面，不必然含有可用于控制的动作—结果关系。</p>
+<h3 id="82">8.2 三种常见用途</h3>
+<p>第一种是生成或扩展训练材料。模型生成环境视频，提供多样场景；能否得到动作监督还需要额外流程。Cosmos 官方项目把世界模型与视频数据处理等工具放在一起，但不能把所有生成视频都当成机器人可执行示范。<sup class="citation"><a href="https://github.com/NVIDIA/cosmos">[19]</a></sup></p>
+<p>第二种是在想象中训练策略。Dreamer 学习潜在动态、奖励等模型，再在预测轨迹中训练 actor 和 critic。actor 决定动作，critic 估计回报；执行时使用学到的策略，并不等于每一步都搜索大量候选未来。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup></p>
+<p>第三种是辅助规划：用模型预测候选动作序列的后果，再选择序列并执行前缀。模型预测控制展示这类“预测—优化—执行—重算”的思想；它不要求预测器必须是大型生成模型。<sup class="citation"><a href="https://underactuated.mit.edu/trajopt.html">[35]</a></sup></p>
+<h3 id="83">8.3 它和物理引擎怎样区分</h3>
+<p>物理引擎根据定义的质量、关节、接触和约束等求解运动。学习式世界模型从数据拟合演化规律。二者可以相互配合，但输入、可控条件和误差来源不同。<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup>、<sup class="citation"><a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">[28]</a></sup></p>
+<p>判断世界模型是否适合某个任务，要分别测试视觉、物体持续性、动作条件、时序变化和接触等能力。这个检查框架是本指南对控制用途的拆解，不是声称某模型已经具备这些能力。</p>
+</section><section class="chapter"><h2 id="_7">九、数据：示范、视频和轨迹</h2>
+<h3 id="91">9.1 一条机器人示范包含什么</h3>
+<p>示范不是只有视频。为了监督动作，通常还需要每个时刻的命令、观测、本体状态、任务条件与轨迹边界。DROID 的数据格式区分动作、机器人状态、相机数据及时间信息。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup></p>
+<table>
+<thead>
+<tr>
+<th>字段组</th>
+<th>要记录什么</th>
+<th>为什么有用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Observation，观测</td>
+<td>图像、深度、传感器读数和历史</td>
+<td>说明模型当时看见了什么</td>
+</tr>
+<tr>
+<td>State，状态记录</td>
+<td>关节、夹爪、速度等可测量状态</td>
+<td>区分实际状态和发出的命令</td>
+</tr>
+<tr>
+<td>Action，动作</td>
+<td>命令类型、单位、参照坐标、绝对值或增量</td>
+<td>决定监督含义与执行接口</td>
+</tr>
+<tr>
+<td>Time，时间</td>
+<td>采集和发令时间戳、采样率、同步方式</td>
+<td>对齐观测、状态与动作</td>
+</tr>
+<tr>
+<td>Calibration，标定</td>
+<td>内外参、坐标约定和版本</td>
+<td>使几何关系可重现</td>
+</tr>
+<tr>
+<td>Episode／Task</td>
+<td>一次尝试的起止、语言、结果和条件</td>
+<td>支持训练划分和任务评测</td>
+</tr>
+</tbody>
+</table>
+<p>这是一份整理数据时的检查表，不是要求每个现有数据集都具备全部字段。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://droid-dataset.github.io/droid/camera-calibration.html">[23]</a></sup>、<sup class="citation"><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html">[24]</a></sup></p>
+<h3 id="92">9.2 遥操作与人类视频</h3>
+<p>遥操作由人操纵机器人，因此可记录机器人命令和反馈。人的动作质量、操作接口和时延也会进入数据。</p>
+<p>人类第一视角视频则记录人怎样做事。它可用于活动、物体和交互理解，但通常没有对应机器人的关节命令。要将人的运动用于机器人动作监督，需要解决姿态估计、身体对应、动作转换或其他数据补全问题；人的手轨迹不能直接当成任意机械臂命令。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://ego4d-data.org/">[25]</a></sup></p>
+<h3 id="93">9.3 真实、合成和多机器人数据</h3>
+<p>真实数据包含实际传感器噪声与接触，但采集条件和覆盖范围有限。合成数据可控制光照、位置等变量，并提供精确标签；其结果依赖生成环境的假设。渲染出杯子图片，与生成可完成抓取的动作示范，是两种不同产物。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/physics/simulation_fundamentals.html">[29]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/replicator_tutorials/tutorial_replicator_domain_randomization.html">[30]</a></sup></p>
+<p>多机器人数据汇集时，应统一或记录观察、动作和任务定义。Open X-Embodiment 研究多平台数据，不能仅据“有很多机器人”就认定它们的动作完全等价。<sup class="citation"><a href="https://arxiv.org/abs/2310.08864">[21]</a></sup></p>
+<h3 id="94">9.4 训练集和测试集怎样分</h3>
+<p>可分别按轨迹、日期、房间、物体、任务和机器人划分。想测试新物体，就不能只随机拆分同一物体的相邻视频帧；想测试新环境，就需要隔离相应环境。选择哪种划分，取决于要回答的泛化问题。<sup class="citation"><a href="https://arxiv.org/abs/2310.08864">[21]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2306.03310">[32]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2112.03227">[33]</a></sup></p>
+<p>动作归一化也要记录依据。训练和推理采用不同尺度，可能使同一输出对应不同实际动作。LeRobot 等工具把数据、训练和部署流程接在一起；使用统一框架后，仍须检查具体数据集的单位与统计量。<sup class="citation"><a href="https://huggingface.co/docs/lerobot/index">[42]</a></sup></p>
+<h3 id="95">9.5 一份可以照着检查的数据工作流</h3>
+<p>先查完整性：轨迹是否截断、时间是否单调、相机与状态是否匹配、动作字段有无缺失。再查语义：单位、坐标、夹爪定义和命令模式是否一致。随后确定划分与归一化，生成训练窗口，并保留原始轨迹和转换记录。这是本指南的检查顺序。</p>
+<p>质量筛选要说明目的。只训练成功操作与研究失败恢复，对数据的需求不同；不能不加记录地删掉失败，随后声称系统学过恢复。相邻帧也不应仅因看起来相似，就在不了解时间和动作监督的情况下被当成重复垃圾。</p>
+</section><section class="chapter"><h2 id="sim-to-real">十、仿真、数字孪生和 Sim-to-Real</h2>
+<h3 id="101">10.1 先区分五样东西</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>负责什么</th>
+<th>不自动提供什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenUSD</td>
+<td>场景描述、组合与交换</td>
+<td>不等于物理求解器</td>
+</tr>
+<tr>
+<td>物理引擎</td>
+<td>求解运动、碰撞、接触与约束</td>
+<td>不自动理解任务指令</td>
+</tr>
+<tr>
+<td>仿真平台</td>
+<td>组织场景、物理、渲染、传感器与接口</td>
+<td>平台可运行不等于场景参数正确</td>
+</tr>
+<tr>
+<td>数字孪生</td>
+<td>与真实对象及数据相对应的数字表示</td>
+<td>任意三维模型不能只因逼真就叫孪生</td>
+</tr>
+<tr>
+<td>学习式世界模型</td>
+<td>从数据学习环境变化或生成观测</td>
+<td>不保证严格满足接触动力学</td>
+</tr>
+</tbody>
+</table>
+<p>OpenUSD、MuJoCo、Isaac Sim 和 Cosmos 分别说明这些角色；数字孪生的含义还包括真实与数字对象之间的对应关系。<sup class="citation"><a href="https://github.com/NVIDIA/cosmos">[19]</a></sup>、<sup class="citation"><a href="https://openusd.org/release/intro.html">[26]</a></sup>、<sup class="citation"><a href="https://www.nvidia.com/en-us/glossary/digital-twin/">[27]</a></sup>、<sup class="citation"><a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">[28]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/physics/simulation_fundamentals.html">[29]</a></sup></p>
+<h3 id="102">10.2 仿真提供哪些训练条件</h3>
+<p>仿真可以反复初始化场景、同时运行多个环境、读取真实系统难以直接获得的状态，并在受控条件下测试失败。机器人学习框架把这些环境组织成训练任务，定义观测、动作、奖励、终止和重置。<sup class="citation"><a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">[28]</a></sup>、<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup></p>
+<p>这些便利依赖模型是否包含需要的现象。只调视觉外观，不能替代质量、摩擦和执行器等条件；调好了这些参数，也不保证模拟了所有现实变化。</p>
+<h3 id="103">10.3 域随机化</h3>
+<p>Domain randomization，域随机化，改变光照、材质、相机位置、质量、摩擦等参数，让策略接触多种条件。视觉随机化与物理参数随机化是不同维度。<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/replicator_tutorials/tutorial_replicator_domain_randomization.html">[30]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.2.0/py/source/extensions/omni.replicator.isaac/docs/index.html">[31]</a></sup></p>
+<p>参数范围需要有依据。随机化太窄可能覆盖不了现实；生成了大量物理上不合理或与任务无关的样本，也不能只凭数量判断训练会有效。应通过目标条件测试它改变了什么。</p>
+<h3 id="104-sim-to-real">10.4 Sim-to-Real 的实际步骤</h3>
+<p>Sim-to-real 指把模拟中形成的能力迁移到现实。一个教学用工作流是：建立接口一致的环境 → 在仿真训练和测试 → 对齐现实传感器、动作及标定 → 在受控条件验证 → 用真实差异更新数据或参数。<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/physics/simulation_fundamentals.html">[29]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.2.0/py/source/extensions/omni.replicator.isaac/docs/index.html">[31]</a></sup>、<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup></p>
+<p>这里的差异可能来自视觉、动力学、接触、执行器、延迟和任务初始化。仿真成功率与真机成功率应分别记录，不把其中一个当另一个的替代数字。</p>
+</section><section class="chapter"><h2 id="_8">十一、技术栈：每一层放什么</h2>
+<h3 id="111">11.1 按职责组织，而不是背产品名</h3>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>主要输入 → 输出</th>
+<th>工具或实现例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>身体与驱动</td>
+<td>电气和控制命令 → 实际运动；反馈读数</td>
+<td>机械臂、底盘、夹爪、驱动器与设备接口</td>
+</tr>
+<tr>
+<td>传感与坐标</td>
+<td>原始读数、标定 → 对齐的观测</td>
+<td>相机接口、CameraInfo、坐标变换与状态估计</td>
+</tr>
+<tr>
+<td>通信与任务接口</td>
+<td>传感器和命令消息 → 模块间交换</td>
+<td>ROS 2 节点、主题、服务和动作接口</td>
+</tr>
+<tr>
+<td>规划与执行</td>
+<td>目标、当前状态、障碍 → 路径、轨迹或速度</td>
+<td>MoveIt、Nav2、cuRobo、ros2_control</td>
+</tr>
+<tr>
+<td>场景与仿真</td>
+<td>资产、物理和传感器配置 → 可交互环境</td>
+<td>OpenUSD、MuJoCo、Isaac Sim</td>
+</tr>
+<tr>
+<td>数据工作流</td>
+<td>采集轨迹 → 清洗、转换、划分后的数据</td>
+<td>DROID 格式、Open X-Embodiment、LeRobot</td>
+</tr>
+<tr>
+<td>模型与训练</td>
+<td>数据、任务或奖励 → 参数和检查点</td>
+<td>PyTorch；BC、RL、VLA、扩散策略；Isaac Lab</td>
+</tr>
+<tr>
+<td>推理部署</td>
+<td>检查点、观测 → 有时限的模型输出</td>
+<td>TensorRT、设备计算、Isaac ROS 相关管线</td>
+</tr>
+<tr>
+<td>评测与运行记录</td>
+<td>尝试和反馈 → 成功率、时延、故障证据</td>
+<td>benchmark、轨迹日志、测试协议与监控</td>
+</tr>
+</tbody>
+</table>
+<p>表格是一种可组合的职责映射，不是每个项目都必须安装全部工具。框架、算法、文件格式和硬件不在同一分类层级。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">[11]</a></sup>、<sup class="citation"><a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html">[24]</a></sup>、<sup class="citation"><a href="https://openusd.org/release/intro.html">[26]</a></sup>、<sup class="citation"><a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">[28]</a></sup>、<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup>、<sup class="citation"><a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">[37]</a></sup>、<sup class="citation"><a href="https://github.com/NVlabs/curobo">[38]</a></sup>、<sup class="citation"><a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html">[40]</a></sup>、<sup class="citation"><a href="https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html">[41]</a></sup>、<sup class="citation"><a href="https://huggingface.co/docs/lerobot/index">[42]</a></sup></p>
+<h3 id="112-nvidia">11.2 NVIDIA 相关名称放在哪</h3>
+<p>Omniverse／OpenUSD 相关工具主要帮助组织数字场景和资产；Isaac Sim 提供机器人仿真平台；Isaac Lab 提供机器人学习研究工作流；Isaac ROS 提供与 ROS 2 集成的加速计算包；cuRobo 处理机器人运动生成等几何计算；GR00T 是机器人基础模型项目；Cosmos 是世界模型及相关数据工具；TensorRT 处理推理优化与运行。<sup class="citation"><a href="https://github.com/NVIDIA/cosmos">[19]</a></sup>、<sup class="citation"><a href="https://openusd.org/release/intro.html">[26]</a></sup>、<sup class="citation"><a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/physics/simulation_fundamentals.html">[29]</a></sup>、<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup>、<sup class="citation"><a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">[37]</a></sup>、<sup class="citation"><a href="https://github.com/NVlabs/curobo">[38]</a></sup>、<sup class="citation"><a href="https://github.com/NVIDIA/Isaac-GR00T">[39]</a></sup>、<sup class="citation"><a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html">[40]</a></sup></p>
+<p>这些名称不是“一条模型从头包办”的同义词。训练机器人动作模型不等于训练视频世界模型；仿真平台也不是被部署到电机上的策略。</p>
+<p>Isaac Lab 官方主分支的环境与后端范围会更新，不能把某个早期版本的组合永久写成唯一依赖。本文只用于说明层次，不提供最新版本兼容清单；实际复现须固定仓库版本及其依赖。<sup class="citation"><a href="https://github.com/isaac-sim/IsaacLab">[36]</a></sup></p>
+<h3 id="113">11.3 软件接口应写明什么</h3>
+<p>以“VLA 输出末端增量，交给执行层”为例，本指南建议把接口至少写成：输入观测及时间 → 输出动作字段及单位 → 有效期 → 消费者 → 超时和异常处理。再注明坐标、限幅、版本和反馈渠道。</p>
+<p>这样才能解释数据训练时的动作、模型输出时的动作、机器人接收时的动作是否是同一种东西。ROS 2 通信、控制器和驱动器的职责仍需要分开。<sup class="citation"><a href="https://design.ros2.org/articles/realtime_background.html">[8]</a></sup>、<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup></p>
+<h3 id="114-ros-2">11.4 ROS 2 的三种常见通信接口</h3>
+<p>Topic，主题，按发布／订阅传递连续数据，适合图像和状态流。Service，服务，用请求—响应完成较短的调用。Action，动作接口，为长过程提供目标、进度、结果和取消等机制，例如让导航系统去一个地点。三者是通信方式，不是 BC、RL 里的动作表示分类。<sup class="citation"><a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Topics.rst">[49]</a></sup>、<sup class="citation"><a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Services.rst">[50]</a></sup>、<sup class="citation"><a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Actions.rst">[51]</a></sup></p>
+<p>Action 返回完成结果，也应检查这个结果的语义：执行服务认为到达目标，与上层任务确认杯子摆放成功，可能不是同一判据。通信接口不会替代任务设计。</p>
+</section><section class="chapter"><h2 id="_9">十二、部署：模型推理不是整个运行系统</h2>
+<h3 id="121">12.1 两种负载，两套检查</h3>
+<p>训练处理大量数据或环境交互，关心优化目标、吞吐和检查点；部署处理正在发生的任务，关心输入时效、输出正确性、时限和反馈。PyTorch 的训练循环包括前向计算、损失、反向传播和参数更新；推理执行模型，不会自动执行这些训练步骤。<sup class="citation"><a href="https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html">[41]</a></sup></p>
+<p>推理优化包括合适的运行引擎、算子和精度选择等。TensorRT 的性能变化应在目标设备和实际输入上测试。转换、量化或运行方式改变后，还需要检查输出和任务效果；不能只凭单次速度数字判断系统行为。<sup class="citation"><a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html">[40]</a></sup></p>
+<h3 id="122">12.2 机械臂与移动机器人的典型组合</h3>
+<p>机械臂：相机与关节状态 → 物体位姿和任务目标 → MoveIt 或其他运动生成 → 轨迹控制器 → ros2_control 硬件接口 → 驱动器。反馈返回控制器和上层，任务结果另由观测确认。学习策略也可替换或参与其中一部分，但必须定义动作接口。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://github.com/NVlabs/curobo">[38]</a></sup></p>
+<p>移动机器人：目标地点 → 定位和障碍表示 → Nav2 路径规划与局部控制 → 底盘速度指令 → 底盘控制器与驱动器。里程计及环境观测继续更新定位和后续指令。SLAM 不是直接指挥电机的单个程序。<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/state_estimation/">[7]</a></sup>、<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">[11]</a></sup></p>
+<h3 id="123">12.3 有哪些时间需要测量</h3>
+<p>从传感器采集到可供模型使用，从模型开始到输出，从动作下发到开始执行，以及下一次反馈到达，都可以单独记录。还应关注输入时间戳、等待队列、执行旧动作和超时次数。这个测量拆分用于寻找系统延迟来源。<sup class="citation"><a href="https://design.ros2.org/articles/realtime_background.html">[8]</a></sup>、<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup></p>
+<p>评价“模型很快”时应注明是模型内部计算时间，还是包含预处理、传输与执行的链路。后者不能直接由前者推导。</p>
+</section><section class="chapter"><h2 id="_10">十三、评测：怎样知道真的会做</h2>
+<h3 id="131">13.1 先写清楚考试题</h3>
+<p>本指南建议先记录：任务、初始状态、环境、输入模态、动作接口、允许时间或步数、成功判据、试验次数、人工帮助和模型版本。再报告结果。不先写条件的成功率，很难被复现或解释。<sup class="citation"><a href="https://arxiv.org/abs/2306.03310">[32]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2112.03227">[33]</a></sup></p>
+<p>抓取任务可以区分靠近、闭合、抬起和最终放置，但哪个事件算成功应预先定义。测试过程中临时放宽规则，会改变分数的含义。</p>
+<h3 id="132">13.2 泛化必须说明“变了什么”</h3>
+<p>新指令表达、新物体外观、新空间位置、新房间、新机器人和新运动技能，是不同维度。应分别安排测试，或明确哪些条件同时变化。RT-2 的语义迁移实验与多机器人动作空间适配不是同一类测试。<sup class="citation"><a href="https://arxiv.org/html/2307.15818">[14]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2310.08864">[21]</a></sup></p>
+<p>还可以设计扰动与恢复测试：目标被移动、物体未夹牢、观测暂时缺失等。是否允许重试，重试如何计时，要事先说明。这里是测试设计建议，不是对某个模型现有能力的判断。</p>
+<h3 id="133-benchmark">13.3 两个 benchmark 怎样读</h3>
+<p>LIBERO 研究终身机器人学习和知识迁移，包含 Spatial、Object、Goal、100 等任务套件。单任务成功率是一种结果；原始终身学习设置还涉及迁移和学习过程指标。后来使用 LIBERO 做 VLA 测试时，应核对使用了哪一套协议。<sup class="citation"><a href="https://arxiv.org/abs/2306.03310">[32]</a></sup></p>
+<p>CALVIN 在原论文的桌面环境中定义 34 种语言条件技能。长时程评测把五条指令串在一起，首次失败后停止该链，统计完成前 1—5 项的比例以及平均连续完成数量。平均数量范围是 0—5，不是普通单任务百分比。<sup class="citation"><a href="https://arxiv.org/abs/2112.03227">[33]</a></sup>、<sup class="citation"><a href="https://github.com/mees/calvin/blob/main/calvin_agent/evaluation/utils.py">[45]</a></sup></p>
+<p>因此不能把 LIBERO 的单任务成功率与 CALVIN 的平均链长放在一起判断“谁更高”。相同 benchmark 名称下，也要核对任务、初始化、输入和模型是否微调。</p>
+<h3 id="134">13.4 怎样报告一次自己的实验</h3>
+<p>建议报告成功次数与总次数、失败类别、时延统计及具体条件；若试验数量有限，要保留这个事实。不要把几段精选演示当作总体成功率，也不要把离线动作误差、仿真分数和实机结果混成一个指标。</p>
+<p>评测模板在 <code>templates/evaluation_protocol.md</code>。它是本指南提供的工作表，不是对外部 benchmark 协议的改写。</p>
+</section><section class="chapter"><h2 id="_11">十四、怎样系统学习</h2>
+<h3 id="141">14.1 按依赖关系学</h3>
+<p>下面是本指南建议的学习顺序，不是固定的时间承诺。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>学什么</th>
+<th>完成标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1．概念与信息流</td>
+<td>第 1—2 章；任务、观测、状态、动作</td>
+<td>不靠产品名解释一次取放任务</td>
+</tr>
+<tr>
+<td>2．机器人基础</td>
+<td>第 3—5 章；坐标、FK／IK、规划与控制</td>
+<td>解释位姿目标怎样连接到关节执行</td>
+</tr>
+<tr>
+<td>3．数据与仿真</td>
+<td>第 9—10 章；时间、动作字段、环境接口</td>
+<td>能检查一条示范是否有可用监督</td>
+</tr>
+<tr>
+<td>4．学习与模型</td>
+<td>第 6—8 章；BC、RL、VLA、世界模型</td>
+<td>按输入、输出、目标和数据比较论文</td>
+</tr>
+<tr>
+<td>5．工程与评测</td>
+<td>第 11—13 章；接口、时限、测试协议</td>
+<td>为一个模型写出部署和评测条件</td>
+</tr>
+<tr>
+<td>6．复现与验证</td>
+<td>第 15 章练习，再选原论文实验</td>
+<td>固定版本，保存过程与失败证据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="142">14.2 先修知识补到什么程度</h3>
+<p>线性代数：理解向量、矩阵乘法、旋转和坐标变换。先能解释三维坐标关系，再深入推导运动学。</p>
+<p>微积分与力学：理解速度、加速度、梯度、力和力矩。控制与动力学需要这些基础，不要求先掌握所有高级推导。</p>
+<p>概率与统计：理解噪声、条件概率、期望和抽样变化。用来理解状态估计、动作分布及有限次评测。</p>
+<p>机器学习：理解训练／测试划分、损失、梯度、过拟合、优化器和检查点。PyTorch 官方入门给出了训练循环的具体结构。<sup class="citation"><a href="https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html">[41]</a></sup></p>
+<p>编程与系统：能读 Python、管理环境、查看日志和数据结构；再学习模块通信及并发时间问题。先修列表用于发现缺口，不能仅凭“知道名词”判断已掌握。</p>
+<h3 id="143">14.3 原始资料怎样读</h3>
+<p>第一组：Modern Robotics 的坐标、运动学、动力学和控制章节。读的时候始终画出“哪个量相对哪个参照”，并做 FK 与 IK 的方向判断。<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/">[3]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">[4]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/chapter-8-1-lagrangian-formulation-of-dynamics-part-1-of-2/">[5]</a></sup>、<sup class="citation"><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-1-of-3/">[6]</a></sup></p>
+<p>第二组：DROID 数据格式、OpenUSD 与 MuJoCo 概览。把一个 episode 的观测和动作解释清楚；分别说出场景文件、物理求解和学习模型负责什么。<sup class="citation"><a href="https://droid-dataset.github.io/droid/the-droid-dataset">[22]</a></sup>、<sup class="citation"><a href="https://openusd.org/release/intro.html">[26]</a></sup>、<sup class="citation"><a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">[28]</a></sup></p>
+<p>第三组：依次读 Diffusion Policy、RT-2、OpenVLA、Octo、π₀，再读 Dreamer。顺序是为比较机制设计的，不代表论文效果排序。第一次阅读先找四项：模型看什么、输出什么、靠什么信号学习、在哪些条件下测试。<sup class="citation"><a href="https://arxiv.org/pdf/2303.04137v4">[13]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2307.15818">[14]</a></sup>、<sup class="citation"><a href="https://arxiv.org/html/2406.09246v3">[15]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2405.12213v2">[16]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup>、<sup class="citation"><a href="https://arxiv.org/pdf/2301.04104v2">[18]</a></sup></p>
+<p>第四组：MoveIt、Nav2、ros2_control 与两个 benchmark。把模型结果接到软件接口和考试协议上，避免只关注网络图。<sup class="citation"><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">[9]</a></sup>、<sup class="citation"><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">[10]</a></sup>、<sup class="citation"><a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">[11]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2306.03310">[32]</a></sup>、<sup class="citation"><a href="https://arxiv.org/abs/2112.03227">[33]</a></sup></p>
+<h3 id="144">14.4 针对应用，再补哪些内容</h3>
+<p>机械臂操作：重点补抓取、接触、末端动作和示范学习。</p>
+<p>移动机器人：重点补定位、地图、障碍表示、路径规划和底盘控制。</p>
+<p>人形机器人：重点补浮动基座、支撑接触、平衡、全身控制和身体间动作适配；不能只把它理解为多加几个机械臂关节。<sup class="citation"><a href="https://underactuated.mit.edu/humanoids.html">[12]</a></sup></p>
+<p>车辆：重点补交通场景感知、定位、其他参与者预测、规划与车辆控制。Autoware 将这些职责分层组织，车辆接口和任务条件不能直接照搬桌面抓取。<sup class="citation"><a href="https://github.com/autowarefoundation/autoware-documentation/blob/main/docs/design/autoware-architecture-v1/index.md">[43]</a></sup></p>
+<p>柔性物体操作：重点补物体形变、遮挡、接触变化及长时程任务；π₀ 论文中的复杂示例还要连同后训练条件一起阅读。<sup class="citation"><a href="https://arxiv.org/pdf/2410.24164v4">[17]</a></sup></p>
+<p>这些是专题入口。动力学推导、控制稳定性证明、SLAM算法、优化求解器实现与行业认证，仍需要各自的课程和实践；本指南负责把它们放在可理解的系统位置上。</p>
+</section><section class="chapter"><h2 id="_12">十五、练习与掌握程度检查</h2>
+<h3 id="151">15.1 一个可以立刻运行的反馈实验</h3>
+<p>文件：<code>examples/feedback_demo.py</code>。使用 Python 标准库，不联网、不连接硬件。</p>
+<pre><code class="language-text">python examples/feedback_demo.py --output qa/feedback-demo.json
+</code></pre>
+<p>教学模型只有一个位置数值，初始为 0，目标为 1。每步更新为“位置加动作”，不含真实机器人动力学。开环方案前十步各加 0.1，然后停止；反馈方案每步根据误差取 <code>0.5 × (1 − 当前位置)</code>，并把动作限制在 −0.1 到 0.1。</p>
+<p>第十二步执行后，两者都受到 −0.25 的扰动。实际运行得到以下结果，位置保留四位小数。</p>
+<table>
+<thead>
+<tr>
+<th>步数</th>
+<th>开环位置</th>
+<th>反馈方案位置</th>
+<th>看什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>1.0000</td>
+<td>0.9500</td>
+<td>两种控制过程本来就不完全相同</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0.7500</td>
+<td>0.7375</td>
+<td>扰动使位置偏离目标</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0.7500</td>
+<td>0.8375</td>
+<td>反馈方案根据新的误差继续行动</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0.7500</td>
+<td>0.9797</td>
+<td>修正动作逐渐变小</td>
+</tr>
+<tr>
+<td>40</td>
+<td>0.7500</td>
+<td>1.0000</td>
+<td>开环仍偏离，反馈方案接近目标</td>
+</tr>
+</tbody>
+</table>
+<p>脚本已验证动作限幅、无扰动情况及最终误差。反馈方案末尾误差约为 <code>1.21 × 10^-9</code>，而不是数学上精确到达目标。完整记录在 <code>qa/feedback-demo.json</code>。</p>
+<p>这个实验只说明“测量执行结果并纠偏”的作用，没有证明某个真实控制器稳定或安全。继续练习：给观测加延迟或噪声后，结果怎样变化？先写预期，再修改代码和记录结果；不要将示例参数直接用于实机。</p>
+<h3 id="152">15.2 四个不需要机器人硬件的练习</h3>
+<p>练习 A：写杯子任务的信息流。每个模块标明输入、输出、坐标和任务结果证据。解释为什么“轨迹执行完了”不必然等于“杯子放好了”。</p>
+<p>练习 B：检查一条数据。选一份公开数据格式，写出 image、state、action、timestamp、episode 和标定信息。说明其中哪些字段是真有记录，哪些仍缺失；不要猜。</p>
+<p>练习 C：做一页论文对照。选 Diffusion Policy 与 OpenVLA，分别记录监督、输入、动作表示、执行方式、训练数据和测试变化。不要先把 benchmark 数字合成排名。</p>
+<p>练习 D：写一个评测方案。规定十次或其他明确数量的取放尝试、初始条件、成功判据、超时、是否可重试和人工干预。用模板记录失败类型；即使不执行，也要让别人能理解考试规则。</p>
+<h3 id="153">15.3 十二道自测题</h3>
+<ol>
+<li>为什么 <code>o_t</code> 和 <code>s_t</code> 不应混用？</li>
+<li>相机坐标里的目标点为什么不能直接当机械臂底座坐标里的目标？</li>
+<li>FK、IK 和运动规划分别回答什么？</li>
+<li>VLM 输出“向右移动”与 VLA 输出动作有什么差别？</li>
+<li>为什么使用扩散网络并不意味着训练方法是 RL？</li>
+<li>动作 chunk 为什么不是完整任务计划？</li>
+<li>世界模型是否一定生成视频？是否一定用于在线规划？</li>
+<li>人类视频为什么不是现成的机器人动作监督？</li>
+<li>OpenUSD、物理引擎、数字孪生有什么不同？</li>
+<li>已有地图导航是否必须同时建图？Nav2 的控制器是否就是电机控制器？</li>
+<li>平均推理时间很短，为什么仍需检查实时性？</li>
+<li>“零样本”“成功率 90%”“跨机器人”各缺什么条件才能理解？</li>
+</ol>
+<h3 id="154">15.4 答案要点</h3>
+<ol>
+<li><code>s_t</code> 是真实状态，<code>o_t</code> 是有限观测，可能有噪声、遮挡和延迟。</li>
+<li>参照不同，须使用标定和坐标变换，并核对时间与单位。</li>
+<li>FK 从关节算末端；IK 从末端找关节配置；运动规划寻找到目标的可行运动。</li>
+<li>文字需要被转换和约束；动作还须有字段、单位、坐标及执行接口。</li>
+<li>扩散是生成机制，RL是以奖励和累计回报为目标的学习方式；扩散策略可从示范学习。</li>
+<li>chunk 是一段动作序列，任务计划安排子任务及其条件；执行前缀后还可重新预测。</li>
+<li>可预测潜在状态和奖励；可用于生成数据、想象训练或规划，Dreamer 执行不要求每步搜索未来。</li>
+<li>通常没有目标机器人的命令，且人体与机器人身体及动作空间不同。</li>
+<li>分别关注场景表示、物理求解，以及真实对象与数字表示／数据的对应。</li>
+<li>已有地图可只做定位；Nav2 局部控制输出底盘运动指令，底层驱动控制另有职责。</li>
+<li>还涉及最坏情况、抖动、数据年龄、传输和动作执行；平均值不保证截止时间。</li>
+<li>需说明没见过哪类数据、测了哪些任务和多少次，以及适配了哪些机器人与接口。</li>
+</ol>
+<h3 id="155">15.5 怎样判断下一步该学什么</h3>
+<p>如果解释时仍主要靠品牌名，回到第 2、11 章；如果动作接口说不清，回到第 3、6、9 章；如果把预测、规划和控制混在一起，回到第 5、8 章；如果看见一个分数就认为“全面会做”，回到第 13 章。</p>
+<p>能够独立完成信息流、数据检查、论文对照和评测方案后，再选择一个固定版本的仿真实验复现。完成复现时保留环境、参数、随机种子、日志与失败，不只保存成功视频。</p>
+</section><section class="chapter glossary"><h2 id="a">附录 A：术语速查</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>一句话解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embodiment</td>
+<td>身体形态、传感和动作接口等条件</td>
+</tr>
+<tr>
+<td>Proprioception，本体感知</td>
+<td>感知自身关节和运动等状态</td>
+</tr>
+<tr>
+<td>FK／IK</td>
+<td>从关节求末端／从末端目标求关节</td>
+</tr>
+<tr>
+<td>Policy，策略</td>
+<td>根据可获得的信息选择动作</td>
+</tr>
+<tr>
+<td>Action Space，动作空间</td>
+<td>系统能输出哪些动作及其表示</td>
+</tr>
+<tr>
+<td>BC，行为克隆</td>
+<td>用示范中的观测—动作配对学习行为</td>
+</tr>
+<tr>
+<td>IL，模仿学习</td>
+<td>从示范行为学习的一类方法，包含 BC</td>
+</tr>
+<tr>
+<td>RL，强化学习</td>
+<td>依据奖励优化累计回报</td>
+</tr>
+<tr>
+<td>VLM／VLA</td>
+<td>视觉语言角色／进一步输出动作的角色</td>
+</tr>
+<tr>
+<td>Action Chunk</td>
+<td>一次预测的一段未来动作</td>
+</tr>
+<tr>
+<td>World Model</td>
+<td>预测环境变化或生成相关观测的模型</td>
+</tr>
+<tr>
+<td>Latent State，潜在状态</td>
+<td>模型内部学到的压缩状态表示</td>
+</tr>
+<tr>
+<td>MPC</td>
+<td>预测一段未来，优化并执行前缀后重算</td>
+</tr>
+<tr>
+<td>WBC</td>
+<td>协调身体和四肢的全身控制</td>
+</tr>
+<tr>
+<td>ROS 2</td>
+<td>机器人软件模块通信与集成框架</td>
+</tr>
+<tr>
+<td>Domain Randomization</td>
+<td>在模拟或生成流程中改变环境参数</td>
+</tr>
+<tr>
+<td>Sim-to-Real</td>
+<td>将模拟中形成的能力迁移到现实</td>
+</tr>
+<tr>
+<td>Fine-tuning，微调</td>
+<td>针对目标数据或任务进一步调整参数</td>
+</tr>
+<tr>
+<td>Zero-shot，零样本</td>
+<td>在明确的目标数据缺失条件下测试，不是“完全无需任何配置”</td>
+</tr>
+<tr>
+<td>OOD，分布外</td>
+<td>测试条件偏离所定义的训练分布</td>
+</tr>
+</tbody>
+</table>
+<p>速查词义按正文及其原始资料使用，不代替具体论文的符号和实验定义。</p>
+</section><section class="chapter"><h2 id="b">附录 B：论文、版本与资料边界</h2>
+<p>结构化论文表见 <code>papers.json</code>，包含模型学习与评测模块八篇论文，以及补充的 PPO、SAC，共十篇。元数据保留标题、作者、出版或首发年、arXiv、DOI、开放 PDF 和官方代码等字段；引用次数未取得可靠数据时为 <code>null</code>，不估计。</p>
+<p>本指南的论文表使用预印本首发年帮助理解时间顺序，JSON 则保留正式出版口径及版本说明。OpenVLA 的 CoRL 会议年是 2024，所核验 PMLR 卷出版于 2025；π₀ 首发于 2024，RSS 出版于 2025。Dreamer 的 2023 预印本与 2025 Nature 论文标题不同，不能当两项独立算法或混写署名。</p>
+<p>选读版本：Diffusion Policy v4；OpenVLA v3；Octo v2；π₀ v4；DreamerV3 v2。仓库主分支可能包含后续模型，不以其全部功能描述旧论文。数据与评测研究笔记另保留 DROID、LIBERO、CALVIN 的核验信息。</p>
+<p>覆盖范围：主要概念、常见学习机制、系统工程职责及学习练习。未穷举模型发布、机械结构、执行器设计、控制定理、全部导航／自动驾驶算法，也未下载大数据集、训练模型或测试真实机器人。本轮实际运行的是第 15 章教学程序及文档检查。</p>
+<p>GTC 会议信息在已有的《GTC Berlin 2026 Physical AI 深度调研报告》中；本指南不重写会议时间线，也不把会上的产品名称当成整个学科结构。</p>
+</section><section class="chapter sources start-section"><h2 id="c">附录 C：一手来源</h2>
+<p>统一访问日：2026-10-27。未核实发布日期的网页不以版权年份或访问日代替发布日期。固定软件版本只代表本文选读资料，不表示最新版本。</p>
+<ol>
+<li>NVIDIA，<em>Generative Physical AI</em>，产业术语说明。<a href="https://www.nvidia.com/en-us/glossary/generative-physical-ai/">1</a></li>
+<li>Habitat 作者项目，具身导航、操作与环境研究。<a href="https://aihabitat.org/">2</a></li>
+<li>Lynch、Park，<em>Modern Robotics</em>，刚体变换与机器人运动基础，作者教材配套讲解。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/3-3-1-homogeneous-transformation-matrices/">3</a></li>
+<li><em>Modern Robotics</em>，<em>Inverse Kinematics of Open Chains</em>。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/inverse-kinematics-of-open-chains/">4</a></li>
+<li><em>Modern Robotics</em>，动力学，拉格朗日建模讲解。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/chapter-8-1-lagrangian-formulation-of-dynamics-part-1-of-2/">5</a></li>
+<li><em>Modern Robotics</em>，<em>Motion Control with Torque or Force Inputs</em>；涉及运动及接触控制。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-1-of-3/">6</a></li>
+<li>Nav2，<em>State Estimation</em>，Rolling 文档。<a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/state_estimation/">7</a></li>
+<li>ROS 2，<em>Introduction to Real-time Systems</em>；2016 年写作与修订。<a href="https://design.ros2.org/articles/realtime_background.html">8</a></li>
+<li>ros2_control，<em>Getting Started / Architecture</em>，Jazzy 文档。<a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html#architecture">9</a></li>
+<li>MoveIt，<em>The move_group node</em>，main 文档。<a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">10</a></li>
+<li>Nav2，<em>Navigation Servers</em>，Rolling 文档；导航组件职责。<a href="https://docs.nav2.org/rolling/getting_started/navigation_concepts/navigation_servers/">11</a></li>
+<li>MIT，<em>Underactuated Robotics / Highly-articulated Legged Robots</em>；全身控制阅读入口。<a href="https://underactuated.mit.edu/humanoids.html">12</a></li>
+<li>Chi 等，<em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</em>；2023，arXiv v4。<a href="https://arxiv.org/pdf/2303.04137v4">13</a></li>
+<li>Zitkovich 等，<em>RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control</em>；2023。<a href="https://arxiv.org/html/2307.15818">14</a></li>
+<li>Kim 等，<em>OpenVLA: An Open-Source Vision-Language-Action Model</em>；2024 首发，arXiv v3。<a href="https://arxiv.org/html/2406.09246v3">15</a></li>
+<li>Octo Model Team，<em>Octo: An Open-Source Generalist Robot Policy</em>；2024，arXiv v2。<a href="https://arxiv.org/pdf/2405.12213v2">16</a></li>
+<li>Black 等，<em>π₀: A Vision-Language-Action Flow Model for General Robot Control</em>；2024 首发，arXiv v4。<a href="https://arxiv.org/pdf/2410.24164v4">17</a></li>
+<li>Hafner 等，<em>Mastering Diverse Domains through World Models</em>；2023 首发，DreamerV3 预印本 v2。<a href="https://arxiv.org/pdf/2301.04104v2">18</a></li>
+<li>NVIDIA，Cosmos 官方仓库，世界模型与相关数据工具。<a href="https://github.com/NVIDIA/cosmos">19</a></li>
+<li>Google DeepMind，<em>Gemini Robotics brings AI into the physical world</em>；2025-03-12，官方发布说明。<a href="https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/">20</a></li>
+<li>Open X-Embodiment Collaboration，<em>Open X-Embodiment: Robotic Learning Datasets and RT-X Models</em>；2023 首发。<a href="https://arxiv.org/abs/2310.08864">21</a></li>
+<li>DROID，<em>The DROID Dataset / Raw Data Format</em>，作者数据文档。<a href="https://droid-dataset.github.io/droid/the-droid-dataset">22</a></li>
+<li>DROID，<em>Camera Calibration</em>，作者标定文档。<a href="https://droid-dataset.github.io/droid/camera-calibration.html">23</a></li>
+<li>ROS，<em>sensor_msgs/CameraInfo</em>，Noetic 消息定义；内参、外参与时间字段说明。<a href="https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html">24</a></li>
+<li>Ego4D，第一视角人类活动视频，作者项目。<a href="https://ego4d-data.org/">25</a></li>
+<li>OpenUSD，<em>Introduction to USD</em>，release 文档。<a href="https://openusd.org/release/intro.html">26</a></li>
+<li>NVIDIA，<em>What Is a Digital Twin?</em>，术语说明。<a href="https://www.nvidia.com/en-us/glossary/digital-twin/">27</a></li>
+<li>MuJoCo，<em>Overview</em>，固定版本 3.3.5。<a href="https://mujoco.readthedocs.io/en/3.3.5/overview.html">28</a></li>
+<li>NVIDIA Isaac Sim，<em>Simulation Fundamentals</em>，固定版本 4.5.0。<a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/physics/simulation_fundamentals.html">29</a></li>
+<li>NVIDIA Isaac Sim，<em>Domain Randomization</em>，视觉条件随机化，版本 4.5.0。<a href="https://docs.isaacsim.omniverse.nvidia.com/4.5.0/replicator_tutorials/tutorial_replicator_domain_randomization.html">30</a></li>
+<li>NVIDIA Isaac Sim，<em>Physics-based Domain Randomization</em>，版本 4.2.0。<a href="https://docs.isaacsim.omniverse.nvidia.com/4.2.0/py/source/extensions/omni.replicator.isaac/docs/index.html">31</a></li>
+<li>Liu 等，<em>LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning</em>；2023 首发。<a href="https://arxiv.org/abs/2306.03310">32</a></li>
+<li>Mees 等，<em>CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks</em>；2021 首发。<a href="https://arxiv.org/abs/2112.03227">33</a></li>
+<li>MIT，<em>Underactuated Robotics / Policy Search</em>；直接优化策略与控制目标。<a href="https://underactuated.mit.edu/policy_search.html">34</a></li>
+<li>MIT，<em>Underactuated Robotics / Trajectory Optimization</em>；轨迹优化与 MPC。<a href="https://underactuated.mit.edu/trajopt.html">35</a></li>
+<li>Isaac Lab 官方仓库，机器人学习框架，主分支随时间更新。<a href="https://github.com/isaac-sim/IsaacLab">36</a></li>
+<li>Isaac ROS 官方 common 仓库，ROS 2 集成和加速机器人计算阅读入口。<a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">37</a></li>
+<li>cuRobo 官方仓库，机器人运动生成。<a href="https://github.com/NVlabs/curobo">38</a></li>
+<li>Isaac-GR00T 官方仓库，机器人基础模型项目。<a href="https://github.com/NVIDIA/Isaac-GR00T">39</a></li>
+<li>NVIDIA TensorRT，官方文档首页，推理优化与运行。<a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html">40</a></li>
+<li>PyTorch，<em>Learn the Basics / Quickstart</em>，官方训练与推理入门。<a href="https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html">41</a></li>
+<li>Hugging Face LeRobot，官方文档，数据、策略、训练与部署。<a href="https://huggingface.co/docs/lerobot/index">42</a></li>
+<li>Autoware，<em>Architecture overview</em>，官方仓库 architecture-v1 模块化架构资料，不是全部后续架构的概述。<a href="https://github.com/autowarefoundation/autoware-documentation/blob/main/docs/design/autoware-architecture-v1/index.md">43</a></li>
+<li><em>Modern Robotics</em>，<em>Motion Planning</em>，作者教材配套章节。<a href="https://modernrobotics.northwestern.edu/chapters/chapter10/">44</a></li>
+<li>CALVIN 作者仓库，评测工具源码，任务链计分核验。<a href="https://github.com/mees/calvin/blob/main/calvin_agent/evaluation/utils.py">45</a></li>
+<li><em>Modern Robotics</em>，<em>Space Jacobian</em>，速度关系。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-1-1-space-jacobian/">46</a></li>
+<li><em>Modern Robotics</em>，<em>Singularities</em>，奇异姿态与力／速度映射。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-3-singularities/">47</a></li>
+<li><em>Modern Robotics</em>，<em>Control System Overview</em>，运动、力和阻抗控制。<a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-1-control-system-overview/">48</a></li>
+<li>ROS 2 官方文档仓库，<em>Topics</em>，Jazzy 分支。<a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Topics.rst">49</a></li>
+<li>ROS 2 官方文档仓库，<em>Services</em>，Jazzy 分支。<a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Services.rst">50</a></li>
+<li>ROS 2 官方文档仓库，<em>Actions</em>，Jazzy 分支。<a href="https://github.com/ros2/ros2_documentation/blob/jazzy/source/Concepts/Basic/About-Actions.rst">51</a></li>
+<li>PyTorch，<em>MultiheadAttention</em>，官方参考文档；滚动地址当前重定向到具体版本。<a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.activation.MultiheadAttention.html">52</a></li>
+<li>Schulman 等，<em>Proximal Policy Optimization Algorithms</em>；2017，arXiv v2。<a href="https://arxiv.org/pdf/1707.06347v2">53</a></li>
+<li>Haarnoja 等，<em>Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</em>；2018，arXiv v2。<a href="https://arxiv.org/pdf/1801.01290v2">54</a></li>
+</ol></section></body></html>

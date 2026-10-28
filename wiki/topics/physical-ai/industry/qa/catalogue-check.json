@@ -1,0 +1,11 @@
+{
+  "product_records": 58,
+  "unique_name_vendor_pairs": 58,
+  "source_files": [
+    "application-products.json",
+    "data-products.json",
+    "learning-products.json",
+    "runtime-products.json"
+  ],
+  "unknown_values": "not inferred; evidence limitations retained"
+}

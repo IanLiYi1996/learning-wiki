@@ -1,0 +1,68 @@
+[
+  {
+    "id": "abb-pickmaster-twin",
+    "name": "PickMaster Twin",
+    "vendor": "ABB Robotics",
+    "stages": ["03", "07", "10", "11"],
+    "category": "工业抓取包装应用软件",
+    "access_status": "正式产品页、规格与商业咨询入口；具体许可需确认",
+    "inputs": ["视觉／传感器结果", "输送与工位配置", "机器人工作站"],
+    "outputs": ["抓取包装流程", "运行操作与生产状态"],
+    "interfaces": ["RobotStudio PowerPac", "OmniCore／IRC5 支持范围", "PackML", "视觉与输送跟踪"],
+    "deployment_modes": ["数字工作站", "现场运行与操作界面"],
+    "evidence": {
+      "availability": "ABB 官方产品页可查功能与部署形态",
+      "customer": "本条未单独核验客户产线性能",
+      "scope": "随机物料流视觉引导抓取与包装，不是通用机器人模型"
+    },
+    "limits": ["设备、版本、相机、输送和许可证组合需核验", "文档能力不等于本次实测"],
+    "sources": [{"title": "ABB PickMaster Twin", "url": "https://www.abb.com/global/en/areas/robotics/products/software/pickmaster-twin", "type": "product_documentation", "claim_scope": "功能、应用生态与支持入口"}],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "boston-dynamics-stretch",
+    "name": "Stretch",
+    "vendor": "Boston Dynamics",
+    "stages": ["07", "08", "10", "11"],
+    "category": "仓库箱件处理机器人应用系统",
+    "access_status": "商业产品、集成与维护入口",
+    "inputs": ["箱件场景", "卸箱任务", "现场输送与集成条件"],
+    "outputs": ["箱件搬运", "卸箱工作流"],
+    "interfaces": ["供应商集成与服务", "输送／码垛衔接，按项目配置"],
+    "deployment_modes": ["仓库现场机器人系统"],
+    "evidence": {
+      "availability": "供应商产品与集成／服务页面",
+      "customer": "DHL 2025-05-13 公告说明 2023 北美商业使用和后续区域扩展",
+      "scope": "箱件卸载；超过 1,000 台新增部署属于 MOU 计划，不作为已运行数量"
+    },
+    "limits": ["不能将 DHL 全部机器人数量归于 Stretch", "后续任务扩展不是当前所有场地能力"],
+    "sources": [
+      {"title": "Stretch", "url": "https://bostondynamics.com/products/stretch/", "type": "product_documentation", "claim_scope": "产品与服务形态"},
+      {"title": "DHL 2025 公告", "url": "https://group.dhl.com/en/media-relations/press-releases/2025/dhl-group-signs-mou-with-boston-dynamics-and-accelerates-cross-business-automation-strategy.html", "type": "customer_notice", "claim_scope": "商业使用、区域范围与未来计划"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "agility-digit-arc-solution",
+    "name": "Digit／Agility Arc 应用方案",
+    "vendor": "Agility Robotics",
+    "stages": ["07", "08", "10", "11"],
+    "category": "人形搬运机器人与商业运维方案",
+    "access_status": "商业项目与 RaaS；新品发布与实际可用状态分别记录",
+    "inputs": ["料箱搬运任务", "仓储自动化与业务系统接口"],
+    "outputs": ["料箱转移至输送线", "车队、工作流与运行状态"],
+    "interfaces": ["Agility Arc", "供应商支持的仓储系统集成"],
+    "deployment_modes": ["现场 Digit", "云端 Arc 与服务"],
+    "evidence": {
+      "availability": "供应商方案页及客户商业协议披露",
+      "customer": "GXO 2026-10-26 回顾 Flowery Branch 自 2024 多年 RaaS 商业运行、超过 100,000 个料箱",
+      "scope": "Statesville／Lebanon 预计 2027 年初新增部署；先 Digit 4，再在 Digit 5 商业可用时迁移"
+    },
+    "limits": ["后续站点计划不等于截至核验日已经运行", "不推导任意任务、人形或模型能力"],
+    "sources": [
+      {"title": "Agility 方案", "url": "https://www.agilityrobotics.com/solutions", "type": "product_documentation", "claim_scope": "机器人、Arc、集成和服务职责"},
+      {"title": "GXO 2026 客户公告", "url": "https://investors.gxo.com/news-releases/news-release-details/gxo-and-agility-robotics-expand-partnership-accelerate", "type": "customer_notice", "claim_scope": "现有商业任务与未来站点时间"}
+    ],
+    "checked_at": "2026-10-27"
+  }
+]

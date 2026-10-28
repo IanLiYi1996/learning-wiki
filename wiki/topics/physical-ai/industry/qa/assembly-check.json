@@ -1,0 +1,19 @@
+{
+  "chapters": 12,
+  "chapter_files": [
+    "01_lifecycle.md",
+    "02_real_data.md",
+    "03_scene_sim.md",
+    "04_synthetic.md",
+    "05_training.md",
+    "06_model_platforms.md",
+    "07_perception_control.md",
+    "08_edge_deploy.md",
+    "09_validation.md",
+    "10_fleet_operations.md",
+    "11_solutions_cases.md",
+    "12_interfaces_reading.md"
+  ],
+  "sources": 147,
+  "source_urls_unique": 147
+}

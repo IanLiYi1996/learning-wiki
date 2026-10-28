@@ -1,0 +1,184 @@
+{
+  "pdf_pages": 17,
+  "source_entries": 48,
+  "unique_source_urls": 46,
+  "chinese_characters": 6894,
+  "chapters_and_appendices": 12,
+  "bookmarks": 40,
+  "pdf_links": 283,
+  "citations_checked": 259,
+  "misbound_citations": 0,
+  "missing_references": [],
+  "pages": [
+    {
+      "page": 1,
+      "characters": 268,
+      "bounds": [
+        72.0,
+        114.7,
+        334.3,
+        662.4
+      ]
+    },
+    {
+      "page": 2,
+      "characters": 362,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 3,
+      "characters": 881,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 4,
+      "characters": 861,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 5,
+      "characters": 1155,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 6,
+      "characters": 1017,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 7,
+      "characters": 1033,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 8,
+      "characters": 1102,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 9,
+      "characters": 751,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 10,
+      "characters": 1078,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 11,
+      "characters": 1281,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 12,
+      "characters": 1159,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 13,
+      "characters": 1076,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 14,
+      "characters": 1074,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 15,
+      "characters": 674,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 16,
+      "characters": 1611,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    },
+    {
+      "page": 17,
+      "characters": 2316,
+      "bounds": [
+        72.0,
+        26.8,
+        523.3,
+        815.1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+    "authors": [
+      "Bo Liu",
+      "Yifeng Zhu",
+      "Zhuoyuan Gao",
+      "Qiang Liu",
+      "Yuke Zhu",
+      "Peter Stone"
+    ],
+    "year": 2023,
+    "publication_date": "2023-06-05",
+    "publication_date_semantics": "arXiv v1 submission date, not a verified conference publication day",
+    "publication_type": "conference",
+    "venue": "NeurIPS 2023",
+    "doi": null,
+    "arxiv_id": "2306.03310",
+    "citation_count": null,
+    "open_access_status": "green",
+    "license": null,
+    "full_text_status": "open_pdf",
+    "pdf_url": "https://arxiv.org/pdf/2306.03310",
+    "data_availability": "Author repository provides benchmark environment and demonstration-data access instructions; no datasets were downloaded.",
+    "code_url": "https://github.com/Lifelong-Robot-Learning/LIBERO",
+    "source_platforms": [
+      "arxiv",
+      "author_project",
+      "github",
+      "robosuite"
+    ],
+    "fetched_at": "2026-10-27",
+    "metadata_sources": [
+      {
+        "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+        "url": "https://arxiv.org/abs/2306.03310",
+        "version": "v2; latest arXiv version on the lookup date",
+        "version_date": "2023-10-14",
+        "first_submission_date": "2023-06-05",
+        "date_semantics": "publication_date uses v1; version_date is the arXiv v2 revision date, both UTC calendar dates",
+        "repository_doi": "10.48550/arXiv.2306.03310",
+        "supports": "Exact title, all six authors, arXiv identifier, submission history and public PDF link"
+      },
+      {
+        "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning — original paper",
+        "url": "https://arxiv.org/pdf/2306.03310",
+        "version": "v2 (2023-10-14), as identified by the PDF and arXiv record",
+        "supports": "NeurIPS 2023 footer; Section 3 suites and simulation; Section 4.1 success-rate-based FWT, NBT and AUC definitions"
+      },
+      {
+        "title": "LIBERO author project and repository",
+        "url": "https://github.com/Lifelong-Robot-Learning/LIBERO",
+        "version": "README as read on 2026-10-27; no immutable commit was resolved",
+        "supports": "Four suites, 130 tasks, official benchmark implementation and demonstration-data access instructions"
+      },
+      {
+        "title": "robosuite: A Simulation Framework for Robot Learning",
+        "url": "https://robosuite.ai/",
+        "version": "Project home page as read on 2026-10-27",
+        "supports": "robosuite is powered by MuJoCo"
+      }
+    ],
+    "evidence_notes": [
+      "Evidence cutoff and lookup date: 2026-10-27. Title and arXiv ID 2306.03310 match. The source has six authors; the previous Xintong Gao and Yaodong Feng entries were not supported by the arXiv author list.",
+      "Scope: simulated tabletop manipulation built on robosuite/MuJoCo, including object placement and drawer operations; not real-robot reliability certification.",
+      "Four suites total 130 tasks: LIBERO-Spatial (10), LIBERO-Object (10), LIBERO-Goal (10), and LIBERO-100 (100). The first three vary spatial arrangements, manipulated objects, and goals while constraining the other factors; LIBERO-100 varies multiple factors. LIBERO-100 is split into LIBERO-90 and LIBERO-10 in the paper.",
+      "Each task has 50 demonstrations in the original benchmark. Task success is binary per rollout; the paper uses success rates estimated over 20 evaluation rollouts for its lifelong-learning metrics.",
+      "Original Section 4.1 metrics are forward transfer (FWT), negative backward transfer (NBT), and area under the success-rate learning curve (AUC). FWT averages final performance when each task is learned; NBT measures the largest later drop from that performance; AUC averages discretely sampled success rates from task introduction through subsequent learning. The paper does not define these by normalization against a single-task reference.",
+      "Task-success reporting must retain the suite, task sequence, initial-state distribution and evaluation protocol. AUC, forgetting and transfer are not interchangeable with a plain final success percentage or with CALVIN chain length.",
+      "No citation-count request or formal publisher DOI lookup was made. Redistribution license was not independently checked. These values remain null. Only primary sources were used; no model ranking or current-leaderboard claim is made."
+    ],
+    "doi_semantics": "Formal publisher DOI not independently verified; the arXiv repository DOI is recorded in metadata_sources and is not substituted for a publisher DOI."
+  },
+  {
+    "title": "CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks",
+    "authors": [
+      "Oier Mees",
+      "Lukas Hermann",
+      "Erick Rosete-Beas",
+      "Wolfram Burgard"
+    ],
+    "year": 2022,
+    "publication_date": "2021-12-06",
+    "publication_date_semantics": "arXiv v1 submission date; year and venue describe the author-confirmed RA-L 2022 journal publication, whose exact publication day was not verified",
+    "publication_type": "journal-article",
+    "venue": "IEEE Robotics and Automation Letters (RA-L), 2022",
+    "doi": null,
+    "arxiv_id": "2112.03227",
+    "citation_count": null,
+    "open_access_status": "green",
+    "license": null,
+    "full_text_status": "open_pdf",
+    "pdf_url": "https://arxiv.org/pdf/2112.03227",
+    "data_availability": "Author repository provides environment and dataset access instructions; no datasets were downloaded.",
+    "code_url": "https://github.com/mees/calvin",
+    "source_platforms": [
+      "arxiv",
+      "author_project",
+      "github"
+    ],
+    "fetched_at": "2026-10-27",
+    "metadata_sources": [
+      {
+        "title": "CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks",
+        "url": "https://arxiv.org/abs/2112.03227",
+        "version": "v4; latest arXiv version on the lookup date",
+        "version_date": "2022-07-13",
+        "first_submission_date": "2021-12-06",
+        "date_semantics": "publication_date uses v1; version_date is the arXiv v4 revision date, both UTC calendar dates",
+        "repository_doi": "10.48550/arXiv.2112.03227",
+        "supports": "Exact title, all four authors, identifier, submission history, public PDF, and RA-L acceptance comment"
+      },
+      {
+        "title": "CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks — original paper",
+        "url": "https://arxiv.org/pdf/2112.03227",
+        "version": "v4 (2022-07-13), as identified by the PDF and arXiv record",
+        "supports": "PyBullet simulation, four environment variants, 34 skills, train/test setups, five-task chains, first-failure stopping and 1,000 evaluation chains"
+      },
+      {
+        "title": "CALVIN author project",
+        "url": "https://calvin.cs.uni-freiburg.de/",
+        "version": "Project page as read on 2026-10-27",
+        "supports": "RA-L 2022 journal citation and author list; linked official code. Its 32-task project-page text differs from the original paper task count."
+      },
+      {
+        "title": "CALVIN author repository",
+        "url": "https://github.com/mees/calvin",
+        "version": "README as read on 2026-10-27; no immutable commit was resolved",
+        "supports": "Official environment and data access, language annotations, long-horizon evaluation instructions, and RA-L 2022 citation"
+      },
+      {
+        "title": "CALVIN evaluation utilities",
+        "url": "https://raw.githubusercontent.com/mees/calvin/main/calvin_models/calvin_agent/evaluation/utils.py",
+        "version": "main as read on 2026-10-27; no immutable commit was resolved",
+        "access_method": "Direct HTTPS read of the author GitHub raw file; inspected count_success and print_and_save without executing the code",
+        "supports": "count_success reports P(K >= k) for k = 1..5; print_and_save computes mean(results) as average successful sequence length"
+      }
+    ],
+    "evidence_notes": [
+      "Evidence cutoff and lookup date: 2026-10-27. Title and arXiv ID 2112.03227 match. Formal publication type and year come from the author RA-L 2022 journal citation; the earlier ICRA 2022 presentation claim was not substantiated and is omitted.",
+      "Original-paper setting: a PyBullet tabletop environment with four variants A, B, C and D and 34 skills, including drawer, object and switch manipulation. The author project page says 32 tasks, but the original PDF explicitly uses 34; this record retains the original-paper count and records the discrepancy.",
+      "Original evaluation setups cover training and testing in D, training on A/B/C/D with testing in D, and zero-shot testing in D after training on A/B/C. These evaluate different transfer conditions and must be reported separately.",
+      "Long-horizon protocol uses 1,000 chains of five language instructions. Each task must be possible in the environment state reached by the preceding task, and each instruction has a 360-step budget. Evaluation stops at the first failure.",
+      "Let K be the successful prefix length of a five-task chain. K lies in 0..5. The author utility reports P(K >= k) for k = 1..5 and the arithmetic mean of K as the average successful sequence length; successes after a failure are not counted.",
+      "Retain training/test environment split, instruction sequence set, initial states and rollout budget. Different protocols must not be pooled, and the mean chain length must not be treated as a LIBERO task-success percentage.",
+      "No citation-count request or formal publisher DOI lookup was made. Redistribution license was not independently checked. These values remain null. Only primary sources were used; no model ranking or current-leaderboard claim is made."
+    ],
+    "doi_semantics": "Formal publisher DOI not independently verified; the arXiv repository DOI is recorded in metadata_sources and is not substituted for a publisher DOI."
+  }
+]

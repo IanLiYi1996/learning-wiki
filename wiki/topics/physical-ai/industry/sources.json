@@ -1,0 +1,737 @@
+[
+  {
+    "key": "S1",
+    "title": "平台文档",
+    "url": "https://docs.foxglove.dev/docs"
+  },
+  {
+    "key": "S2",
+    "title": "SDK",
+    "url": "https://docs.foxglove.dev/docs/sdk"
+  },
+  {
+    "key": "S3",
+    "title": "部署说明",
+    "url": "https://docs.foxglove.dev/docs/data"
+  },
+  {
+    "key": "S4",
+    "title": "Dexory 集成说明",
+    "url": "https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control"
+  },
+  {
+    "key": "S5",
+    "title": "MCAP 规范",
+    "url": "https://mcap.dev/spec"
+  },
+  {
+    "key": "S6",
+    "title": "MCAP 项目",
+    "url": "https://mcap.dev/"
+  },
+  {
+    "key": "S7",
+    "title": "SDK 职责",
+    "url": "https://rerun.io/sdk"
+  },
+  {
+    "key": "S8",
+    "title": "公开代码",
+    "url": "https://github.com/rerun-io/rerun"
+  },
+  {
+    "key": "S9",
+    "title": "Hub",
+    "url": "https://rerun.io/hub"
+  },
+  {
+    "key": "S10",
+    "title": "发布公告",
+    "url": "https://rerun.io/blog/data-layer-for-robot-learning"
+  },
+  {
+    "key": "S11",
+    "title": "Physical AI 产品",
+    "url": "https://scale.com/physical-ai"
+  },
+  {
+    "key": "S12",
+    "title": "服务说明",
+    "url": "https://scale.com/blog/physical-ai"
+  },
+  {
+    "key": "S13",
+    "title": "Roboto 文档",
+    "url": "https://www.roboto.ai/docs"
+  },
+  {
+    "key": "S14",
+    "title": "支持格式",
+    "url": "https://www.roboto.ai/docs/learn/formats"
+  },
+  {
+    "key": "S15",
+    "title": "获取与部署",
+    "url": "https://www.roboto.ai/pricing"
+  },
+  {
+    "key": "S16",
+    "title": "BRINC 案例",
+    "url": "https://www.roboto.ai/customers/brinc"
+  },
+  {
+    "key": "S17",
+    "title": "Desktop 职责",
+    "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-desktop"
+  },
+  {
+    "key": "S18",
+    "title": "Suite",
+    "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite"
+  },
+  {
+    "key": "S19",
+    "title": "许可形式",
+    "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-license"
+  },
+  {
+    "key": "S20",
+    "title": "Evolut 案例",
+    "url": "https://library.e.abb.com/public/646aec8533a54008887d8b4146bb1d1a/rs_casestudy_evolut_en_web.pdf"
+  },
+  {
+    "key": "S21",
+    "title": "当前产品目录",
+    "url": "https://www.siemens.com/en-us/products/tecnomatix/offerings/"
+  },
+  {
+    "key": "S22",
+    "title": "X 与连接器说明",
+    "url": "https://blogs.sw.siemens.com/tecnomatix/introducing-process-simulate-x-digital-manufacturing-powered-by-cloud-technologies/"
+  },
+  {
+    "key": "S23",
+    "title": "Ingemat",
+    "url": "https://blogs.sw.siemens.com/tecnomatix/ingemat-a-virtual-commissioning-success-story/"
+  },
+  {
+    "key": "S24",
+    "title": "固定 6.0.0 文档",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/6.0.0/"
+  },
+  {
+    "key": "S25",
+    "title": "官方代码",
+    "url": "https://github.com/isaac-sim/IsaacSim"
+  },
+  {
+    "key": "S26",
+    "title": "采用披露",
+    "url": "https://blogs.nvidia.com/blog/gpu-aws-omniverse-isaac-sim-robots/"
+  },
+  {
+    "key": "S27",
+    "title": "官方仓库",
+    "url": "https://github.com/google-deepmind/mujoco"
+  },
+  {
+    "key": "S28",
+    "title": "Playground",
+    "url": "https://github.com/google-deepmind/mujoco_playground"
+  },
+  {
+    "key": "S29",
+    "title": "ROS 2 集成文档",
+    "url": "https://gazebosim.org/docs/harmonic/ros2_integration/"
+  },
+  {
+    "key": "S30",
+    "title": "发行及支持表",
+    "url": "https://gazebosim.org/docs/latest/releases/"
+  },
+  {
+    "key": "S31",
+    "title": "Classic 状态",
+    "url": "https://classic.gazebosim.org/"
+  },
+  {
+    "key": "S32",
+    "title": "SubT 披露",
+    "url": "https://www.openrobotics.org/blog/2021/9/27/darpa-subt-final-competition"
+  },
+  {
+    "key": "S33",
+    "title": "CARLA",
+    "url": "https://carla.org/"
+  },
+  {
+    "key": "S34",
+    "title": "架构说明",
+    "url": "https://carla.readthedocs.io/en/latest/start_introduction/"
+  },
+  {
+    "key": "S35",
+    "title": "CarMaker",
+    "url": "https://www.ipg-automotive.com/solutions/product-portfolio/carmaker"
+  },
+  {
+    "key": "S36",
+    "title": "当前 Cosmos 入口",
+    "url": "https://github.com/NVIDIA/cosmos"
+  },
+  {
+    "key": "S37",
+    "title": "旧分支状态",
+    "url": "https://github.com/nvidia-cosmos/cosmos-transfer2.5"
+  },
+  {
+    "key": "S38",
+    "title": "Replicator 职责",
+    "url": "https://docs.omniverse.nvidia.com/extensions/latest/ext_replicator.html"
+  },
+  {
+    "key": "S39",
+    "title": "Python API",
+    "url": "https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html"
+  },
+  {
+    "key": "S40",
+    "title": "6.0.0 工作流",
+    "url": "https://docs.isaacsim.omniverse.nvidia.com/6.0.0/replicator_tutorials/index.html"
+  },
+  {
+    "key": "S41",
+    "title": "固定 v2.2.0 文档",
+    "url": "https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html"
+  },
+  {
+    "key": "S42",
+    "title": "生成与限制",
+    "url": "https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html#common-pitfalls-when-generating-data"
+  },
+  {
+    "key": "S43",
+    "title": "产品入口",
+    "url": "https://www.nvidia.com/en-us/ai/cosmos/"
+  },
+  {
+    "key": "S44",
+    "title": "Predict2.5 仓库",
+    "url": "https://github.com/nvidia-cosmos/cosmos-predict2.5"
+  },
+  {
+    "key": "S45",
+    "title": "动作条件接口",
+    "url": "https://github.com/nvidia-cosmos/cosmos-predict2.5/blob/main/docs/post-training_video2world_action.md"
+  },
+  {
+    "key": "S46",
+    "title": "推理输入与配置",
+    "url": "https://github.com/nvidia-cosmos/cosmos-transfer2.5/blob/main/docs/inference.md"
+  },
+  {
+    "key": "S47",
+    "title": "Reason2 接口",
+    "url": "https://github.com/nvidia-cosmos/cosmos-reason2"
+  },
+  {
+    "key": "S48",
+    "title": "PyTorch 基础组件",
+    "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html"
+  },
+  {
+    "key": "S49",
+    "title": "分布式接口",
+    "url": "https://docs.pytorch.org/docs/2.14/distributed.html"
+  },
+  {
+    "key": "S50",
+    "title": "Isaac Lab 后端范围",
+    "url": "https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html"
+  },
+  {
+    "key": "S51",
+    "title": "Newton 集成",
+    "url": "https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics-backends/newton.html"
+  },
+  {
+    "key": "S52",
+    "title": "LeRobot 工作流",
+    "url": "https://huggingface.co/docs/lerobot/main/index"
+  },
+  {
+    "key": "S53",
+    "title": "部署接口",
+    "url": "https://huggingface.co/docs/lerobot/inference"
+  },
+  {
+    "key": "S54",
+    "title": "Experiments 接口",
+    "url": "https://docs.wandb.ai/models/track"
+  },
+  {
+    "key": "S55",
+    "title": "Artifacts 范围",
+    "url": "https://docs.wandb.ai/models/artifacts"
+  },
+  {
+    "key": "S56",
+    "title": "部署方式与责任",
+    "url": "https://docs.wandb.ai/platform/hosting/hosting-options/"
+  },
+  {
+    "key": "S57",
+    "title": "Tracking 文档",
+    "url": "https://mlflow.org/docs/latest/ml/tracking/"
+  },
+  {
+    "key": "S58",
+    "title": "Registry 与 alias",
+    "url": "https://mlflow.org/docs/latest/model-registry/"
+  },
+  {
+    "key": "S59",
+    "title": "RSL-RL 官方仓库",
+    "url": "https://github.com/leggedrobotics/rsl_rl"
+  },
+  {
+    "key": "S60",
+    "title": "Brax 状态说明",
+    "url": "https://github.com/google/brax"
+  },
+  {
+    "key": "S61",
+    "title": "MJX 官方范围",
+    "url": "https://mujoco.readthedocs.io/en/stable/mjx.html"
+  },
+  {
+    "key": "S62",
+    "title": "GR00T 官方仓库",
+    "url": "https://github.com/NVIDIA/Isaac-GR00T"
+  },
+  {
+    "key": "S63",
+    "title": "官方产品页",
+    "url": "https://www.nvidia.com/en-us/industries/robotics/isaac-groot/"
+  },
+  {
+    "key": "S64",
+    "title": "openpi 公开范围",
+    "url": "https://github.com/Physical-Intelligence/openpi"
+  },
+  {
+    "key": "S65",
+    "title": "OpenVLA",
+    "url": "https://github.com/openvla/openvla"
+  },
+  {
+    "key": "S66",
+    "title": "OpenVLA-OFT",
+    "url": "https://github.com/moojink/openvla-oft"
+  },
+  {
+    "key": "S67",
+    "title": "产品角色与等待名单",
+    "url": "https://deepmind.google/models/gemini-robotics/"
+  },
+  {
+    "key": "S68",
+    "title": "当前 ER API 范围",
+    "url": "https://ai.google.dev/gemini-api/docs/robotics-overview"
+  },
+  {
+    "key": "S69",
+    "title": "OSARO 产品范围",
+    "url": "https://www.osaro.com/"
+  },
+  {
+    "key": "S70",
+    "title": "Zenni 客户自述",
+    "url": "https://www.zennioptical.com/blog/revolutionizing-eyewear-fulfillment-the-role-of-robotics/"
+  },
+  {
+    "key": "S71",
+    "title": "Mech 商业范围",
+    "url": "https://www.dexterity.ai/mech"
+  },
+  {
+    "key": "S72",
+    "title": "当前访问状态",
+    "url": "https://www.dexterity.ai/"
+  },
+  {
+    "key": "S73",
+    "title": "FedEx 客户方联合披露",
+    "url": "https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub"
+  },
+  {
+    "key": "S74",
+    "title": "组件目录",
+    "url": "https://nvidia-isaac-ros.github.io/"
+  },
+  {
+    "key": "S75",
+    "title": "地图组件",
+    "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html"
+  },
+  {
+    "key": "S76",
+    "title": "官方仓库",
+    "url": "https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common"
+  },
+  {
+    "key": "S77",
+    "title": "定位包接口",
+    "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html"
+  },
+  {
+    "key": "S78",
+    "title": "架构与接口",
+    "url": "https://moveit.picknik.ai/main/doc/concepts/move_group.html"
+  },
+  {
+    "key": "S79",
+    "title": "官方代码",
+    "url": "https://github.com/moveit/moveit2"
+  },
+  {
+    "key": "S80",
+    "title": "产品与接口规格",
+    "url": "https://docs.picknik.ai/technical_specifications/"
+  },
+  {
+    "key": "S81",
+    "title": "发布与支持政策",
+    "url": "https://docs.picknik.ai/software_installation/major_releases/"
+  },
+  {
+    "key": "S82",
+    "title": "BMW 案例及阶段",
+    "url": "https://picknik.ai/case-study-automotive/"
+  },
+  {
+    "key": "S83",
+    "title": "输入输出与流程",
+    "url": "https://nvlabs.github.io/curobo/latest/getting-started/motion_planning.html"
+  },
+  {
+    "key": "S84",
+    "title": "公开 API",
+    "url": "https://nvlabs.github.io/curobo/latest/reference/api_overview.html"
+  },
+  {
+    "key": "S85",
+    "title": "官方仓库",
+    "url": "https://github.com/NVlabs/curobo"
+  },
+  {
+    "key": "S86",
+    "title": "模型与算法职责",
+    "url": "https://curobo.org/"
+  },
+  {
+    "key": "S87",
+    "title": "官方架构",
+    "url": "https://docs.nav2.org/rolling/"
+  },
+  {
+    "key": "S88",
+    "title": "代码与获取",
+    "url": "https://github.com/ros-navigation/navigation2"
+  },
+  {
+    "key": "S89",
+    "title": "官方架构",
+    "url": "https://control.ros.org/jazzy/doc/getting_started/getting_started.html"
+  },
+  {
+    "key": "S90",
+    "title": "UR 集成说明",
+    "url": "https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html"
+  },
+  {
+    "key": "S91",
+    "title": "循环与诊断",
+    "url": "https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html"
+  },
+  {
+    "key": "S92",
+    "title": "当前产品职责",
+    "url": "https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html"
+  },
+  {
+    "key": "S93",
+    "title": "案例范围",
+    "url": "https://www.mech-mind.com/cases/picking-of-automotive-components-for-spot-welding.html"
+  },
+  {
+    "key": "S94",
+    "title": "PolyScope 接口",
+    "url": "https://www.universal-robots.com/products/software/integration/"
+  },
+  {
+    "key": "S95",
+    "title": "官方代码",
+    "url": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver"
+  },
+  {
+    "key": "S96",
+    "title": "官方支持范围",
+    "url": "https://www.universal-robots.com/developer/communication-protocol/ros-and-ros2-driver/"
+  },
+  {
+    "key": "S97",
+    "title": "ABB 官方手册，接口与消息定义",
+    "url": "https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt"
+  },
+  {
+    "key": "S98",
+    "title": "JetPack 官方职责",
+    "url": "https://developer.nvidia.com/embedded/jetpack"
+  },
+  {
+    "key": "S99",
+    "title": "正式供货与采用范围",
+    "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-Powered-Jetson-Thor-Now-Available-Accelerating-the-Age-of-General-Robotics/default.aspx"
+  },
+  {
+    "key": "S100",
+    "title": "构建与运行接口",
+    "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html"
+  },
+  {
+    "key": "S101",
+    "title": "平台与形态",
+    "url": "https://developer.nvidia.com/igx"
+  },
+  {
+    "key": "S102",
+    "title": "正式可供与案例范围",
+    "url": "https://blogs.nvidia.com/blog/gtc-2026-news/"
+  },
+  {
+    "key": "S103",
+    "title": "生产软件发布",
+    "url": "https://forums.developer.nvidia.com/t/igx-sw-2-0-is-now-live/363924"
+  },
+  {
+    "key": "S104",
+    "title": "企业支持边界",
+    "url": "https://docs.nvidia.com/igx/user-guide/latest/NVAIE/nvaie.html"
+  },
+  {
+    "key": "S105",
+    "title": "公开 API 与后端机制",
+    "url": "https://onnxruntime.ai/docs/execution-providers/"
+  },
+  {
+    "key": "S106",
+    "title": "官方应用范围",
+    "url": "https://onnxruntime.ai/"
+  },
+  {
+    "key": "S107",
+    "title": "官方代码",
+    "url": "https://github.com/microsoft/onnxruntime"
+  },
+  {
+    "key": "S108",
+    "title": "官方推理流水线",
+    "url": "https://docs.openvino.ai/2026/openvino-workflow/running-inference.html"
+  },
+  {
+    "key": "S109",
+    "title": "官方代码",
+    "url": "https://github.com/openvinotoolkit/openvino"
+  },
+  {
+    "key": "S110",
+    "title": "案例范围",
+    "url": "https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-powered-medical-exoskeleton-helps-patients-get-back-on-their-feet.html"
+  },
+  {
+    "key": "S111",
+    "title": "设备目录",
+    "url": "https://www.siemens.com/en-us/products/industrial-edge/devices/"
+  },
+  {
+    "key": "S112",
+    "title": "平台架构",
+    "url": "https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/"
+  },
+  {
+    "key": "S113",
+    "title": "当前产品入口",
+    "url": "https://www.appliedintuition.com/products"
+  },
+  {
+    "key": "S114",
+    "title": "HIL 集成范围",
+    "url": "https://www.appliedintuition.com/press-releases/national-instruments"
+  },
+  {
+    "key": "S115",
+    "title": "Porsche 合作",
+    "url": "https://www.appliedintuition.com/press-releases/porsche"
+  },
+  {
+    "key": "S116",
+    "title": "官方职责",
+    "url": "https://www.dspace.com/en/pub/home/products/hw/simulator_hardware/scalexio.cfm"
+  },
+  {
+    "key": "S117",
+    "title": "接口及正式产品扩展",
+    "url": "https://www.dspace.com/en/pub/home/news/dspace_pressroom/press/scalexio-fsx-extension.cfm"
+  },
+  {
+    "key": "S118",
+    "title": "具名用途证据",
+    "url": "https://www.dspace.com/en/pub/home/company/customers.cfm"
+  },
+  {
+    "key": "S119",
+    "title": "rosbag2 官方代码与接口",
+    "url": "https://github.com/ros2/rosbag2"
+  },
+  {
+    "key": "S120",
+    "title": "Foxglove 回放语义",
+    "url": "https://docs.foxglove.dev/docs/visualization/playback"
+  },
+  {
+    "key": "S121",
+    "title": "当前格式与访问条件",
+    "url": "https://docs.foxglove.dev/docs/visualization/connecting/local-data"
+  },
+  {
+    "key": "S122",
+    "title": "职责",
+    "url": "https://mobile-industrial-robots.com/blog/higher-order-mobile-robotics"
+  },
+  {
+    "key": "S123",
+    "title": "公开接口入口",
+    "url": "https://academy.mobile-industrial-robots.com/free-skill-paths/software-integration/"
+  },
+  {
+    "key": "S124",
+    "title": "应用证据",
+    "url": "https://mobile-industrial-robots.com/de/falle/forvia"
+  },
+  {
+    "key": "S125",
+    "title": "开发者接口",
+    "url": "https://developer.inorbit.ai/docs"
+  },
+  {
+    "key": "S126",
+    "title": "获取状态",
+    "url": "https://developer.inorbit.ai/pricing-dev"
+  },
+  {
+    "key": "S127",
+    "title": "演示范围",
+    "url": "https://www.inorbit.ai/blog/instock-and-inorbit"
+  },
+  {
+    "key": "S128",
+    "title": "官方集成契约",
+    "url": "https://osrf.github.io/ros2multirobotbook/integration_fleets.html"
+  },
+  {
+    "key": "S129",
+    "title": "产品与治理",
+    "url": "https://www.open-rmf.org/"
+  },
+  {
+    "key": "S130",
+    "title": "官方代码",
+    "url": "https://github.com/open-rmf/rmf"
+  },
+  {
+    "key": "S131",
+    "title": "适配责任",
+    "url": "https://osrf.github.io/ros2multirobotbook/integration_fleets_adapter_tutorial.html"
+  },
+  {
+    "key": "S132",
+    "title": "agent 职责",
+    "url": "https://docs.formant.io/docs/the-formant-agent"
+  },
+  {
+    "key": "S133",
+    "title": "API/SDK",
+    "url": "https://docs.formant.io/reference/api-sdk-overview"
+  },
+  {
+    "key": "S134",
+    "title": "当前入口",
+    "url": "https://www.formant.ai/"
+  },
+  {
+    "key": "S135",
+    "title": "Burro 使用范围",
+    "url": "https://www.formant.ai/burro"
+  },
+  {
+    "key": "S136",
+    "title": "UR 官方 Mech-Mind 产品目录",
+    "url": "https://www.universal-robots.com/plus/products/mech-mind-robotics/mech-mind-3d-vision/"
+  },
+  {
+    "key": "S137",
+    "title": "ABB PickMaster Twin 产品页",
+    "url": "https://www.abb.com/global/en/areas/robotics/products/software/pickmaster-twin"
+  },
+  {
+    "key": "S138",
+    "title": "MiR／DENSO 案例",
+    "url": "https://mobile-industrial-robots.com/cases/denso"
+  },
+  {
+    "key": "S139",
+    "title": "Stretch 产品与服务入口",
+    "url": "https://bostondynamics.com/products/stretch/"
+  },
+  {
+    "key": "S140",
+    "title": "DHL 2025 公告",
+    "url": "https://group.dhl.com/en/media-relations/press-releases/2025/dhl-group-signs-mou-with-boston-dynamics-and-accelerates-cross-business-automation-strategy.html"
+  },
+  {
+    "key": "S141",
+    "title": "BMW 人形机器人项目说明",
+    "url": "https://www.bmwgroup.com/en/news/general/2026/humanoid-robot-in-leipzig.html"
+  },
+  {
+    "key": "S142",
+    "title": "GXO 2026 客户公告",
+    "url": "https://investors.gxo.com/news-releases/news-release-details/gxo-and-agility-robotics-expand-partnership-accelerate"
+  },
+  {
+    "key": "S143",
+    "title": "Agility Digit／Arc 方案",
+    "url": "https://www.agilityrobotics.com/solutions"
+  },
+  {
+    "key": "S144",
+    "title": "BMW 2023 虚拟生产材料",
+    "url": "https://www.visit-bmwgroup.com/en/virtual-production-at-the-future-bmw-group-plant-in-debrecen/"
+  },
+  {
+    "key": "S145",
+    "title": "BMW 当前生产介绍",
+    "url": "https://www.bmwgroup.com/en/company/production.html"
+  },
+  {
+    "key": "S146",
+    "title": "TRATON 客户公告",
+    "url": "https://traton.com/en/newsroom/press-releases/the-traton-group-and-applied-intuition-announce-strategic-partnership-on-vehicle-software.html"
+  },
+  {
+    "key": "S147",
+    "title": "Applied Intuition／Audi 合作材料",
+    "url": "https://www.appliedintuition.com/press-releases/audi"
+  }
+]

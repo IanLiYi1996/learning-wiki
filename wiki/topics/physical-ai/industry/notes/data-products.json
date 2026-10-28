@@ -1,0 +1,427 @@
+[
+  {
+    "id": "foxglove",
+    "name": "Foxglove",
+    "vendor": "Foxglove Technologies",
+    "stages": ["02_real_data"],
+    "category": "机器人数据可视化与录制管理平台",
+    "access_status": "公开注册与商业联系入口；SDK 公开；未创建账户或实测服务",
+    "inputs": ["MCAP", "受支持 ROS 日志", "实时多模态消息"],
+    "outputs": ["回放与共享视图", "录制目录", "事件", "按时间或 topic 导出的记录"],
+    "interfaces": ["Foxglove Bridge", "C++/Python/Rust SDK", "WebSocket", "REST API", "CLI", "webhook"],
+    "deployment_modes": ["桌面和浏览器查看器", "Foxglove Cloud", "自有存储配合托管处理", "客户自管 Kubernetes 数据平面；认证协调默认仍由供应商承担"],
+    "evidence": {
+      "availability": "正式公开获取入口、SDK 文档及数据平台部署说明",
+      "customer": "供应商披露 Dexory foxglove_mcap_player 开源集成",
+      "scope": "MCAP 播放进程向 Foxglove 和 ROS 2 双路输出；不证明 Dexory 全部生产系统采用本平台"
+    },
+    "limits": ["事件或可视化不等于完整动作监督", "自管数据平面不等于完全离线", "不同许可与服务的能力须分别核对"],
+    "sources": [
+      {"title": "Foxglove Documentation", "url": "https://docs.foxglove.dev/docs", "type": "official_documentation", "claim_scope": "查看、集成与管理组件"},
+      {"title": "Foxglove SDK", "url": "https://docs.foxglove.dev/docs/sdk", "type": "official_documentation", "claim_scope": "语言接口、实时流、MCAP 与 MIT SDK"},
+      {"title": "Foxglove Data Platform", "url": "https://docs.foxglove.dev/docs/data", "type": "official_documentation", "claim_scope": "托管、自有存储、数据平面与导出"},
+      {"title": "PlaybackControl and Dexory integration", "url": "https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control", "type": "vendor_case_and_release", "claim_scope": "播放器与 ROS 2 双路输出，不外推机群部署"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "mcap",
+    "name": "MCAP",
+    "vendor": "Foxglove 项目及开源贡献者",
+    "stages": ["02_real_data"],
+    "category": "开放多模态日志容器格式",
+    "access_status": "公开规范及开源读写库；可独立于商业数据平台使用",
+    "inputs": ["带时间戳的序列化消息", "schema", "channel", "附件"],
+    "outputs": [".mcap 文件", "可选索引与压缩分块", "原始消息回放"],
+    "interfaces": ["C++/Go/Python/Rust/Swift/TypeScript 读写库", "受支持日志系统与播放器"],
+    "deployment_modes": ["嵌入本地采集或读写程序", "文件存储及网络按需读取"],
+    "evidence": {
+      "availability": "正式公开规范、API 和实现",
+      "customer": "Foxglove 披露 Dexory 播放器读取 MCAP 并向 ROS 2 重发",
+      "scope": "真实软件集成证据；不是标注平台或全部采集数据质量的证明"
+    },
+    "limits": ["不是云目录或采集服务", "格式不定义任务动作语义", "索引等特性是可选项", "消息时钟、单位与坐标需项目定义"],
+    "sources": [
+      {"title": "MCAP project", "url": "https://mcap.dev/", "type": "official_project", "claim_scope": "开放实现、语言接口与可选容器能力"},
+      {"title": "MCAP Specification", "url": "https://mcap.dev/spec", "type": "official_specification", "claim_scope": "消息、schema、时间字段、附件及文件结构"},
+      {"title": "Dexory PlaybackControl example", "url": "https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control", "type": "vendor_case", "claim_scope": "MCAP 在独立播放进程中的使用"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "rerun",
+    "name": "Rerun SDK / Rerun Hub",
+    "vendor": "Rerun",
+    "stages": ["02_real_data"],
+    "category": "时空数据表示、查询与训练访问",
+    "access_status": "SDK 与本地 catalog 开源可取；Hub 商务接洽，发布公告为 private preview，本次未确认全面 GA",
+    "inputs": ["多频率图像与状态", "3D 数据", "MCAP/ROS 2", "RRD", "派生数据"],
+    "outputs": [".rrd", "同步查看器", "SQL/dataframe 查询", "派生数据层", "训练数据读取"],
+    "interfaces": ["Python/Rust/C++ SDK", "dataframe/SQL", "catalog", "PyTorch dataloader；按版本核对实验性"],
+    "deployment_modes": ["本地 SDK 与查看器", "浏览器或 notebook 查看", "本地 catalog", "Hub 对象存储后端；具体部署与准入需商务确认"],
+    "evidence": {
+      "availability": "公开 SDK、代码和本地目录；Hub 联系入口与预览公告分开核验",
+      "customer": "官网列出 LeRobot 查看和调试训练运行的开源集成",
+      "scope": "开源项目集成，不当作客户量产；不以 SDK 开放性推断 Hub 准入"
+    },
+    "limits": ["部分新增 API 有 experimental 标记", "不自动生成真实命令", "Hub 不确认全面 GA", "处理与审核 schema 需项目定义"],
+    "sources": [
+      {"title": "Rerun SDK", "url": "https://rerun.io/sdk", "type": "official_product", "claim_scope": "输入、目录、查询、读取接口与 LeRobot 集成；直接 HTTP 读取"},
+      {"title": "Rerun source", "url": "https://github.com/rerun-io/rerun", "type": "official_code", "claim_scope": "公开语言接口、RRD 和开源查看器"},
+      {"title": "Rerun Hub", "url": "https://rerun.io/hub", "type": "official_product", "claim_scope": "对象存储后端与商务入口，不推断 GA"},
+      {"title": "A new data layer for robot learning", "url": "https://rerun.io/blog/data-layer-for-robot-learning", "type": "official_release", "claim_scope": "private preview 及实验性 API"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "scale_physical_ai",
+    "name": "Scale Physical AI Data Engine",
+    "vendor": "Scale AI",
+    "stages": ["02_real_data"],
+    "category": "定制数据采集与标注服务",
+    "access_status": "正式商业服务联系入口；未签约；统一 episode SDK 与交付 schema 未核验",
+    "inputs": ["机器人形态和任务规格", "采集与质量要求", "已有数据"],
+    "outputs": ["定制采集数据", "grounding 及上下文注释", "按项目约定验收的数据集"],
+    "interfaces": ["商业项目规格与交付约定；本次不宣称存在统一公开机器人数据 API"],
+    "deployment_modes": ["供应商采集及标注服务", "具体数据处理和交付安排按项目确认"],
+    "evidence": {
+      "availability": "官方 Physical AI 产品页和服务说明",
+      "customer": "供应商披露 Physical Intelligence、Generalist AI、Cobot 等合作，并发布客户表述",
+      "scope": "采集与数据丰富合作；不独立证明客户策略量产、任务成功率或全球部署规模"
+    },
+    "limits": ["标注与人类示范不自动成为某台机器人动作", "权利、地域、接口和审核需项目明确", "供应商数据量不作产品排名"],
+    "sources": [
+      {"title": "Physical AI Data Engine", "url": "https://scale.com/physical-ai", "type": "official_product", "claim_scope": "服务范围、商业联系与合作表述"},
+      {"title": "Expanding Our Data Engine for Physical AI", "url": "https://scale.com/blog/physical-ai", "type": "official_release_and_vendor_case", "claim_scope": "采集、标注及具名合作；不外推生产指标"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "roboto_ai",
+    "name": "Roboto AI",
+    "vendor": "Roboto",
+    "stages": ["02_real_data"],
+    "category": "机器人日志分析与处理自动化",
+    "access_status": "可商业访问：免费注册、付费方案与企业联系入口公开；未注册实测，不保证所有地域准入",
+    "inputs": ["ROS 1/ROS 2", "MCAP", "PX4 ULog", "Parquet", "自有存储桶记录"],
+    "outputs": ["数据集和事件", "分析结果", "标签与 Collections", "筛选片段"],
+    "interfaces": ["Python SDK", "CLI", "REST API", "RoboQL", "Actions", "Triggers"],
+    "deployment_modes": ["供应商托管", "自有存储桶接入", "企业 Self-Managed 部署于客户 AWS 环境"],
+    "evidence": {
+      "availability": "当前方案页明确免费和商业入口，并说明 Managed 与 Self-Managed",
+      "customer": "供应商 BRINC 案例披露飞行日志、S3 接入、Python 分析与出厂 QA",
+      "scope": "特定诊断和 QA 应用；不凭官网扩展性描述推断普遍大规模生产"
+    },
+    "limits": ["QA 报告不等于安全认证", "AI 摘要和标签须审核", "训练片段仍需合格动作与权限", "首页超时后改用官方文档和方案页"],
+    "sources": [
+      {"title": "Roboto Documentation", "url": "https://www.roboto.ai/docs", "type": "official_documentation", "claim_scope": "SDK、API、处理对象和自动化入口"},
+      {"title": "Supported formats", "url": "https://www.roboto.ai/docs/learn/formats", "type": "official_documentation", "claim_scope": "ROS、MCAP、PX4、Parquet 与格式设置"},
+      {"title": "Plans and deployment", "url": "https://www.roboto.ai/pricing", "type": "official_commercial_access", "claim_scope": "免费入口、付费方案及客户 AWS 自管形式"},
+      {"title": "BRINC customer story", "url": "https://www.roboto.ai/customers/brinc", "type": "vendor_case", "claim_scope": "飞行日志诊断和 QA，不外推无人机产品安全或行业规模"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "abb_robotstudio",
+    "name": "ABB RobotStudio",
+    "vendor": "ABB Robotics",
+    "stages": ["03_scene_sim"],
+    "category": "机器人离线编程与单元仿真",
+    "access_status": "正式商业桌面产品、许可及支持入口公开；页面经检索工具读取成功，直连复测超时，软件未实测",
+    "inputs": ["ABB 机器人配置", "工作站几何与工装", "路径", "机器人程序"],
+    "outputs": ["工作站模型", "ABB 机器人程序", "运动与节拍检查结果"],
+    "interfaces": ["ABB Virtual Controller", "机器人程序和配置文件", "Suite 协作与相关模块"],
+    "deployment_modes": ["PC 桌面", "商业浮动许可", "许可离线借用", "Suite 云协作"],
+    "evidence": {
+      "availability": "官方 Desktop、Suite 与 License 页面",
+      "customer": "ABB 2004 年 Evolut 历史供应商案例",
+      "scope": "布局、夹具和空间检查、节拍验证及离线编程；不是 2026 年部署统计"
+    },
+    "limits": ["不称通用 AI", "AI Assistant 不等于机器人通用智能", "现场标定、工艺与安全验收另行负责", "云许可不代表全部仿真在浏览器运行", "三个产品入口直连复测超时；已读取内容和可直接读取的案例 PDF 分别保留，不保证访问始终可用"],
+    "sources": [
+      {"title": "RobotStudio Desktop", "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-desktop", "type": "official_product", "claim_scope": "离线编程与虚拟控制器"},
+      {"title": "RobotStudio Suite", "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite", "type": "official_product", "claim_scope": "协作、运动及程序工程能力"},
+      {"title": "RobotStudio License", "url": "https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-license", "type": "official_commercial_access", "claim_scope": "浮动许可和离线借用"},
+      {"title": "Evolut case study", "url": "https://library.e.abb.com/public/646aec8533a54008887d8b4146bb1d1a/rs_casestudy_evolut_en_web.pdf", "type": "historical_vendor_case", "claim_scope": "实际读取两页，2004 年离线工程案例，不作当前规模证明"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "siemens_process_simulate",
+    "name": "Siemens Tecnomatix Process Simulate / Process Simulate X",
+    "vendor": "Siemens Digital Industries Software",
+    "stages": ["03_scene_sim"],
+    "category": "制造过程验证与虚拟调试",
+    "access_status": "正式商业产品和 X 订阅入口；模块命名以当前目录为准",
+    "inputs": ["产品与设备几何", "布局和工艺顺序", "机器人动作", "PLC 控制逻辑"],
+    "outputs": ["制造研究模型", "离线程序", "节拍与碰撞检查", "虚拟调试结果"],
+    "interfaces": ["PLC/虚拟控制逻辑连接", "离线编程", "Tecnomatix Connector for NVIDIA Omniverse"],
+    "deployment_modes": ["商业工程软件", "Process Simulate X 订阅与云协作；实际模块和安装形式需核对"],
+    "evidence": {
+      "availability": "当前产品目录与 X 官方发布",
+      "customer": "Siemens 披露 Ingemat 机器人仿真及虚拟调试",
+      "scope": "汽车自动化工程的特定过程验证；不外推所有工厂产量或通用 AI"
+    },
+    "limits": ["不是 Plant Simulation 的统计物流仿真", "不是通用 RL 环境", "资产连接不保证求解结果一致", "旧文章模块名不当作当前固定组合"],
+    "sources": [
+      {"title": "Tecnomatix offerings", "url": "https://www.siemens.com/en-us/products/tecnomatix/offerings/", "type": "official_product", "claim_scope": "当前产品目录与模块；直接 HTTP 读取"},
+      {"title": "Introducing Process Simulate X", "url": "https://blogs.sw.siemens.com/tecnomatix/introducing-process-simulate-x-digital-manufacturing-powered-by-cloud-technologies/", "type": "official_release", "claim_scope": "订阅、云协作及 Omniverse 连接器"},
+      {"title": "Ingemat virtual commissioning", "url": "https://blogs.sw.siemens.com/tecnomatix/ingemat-a-virtual-commissioning-success-story/", "type": "vendor_case", "claim_scope": "机器人仿真与产线虚拟调试"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "isaac_sim",
+    "name": "NVIDIA Isaac Sim",
+    "vendor": "NVIDIA",
+    "stages": ["03_scene_sim", "04_synthetic"],
+    "category": "机器人场景、传感器与软件闭环平台",
+    "access_status": "公开代码、文档和发行入口；固定 6.0.0 文档作接口核验，不称最新版本",
+    "inputs": ["URDF", "MJCF", "CAD/USD", "机器人和传感器配置", "外部软件控制流"],
+    "outputs": ["仿真状态", "传感器数据", "合成数据", "机器人栈测试记录"],
+    "interfaces": ["Python", "Kit extensions", "ROS 2", "USD", "Isaac Lab 衔接"],
+    "deployment_modes": ["工作站", "容器", "Python 工作流", "云或远程环境；按版本核对"],
+    "evidence": {
+      "availability": "官方仓库和固定版本文档提供可访问入口",
+      "customer": "NVIDIA AWS 早期采用公告将 Amazon Robotics Proteus 传感器仿真列为使用方向",
+      "scope": "开发与早期采用披露，不证明整个真实机群的训练流程或安全状态"
+    },
+    "limits": ["不是已训练策略", "USD 不负责物理求解", "源码、Kit、第三方依赖和资产授权须分开核对", "视觉逼真不证明实机表现"],
+    "sources": [
+      {"title": "Isaac Sim 6.0.0", "url": "https://docs.isaacsim.omniverse.nvidia.com/6.0.0/", "type": "official_documentation", "claim_scope": "资产、传感器、机器人软件接入和部署"},
+      {"title": "Isaac Sim source", "url": "https://github.com/isaac-sim/IsaacSim", "type": "official_code", "claim_scope": "公开平台代码及资产接口"},
+      {"title": "Isaac Sim on AWS adoption", "url": "https://blogs.nvidia.com/blog/gpu-aws-omniverse-isaac-sim-robots/", "type": "vendor_adoption_announcement", "claim_scope": "早期采用与 Proteus 传感器仿真方向，不作当前量产规模证明"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "mujoco",
+    "name": "MuJoCo",
+    "vendor": "Google DeepMind 及开源贡献者",
+    "stages": ["03_scene_sim"],
+    "category": "动力学与接触仿真器",
+    "access_status": "正式开源代码、版本化二进制及 Python 接口公开可取",
+    "inputs": ["MJCF", "受支持 URDF", "执行器和环境参数", "控制输入"],
+    "outputs": ["机器人状态", "接触和力", "传感器结果"],
+    "interfaces": ["C/C++ API", "Python", "MJX 等独立支持范围的计算路径"],
+    "deployment_modes": ["嵌入本地程序", "版本化二进制", "上层训练或测试计算环境"],
+    "evidence": {
+      "availability": "官方发行与代码文档",
+      "customer": "本次未核验客户量产报告；官方 MuJoCo Playground 提供 sim-to-real 和机器人学习环境",
+      "scope": "可执行研究环境和基础软件支持，不等于工业产线程序交付"
+    },
+    "limits": ["上层任务、目录和调度需自行实现", "执行器、接触与参数须匹配真实对象", "不同计算后端不默认等价", "不是 PLC 工程平台"],
+    "sources": [
+      {"title": "MuJoCo repository", "url": "https://github.com/google-deepmind/mujoco", "type": "official_code", "claim_scope": "模型、接口、正式发行与后端"},
+      {"title": "MuJoCo Playground", "url": "https://github.com/google-deepmind/mujoco_playground", "type": "official_research_code", "claim_scope": "运动、操作和 sim-to-real 研究环境；未引用论文"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "gazebo",
+    "name": "Gazebo",
+    "vendor": "Open Robotics / Gazebo 开源社区",
+    "stages": ["03_scene_sim"],
+    "category": "模块化机器人软件仿真栈",
+    "access_status": "正式开源发行与 LTS 支持表公开；Gazebo Classic 已 EOL，与当前 Gazebo 分开记录",
+    "inputs": ["SDF worlds", "机器人模型", "插件与传感器配置", "控制消息"],
+    "outputs": ["仿真状态", "传感器与 transport 消息", "测试记录"],
+    "interfaces": ["Gazebo libraries/plugins", "ros_gz bridge", "ROS 2 消息类型和方向映射"],
+    "deployment_modes": ["本地 GUI/服务端", "测试程序驱动", "发行包与开源代码"],
+    "evidence": {
+      "availability": "官方版本及 EOL 表、ROS 2 bridge 文档",
+      "customer": "Open Robotics 披露 DARPA SubT 虚拟赛道",
+      "scope": "研究竞赛与复杂多机器人测试，不作商业机群量产证据"
+    },
+    "limits": ["须核对 ROS、Gazebo 和插件组合", "topic 不自动互通", "时钟、坐标和控制动态仍需校验", "Classic 维护状态不能套到当前栈"],
+    "sources": [
+      {"title": "Gazebo ROS 2 integration", "url": "https://gazebosim.org/docs/harmonic/ros2_integration/", "type": "official_documentation", "claim_scope": "bridge、消息方向和软件接入"},
+      {"title": "Gazebo releases", "url": "https://gazebosim.org/docs/latest/releases/", "type": "official_support_lifecycle", "claim_scope": "LTS、发行和生命周期"},
+      {"title": "Gazebo Classic", "url": "https://classic.gazebosim.org/", "type": "official_support_lifecycle", "claim_scope": "Classic 在 2025 年结束生命周期"},
+      {"title": "DARPA SubT final competition", "url": "https://www.openrobotics.org/blog/2021/9/27/darpa-subt-final-competition", "type": "official_project_case", "claim_scope": "Gazebo 虚拟竞赛使用"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "carla",
+    "name": "CARLA",
+    "vendor": "CARLA 项目",
+    "stages": ["03_scene_sim"],
+    "category": "自动驾驶研究与道路场景仿真",
+    "access_status": "公开代码、资产和文档入口",
+    "inputs": ["道路和交通参与者", "天气", "传感器套件", "客户端场景控制"],
+    "outputs": ["交通场景状态", "相机/雷达/激光雷达等传感器数据"],
+    "interfaces": ["Python/C++ 客户端 API", "客户端/服务端架构", "OpenDRIVE 场景描述"],
+    "deployment_modes": ["本地或远程仿真服务端", "多客户端研究或测试流程"],
+    "evidence": {
+      "availability": "官方项目与架构文档",
+      "customer": "本次未核验客户量产案例",
+      "scope": "公开研究、训练和测试平台接口，不由普及度推断量产验证"
+    },
+    "limits": ["不是车辆安全或法规合规证书", "具体引擎与版本须核对", "不替代汽车工程在环体系"],
+    "sources": [
+      {"title": "CARLA project", "url": "https://carla.org/", "type": "official_project", "claim_scope": "开放资产、场景和传感器"},
+      {"title": "CARLA Introduction", "url": "https://carla.readthedocs.io/en/latest/start_introduction/", "type": "official_documentation", "claim_scope": "Unreal、API 与客户端/服务端"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "ipg_carmaker",
+    "name": "IPG CarMaker",
+    "vendor": "IPG Automotive",
+    "stages": ["03_scene_sim"],
+    "category": "车辆虚拟试驾与在环测试",
+    "access_status": "正式商业产品说明与联系入口公开；未核验特定客户当前规模",
+    "inputs": ["车辆模型", "道路、驾驶和交通", "测试定义", "车辆控制系统"],
+    "outputs": ["虚拟试驾运行", "测试评估与分析"],
+    "interfaces": ["MIL", "SIL", "HIL", "VIL", "车辆模型与台架集成接口"],
+    "deployment_modes": ["PC", "无界面运行", "容器/云/HPC", "HIL 和台架环境；按产品形态确认"],
+    "evidence": {
+      "availability": "官方商业产品页明确在环层次与部署形态",
+      "customer": "本次没有核验具名客户量产案例",
+      "scope": "车辆与控制系统开发、测试和验证接口，不是自动驾驶安全批准"
+    },
+    "limits": ["不是机械臂离线编程", "模型真实性和验收要求须项目定义", "在环能力不自动证明整车安全"],
+    "sources": [
+      {"title": "CarMaker product portfolio", "url": "https://www.ipg-automotive.com/solutions/product-portfolio/carmaker", "type": "official_product", "claim_scope": "车辆、测试、在环和部署形态；旧入口失效后换新入口"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "omniverse_replicator",
+    "name": "Omniverse Replicator",
+    "vendor": "NVIDIA",
+    "stages": ["04_synthetic"],
+    "category": "场景驱动的感知合成数据组件",
+    "access_status": "公开文档、Python API 与官方示例；随 Kit/Isaac Sim 环境接入",
+    "inputs": ["USD 场景", "语义标签", "相机和材质", "随机化规则"],
+    "outputs": ["渲染图像", "深度/分割/检测框等选定注释", "writer 定义的文件和元数据"],
+    "interfaces": ["Kit extensions", "Python API", "annotator", "writer", "随机化及触发配置"],
+    "deployment_modes": ["Isaac Sim/Omniverse 运行环境", "脚本化生成流水线"],
+    "evidence": {
+      "availability": "官方扩展、API 和固定版本工作流可查",
+      "customer": "本次使用物体、场景、AMR 和 UR10 官方教程作为应用示例，未当客户生产案例",
+      "scope": "感知数据与随机化，不自动附带机器人命令"
+    },
+    "limits": ["标签依赖场景语义", "感知输出不等于动作监督", "现实差距需独立验证", "环境、依赖和资产授权分开检查"],
+    "sources": [
+      {"title": "Replicator extension", "url": "https://docs.omniverse.nvidia.com/extensions/latest/ext_replicator.html", "type": "official_documentation", "claim_scope": "扩展形式及数据生成职责"},
+      {"title": "Replicator Python API", "url": "https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html", "type": "official_api", "claim_scope": "annotator、writer 和程序接入"},
+      {"title": "Isaac Sim 6.0.0 Replicator workflows", "url": "https://docs.isaacsim.omniverse.nvidia.com/6.0.0/replicator_tutorials/index.html", "type": "official_examples", "claim_scope": "场景、物体与机器人随机化教程"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "isaac_lab_mimic",
+    "name": "Isaac Lab Mimic",
+    "vendor": "NVIDIA / Isaac Lab",
+    "stages": ["04_synthetic"],
+    "category": "机器人示范轨迹扩增",
+    "access_status": "公开 Isaac Lab 工作流及脚本；固定 v2.2.0 核验，不称最新",
+    "inputs": ["机器人示范", "对象位姿", "子任务边界", "兼容环境和动作转换"],
+    "outputs": ["执行及成功筛选后的 HDF5 示范", "观测与动作轨迹"],
+    "interfaces": ["MimicEnvCfg", "ManagerBasedRLMimicEnv", "末端位姿/动作互转 helpers", "子任务信号", "生成脚本"],
+    "deployment_modes": ["Isaac Lab 与相容仿真环境", "脚本化采集、标注、生成和训练"],
+    "evidence": {
+      "availability": "固定版本官方文档与可执行任务示例",
+      "customer": "堆叠和倒料官方研究/开发教程，不作客户量产案例",
+      "scope": "对象相关子任务变换和动作接口内的轨迹扩增"
+    },
+    "limits": ["不是任意人类视频到动作", "非确定性回放可能失败", "成功判据影响数据覆盖", "衍生示范须继承源数据拆分组"],
+    "sources": [
+      {"title": "Isaac Lab Mimic v2.2.0", "url": "https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html", "type": "official_documentation_and_examples", "claim_scope": "HDF5、示范扩增、转换 helpers 与回放限制"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "cosmos3",
+    "name": "NVIDIA Cosmos 3",
+    "vendor": "NVIDIA",
+    "stages": ["04_synthetic"],
+    "category": "统一多模态世界模型家族",
+    "access_status": "当前官网主线；模型、代码、配方与浏览器入口公开；依赖可能要求接受访问条件",
+    "inputs": ["Reasoner：文本与视觉", "Generator：任务指定的文本、视觉、音频和动作条件"],
+    "outputs": ["Reasoner：文本", "Generator：任务指定视觉、音频或动作"],
+    "interfaces": ["任务 checkpoint 和 recipe", "GPU 推理与后训练", "相应服务化接口"],
+    "deployment_modes": ["浏览器试用入口", "GPU 推理", "后训练", "模型服务"],
+    "evidence": {
+      "availability": "当前 NVIDIA 主仓库和产品页面明确家族与模型入口",
+      "customer": "公开世界生成、动作条件预测及操作参考演示；本次未作为具名客户量产证明",
+      "scope": "按任务指定的生成、推理和专用动作路径，不能把任意视频输出当控制命令"
+    },
+    "limits": ["生成伪影、时间或物理不一致须评估", "动作依赖机器人形态和适配", "普通视频不是已执行命令", "公开入口不等于无条件商用或第三方依赖授权"],
+    "sources": [
+      {"title": "NVIDIA Cosmos product", "url": "https://www.nvidia.com/en-us/ai/cosmos/", "type": "official_product", "claim_scope": "当前 Cosmos 3 定位与模型入口；不引用排名"},
+      {"title": "NVIDIA Cosmos source", "url": "https://github.com/NVIDIA/cosmos", "type": "official_code_and_examples", "claim_scope": "Reasoner/Generator 输入输出、访问条件、示例及限制；未读取论文"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "cosmos_predict25",
+    "name": "Cosmos Predict2.5",
+    "vendor": "NVIDIA",
+    "stages": ["04_synthetic"],
+    "category": "视频世界预测及专用动作条件配方",
+    "access_status": "公开旧分支与模型入口；官方标注有限维护，当前主线转至 Cosmos 3",
+    "inputs": ["文本/视觉条件", "专用动作条件配方中的配对状态和动作"],
+    "outputs": ["预测/生成视频", "专用 policy 配方另行核对，不与基础视频模型混用"],
+    "interfaces": ["推理配置", "后训练", "动作条件 dataloader 与 checkpoint"],
+    "deployment_modes": ["GPU 视频生成", "任务专属后训练和 policy 工作流"],
+    "evidence": {
+      "availability": "公开代码及有限维护声明",
+      "customer": "官方研究配方及模型发布，未核验客户量产",
+      "scope": "已有动作作为视频预测条件；不是普通视频自动获得真实命令"
+    },
+    "limits": ["不是接触动力学求解器", "基础视频输出不产生动作标签", "专用任务 checkpoint 输出不可混用", "旧分支不称当前积极开发主线"],
+    "sources": [
+      {"title": "Predict2.5 README", "url": "https://github.com/nvidia-cosmos/cosmos-predict2.5", "type": "official_code_and_release", "claim_scope": "视频预测、专用 policy 入口及有限维护"},
+      {"title": "Action-conditioned video post-training", "url": "https://github.com/nvidia-cosmos/cosmos-predict2.5/blob/main/docs/post-training_video2world_action.md", "type": "official_recipe", "claim_scope": "状态与动作作为视频生成输入条件"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "cosmos_transfer25",
+    "name": "Cosmos Transfer2.5",
+    "vendor": "NVIDIA",
+    "stages": ["04_synthetic"],
+    "category": "空间条件控制的视频生成",
+    "access_status": "公开旧分支与模型入口；官方有限维护，后续主线为 Cosmos 3",
+    "inputs": ["视频与提示", "深度", "边缘", "分割", "模糊画面", "多控制配置"],
+    "outputs": ["条件生成的视频", "输出目录中的视觉结果"],
+    "interfaces": ["JSON 推理参数", "control_path/control_weight", "输入模态与 GPU 推理"],
+    "deployment_modes": ["GPU 单机或多 GPU 生成", "专用后训练"],
+    "evidence": {
+      "availability": "官方代码、推理文档与维护状态可查",
+      "customer": "robot depth/edge/seg/multi-control 官方示例；未核验客户量产",
+      "scope": "视觉外观与条件控制，不负责产生机器人执行轨迹"
+    },
+    "limits": ["不保证原几何和标签完全保留", "继承检测框和分割需审核", "原动作关联不等于新动作真值", "不当作物理求解器"],
+    "sources": [
+      {"title": "Transfer2.5 README", "url": "https://github.com/nvidia-cosmos/cosmos-transfer2.5", "type": "official_code_and_release", "claim_scope": "模型入口、示例和有限维护"},
+      {"title": "Transfer inference", "url": "https://github.com/nvidia-cosmos/cosmos-transfer2.5/blob/main/docs/inference.md", "type": "official_documentation", "claim_scope": "输入模态、control path/weight 与 JSON 接口"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "cosmos_reason2",
+    "name": "Cosmos Reason2",
+    "vendor": "NVIDIA",
+    "stages": ["02_real_data", "04_synthetic"],
+    "category": "视觉语言推理与审核辅助",
+    "access_status": "公开旧分支、模型和推理入口；官方有限维护，后续主线为 Cosmos 3",
+    "inputs": ["视频/图像", "提示词", "任务指定的输出约定"],
+    "outputs": ["文本回答", "描述或建议标签"],
+    "interfaces": ["Transformers 推理", "在线服务", "离线批处理", "提示与结果解析"],
+    "deployment_modes": ["GPU 推理", "容器示例", "在线/离线模式"],
+    "evidence": {
+      "availability": "公开模型入口及在线/离线说明",
+      "customer": "官方推理与示范代码；未核验客户量产",
+      "scope": "辅助理解和审核，不作原始测量或动作执行确认"
+    },
+    "limits": ["不是视频生成器", "自然语言计划不是机器人命令", "建议标签需与确认标签分开", "可解析格式不保证语义正确"],
+    "sources": [
+      {"title": "Cosmos Reason2", "url": "https://github.com/nvidia-cosmos/cosmos-reason2", "type": "official_code_and_documentation", "claim_scope": "视觉推理、在线/离线部署、许可和有限维护；未引用论文"}
+    ],
+    "checked_at": "2026-10-27"
+  }
+]

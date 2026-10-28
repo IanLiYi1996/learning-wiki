@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.0",
+  "accessed_at": "2026-10-27",
+  "scope": "模型与学习教材正文，第06至09章；仅原论文、作者代码和官方元数据。无排行榜、模型下载、数据集下载、训练或实机执行。",
+  "chapter_files": [
+    "advanced/chapters/06_representation_vla.md",
+    "advanced/chapters/07_imitation_generators.md",
+    "advanced/chapters/08_rl.md",
+    "advanced/chapters/09_world_models.md"
+  ],
+  "metadata_file": "notes/learning-papers.json",
+  "metadata_policy": {
+    "new_paper_count": 11,
+    "record_basis": "新增记录按 arXiv 预印本标准元数据保存；year/publication_date 使用首次提交，不冒充正式出版日期。正式版本若用于公式阅读，另记 full_text_read_url 与版本说明。",
+    "citation_count": "未知一律 null；新增论文没有查询引用计数，不用估计数或零替代。",
+    "doi": "新增记录没有独立核实出版商 DOI，保持 null；不把 10.48550/arXiv 仓储 DOI 当出版商 DOI。",
+    "open_access": "公式阅读使用合法公开 PDF 或作者代码；绿色 OA 指公开预印本，不代表已核实论文许可。",
+    "deduplication": "新增 arXiv ID 与根 papers.json 不重叠；原有模型、PPO 和原始 SAC 记录复用，不改写主 papers.json。",
+    "optional_fields": "无法核实的 abstract、venue、license 等保留 null；题目、完整作者和日期来自官方 arXiv Atom API。"
+  },
+  "skill_audit": {
+    "skills_read_in_full": [
+      "research/SKILL.md",
+      "academic-search/SKILL.md"
+    ],
+    "references_read_in_full": [
+      "academic-search/references/metadata-schema.md",
+      "academic-search/references/disciplines/computer-science.md",
+      "academic-search/references/api-cookbook.md",
+      "academic-search/references/site-patterns/arxiv.org.md",
+      "academic-search/references/site-patterns/semanticscholar.org.md"
+    ],
+    "environment_check": "运行当前技能目录 check-deps.sh；Node v22.22.0、curl 可用。Chrome 未连接；仅 API/公开全文路线，不启动浏览器或安装依赖。",
+    "research_background_agent": "research 建议后台子代理；当前未暴露可调用的后台子代理执行工具。主代理直接完成一手核查，不擅自创建新的独立任务。",
+    "search_success_criterion": "已核验原论文版本复用，按所需公式精确补充论文与实现；不作广泛候选排名，不为补引用数扩展检索。"
+  },
+  "reused_evidence": [
+    {
+      "path": "notes/models-learning.md",
+      "use": "完整读取；复用 Diffusion Policy v4、OpenVLA v3、π₀ v4、DreamerV3 v2 的选读版本边界及此前出版元数据核验结论。"
+    },
+    {
+      "path": "papers.json",
+      "use": "通过 JSON 解析读取已有论文的题目、ID、版本、PDF、代码、year 和 DOI；未修改。公式章节另对原论文／官方实现补核查。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "vit",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "url": "https://arxiv.org/pdf/2010.11929v2",
+      "type": "original_paper",
+      "version": "arXiv v2",
+      "chapters": ["06"],
+      "read": "§3.1，patch 展平、投影宽度、位置编码；公开 PDF 流式读取。",
+      "supports": ["patch embedding 张量接口"],
+      "boundary": "多相机和时间编码以及数值维度算例为本书设计，不归于原始 ViT。"
+    },
+    {
+      "id": "transformer",
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/pdf/1706.03762v7",
+      "type": "original_paper",
+      "version": "arXiv v7",
+      "chapters": ["06"],
+      "read": "§3.1–3.4，因果 mask、输入右移、scaled dot-product、multi-head、embedding。",
+      "supports": ["QKV 运算", "head 维度", "mask", "词表查表"],
+      "boundary": "教学式取 query/key/value 同宽；不是宣称所有注意力变体均如此。"
+    },
+    {
+      "id": "rotation6d",
+      "title": "On the Continuity of Rotation Representations in Neural Networks",
+      "url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Zhou_On_the_Continuity_of_Rotation_Representations_in_Neural_Networks_CVPR_2019_paper.pdf",
+      "type": "original_paper",
+      "version": "CVPR 2019 author paper via CVF",
+      "chapters": ["06"],
+      "read": "§4.1–4.2，四元数映射与六维表示的 Gram-Schmidt 重建。",
+      "supports": ["rot6d 正交化", "退化输入集合", "四元数旋转表示"],
+      "boundary": "本书采用列向量、R_B<-E 和 wxyz；这些契约不是所有库的默认约定。元数据另保留 arXiv 首发身份。"
+    },
+    {
+      "id": "openvla",
+      "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+      "url": "https://arxiv.org/pdf/2406.09246v3",
+      "type": "original_paper",
+      "version": "arXiv v3",
+      "chapters": ["06"],
+      "read": "在已有核验笔记上重读 §3.1–3.2、Figure 2、§6；七维动作、特征融合、动作 CE、单图及未来 chunk 方向。",
+      "supports": ["原始模型输入输出", "逐标量动作 token", "分位数区间", "仅动作目标监督"],
+      "boundary": "原始版本没有多图、本体／历史观测输入或动作 chunk；不以访问日仓库的后续扩展替代论文。"
+    },
+    {
+      "id": "openvla_tokenizer",
+      "title": "OpenVLA ActionTokenizer",
+      "url": "https://github.com/openvla/openvla/blob/main/prismatic/vla/action_tokenizer.py",
+      "read_url": "https://raw.githubusercontent.com/openvla/openvla/main/prismatic/vla/action_tokenizer.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["06"],
+      "read": "完整文件，linspace、digitize、bin_centers 及解码端点裁剪。",
+      "supports": ["256 边界／255 中心的实现差别"],
+      "boundary": "本书的理想 K_a 等宽区间公式不冒充此代码。"
+    },
+    {
+      "id": "openvla_action_decode",
+      "title": "OpenVLA predict_action",
+      "url": "https://github.com/openvla/openvla/blob/main/prismatic/models/vlas/openvla.py",
+      "read_url": "https://raw.githubusercontent.com/openvla/openvla/main/prismatic/models/vlas/openvla.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["06"],
+      "read": "predict_action、get_action_stats、unnorm_key 检查。",
+      "supports": ["反分词", "q01/q99", "按维归一化 mask", "数据集统计键"],
+      "boundary": "代码里的 q01 是统计字段，不改变本书 q 表示关节变量的符号约定。"
+    },
+    {
+      "id": "openvla_readme",
+      "title": "OpenVLA author README",
+      "url": "https://github.com/openvla/openvla/blob/main/README.md",
+      "read_url": "https://raw.githubusercontent.com/openvla/openvla/main/README.md",
+      "type": "official_repository_documentation",
+      "version": "main as read on 2026-10-27",
+      "chapters": ["06"],
+      "read": "更新说明，2025-03-03 OFT 连续动作、多图，以及 chunk tokenizer 是后续项目的界限。",
+      "supports": ["原版与扩展版分离"],
+      "boundary": "没有引用其速度、效果宣传数值；没有把 README 当作新的算法论文引用。"
+    },
+    {
+      "id": "openpi_pi0",
+      "title": "openpi pi0.py",
+      "url": "https://github.com/Physical-Intelligence/openpi/blob/main/src/openpi/models/pi0.py",
+      "read_url": "https://raw.githubusercontent.com/Physical-Intelligence/openpi/main/src/openpi/models/pi0.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; contains later configuration branches",
+      "chapters": ["06", "07"],
+      "read": "make_attn_mask、embed_prefix、embed_suffix、compute_loss、sample_actions。",
+      "supports": ["视觉／文本／本体 embedding", "prefix/suffix mask", "动作投影", "插值与 velocity target", "Euler 推理"],
+      "boundary": "代码以 t=1 为噪声、t=0 为动作，与论文方向相反；目标 noise-actions 与负步长需同时变换。未声称通用 padding loss mask 已原样支持。"
+    },
+    {
+      "id": "dagger",
+      "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "url": "https://proceedings.mlr.press/v15/ross11a/ross11a.pdf",
+      "type": "original_paper",
+      "version": "AISTATS 2011 PMLR paper",
+      "chapters": ["07"],
+      "read": "§2–3 与 Algorithm 3.1；公开 PDF 可读，pdftotext 有 annotation warnings，正文及算法文本可提取。",
+      "supports": ["covariate shift", "诱导分布", "专家标注", "混合策略", "全历史数据聚合"],
+      "boundary": "本书的不可恢复区域二次累积例为原创；不冒充无条件 DAgger 安全或收敛保证。"
+    },
+    {
+      "id": "act",
+      "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+      "url": "https://arxiv.org/pdf/2304.13705v1",
+      "type": "original_paper",
+      "version": "arXiv v1",
+      "chapters": ["07"],
+      "read": "§IV.A-C、Algorithms 1-2、附录 C。",
+      "supports": ["action chunk", "CVAE 训练", "潜变量零均值推理", "同一执行时刻的 temporal ensemble"],
+      "boundary": "原文 Algorithm 1 的 MSE 与正文 IV.C 的 L1 有表述差异；不把 chunk 定义等同 ACT，不引用实验排名。"
+    },
+    {
+      "id": "act_policy",
+      "title": "ACT author policy.py",
+      "url": "https://github.com/tonyzhaozh/act/blob/main/policy.py",
+      "read_url": "https://raw.githubusercontent.com/tonyzhaozh/act/main/policy.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["07"],
+      "read": "ACTPolicy 训练与推理分支、L1、is_pad、KL。",
+      "supports": ["实际重建项采用 L1", "训练时动作标签及 padding mask"],
+      "boundary": "其 masked mean 归约不按有效坐标分母重归一；本书的 valid_mean 是显式教学设计。"
+    },
+    {
+      "id": "diffusion_policy",
+      "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+      "url": "https://arxiv.org/pdf/2303.04137v4",
+      "type": "original_paper",
+      "version": "arXiv v4, RSS 2023 identity reused",
+      "chapters": ["07"],
+      "read": "§II-C、§III、Figure 3；动作条件分布、观察／预测／执行 horizon、CNN FiLM 与 Transformer mask。",
+      "supports": ["动作扩散", "条件观测", "receding horizon", "网络条件路径"],
+      "boundary": "原始 Transformer 使用因果动作 attention；本书双向生成伪代码是泛化例，不误归为其原配置。"
+    },
+    {
+      "id": "diffusion_policy_image_code",
+      "title": "Diffusion Policy diffusion_unet_image_policy.py",
+      "url": "https://github.com/real-stanford/diffusion_policy/blob/main/diffusion_policy/policy/diffusion_unet_image_policy.py",
+      "read_url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/diffusion_policy/policy/diffusion_unet_image_policy.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["07"],
+      "read": "predict_action 与 compute_loss，global condition、inpainting、noise scheduler、执行索引。",
+      "supports": ["n_obs_steps-1 对齐", "condition_mask", "epsilon/sample 目标类型"],
+      "boundary": "compute_loss 明确不支持输入 valid_mask；本书可变长度／动作维有效性 mask 是扩展骨架。"
+    },
+    {
+      "id": "ddpm",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "url": "https://arxiv.org/pdf/2006.11239v2",
+      "type": "original_paper",
+      "version": "arXiv v2",
+      "chapters": ["07"],
+      "read": "§2、§3.2、§3.4、Algorithms 1-2；前向高斯、闭式边缘、epsilon 参数化和采样。",
+      "supports": ["前向噪声公式", "epsilon loss", "DDPM 反向均值与噪声"],
+      "boundary": "教学公式以动作段代替图像、以 k 代替原文扩散时间 t；有效性 mask 不来自原图像 DDPM。"
+    },
+    {
+      "id": "ddim",
+      "title": "Denoising Diffusion Implicit Models",
+      "url": "https://arxiv.org/pdf/2010.02502v4",
+      "type": "original_paper",
+      "version": "arXiv v4",
+      "chapters": ["07"],
+      "read": "§3、§4.1–4.2，Equation 12 与跳步轨迹。",
+      "supports": ["确定性采样", "相同边缘但不同过程", "训练步数与推理步数分开"],
+      "boundary": "正文给 eta=0 的简式，不声称任意跳过 DDPM 步都等价。"
+    },
+    {
+      "id": "flow_matching",
+      "title": "Flow Matching for Generative Modeling",
+      "url": "https://arxiv.org/pdf/2210.02747v2",
+      "type": "original_paper",
+      "version": "arXiv v2",
+      "chapters": ["07"],
+      "read": "§2–4，条件路径、CFM、Gaussian affine flow 及导数。",
+      "supports": ["velocity regression", "生成 ODE", "条件平均速度与概率路径"],
+      "boundary": "本书线性路径为简单构造，tau 在开区间采样；不声称其独立耦合是一般最优传输耦合。"
+    },
+    {
+      "id": "pi0",
+      "title": "π₀: A Vision-Language-Action Flow Model for General Robot Control",
+      "url": "https://arxiv.org/pdf/2410.24164v4",
+      "type": "original_paper",
+      "version": "arXiv v4; reused exact version from earlier note",
+      "chapters": ["07"],
+      "read": "§IV，图像／语言／本体条件、动作专家、显式插值、velocity、双向动作 attention 与 Euler。",
+      "supports": ["条件动作 flow", "论文时间方向", "动作 chunk"],
+      "boundary": "PDF 文本提取有图形 warnings，核心采样式与官方代码交叉核验。原文 Gaussian 协方差记法与显式插值系数不完全一致，本书以采样式计算 (1-tau)^2I，不照搬有歧义记法。"
+    },
+    {
+      "id": "gae",
+      "title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
+      "url": "https://arxiv.org/pdf/1506.02438v6",
+      "type": "original_paper",
+      "version": "arXiv v6",
+      "chapters": ["08"],
+      "read": "§2–3，V/Q/A、折扣、TD 残差、k-step 估计与 GAE。",
+      "supports": ["优势估计", "策略梯度", "lambda 的偏差／方差取舍"],
+      "boundary": "终止／截断递推按本书时间索引补充；不把估计优势说成真值。"
+    },
+    {
+      "id": "ppo",
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/pdf/1707.06347v2",
+      "type": "original_paper",
+      "version": "arXiv v2; existing metadata reused",
+      "chapters": ["08"],
+      "read": "§2–3、Figure 1、训练采样／更新流程。",
+      "supports": ["概率比 clipped surrogate", "正负优势的不同饱和方向"],
+      "boundary": "clip 不是概率比、KL 或真实动作的硬限制；数值算例为原创。"
+    },
+    {
+      "id": "sac_original",
+      "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+      "url": "https://arxiv.org/pdf/1801.01290v2",
+      "type": "original_paper",
+      "version": "arXiv v2; ICML metadata reused from papers.json",
+      "chapters": ["08"],
+      "read": "已有正文核验基础上补读附录 C，tanh 可逆变换和 log-Jacobian。",
+      "supports": ["原始 SAC 身份", "独立 V 版本", "归一化动作密度修正"],
+      "boundary": "后续无独立 V 的更新式引用另一个论文；不把两版本混写。"
+    },
+    {
+      "id": "sac_applications",
+      "title": "Soft Actor-Critic Algorithms and Applications",
+      "url": "https://arxiv.org/pdf/1812.05905v2",
+      "type": "original_paper",
+      "version": "arXiv v2",
+      "chapters": ["08"],
+      "read": "§3–6，熵目标、soft Bellman、无独立 V、重参数化、温度约束。",
+      "supports": ["双 Q target", "actor loss", "target 网络", "温度学习可选方案"],
+      "boundary": "不以表格收敛结果证明连续神经近似或离线分布外可靠性。"
+    },
+    {
+      "id": "ppo_code",
+      "title": "OpenAI Spinning Up PyTorch PPO",
+      "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/ppo/ppo.py",
+      "read_url": "https://raw.githubusercontent.com/openai/spinningup/master/spinup/algos/pytorch/ppo/ppo.py",
+      "type": "official_teaching_implementation",
+      "version": "master as read on 2026-10-27",
+      "chapters": ["08"],
+      "read": "PPOBuffer、finish_path、compute_loss_pi、update、采样末端处理。",
+      "supports": ["保存旧 log-prob", "GAE", "bootstrap", "KL 早停"],
+      "boundary": "旧环境 API 示例；只静态阅读，不安装、运行或用它解释新 API 的终止字段。"
+    },
+    {
+      "id": "sac_code",
+      "title": "OpenAI Spinning Up PyTorch SAC",
+      "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/sac/sac.py",
+      "read_url": "https://raw.githubusercontent.com/openai/spinningup/master/spinup/algos/pytorch/sac/sac.py",
+      "type": "official_teaching_implementation",
+      "version": "master as read on 2026-10-27",
+      "chapters": ["08"],
+      "read": "compute_loss_q、compute_loss_pi、update、target EMA 和 terminal 处理。",
+      "supports": ["采样数据动作与当前策略动作区别", "停止 target 梯度", "保留 Q 对动作梯度"],
+      "boundary": "该示例温度固定；不声称自动调温已实现，不把教学实现当 SAC 作者唯一官方原码。"
+    },
+    {
+      "id": "sac_actor_code",
+      "title": "OpenAI Spinning Up squashed Gaussian actor",
+      "url": "https://github.com/openai/spinningup/blob/master/spinup/algos/pytorch/sac/core.py",
+      "read_url": "https://raw.githubusercontent.com/openai/spinningup/master/spinup/algos/pytorch/sac/core.py",
+      "type": "official_teaching_implementation",
+      "version": "master as read on 2026-10-27",
+      "chapters": ["08"],
+      "read": "SquashedGaussianMLPActor.forward 与 MLPQFunction。",
+      "supports": ["rsample 重参数化", "联合 log-prob", "数值稳定 tanh 修正", "critic 标量形状"],
+      "boundary": "正文密度式限定归一化动作；物理缩放后的常数 Jacobian 及目标熵需另作坐标核对。"
+    },
+    {
+      "id": "planet",
+      "title": "Learning Latent Dynamics for Planning from Pixels",
+      "url": "https://arxiv.org/pdf/1811.04551v5",
+      "type": "original_paper",
+      "version": "arXiv v5",
+      "chapters": ["09"],
+      "read": "§2–4、Algorithms 1-2，动作条件 RSSM、潜在空间 CEM 与 overshooting。",
+      "supports": ["执行侧规划与训练侧想象的区别", "无需解码图像即可评价动作", "多步目标"],
+      "boundary": "多步训练不等于任意动作序列物理一致性或误差上界证明。"
+    },
+    {
+      "id": "dreamerv3",
+      "title": "Mastering Diverse Domains through World Models",
+      "url": "https://arxiv.org/pdf/2301.04104v2",
+      "type": "original_paper",
+      "version": "arXiv v2; distinct from the later retitled Nature article",
+      "chapters": ["09"],
+      "read": "World model learning、Critic learning、Actor learning、Robust predictions；式1–11。",
+      "supports": ["encoder/recurrent/prior/decoder/reward/continue", "KL balancing", "free nats", "lambda return", "REINFORCE", "symlog/two-hot"],
+      "boundary": "v2 的 beta_dyn=1、beta_rep=0.1；连续动作 actor 使用 REINFORCE。奖励及 continue 的索引为符合本书第08章而显式移位，不逐字照搬原文索引。"
+    },
+    {
+      "id": "dreamer_rssm",
+      "title": "DreamerV3 RSSM implementation",
+      "url": "https://github.com/danijar/dreamerv3/blob/main/dreamerv3/rssm.py",
+      "read_url": "https://raw.githubusercontent.com/danijar/dreamerv3/main/dreamerv3/rssm.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["09"],
+      "read": "observe、imagine、loss、prior/post logits、entry_space。",
+      "supports": ["随机潜变量维度", "后验／先验", "free_nats 与 stop_gradient"],
+      "boundary": "包含后续实现修订，不把当前默认尺寸倒填为预印本固定配置。"
+    },
+    {
+      "id": "dreamer_agent",
+      "title": "DreamerV3 agent implementation",
+      "url": "https://github.com/danijar/dreamerv3/blob/main/dreamerv3/agent.py",
+      "read_url": "https://raw.githubusercontent.com/danijar/dreamerv3/main/dreamerv3/agent.py",
+      "type": "official_implementation",
+      "version": "main as read on 2026-10-27; no immutable commit resolved",
+      "chapters": ["09"],
+      "read": "policy、loss、_apply_replay_context、imag_loss、lambda_return。",
+      "supports": ["前一动作移位", "到达观测奖励", "terminal/reset", "想象序列监督", "执行侧直接 actor"],
+      "boundary": "当前源码有额外归一化与配置分支；正文将论文机制和实现检查分开，不承诺逐行复现 v2。"
+    }
+  ],
+  "metadata_api_reads": [
+    {
+      "url": "https://export.arxiv.org/api/query?id_list=1706.03762,2010.11929,1812.07035,1011.0686,2304.13705,2006.11239,2010.02502,2210.02747,1812.05905,1506.02438",
+      "result": "HTTP 200 Atom XML; ten exact-ID records, titles/authors/first submission/latest revision parsed.",
+      "use": "新增基础论文标准元数据；不是依据引用数做排名。"
+    },
+    {
+      "url": "https://export.arxiv.org/api/query?id_list=1811.04551",
+      "result": "HTTP 200 Atom XML; v5 revision and seven authors confirmed.",
+      "use": "PlaNet 精确元数据补全。"
+    }
+  ],
+  "original_teaching_material": [
+    "视觉 patch 与多相机历史 token 数算例。",
+    "注意力缩放的量级解释、动作坐标契约和理想分箱误差说明。",
+    "左右 ±2 示范却预测零的 MSE 多峰失败算例。",
+    "不可恢复区域的误差累积构造、chunk latency 算例。",
+    "多形态／可变长度 mask 的 DDPM 和 Flow 训练／推理伪代码。",
+    "折扣奖励算例、PPO 正负优势数值算例、奖励正向距离漏洞。",
+    "世界模型奖励索引重写、训练流程骨架、Lipschitz 误差递推与毫米容差算例。"
+  ],
+  "validation_results": {
+    "static_checks": "Passed: four exact H2 titles, paired display-math/code delimiters, no numeric citations or alternative math delimiters, all chapter links registered, all standard metadata fields present, no new-paper overlap with papers.json.",
+    "new_papers": 11,
+    "registered_primary_sources": 28,
+    "display_formula_blocks": 31,
+    "numerical_checks": "Passed: patch counts, multimodal MSE example, discounted return, three PPO sign cases, DDIM clean reconstruction, Flow derivative/time reversal, rot6d orthonormality and determinant +1, error propagation bound.",
+    "error_example_bound_mm": 42.76856753442002,
+    "limitations": "Pure arithmetic and static checks only; no model quality, training stability, simulation interaction, hardware execution or complete-book rendering was tested."
+  },
+  "technical_review_notes": [
+    "共享 s/o/a/u/q 不与 latent state、控制输入或生成速度混用；扩散离散步用 k，Flow 生成时间用 tau。",
+    "公式使用独立 $$ 与行内 $；每条公式后解释符号、假设与张量接口。",
+    "注意力 mask、loss validity mask、inpainting condition mask、normalization mask 分开说明。",
+    "原版 OpenVLA 的单步7D、后续 chunk/连续头、理想分箱与真实边界实现分开。",
+    "PPO clip 不作硬限制或机器人安全保证；SAC 异策略与固定数据离线学习分开。",
+    "Dreamer KL 梯度路径、真实 terminal 与截断、后验训练与先验想象分开。",
+    "源文件正文仅短释各来源机制；推导连接、张量实例、伪代码与失败算例为本书重写，无长段原文翻译。",
+    "仓库 URL 多为访问日 main/master，未冻结 commit；发布前主编可选定 commit，不应把后续能力追溯到原始论文。",
+    "未运行全书构建；本任务只核验指定四章及两份来源 JSON，避免改动其他编者文件。"
+  ]
+}
