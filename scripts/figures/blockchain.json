@@ -1,0 +1,207 @@
+[
+  {
+    "id": "transaction-trust-boundaries", "topic": "blockchain", "kind": "flow",
+    "title": "从用户意图到业务入账的六道边界",
+    "subtitle": "签名合法、广播接收、执行成功与资产到账分别验证。",
+    "nodes": [["用户意图", "谁、哪条链、哪种资产、多少"], ["业务审批", "允许做什么；绑定具体语义"], ["交易构造", "实际输入／输出／调用参数"], ["独立签名策略", "重算摘要；核对批准内容"], ["链上执行", "广播、包含、结果与 canonical"], ["观察与账务", "实际效果、幂等、冲正与对账"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/01-system-model.md", "after": "## 4. 钱包处于哪些边界之间"}, {"file": "wiki/topics/blockchain/README.md", "after": "# 区块链原理、生态与钱包工程"}]
+  },
+  {
+    "id": "utxo-transition", "topic": "blockchain", "kind": "flow",
+    "title": "UTXO：花旧输出，创建新输出",
+    "subtitle": "钱包余额是可控制输出的视图，不是地址账户上的 balance 字段。",
+    "nodes": [["旧 UTXO", "outpoint = txid + vout"], ["交易输入", "引用旧输出；提供花费材料"], ["验证", "脚本／签名与金额守恒"], ["移除旧输出", "同一有效历史不能再花"], ["创建新输出", "收款、找零及 scriptPubKey"], ["新 UTXO 集合", "fee = inputs − outputs"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/02-bitcoin.md", "after": "## 1. UTXO 是输出，不是账户余额"}]
+  },
+  {
+    "id": "segwit-commitment", "topic": "blockchain", "kind": "flow",
+    "title": "区块头不变，怎样仍承诺 witness",
+    "subtitle": "witness root、coinbase commitment 与区块头 txid root 不是同一个值。",
+    "nodes": [["交易 witness", "参与扩展序列化，形成 wtxid"], ["Witness Merkle root", "coinbase 在该树用零叶"], ["Coinbase 输出承诺", "H₂(root ∥ reserved value)"], ["Coinbase txid", "输出承诺属于 coinbase 内容"], ["区块头 txid root", "原有交易 Merkle 承诺"], ["PoW 区块头", "间接绑定上述 witness 数据"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/02-bitcoin.md", "after": "## 6. witness commitment 如何进入区块承诺"}]
+  },
+  {
+    "id": "taproot-paths", "topic": "blockchain", "kind": "compare",
+    "title": "Taproot 的密钥与两种花费路径",
+    "subtitle": "Internal key + 脚本树承诺的 tweak → output key Q。",
+    "columns": ["路径", "提供什么", "保留的边界"],
+    "rows": [["Key path", "对 output key Q 的有效 Schnorr 签名", "不揭示备用脚本；不是旧 DER ECDSA"], ["Script path", "选中脚本 + control block／Merkle 路径", "只揭示使用分支；仍执行相应脚本规则"], ["隐私含义", "未使用的策略可被隐藏", "交易金额与资金图等信息并不消失"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/02-bitcoin.md", "after": "## 8. Taproot：增加新路径，旧 ECDSA 不会自动消失"}]
+  },
+  {
+    "id": "ethereum-state-proof", "topic": "blockchain", "kind": "flow",
+    "title": "Solidity 变量、存储证明与 stateRoot",
+    "subtitle": "逻辑槽位计算和 secure trie 路径哈希是两个不同步骤。",
+    "nodes": [["balances[owner]", "mapping 基础 slot 为 2"], ["实际槽位 s", "keccak256(pad32(owner) ∥ pad32(2))"], ["存储树路径", "keccak256(bytes32(s))"], ["账户 storageRoot", "承诺该合约的存储树"], ["账户叶与账户路径", "nonce、balance、storageRoot、codeHash"], ["可信 stateRoot", "验证需要独立可信的区块头"]],
+    "note": "eth_getStorageAt 的 slot 参数用实际 s，不用再次哈希后的 trie 路径。",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/03-ethereum.md", "after": "## 2. 三层位置：变量、存储树、全局状态树"}]
+  },
+  {
+    "id": "stablecoin-backing", "topic": "blockchain", "kind": "compare",
+    "title": "稳定币：支持资产与兑付风险",
+    "subtitle": "链上余额可验证，不等于所有链外支持和赎回资格都可链上验证。",
+    "columns": ["教学机制", "主要依赖", "压力下核对什么"],
+    "rows": [["法币储备", "发行方、银行／托管、铸销", "储备变现与赎回路径"], ["抵押借贷", "抵押品、预言机、清算、治理", "拥堵、清算流动性与坏账"], ["合成／对冲", "资产与衍生品、保证金、资金成本", "对冲偏差、对手方与赎回容量"], ["内生算法", "相关代币的铸销与套利", "卖压是否反过来削弱支持资产"]],
+    "note": "这是可混合、可变化的教学分类，不是互斥永久标签或风险排名。",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/04-ecosystem.md", "after": "## 2. 四种机制是教学分类，不是互斥的永久标签"}]
+  },
+  {
+    "id": "rollup-boundaries", "topic": "blockchain", "kind": "compare",
+    "title": "执行证明、数据可用性与共识分开看",
+    "subtitle": "采用某品牌、桥或证明技术，不自动继承全部 L1 安全。",
+    "columns": ["类型", "核心边界", "仍要检查"],
+    "rows": [["独立 L1／侧链", "自己的共识与状态验证", "与其他链的桥和资产控制"], ["Optimistic rollup", "L1 承诺／数据 + 争议机制", "挑战、退出、排序器与升级"], ["ZK rollup", "有效性证明 + L1 数据可用性", "实现、治理与可用性"], ["Validium", "有效性证明；另有数据可用性", "数据保存／获取与退出条件"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/04-ecosystem.md", "after": "## 7. L1、sidechain、rollup 与 validium"}]
+  },
+  {
+    "id": "wallet-modules", "topic": "blockchain", "kind": "compare",
+    "title": "托管钱包的四个责任模块",
+    "subtitle": "生成地址 + 签名 + RPC，并不是完整的托管账务系统。",
+    "columns": ["模块", "输入／输出职责", "必须验证"],
+    "rows": [["链适配器", "编码、费率、有效性、广播与确认", "网络与协议语义"], ["扫描／索引", "链上事件、重组、补扫与重放", "候选身份与 canonical"], ["密钥／签名", "完整交易 → 已授权签名", "算法、语义与控制权限"], ["业务账本", "充值、提现、冻结、费用与补偿", "幂等、冲正与资产负债"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/05-wallet-engineering.md", "after": "## 1. 先区分两种钱包"}]
+  },
+  {
+    "id": "deposit-reorg", "topic": "blockchain", "kind": "flow",
+    "title": "充值扫描：去重、确认、重组与冲正",
+    "subtitle": "高度只表示进度；保留 blockHash、parentHash 与业务事件身份。",
+    "nodes": [["扫描块／事件", "分页、重叠窗口、缺口检查"], ["记录候选身份", "network + blockHash + event key"], ["Canonical 检查", "父哈希衔接；风险政策"], ["幂等入账", "同事件补扫不重复加余额"], ["发现重组", "撤销旧分支有效观察"], ["冲正并补记", "保留账务历史；处理新分支"]],
+    "loop": "重新核对链",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/05-wallet-engineering.md", "after": "## 6. 充值扫描：块高是进度，不是唯一身份"}, {"file": "wiki/topics/blockchain/upgrades/05-aws-infrastructure.md", "after": "## 4. 替代 Query：钱包索引器怎样工作"}]
+  },
+  {
+    "id": "withdrawal-states", "topic": "blockchain", "kind": "flow",
+    "title": "提现：业务请求与交易尝试分开",
+    "subtitle": "广播超时不证明没有付款；恢复时先查已持久化的交易。",
+    "nodes": [["REQUESTED", "业务 ID／幂等键"], ["APPROVED + RESERVED", "审批 + nonce／UTXO 预留"], ["SIGNED", "保存 hash 与原始签名字节"], ["SUBMITTED / UNKNOWN", "超时先查旧交易；按规则重播"], ["INCLUDED", "canonical + 实际执行结果"], ["SETTLED 或补偿", "资产效果核对；回调／账务幂等"]],
+    "note": "失败、替换、过期和重组各自成分支；图中不是所有请求都必然走到成功。",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/05-wallet-engineering.md", "after": "## 7. 提现状态机：广播不确定性最值得测试"}]
+  },
+  {
+    "id": "key-derivation", "topic": "blockchain", "kind": "flow",
+    "title": "助记词、种子、密钥与地址",
+    "subtitle": "对象的泄露范围、恢复用途和网络编码不同。",
+    "nodes": [["助记词 + passphrase", "BIP39 的编码与输入"], ["Seed", "可恢复一大批密钥"], ["根扩展密钥", "BIP32 的密钥与 chain code"], ["子密钥", "派生路径／hardened 条件"], ["公钥", "签名验证与地址构造"], ["网络地址／脚本", "算法、编码、输出策略各自核验"]],
+    "note": "不同链不自动兼容；备份还需路径、描述符、范围、网络与恢复权限。",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/06-security.md", "after": "## 1. 密钥、种子、助记词、地址不是同一对象"}]
+  },
+  {
+    "id": "security-dimensions", "topic": "blockchain", "kind": "compare",
+    "title": "冷热、多签、MPC、HSM：四种不同维度",
+    "subtitle": "这些手段可以组合；密钥不导出也不代表不会签错交易。",
+    "columns": ["方案", "控制的边界", "不能省略"],
+    "rows": [["冷热分层", "联网暴露与资金规模", "调拨、备份和操作治理"], ["链上多签", "链上阈值与程序权限", "模块、恢复、guard、升级"], ["MPC / TSS", "链下协作生成签名", "协议、nonce、参与方与恢复"], ["KMS / HSM", "存储与密码运算", "调用授权、意图核对、链上编码"]],
+    "placements": [{"file": "wiki/topics/blockchain/chapters/06-security.md", "after": "## 2. 冷热钱包、链上多签、MPC、HSM 是不同维度"}]
+  },
+  {
+    "id": "ecdsa-adaptation", "topic": "blockchain", "kind": "flow",
+    "title": "ECDSA 签名返回后，链适配还没结束",
+    "subtitle": "签名摘要、返回编码与交易编码分别处理；不是对 txid 任意签一下。",
+    "nodes": [["解释完整交易", "独立核对网络、收款、金额与费用"], ["计算链用摘要", "BTC sighash／EVM Keccak"], ["ECDSA 签名", "已计算摘要避免再次哈希"], ["解析并规范化", "DER 或 r∥s；处理 low-S"], ["适配链格式", "BTC script／witness；EVM parity"], ["本地验证与保存", "完整签名 payload 后再广播"]],
+    "note": "此路径不生成 BIP340 Schnorr，不自动提供 BIP32 派生。",
+    "placements": [{"file": "wiki/topics/blockchain/chapters/07-aws.md", "after": "## 5. KMS 与 Bitcoin ECDSA：摘要和编码由应用负责"}]
+  },
+  {
+    "id": "eip7702-aa", "topic": "blockchain", "kind": "flow",
+    "title": "7702 + 4337：委托先处理，账户操作后执行",
+    "subtitle": "Authorization、UserOperation、Bundler 外层交易是三种签名对象。",
+    "nodes": [["Authority 授权", "绑定链、实现 D、协议 nonce"], ["UserOperation", "账户规则绑定操作与 EntryPoint"], ["Bundler", "模拟并构造 type-4 外层交易"], ["客户端委托处理", "设置 A → D；更新 authority nonce"], ["EntryPoint", "账户／nonce／费用／Paymaster 验证"], ["操作与业务结果", "逐 UserOp 与实际资产效果核对"]],
+    "note": "后续执行 revert 不回滚已处理的 7702 委托；外层成功不等于每个 UserOp 成功。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/01-ethereum.md", "after": "## 2. 与 ERC-4337 组合：三种签名、三层成功"}]
+  },
+  {
+    "id": "archive-value-proof", "topic": "blockchain", "kind": "compare",
+    "title": "历史值查询与历史证明是两条能力轴",
+    "subtitle": "Path archive 有旧 balance／storage，不代表一定能生成该旧根的 proof。",
+    "columns": ["组件／能力", "保存与使用什么", "缺少时发生什么"],
+    "rows": [["状态历史", "修改前的账户／槽位旧值", "对应历史值不可查询"], ["历史索引", "定位目标版本之后的修改", "不能把未索引范围当可用"], ["Trie node history", "生成旧根证明所需节点", "值可能能查，但 proof 不可得"], ["可信区块头", "独立验证 stateRoot", "不可信 RPC 的根与证明不能自证"]],
+    "note": "版本、同步起点、保留窗口与索引进度一起验收；升级不能凭空恢复裁掉的历史。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/01-ethereum.md", "after": "## 3. Geth path-based archive：保存旧值，不等于保存旧证明"}]
+  },
+  {
+    "id": "peerdas", "topic": "blockchain", "kind": "flow",
+    "title": "PeerDAS：编码、分列、抽样与恢复",
+    "subtitle": "数据可取得 ≠ L2 状态转换正确 ≠ 所在块最终确认。",
+    "nodes": [["Rollup 输入", "发布 blob 批次"], ["纠删编码", "扩展数据为可恢复的 cells"], ["Data columns", "同索引 cells + KZG／包含证明"], ["保管与抽样", "验证规定 custody／sample 列"], ["收集与恢复", "L2 消费者取得足够数据"], ["L2 执行／证明", "另行检查转换、最终性与退出"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/01-ethereum.md", "after": "## 5. Fusaka / PeerDAS：扩的是 Rollup 数据可用性"}]
+  },
+  {
+    "id": "solana-bank-consumer", "topic": "blockchain", "kind": "flow",
+    "title": "Solana：候选观察桶与账务身份分离",
+    "subtitle": "同 slot 的不同 bank 不混合；通知到达顺序不作为执行顺序。",
+    "nodes": [["连接／会话", "network + connectionSession"], ["候选 bank 桶", "slot + 本节点 bank_id"], ["暂存执行数据", "transaction index／write_version"], ["选择最终候选", "UpdateParent 隔离旧 bank"], ["核对完整效果", "最终性 + meta.err + 资产变化"], ["事件幂等结算", "signature + 指令路径等业务键"]],
+    "note": "跨供应商 bank_id 不共用；以 blockhash 核对。Processed／deshred 不直接入账。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/02-solana.md", "after": "## 6. 完整付款与事件消费流程"}]
+  },
+  {
+    "id": "multichain-responsibilities", "topic": "blockchain", "kind": "compare",
+    "title": "多链升级，先辨认改变的是哪一层",
+    "subtitle": "资源分配、证明、消息与共享安全不能用同一个“升级”词替代。",
+    "columns": ["机制", "主要解决什么", "不自动提供"],
+    "rows": [["CDK / Agglayer", "执行部署与跨链会计／证明边界", "所有链同一种共识与数据可用性"], ["Agile Coretime", "按 core、time、region、task 分配验证资源", "业务链与任务自动部署"], ["XCM", "跨共识消息表达格式", "具体传输与资产执行"], ["IBC classic / v2", "client 验证与 packet 生命周期", "所有链自动共享安全"], ["Interchain Security", "独立的验证者／安全参与安排", "采用 IBC 即获得该服务"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/03-multichain.md", "after": "# 03｜多链升级：Polygon 的证明边界、Polkadot 的资源调度与 IBC 的协议演进"}]
+  },
+  {
+    "id": "ibc-packet", "topic": "blockchain", "kind": "compare",
+    "title": "IBC packet：发送、接收、ack 与超时",
+    "subtitle": "Relayer 搬运消息与证明；验证由两端 client 与应用规则完成。",
+    "columns": ["阶段／分支", "两端状态与操作", "验证边界"],
+    "rows": [["准备与 Send", "绑定 client／应用；源链保存 packet commitment", "sequence、counterparty、版本与路由"], ["接收分支", "relayer 搬运 packet／proof；目标写 receipt 并处理", "目标 client 验证源承诺；receipt 防重复"], ["Ack 返回", "目标写 ack；源链验证后清原发送承诺", "ack 可表示应用错误，不只是成功"], ["未接收的 Timeout 分支", "超时后证明目标未接收；源链清承诺并处理", "不是成功 Ack 后的下一步；无 ack 不等于无 receipt"]],
+    "note": "本地计时结束不会自动退款；资产处置由具体应用定义。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/03-multichain.md", "after": "### 3.3 Commitment、relayer、ack 与 timeout 的完整路径"}]
+  },
+  {
+    "id": "stablecoin-conversions", "topic": "blockchain", "kind": "compare",
+    "title": "四种转换，不是一个无状态 swap",
+    "subtitle": "资产身份、库存、份额和跨链最终性分别建模。",
+    "columns": ["路线", "计量／状态对象", "必须核对"],
+    "rows": [["DAI ↔ USDS", "两个独立合约中的代币余额", "Converter、授权与两端变化"], ["USDC ↔ LitePSM", "pocket 库存与 DAI buffer", "tin／tout、halt 与可用容量"], ["USDS ↔ sUSDS", "assets 与 vault shares", "preview、max、取整与实际执行"], ["CCTP 跨链", "burn／证明／目标 mint", "路线、发行方证明与异步恢复"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/04-stablecoins.md", "after": "## 1. 新旧关系先分清"}]
+  },
+  {
+    "id": "cctp-states", "topic": "blockchain", "kind": "flow",
+    "title": "CCTP：原生销毁、证明、目标铸造",
+    "subtitle": "源链 burn 成功不等于目标链业务付款已经完成。",
+    "nodes": [["业务批准", "network／asset／recipient／业务 ID"], ["源链 Burn", "保存 sourceTxHash 与消息身份"], ["等待 Attestation", "Circle Iris 观察并签发"], ["验证证明", "domain／版本／有效性条件"], ["目标链 Mint", "保存 destinationTxHash；防重放"], ["业务结算", "两端 canonical + 实际资产效果"]],
+    "note": "证明待出／过期时恢复原消息，不以再次 burn 相同业务资金替代恢复；hook 另验收。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/04-stablecoins.md", "after": "## 9. 钱包需要一条跨链业务状态机"}]
+  },
+  {
+    "id": "rpc-migration", "topic": "blockchain", "kind": "flow",
+    "title": "链访问迁移：双读，不双付",
+    "subtitle": "读路径做结果对照；广播写路径保持业务请求、attempt 与 payload 唯一性。",
+    "nodes": [["盘点旧契约", "网络、方法、历史、索引、分页"], ["明确新实现", "RPC 与 scanner／indexer 分开"], ["固定基准双读", "同网络／区块／字段语义"], ["记录差异", "精度、状态、滞后与缺口"], ["分阶段切流", "观察窗口与可回退条件"], ["恢复与对账", "同一已签交易不因迁移重付"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/05-aws-infrastructure.md", "after": "## 5. 实际迁移：双读，不双付"}]
+  },
+  {
+    "id": "signing-algorithm-boundaries", "topic": "blockchain", "kind": "compare",
+    "title": "同一 Sign 接口，算法与消息类型不同",
+    "subtitle": "ECDSA 的 DIGEST 路线不能原样套到 Solana 的纯 Ed25519。",
+    "columns": ["目标路径", "被签内容与编码", "不应推断"],
+    "rows": [["BTC ECDSA", "协议 sighash → DER + hashtype", "不是 txid；不生成 BIP340"], ["EVM ECDSA", "交易 Keccak → r、s、最终 parity", "不是 NIST SHA3-256"], ["Solana Ed25519", "按纯 Ed25519 要求签完整 message", "不是先自行 SHA-256 再照搬 DIGEST"], ["BIP340 Schnorr", "按目标链规范与实现核验", "支持 secp256k1 ECDSA 不等于支持它"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/05-aws-infrastructure.md", "after": "## 7. KMS 新增 Ed25519：Solana 签名可重新评估"}]
+  },
+  {
+    "id": "musig2-session", "topic": "blockchain", "kind": "flow",
+    "title": "MuSig2 是完整会话，不是把签名相加",
+    "subtitle": "n-of-n 协作；所有参与者绑定同一消息、密钥上下文与 nonce 会话。",
+    "nodes": [["公钥列表", "顺序与聚合系数"], ["KeyAgg + Tweak", "区分 internal 与 output key"], ["NonceGen", "私有材料只消费一次"], ["会话核对", "交易、消息与公共 nonce"], ["Partial Signatures", "验证各方贡献"], ["聚合并验签", "BIP340 兼容的最终签名"]],
+    "note": "超时与崩溃不能重用 secret nonce；MuSig2 不自动成为任意 t-of-n 门限方案。",
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/06-bitcoin-wallets.md", "after": "## 2. MuSig2：把“签名可相加”还原成完整协作协议"}]
+  },
+  {
+    "id": "psbt-offline", "topic": "blockchain", "kind": "flow",
+    "title": "在线观察与离线签名的职责交接",
+    "subtitle": "PSBT 携带协作材料，不携带种子或私钥，也不自动批准付款。",
+    "nodes": [["Watch-only", "收款扫描与公开描述符"], ["选币与构造 PSBT", "输入、输出、prevout、策略材料"], ["离线核对", "收款、找零、金额、fee 与策略"], ["签名", "核验容器／脚本／签名器版本"], ["在线最终化", "提取、验签、完整字节持久化"], ["广播与观察", "actual outcome → 业务账务"]],
+    "placements": [{"file": "wiki/topics/blockchain/upgrades/06-bitcoin-wallets.md", "after": "### 在线观察 + 离线签名的完整职责"}]
+  },
+  {
+    "id": "blockchain-roadmap", "topic": "blockchain", "kind": "flow",
+    "title": "从协议对象走到钱包工程验证",
+    "subtitle": "进阶标准是交付可解释、可复查的输出，不是刷完名词。",
+    "nodes": [["对象与信任", "签名、状态、共识、资产支持"], ["Bitcoin", "UTXO、sighash、weight、恢复"], ["Ethereum", "slot、nonce、gas 与效果"], ["多链与稳定币", "资产身份、跨链与失败边界"], ["离线模型", "去重、预留、超时、冲正"], ["授权环境实验", "本地链／沙箱；另行记录证据"]],
+    "note": "图示学习依赖；本次配图没有授权节点部署、真实密钥或资金操作。",
+    "placements": [{"file": "wiki/topics/blockchain/learning-roadmap.md", "after": "# 学习路线：以能交付什么判断掌握程度"}, {"file": "wiki/topics/blockchain/upgrades/README.md", "after": "## 学习顺序"}]
+  }
+]

@@ -73,6 +73,12 @@ $$
 
 ### 09.4 想象 actor-critic 与执行时规划
 
+<!-- illustration: world-model-roles-628345e92b -->
+![世界模型：观测更新、想象训练与执行。能预测画面不等于辨识了真实物理；想象训练不等于运行时每步搜索。](../../images/world-model-roles.png)
+
+*图：世界模型：观测更新、想象训练与执行。能预测画面不等于辨识了真实物理；想象训练不等于运行时每步搜索。*
+<!-- /illustration: world-model-roles-628345e92b -->
+
 模型训练后可有两种用途。规划在执行时评估候选动作段：从当前后验开始，沿先验滚动、累计奖励，搜索后执行首个动作，再利用新观测重规划。PlaNet 用 CEM 反复采样动作段、保留高回报候选、拟合下一轮采样分布，不需要逐帧解码图像。[PlaNet §2、Algorithm 2](https://arxiv.org/pdf/1811.04551v5)是这一具体实现。
 
 DreamerV3 则主要把模型用于训练：从 replay 的后验表示出发，actor 采动作，先验产生想象状态，奖励和继续头提供信号，critic 估计想象 horizon 之后的回报。执行时更新当前表示并直接从 actor 取动作，不在每个环境步运行候选搜索。[DreamerV3 Critic learning](https://arxiv.org/pdf/2301.04104v2)明确区分这一执行方式。因而“用了世界模型”不能推出“实时运行 MPC”，生成画面也不是想象训练所必需的输出。

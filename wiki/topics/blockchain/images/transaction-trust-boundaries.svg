@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+<title id="title">从用户意图到业务入账的六道边界</title>
+<desc id="desc">签名合法、广播接收、执行成功与资产到账分别验证。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="540" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">从用户意图到业务入账的六道边界</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">签名合法、广播接收、执行成功与资产到账分别验证。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">用户意图</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">谁、哪条链、哪种资产、多少</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">业务审批</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">允许做什么；绑定具体语义</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">交易构造</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">实际输入／输出／调用参数</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">独立签名策略</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">重算摘要；核对批准内容</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="349.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">链上执行</text>
+<text x="520.0" y="384.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">广播、包含、结果与</text>
+<text x="520.0" y="407.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">canonical</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">观察与账务</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">实际效果、幂等、冲正与对账</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="476" x2="1000" y2="476" stroke="#e0e7e2"/>
+<text x="40" y="500" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">按正文机制绘制；示意图不代表实际部署或测量。</text>
+</g>
+</svg>

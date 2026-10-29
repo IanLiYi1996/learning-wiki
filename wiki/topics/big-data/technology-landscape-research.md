@@ -6,6 +6,12 @@
 
 ## 结论摘要
 
+<!-- illustration: data-platform-layers-3129a21d4a -->
+![大数据平台：数据生命周期与控制面。按职责组织，不把产品名称当互斥技术分类。](images/data-platform-layers.png)
+
+*图：大数据平台：数据生命周期与控制面。按职责组织，不把产品名称当互斥技术分类。*
+<!-- /illustration: data-platform-layers-3129a21d4a -->
+
 大数据技术不应按厂商或产品名称平铺，而应按两条轴线整理：
 
 1. **数据生命周期**：数据产生后，如何被采集、传输、保存、处理、查询和消费。
@@ -41,6 +47,12 @@ Azure 的端到端分析架构从多类数据源开始，经过实时或批量�
 这里的“层”是**职责边界**，不是强制的部署边界。一个产品可能覆盖多层，但笔记仍应把它的职责拆开。例如 Kafka 同时提供持久化事件日志、消息传递和流处理接口；Spark 同时提供批计算、流计算和 SQL；湖仓产品可能同时提供表格式、Catalog、计算和治理。整理时应先记录它承担的能力，再记录产品。
 
 ## 一、先固定五个最容易混淆的对象
+
+<!-- illustration: file-table-catalog-engine-ac42fff640 -->
+![介质、文件、表、Catalog 与引擎。它们可以组合，不能互相替代。](images/file-table-catalog-engine.png)
+
+*图：介质、文件、表、Catalog 与引擎。它们可以组合，不能互相替代。*
+<!-- /illustration: file-table-catalog-engine-ac42fff640 -->
 
 ### 1. 存储介质
 
@@ -188,6 +200,12 @@ Spark/Flink/Trino 等引擎读写
 存储介质负责字节持久化，文件格式负责文件内布局，表格式负责跨文件表语义，计算引擎负责执行。把“数据湖”等同于“对象存储桶”会遗漏表事务、Catalog、治理和运维。
 
 ### 4. 批处理与流处理
+
+<!-- illustration: end-to-end-delivery-2e8ba71426 -->
+![端到端一致处理，不只靠 checkpoint。Source、处理状态和 sink 的恢复语义一起定义交付保证。](images/end-to-end-delivery.png)
+
+*图：端到端一致处理，不只靠 checkpoint。Source、处理状态和 sink 的恢复语义一起定义交付保证。*
+<!-- /illustration: end-to-end-delivery-2e8ba71426 -->
 
 #### 解决的问题
 
@@ -482,6 +500,12 @@ Spark 官方支持在 Kubernetes 上以 driver 和 executor Pod 运行，并使�
 平台工程不是数据生命周期的最后一步，而是所有层的运行底座。Kubernetes 能调度 Spark/Flink/Trino 等工作负载，但不理解 watermark、表快照、SQL 优化、数据质量或业务血缘；这些语义仍属于各自数据系统。
 
 ## 三、把系统画成数据流、控制流和元数据流
+
+<!-- illustration: three-platform-flows-3131b69f95 -->
+![同一平台的三条流。只画数据流，会漏掉重跑、版本、授权与影响分析。](images/three-platform-flows.png)
+
+*图：同一平台的三条流。只画数据流，会漏掉重跑、版本、授权与影响分析。*
+<!-- /illustration: three-platform-flows-3131b69f95 -->
 
 仅画数据流不足以解释系统如何正确运行。建议每篇架构笔记同时画三条流：
 

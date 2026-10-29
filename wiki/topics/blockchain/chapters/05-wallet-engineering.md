@@ -6,6 +6,12 @@
 
 ## 1. 先区分两种钱包
 
+<!-- illustration: wallet-modules-54396cca02 -->
+![托管钱包的四个责任模块。生成地址 + 签名 + RPC，并不是完整的托管账务系统。](../images/wallet-modules.png)
+
+*图：托管钱包的四个责任模块。生成地址 + 签名 + RPC，并不是完整的托管账务系统。*
+<!-- /illustration: wallet-modules-54396cca02 -->
+
 **个人自托管钱包**关注密钥归属、备份恢复、用户可理解的签名和网络识别。
 **交易所 / 托管钱包**还需用户内部账本、归集、提现审批、冷热调拨、监控及资产负债对账。
 
@@ -88,6 +94,12 @@ SPL Token 的余额保存在由 Token Program 管理的 token account，资产�
 
 ## 6. 充值扫描：块高是进度，不是唯一身份
 
+<!-- illustration: deposit-reorg-87f94d0b44 -->
+![充值扫描：去重、确认、重组与冲正。高度只表示进度；保留 blockHash、parentHash 与业务事件身份。](../images/deposit-reorg.png)
+
+*图：充值扫描：去重、确认、重组与冲正。高度只表示进度；保留 blockHash、parentHash 与业务事件身份。*
+<!-- /illustration: deposit-reorg-87f94d0b44 -->
+
 推荐模型：
 
 ```text
@@ -108,6 +120,12 @@ JSON-RPC 日志的 `removed` 是提示，不是唯一恢复手段；断开重连
 对已记账事件，推荐保留冲正记录而不是删除历史。若已允许提现，还需冻结、风险处理和资产负债核对。确认阈值和风险例外应是配置，不把 PPT 的“6 确认”当所有金额、所有链的共识保证。
 
 ## 7. 提现状态机：广播不确定性最值得测试
+
+<!-- illustration: withdrawal-states-e7a4605d67 -->
+![提现：业务请求与交易尝试分开。广播超时不证明没有付款；恢复时先查已持久化的交易。](../images/withdrawal-states.png)
+
+*图：提现：业务请求与交易尝试分开。广播超时不证明没有付款；恢复时先查已持久化的交易。*
+<!-- /illustration: withdrawal-states-e7a4605d67 -->
 
 以下为参考业务模型：
 

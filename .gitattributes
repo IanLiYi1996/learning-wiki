@@ -1,0 +1,2 @@
+# Generated fragments preserve significant TeX control spaces from the books.
+_includes/physical-ai/books/*.html whitespace=-blank-at-eol

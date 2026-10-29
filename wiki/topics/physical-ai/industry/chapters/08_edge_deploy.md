@@ -1,5 +1,11 @@
 ## 08 边缘推理与工业运行环境
 
+<!-- illustration: edge-deployment-0ccd22389b -->
+![边缘部署的四层责任。峰值算力、模型推理速度和端到端控制时限不是同一个指标。](../../images/edge-deployment.png)
+
+*图：边缘部署的四层责任。峰值算力、模型推理速度和端到端控制时限不是同一个指标。*
+<!-- /illustration: edge-deployment-0ccd22389b -->
+
 核验日：2026-10-27。边缘部署至少有三种不同对象：承载计算的模块/工业 PC、执行模型的推理库、维护操作系统与应用的运行平台。本章按此分层，不把某 GPU 的能力、某 SDK 的可用性或某板卡的认证外推为整台机器人的实时与安全能力。工业运行环境采用可核实的 Siemens IPC / Industrial Edge 分支，不把未经确认的第三方 ROS 桥接仓库包装成 Beckhoff 正式产品。
 
 ### Jetson / JetPack：计算模块与适配软件栈

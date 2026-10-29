@@ -1,5 +1,11 @@
 # 区块链原理、生态与钱包工程
 
+<!-- illustration: transaction-trust-boundaries-11fd0ec9e2 -->
+![从用户意图到业务入账的六道边界。签名合法、广播接收、执行成功与资产到账分别验证。](images/transaction-trust-boundaries.png)
+
+*图：从用户意图到业务入账的六道边界。签名合法、广播接收、执行成功与资产到账分别验证。*
+<!-- /illustration: transaction-trust-boundaries-11fd0ec9e2 -->
+
 - 日期：2026-10-29
 - 类型：主题 / 工程学习
 - 状态：已整理；离线练习已验证，链上与 AWS 实验未执行

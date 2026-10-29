@@ -48,6 +48,12 @@ GL 错误通常不抛 JS 异常，错误命令被忽略；所以“没有异常�
 
 ## 3. Buffer、attribute、VAO、index、uniform 与 texture unit
 
+<!-- illustration: webgl-resource-binding-c67f74ce59 -->
+![WebGL 数据、布局、程序和目标分开管理。绑定一个对象不等于上传数据，也不等于提交绘制。](images/webgl-resource-binding.png)
+
+*图：WebGL 数据、布局、程序和目标分开管理。绑定一个对象不等于上传数据，也不等于提交绘制。*
+<!-- /illustration: webgl-resource-binding-c67f74ce59 -->
+
 `bufferData(target, typedArray, usage)` 分配存储并复制数据；`bufferSubData` 更新既有区间而不扩容。`STATIC_DRAW` / `DYNAMIC_DRAW` 是使用提示，不是只读 / 可变权限。只按字节数分配的 WebGL 存储也要初始化，不能读取到别人的未初始化显存。[2][8]
 attribute 是 shader 输入槽位，不是 buffer 对象。`vertexAttribPointer(location,size,type,normalized,stride,offset)` 把调用当时 `ARRAY_BUFFER` 的对象与解码规则记录下来；stride / offset 单位都是字节。槽位还要 `enableVertexAttribArray`；整数 shader 输入 `ivec/uvec` 应走 `vertexAttribIPointer` 并匹配符号类型。[1][8]
 
@@ -231,6 +237,12 @@ float / normalized attachment 对应浮点输出，整数 attachment 对应 `ive
 
 ## 8. Depth、blending、透明度与反馈循环
 
+<!-- illustration: ping-pong-6d2ad3f4ef -->
+![Ping-pong：读写不同纹理，再交换角色。同次 draw 不采样正在写入的 attachment image。](images/ping-pong.png)
+
+*图：Ping-pong：读写不同纹理，再交换角色。同次 draw 不采样正在写入的 attachment image。*
+<!-- /illustration: ping-pong-6d2ad3f4ef -->
+
 深度测试、深度写入是不同开关：`enable(DEPTH_TEST)` 控制比较，`depthMask(true/false)` 控制写；目标还得有 depth attachment。禁用深度测试时，普通 draw 不写深度；`depthMask(true)` 本身不会启用测试。[2]
 `clear` 不受 viewport 限制，却受 scissor 与写入 mask 影响；`depthMask(false)` 会让 `clear(DEPTH_BUFFER_BIT)` 无效。开始新帧前恢复 depthMask / colorMask / stencilMask 和适当 scissor，别让透明 pass 的状态泄漏到下一帧。[2][19]
 常见透明 pass：先不透明物体（depth test + write），再透明物体大致由远到近（depth test 保留、`depthMask(false)`、`enable(BLEND)`），结束恢复写入。排序不是相交透明几何的通解，WebGL 不自动替你排序。[2][25]
@@ -254,6 +266,12 @@ Transform feedback 捕获 vertex shader 输出到 buffer，发生在裁剪前；
 它可做粒子状态更新等逐记录运算；fragment + FBO 可做逐 texel 运算。二者都不是 compute shader：没有 workgroup 共享内存 / barrier、任意存储写入与通用 dispatch，算法必须适配图形管线；不要因 Three 的 WebGPU 页面出现 compute 就认作 WebGL2 能力。[1][24]
 
 ## 10. Context loss / restoration 与资源生命周期
+
+<!-- illustration: context-restoration-cd6f9e990e -->
+![Context 丢失后的重建顺序。CPU 的资源描述可以保留；旧 GPU handle 即使非 null，也不能继续使用。](images/context-restoration.png)
+
+*图：Context 丢失后的重建顺序。CPU 的资源描述可以保留；旧 GPU handle 即使非 null，也不能继续使用。*
+<!-- /illustration: context-restoration-cd6f9e990e -->
 
 丢失可能来自 GPU 重置、系统切换或资源压力，并非只在出错程序发生。监听 canvas 的 `webglcontextlost`，`preventDefault()` 允许尝试恢复，停 RAF / 提交；用 CPU 资源描述保留重建材料，而不是把旧 WebGL handle 当资产。[2][21]
 收到 `webglcontextrestored` 后，重建全部应用 GPU 对象：buffers、textures、samplers、shaders/programs、VAOs、FBOs/renderbuffers、TF/query/sync；重新上传内容、取 locations、查询能力并启用扩展、设置 viewport 与所有自定义状态。旧对象仍可能是 JS 非 null 引用，但已无效。[1][2][21]

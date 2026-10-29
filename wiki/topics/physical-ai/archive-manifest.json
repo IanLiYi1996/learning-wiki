@@ -2,6 +2,11 @@
   "schema_version": 1,
   "archived_at": "2026-10-28",
   "scope": "Existing Physical AI deliverables; archive is not a new source or product-status verification.",
+  "illustrated_revision": {
+    "date": "2026-10-29",
+    "scope": "Markdown illustrations only; original prose, references, dates and conclusions unchanged. PDF, Word and standalone HTML exports retain original bytes.",
+    "asset_manifest": "illustrations-manifest.json"
+  },
   "expected": {
     "deliverables": 16,
     "supporting_files": 116,
@@ -129,19 +134,19 @@
     "templates/product-solution-note.md"
   ],
   "deliverables": [
-    {"path": "Physical_AI_知识全景与学习指南.md", "sha256": "19e753ef5df33e3874decd2e8db9b84d14537fbfcfc1d9a0cba09be01519e5f5"},
+    {"path": "Physical_AI_知识全景与学习指南.md", "sha256": "adb4b6c6a6f93fcc23f8b211013e582e709761e90b0e2c8fe84a668a28129874", "original_sha256": "19e753ef5df33e3874decd2e8db9b84d14537fbfcfc1d9a0cba09be01519e5f5"},
     {"path": "Physical_AI_知识全景与学习指南.pdf", "sha256": "39f248ce41ced30e27155a68045ca46778684b79e2c49d6400780ec7aef348ed"},
     {"path": "Physical_AI_知识全景与学习指南.docx", "sha256": "634b72c00ac04b1abd8be7a248c1fc3d73a14b845436ff98579d39189ecd81ac"},
     {"path": "Physical_AI_知识全景与学习指南.html", "sha256": "c222232a3d4a25237d07b2a8a92adb1b78aa95eb86b6d396674e3e62a8913b47"},
-    {"path": "advanced/Physical_AI_底层原理与实现细节.md", "sha256": "1f84d23ab68a23dbcfa057a6cdb58ab0a0e2781173eca33c8c0bcf65b3afb87b"},
+    {"path": "advanced/Physical_AI_底层原理与实现细节.md", "sha256": "5052c2549552f552d6962f772c5e5697dabbcd5da846b054a636fccac71fce33", "original_sha256": "1f84d23ab68a23dbcfa057a6cdb58ab0a0e2781173eca33c8c0bcf65b3afb87b"},
     {"path": "advanced/Physical_AI_底层原理与实现细节.pdf", "sha256": "62ebd1f7e6dc73b15087685b86b949bf83d20f1cb7a30b6cbd0ce92114cb5c02"},
     {"path": "advanced/Physical_AI_底层原理与实现细节.docx", "sha256": "05fc0ca4eb6227458033fcc8504f7633eea7dc81bef12bc62b043a0b10bb3644"},
     {"path": "advanced/Physical_AI_底层原理与实现细节.html", "sha256": "961f4846e8bf11a80a8eabec901672d9602017c7ffeb55cda9e7c8b055c29b7f"},
-    {"path": "industry/Physical_AI_业界产品与端到端方案.md", "sha256": "abb784e28aca97f7fc9afd2c36eb3bb13716624b8deade112da15a02bc814bf7"},
+    {"path": "industry/Physical_AI_业界产品与端到端方案.md", "sha256": "4109207e389998b49b7f2b0faa2420f03bc03c972d453cb1aba8bfb92527040b", "original_sha256": "abb784e28aca97f7fc9afd2c36eb3bb13716624b8deade112da15a02bc814bf7"},
     {"path": "industry/Physical_AI_业界产品与端到端方案.pdf", "sha256": "4748745dd97c88050ccba026ef554415df0b913c59d363125226b58fe92124be"},
     {"path": "industry/Physical_AI_业界产品与端到端方案.docx", "sha256": "a1ed6991d0deaf10bddfc8fd070200843497b291bdd884a65d765d8e8e058fcc"},
     {"path": "industry/Physical_AI_业界产品与端到端方案.html", "sha256": "693d47804d0570e2b6f4ff95fd15abdeb09970a984b213174fe014aa7e64d001"},
-    {"path": "conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md", "sha256": "055b87575490a09afa24caa944d81a92baa04326dc2a61ee984d0d5e5e6aef21"},
+    {"path": "conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md", "sha256": "05d1bde517087b15e770acf88e553745185328184d0b52de7e321dd3885e90ed", "original_sha256": "055b87575490a09afa24caa944d81a92baa04326dc2a61ee984d0d5e5e6aef21"},
     {"path": "conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.pdf", "sha256": "086fa36278c18246a1b48ef1565f9418d1e766b51e61ae6a157a362cc2a8249b"},
     {"path": "conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.docx", "sha256": "8eb7169817a7dc6b6be3aac5e0f1b3d2d376c7c70f6ddbbc5001ed7ebe27dcad"},
     {"path": "conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.html", "sha256": "e89d9eabe9825af7f3b13f794066ebe94fc55173f044271cec3d8f51376eba63"}

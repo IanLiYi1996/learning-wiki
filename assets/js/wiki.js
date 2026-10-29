@@ -21,7 +21,7 @@
       || event.clientY < rect.top || event.clientY > rect.bottom;
   }
   document.querySelectorAll('.sidebar-navigation a').forEach(link => {
-    if (core.canonicalPath(link.href) === currentPath) {
+    if (!link.hash && core.canonicalPath(link.href) === currentPath) {
       link.setAttribute('aria-current', 'page');
       const topic = link.closest('details');
       if (topic) topic.open = true;
@@ -52,11 +52,20 @@
   });
   const article = document.querySelector('.article-content');
   if (article) {
-    document.querySelector('[data-reading-time]').textContent = `约 ${core.readingMinutes(article.textContent)} 分钟`;
-    const headings = Array.from(article.querySelectorAll('h2[id], h3[id]'));
     const toc = document.querySelector('[data-toc]');
     const mobileToc = document.querySelector('[data-mobile-toc]');
-    if (headings.length) {
+    let headingObserver = null;
+    function updateOutline() {
+      const book = article.querySelector('[data-reading-book]:not([hidden])');
+      const scope = book || article;
+      document.querySelector('[data-reading-time]').textContent = `约 ${core.readingMinutes(scope.textContent)} 分钟`;
+      const headings = Array.from(scope.querySelectorAll('h2[id], h3[id]'));
+      toc.replaceChildren();
+      mobileToc.querySelector('nav').replaceChildren();
+      if (headingObserver) headingObserver.disconnect();
+      mobileToc.hidden = !headings.length;
+      document.querySelector('[data-toc-panel]').hidden = !headings.length;
+      if (!headings.length) return;
       headings.forEach(heading => {
         const a = document.createElement('a');
         a.href = `#${heading.id}`;
@@ -67,9 +76,8 @@
       const mobileNav = mobileToc.querySelector('nav');
       Array.from(toc.children).forEach(link => mobileNav.append(link.cloneNode(true)));
       mobileToc.hidden = false;
-      mobileNav.addEventListener('click', event => { if (event.target.closest('a')) mobileToc.open = false; });
       if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(entries => {
+        headingObserver = new IntersectionObserver(entries => {
           const visible = entries.filter(entry => entry.isIntersecting)
             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
           if (!visible.length) return;
@@ -79,9 +87,14 @@
             else link.removeAttribute('aria-current');
           });
         }, { rootMargin: '-90px 0px -65% 0px' });
-        headings.forEach(heading => observer.observe(heading));
+        headings.forEach(heading => headingObserver.observe(heading));
       }
-    } else document.querySelector('[data-toc-panel]').hidden = true;
+    }
+    updateOutline();
+    mobileToc.querySelector('nav').addEventListener('click', event => {
+      if (event.target.closest('a')) mobileToc.open = false;
+    });
+    document.addEventListener('wiki:reader-change', updateOutline);
     article.querySelectorAll('pre > code').forEach(code => {
       const pre = code.parentElement;
       const outer = pre.closest('[class*="language-"]');
@@ -141,11 +154,12 @@
     function scheduleProgress() { if (!pending) { pending = true; requestAnimationFrame(updateProgress); } }
     addEventListener('scroll', scheduleProgress, { passive: true });
     addEventListener('resize', scheduleProgress);
+    document.addEventListener('wiki:reader-change', scheduleProgress);
     updateProgress();
     if (window.MathJax && window.MathJax.startup) window.MathJax.startup.promise.then(scheduleProgress);
     const activeTopic = document.querySelector('.site-sidebar .nav-topic[open]');
     if (activeTopic) {
-      const links = Array.from(activeTopic.querySelectorAll('.nav-leaf'));
+      const links = Array.from(activeTopic.querySelectorAll('.nav-leaf')).filter(link => !link.hash);
       const index = links.findIndex(link => core.canonicalPath(link.href) === currentPath);
       const pagination = document.querySelector('[data-chapter-pagination]');
       if (index >= 0 && links.length > 1) {

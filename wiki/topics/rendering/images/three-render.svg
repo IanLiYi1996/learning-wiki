@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720" role="img" aria-labelledby="title desc">
+<title id="title">Three.js 的一帧怎样走到 draw</title>
+<desc id="desc">对象图、渲染列表、program 和 GPU 状态是不同层。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="720" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">Three.js 的一帧怎样走到 draw</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">对象图、渲染列表、program 和 GPU 状态是不同层。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Scene + Camera</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">更新对象与相机矩阵</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">收集可见对象</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">visible／layers／frustum</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">渲染列表</text>
+<text x="856.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">opaque／transmissive／</text>
+<text x="856.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">transparent</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">排序与附加 pass</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">阴影、透射等可增加绘制</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="349.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Program variant</text>
+<text x="520.0" y="384.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">材质 + 场景特性 + cache</text>
+<text x="520.0" y="407.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">key</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="349.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">上传与状态</text>
+<text x="184.0" y="384.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">uniform、VAO、depth、</text>
+<text x="184.0" y="407.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">blend</text>
+<rect x="56" y="488" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="529.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">绘制范围</text>
+<text x="184.0" y="564.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">drawRange ∩ group ∩</text>
+<text x="184.0" y="587.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">buffer</text>
+<rect x="392" y="488" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="529.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">真正的 draw</text>
+<text x="520.0" y="564.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">arrays／elements／</text>
+<text x="520.0" y="587.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">instanced</text>
+<rect x="728" y="488" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="541.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">渲染目标</text>
+<text x="856.0" y="576.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">framebuffer 或后处理输入</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 184,428 L 184,488" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 312,548 L 392,548" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,548 L 728,548" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="656" x2="1000" y2="656" stroke="#e0e7e2"/>
+<text x="40" y="680" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">按正文机制绘制；示意图不代表实际部署或测量。</text>
+</g>
+</svg>

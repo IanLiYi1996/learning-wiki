@@ -66,6 +66,12 @@ keccak256(0x05 || rlp([chain_id, address, nonce]))
 
 ## 2. 与 ERC-4337 组合：三种签名、三层成功
 
+<!-- illustration: eip7702-aa-8e62034b01 -->
+![7702 + 4337：委托先处理，账户操作后执行。Authorization、UserOperation、Bundler 外层交易是三种签名对象。](../images/eip7702-aa.png)
+
+*图：7702 + 4337：委托先处理，账户操作后执行。Authorization、UserOperation、Bundler 外层交易是三种签名对象。*
+<!-- /illustration: eip7702-aa-8e62034b01 -->
+
 ### 旧假设与为什么组合
 
 7702 解决“旧 EOA 如何执行钱包代码”，ERC-4337 解决“可编程账户操作如何由 Bundler 打包、经 EntryPoint 验证和收费”。4337 是上层协议和合约机制，不是 EVM 新增的 UserOperation 交易类型；7702 单独使用也不强制经过 EntryPoint。[ERC-4337：Abstract、Support for EIP-7702 authorizations](https://eips.ethereum.org/EIPS/eip-4337)
@@ -110,6 +116,12 @@ Paymaster 从其 EntryPoint deposit 支付费用，可有额度、签名和结�
 **自测**：同一 bundle 的两个 UserOperation 可以一成一败吗？可以，外层成功不能替代逐项检查。UserOperation nonce 加一是否必然增加 A 的 EOA nonce？不是；它们属于不同层。
 
 ## 3. Geth path-based archive：保存旧值，不等于保存旧证明
+
+<!-- illustration: archive-value-proof-9905c6b2b5 -->
+![历史值查询与历史证明是两条能力轴。Path archive 有旧 balance／storage，不代表一定能生成该旧根的 proof。](../images/archive-value-proof.png)
+
+*图：历史值查询与历史证明是两条能力轴。Path archive 有旧 balance／storage，不代表一定能生成该旧根的 proof。*
+<!-- /illustration: archive-value-proof-9905c6b2b5 -->
 
 ### 旧假设与升级动机
 
@@ -180,6 +192,12 @@ MPT 模型是账户树、账户内的 storageRoot，以及由 codeHash 承诺的
 **自测**：Geth 有 binary-tree 代码，能否推出主网 stateRoot 已是二叉根？不能。换哈希树能否使旧 EOA 私钥自动抗量子？不能。
 
 ## 5. Fusaka / PeerDAS：扩的是 Rollup 数据可用性
+
+<!-- illustration: peerdas-dcbe19acc3 -->
+![PeerDAS：编码、分列、抽样与恢复。数据可取得 ≠ L2 状态转换正确 ≠ 所在块最终确认。](../images/peerdas.png)
+
+*图：PeerDAS：编码、分列、抽样与恢复。数据可取得 ≠ L2 状态转换正确 ≠ 所在块最终确认。*
+<!-- /illustration: peerdas-dcbe19acc3 -->
 
 ### 旧假设与为什么升级
 

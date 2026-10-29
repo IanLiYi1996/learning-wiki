@@ -1,5 +1,11 @@
 # 大数据技术
 
+<!-- illustration: data-platform-layers-0378c00a4b -->
+![大数据平台：数据生命周期与控制面。按职责组织，不把产品名称当互斥技术分类。](images/data-platform-layers.png)
+
+*图：大数据平台：数据生命周期与控制面。按职责组织，不把产品名称当互斥技术分类。*
+<!-- /illustration: data-platform-layers-0378c00a4b -->
+
 大数据技术不要按产品名称整理，而要围绕“数据从产生到产生价值”的过程建立知识体系。
 工具会变化，问题、概念和架构权衡相对稳定。
 

@@ -36,6 +36,12 @@ AI FDE 更像人类 FDE 的工程杠杆，而不是完整替代者。
 
 ## 两个 FDE
 
+<!-- illustration: human-ai-fde-d3d25c3715 -->
+![人类 FDE 与 AI FDE 的责任区别。工程杠杆不等于完整替代业务判断、关系和生产责任。](images/human-ai-fde.png)
+
+*图：人类 FDE 与 AI FDE 的责任区别。工程杠杆不等于完整替代业务判断、关系和生产责任。*
+<!-- /illustration: human-ai-fde-d3d25c3715 -->
+
 ### 人类 FDE / FDSE
 
 Palantir 当前
@@ -225,6 +231,12 @@ FDE / FDSE
 ```
 
 ## FDE 交付生命周期
+
+<!-- illustration: fde-lifecycle-f603d9a5db -->
+![FDE：发现问题、交付、采用与产品反馈。生产系统被使用并产生结果，才形成有效闭环。](images/fde-lifecycle.png)
+
+*图：FDE：发现问题、交付、采用与产品反馈。生产系统被使用并产生结果，才形成有效闭环。*
+<!-- /illustration: fde-lifecycle-f603d9a5db -->
 
 ### 1. Embed：进入现场
 
@@ -511,6 +523,12 @@ Palantir 同时披露：
 因此，FDE 是软件与服务之间的混合机制。
 
 ## FDE 增长飞轮
+
+<!-- illustration: field-product-flywheel-963379b6e5 -->
+![Field-to-product：平台与现场双向反馈。只有明确产品 owner、迁移计划和采用指标，才会减少后续定制。](images/field-product-flywheel.png)
+
+*图：Field-to-product：平台与现场双向反馈。只有明确产品 owner、迁移计划和采用指标，才会减少后续定制。*
+<!-- /illustration: field-product-flywheel-963379b6e5 -->
 
 ```text
 1. 进入高价值客户
@@ -806,6 +824,12 @@ AI FDE 有效权限
 用户可以为单次操作批准，也可以对会话中的特定 branch 或 project 进行预授权。
 
 ## Branch、Proposal 与 PR
+
+<!-- illustration: ai-fde-change-control-6d22c265f9 -->
+![AI FDE 的两条变更评审路线。Global Branch Proposal 与 Git Pull Request 是相关但不同的评审系统。](images/ai-fde-change-control.png)
+
+*图：AI FDE 的两条变更评审路线。Global Branch Proposal 与 Git Pull Request 是相关但不同的评审系统。*
+<!-- /illustration: ai-fde-change-control-6d22c265f9 -->
 
 AI FDE 默认使用分支。
 

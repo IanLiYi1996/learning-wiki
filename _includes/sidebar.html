@@ -16,7 +16,8 @@
       <summary><span>{{ topic.label }}</span>{% include icon.html name="chevron-right" %}</summary>
       <div class="chapter-links">
         {% for item in topic.items %}
-        {% assign target_page = site.pages | where: "url", item.url | first %}
+        {% assign target_url = item.url | split: '#' | first %}
+        {% assign target_page = site.pages | where: "url", target_url | first %}
         {% if target_page %}
         <a class="nav-leaf" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
         {% endif %}

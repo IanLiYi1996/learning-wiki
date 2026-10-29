@@ -97,7 +97,7 @@ html[data-theme="dark"] .theme-moon { display: none; }
   color: var(--muted); text-decoration: none; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere;
 }
 .nav-link:hover, .nav-leaf:hover { background: var(--accent-soft); color: var(--accent); }
-.nav-link[aria-current="page"], .nav-leaf[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.nav-link[aria-current="page"], .nav-leaf[aria-current="page"], .nav-leaf[aria-current="location"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .nav-link .icon { width: 18px; height: 18px; }
 .nav-topic { margin-bottom: 4px; }
 .nav-topic > summary {
@@ -141,6 +141,57 @@ html[data-theme="dark"] .theme-moon { display: none; }
 .markdown-body th { background: var(--surface); }
 .markdown-body table tr, .markdown-body table tr:nth-child(2n) { background: transparent; border-color: var(--border); }
 .markdown-body img { height: auto; max-width: 100%; background: transparent; }
+.reader-intro { color: var(--muted); }
+.reader-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 28px; }
+.reader-enhanced .reader-switcher { position: sticky; top: 72px; z-index: 20; padding: 8px 0; background: var(--background); }
+.physical-reader [id] { scroll-margin-top: var(--reader-switcher-height, 64px); }
+.markdown-body .reader-switcher a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; background: var(--surface); font-size: 14px; }
+.markdown-body .reader-switcher a:hover, .markdown-body .reader-switcher a[aria-current="location"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.reader-document { min-width: 0; }
+.reader-chapter-directory, .reader-source-metadata { margin: 20px 0 28px; padding: 0 16px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+.reader-chapter-directory > summary, .reader-source-metadata > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 8px 0; font-size: 14px; font-weight: 600; list-style: none; }
+.reader-chapter-directory > summary::-webkit-details-marker, .reader-source-metadata > summary::-webkit-details-marker { display: none; }
+.reader-chapter-directory[open] > summary .icon, .reader-source-metadata[open] > summary .icon { transform: rotate(90deg); }
+.reader-chapter-directory nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 20px; padding: 8px 0 16px; }
+.reader-chapter-directory nav a { display: block; min-height: 44px; padding: 8px 0; font-size: 13px; text-decoration: none; }
+.reader-book-content > h2:first-child { margin-top: 28px; }
+.reader-source-metadata { margin-top: 44px; }
+.reader-source-content { padding: 16px 0; }
+@media (max-width: 600px) {
+  .reader-switcher { gap: 6px; }
+  .markdown-body .reader-switcher a { padding: 8px 12px; }
+  .reader-chapter-directory nav { grid-template-columns: 1fr; }
+}
+@media print {
+  .reader-switcher, .reader-chapter-directory { display: none; }
+  .reader-source-metadata { display: none; }
+}
+.markdown-body .wiki-figure { margin: 28px 0; break-inside: avoid; }
+.diagram-open { display: block; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: #fff; cursor: zoom-in; }
+.diagram-open:hover { border-color: var(--accent); }
+.diagram-open picture, .diagram-open img { display: block; width: 100%; }
+.markdown-body .wiki-figure figcaption { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.diagram-hint { margin-left: auto; flex-shrink: 0; color: var(--accent); }
+body.diagram-is-open { overflow: hidden; }
+.diagram-dialog { width: calc(100% - 32px); max-width: 1200px; max-height: 92vh; max-height: 92dvh; padding: 0; border: 1px solid var(--border); border-radius: 10px; }
+.diagram-toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.diagram-toolbar h2 { flex: 1; min-width: 0; margin: 0; font-size: 15px; line-height: 1.5; }
+.diagram-toolbar button, .diagram-toolbar a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 5px; color: var(--text); background: var(--surface); text-decoration: none; white-space: nowrap; font-size: 13px; }
+.diagram-toolbar button:hover, .diagram-toolbar a:hover { border-color: var(--accent); }
+.diagram-stage { max-height: calc(92vh - 90px); max-height: calc(92dvh - 90px); padding: 16px; overflow: auto; background: var(--surface); overscroll-behavior: contain; }
+.diagram-full-image { display: block; width: auto; max-width: 100%; max-height: calc(92vh - 122px); max-height: calc(92dvh - 122px); height: auto; margin: 0 auto; object-fit: contain; background: #fff; border-radius: 6px; }
+.diagram-native-size .diagram-full-image { width: 1040px; max-width: none; max-height: none; margin: 0; }
+@media (max-width: 600px) {
+  .diagram-dialog { width: calc(100% - 16px); }
+  .diagram-toolbar { flex-wrap: wrap; }
+  .diagram-toolbar h2 { flex-basis: 100%; }
+  .diagram-stage { max-height: calc(92dvh - 145px); padding: 8px; }
+  .diagram-full-image { max-height: calc(92dvh - 161px); }
+}
+@media print {
+  .diagram-dialog, .diagram-hint { display: none !important; }
+  .diagram-open { border: 0; }
+}
 .code-block { position: relative; margin: 24px 0; background: var(--code); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
 .code-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 16px; height: 44px; color: var(--muted); border-bottom: 1px solid var(--border); font-size: 12px; font-family: "JetBrains Mono", Consolas, monospace; }
 .code-toolbar .icon { width: 16px; height: 16px; }

@@ -1,5 +1,11 @@
 # 大数据学习路线
 
+<!-- illustration: big-data-roadmap-02bb341f71 -->
+![从数据链路走到可运营的平台。每阶段都以架构解释、可运行实验和故障恢复记录验收。](images/big-data-roadmap.png)
+
+*图：从数据链路走到可运营的平台。每阶段都以架构解释、可运行实验和故障恢复记录验收。*
+<!-- /illustration: big-data-roadmap-02bb341f71 -->
+
 ## 阶段 1：基础能力
 
 ### 学习内容

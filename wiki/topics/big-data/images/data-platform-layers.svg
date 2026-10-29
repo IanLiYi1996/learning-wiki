@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="894" viewBox="0 0 1040 894" role="img" aria-labelledby="title desc">
+<title id="title">大数据平台：数据生命周期与控制面</title>
+<desc id="desc">按职责组织，不把产品名称当互斥技术分类。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="894" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">大数据平台：数据生命周期与控制面</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">按职责组织，不把产品名称当互斥技术分类。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">数据源／采集</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">数据库、应用事件、文件、API → 批采集／CDC／Connector</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">传输与保存</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">事件流、原始持久化、文件布局与保留</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">处理与消费</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">批／流计算、SQL、BI、API、机器学习</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">开放数据层</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">存储介质 + 文件格式 + 表格式 + Catalog</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">横切控制面</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">编排、元数据、治理、质量、可观测与安全</text>
+<rect x="56" y="705" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="741" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">运行底座</text>
+<text x="292" y="737" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">调度、环境、CI/CD、成本、可靠性与多租户</text>
+<line x1="40" y1="830" x2="1000" y2="830" stroke="#e0e7e2"/>
+<text x="40" y="854" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">分层表示责任边界，不要求每层独立部署。</text>
+</g>
+</svg>

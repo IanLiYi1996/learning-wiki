@@ -48,18 +48,20 @@ topics:
     description: 对照业界产品与底层原理，梳理机器人系统、数字孪生和学习实践。
     meta: 机器人 · 仿真 · 模型 · 工程交付
     items:
-      - label: 专题导读
+      - label: 完整阅读
         url: /wiki/topics/physical-ai/
+      - label: 知识全景与学习指南
+        url: /wiki/topics/physical-ai/#reader-knowledge
       - label: 业界产品与端到端方案
-        url: /wiki/topics/physical-ai/industry/
+        url: /wiki/topics/physical-ai/#reader-industry
       - label: 底层原理与实现
-        url: /wiki/topics/physical-ai/advanced/
-      - label: 概念地图
-        url: /wiki/topics/physical-ai/concept-map.html
+        url: /wiki/topics/physical-ai/#reader-advanced
+      - label: GTC Berlin 2026
+        url: /wiki/topics/physical-ai/#reader-gtc
       - label: 学习路线与自测
         url: /wiki/topics/physical-ai/learning-roadmap.html
-      - label: GTC Berlin 2026
-        url: /wiki/topics/physical-ai/conferences/gtc-berlin-2026/
+      - label: 构建与归档说明
+        url: /wiki/topics/physical-ai/concept-map.html
   - label: 大数据与 Palantir
     title: 大数据技术与 Palantir
     url: /wiki/topics/big-data/

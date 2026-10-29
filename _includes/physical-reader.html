@@ -1,0 +1,28 @@
+<section class="physical-reader" data-physical-reader>
+  <h1>{{ page.title | default: 'Physical AI' | escape }}</h1>
+  <p class="reader-intro">完整正文就在本页。选择一本继续阅读，无需打开附件或跳转到资料说明页。各册保留原研究日期与证据边界。</p>
+  <nav class="reader-switcher" aria-label="选择 Physical AI 读本">
+    {% for book in site.data.physical_ai_books.books %}
+    {% if page.physical_ai_reader == 'all' or page.physical_ai_reader == book.key %}
+    <a href="#reader-{{ book.key }}" data-reader-link="{{ book.key }}">{{ book.label }}</a>
+    {% endif %}
+    {% endfor %}
+  </nav>
+  {% for book in site.data.physical_ai_books.books %}
+  {% if page.physical_ai_reader == 'all' or page.physical_ai_reader == book.key %}
+  <section id="reader-{{ book.key }}" class="reader-document" data-reading-book="{{ book.key }}" data-book-title="{{ book.title | escape }}">
+    <details class="reader-chapter-directory">
+      <summary>{{ book.title }} · 章节目录{% include icon.html name="chevron-right" %}</summary>
+      <nav aria-label="{{ book.title | escape }}章节目录">
+        {% for chapter in book.chapters %}
+        <a href="#{{ chapter.id }}">{{ chapter.label }}</a>
+        {% endfor %}
+      </nav>
+    </details>
+    <div class="reader-book-content">
+      {% include {{ book.fragment }} %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</section>

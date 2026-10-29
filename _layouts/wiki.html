@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.github.build_revision }}">
     {% include head-custom.html %}
     <script defer src="{{ '/assets/js/wiki-core.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
+    <script defer src="{{ '/assets/js/physical-reader.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
     <script defer src="{{ '/assets/js/wiki.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
+    <script defer src="{{ '/assets/js/wiki-figures.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
   </head>
   {% assign current_topic = nil %}
   {% for topic in site.data.navigation.topics %}
@@ -93,7 +95,15 @@
         </div>
         <details class="mobile-toc" data-mobile-toc hidden><summary>本页目录{% include icon.html name="chevron-right" %}</summary><nav aria-label="本页目录"></nav></details>
         <article class="article-content markdown-body">
+          {% if page.physical_ai_reader %}
+          {% include physical-reader.html %}
+          <details class="reader-source-metadata">
+            <summary>资料说明、下载与复现{% include icon.html name="chevron-right" %}</summary>
+            <div class="reader-source-content">{{ content }}</div>
+          </details>
+          {% else %}
           {{ content }}
+          {% endif %}
         </article>
         <nav class="chapter-pagination" aria-label="前后章节" data-chapter-pagination hidden></nav>
         <footer class="article-footer">

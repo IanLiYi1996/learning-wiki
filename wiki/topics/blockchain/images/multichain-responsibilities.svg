@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="592" viewBox="0 0 1040 592" role="img" aria-labelledby="title desc">
+<title id="title">多链升级，先辨认改变的是哪一层</title>
+<desc id="desc">资源分配、证明、消息与共享安全不能用同一个“升级”词替代。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="592" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">多链升级，先辨认改变的是哪一层</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">资源分配、证明、消息与共享安全不能用同一个“升级”词替代。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">机制</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">主要解决什么</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">不自动提供</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">CDK / Agglayer</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">执行部署与跨链会计／证明边界</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">所有链同一种共识与数据可用性</text>
+<rect x="40" y="248" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Agile Coretime</text>
+<rect x="220" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按 core、time、region、task 分配验证资</text>
+<text x="233" y="302" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">源</text>
+<rect x="610.0" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">业务链与任务自动部署</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">XCM</text>
+<rect x="220" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">跨共识消息表达格式</text>
+<rect x="610.0" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">具体传输与资产执行</text>
+<rect x="40" y="394" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">IBC classic /</text>
+<text x="53" y="448" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">v2</text>
+<rect x="220" y="394" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">client 验证与 packet 生命周期</text>
+<rect x="610.0" y="394" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">所有链自动共享安全</text>
+<rect x="40" y="472" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="501" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Interchain</text>
+<text x="53" y="526" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Security</text>
+<rect x="220" y="472" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="501" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">独立的验证者／安全参与安排</text>
+<rect x="610.0" y="472" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="501" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">采用 IBC 即获得该服务</text>
+<line x1="40" y1="528" x2="1000" y2="528" stroke="#e0e7e2"/>
+<text x="40" y="552" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">对照的是职责与条件，不是性能排名。</text>
+</g>
+</svg>

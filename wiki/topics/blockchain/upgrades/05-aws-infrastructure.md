@@ -86,6 +86,12 @@ getIndexerWatermark
 
 ## 4. 替代 Query：钱包索引器怎样工作
 
+<!-- illustration: deposit-reorg-131299322a -->
+![充值扫描：去重、确认、重组与冲正。高度只表示进度；保留 blockHash、parentHash 与业务事件身份。](../images/deposit-reorg.png)
+
+*图：充值扫描：去重、确认、重组与冲正。高度只表示进度；保留 blockHash、parentHash 与业务事件身份。*
+<!-- /illustration: deposit-reorg-131299322a -->
+
 节点主要按块和交易提供数据；地址历史和多资产查询通常需要派生索引。AWS 明确，Query 迁移不只是 endpoint 变化，应规范化供应商字段并验证代表性原响应。[Query 迁移说明](https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-end-of-support.html)
 
 参考自管索引流程：
@@ -116,6 +122,12 @@ indexer watermark
 若参考点还不同，就不能用差值直接触发资金冲正。Near-tip 结果可能因传播和重组合法分歧，AWS 同样要求按 fixed blocks 或可信深度比较。[迁移比较说明](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/migrating-node-rpc-workloads.html)
 
 ## 5. 实际迁移：双读，不双付
+
+<!-- illustration: rpc-migration-5e6847698c -->
+![链访问迁移：双读，不双付。读路径做结果对照；广播写路径保持业务请求、attempt 与 payload 唯一性。](../images/rpc-migration.png)
+
+*图：链访问迁移：双读，不双付。读路径做结果对照；广播写路径保持业务请求、attempt 与 payload 唯一性。*
+<!-- /illustration: rpc-migration-5e6847698c -->
 
 下面是建议的迁移状态，不是已执行 runbook：
 
@@ -163,6 +175,12 @@ SDK 5 将旧 CMU / KMU 的管理职责整合到 CloudHSM CLI，不代表应用�
 若公钥变了，“HSM 可签名”不证明它仍控制原钱包。
 
 ## 7. KMS 新增 Ed25519：Solana 签名可重新评估
+
+<!-- illustration: signing-algorithm-boundaries-b7bc1c698f -->
+![同一 Sign 接口，算法与消息类型不同。ECDSA 的 DIGEST 路线不能原样套到 Solana 的纯 Ed25519。](../images/signing-algorithm-boundaries.png)
+
+*图：同一 Sign 接口，算法与消息类型不同。ECDSA 的 DIGEST 路线不能原样套到 Solana 的纯 Ed25519。*
+<!-- /illustration: signing-algorithm-boundaries-b7bc1c698f -->
 
 AWS 于 **2025-11-07** 公告支持 EdDSA / Ed25519；当前 key spec 列 `ECC_NIST_EDWARDS25519`。因此不能沿用“Solana ed25519，所以 AWS KMS 一定不支持”的旧判断。支持算法也不等于本次已完成 Solana 互操作验收。[发布公告](https://aws.amazon.com/about-aws/whats-new/2025/11/aws-kms-edwards-curve-digital-signature-algorithm/)、[当前 key spec](https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose-key-spec.html)
 

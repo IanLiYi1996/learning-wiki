@@ -4,6 +4,12 @@
 
 ## 1. 先确定坐标约定，再写矩阵
 
+<!-- illustration: coordinate-spaces-647e4720a9 -->
+![M、V、P 与屏幕坐标的六个空间。列向量约定：p_clip = P × V × M × p_local，右侧矩阵先作用。](images/coordinate-spaces.png)
+
+*图：M、V、P 与屏幕坐标的六个空间。列向量约定：p_clip = P × V × M × p_local，右侧矩阵先作用。*
+<!-- /illustration: coordinate-spaces-647e4720a9 -->
+
 一条顶点变换链：
 
 ```text
@@ -107,6 +113,12 @@ $$
 
 ## 5. 法线为什么用逆转置矩阵
 
+<!-- illustration: normal-matrix-0a589f2085 -->
+![非均匀缩放后的正确法线。正文例：t = (1, −1, 0)，n = (1, 1, 0)，A = diag(2, 1, 1)。](images/normal-matrix.png)
+
+*图：非均匀缩放后的正确法线。正文例：t = (1, −1, 0)，n = (1, 1, 0)，A = diag(2, 1, 1)。*
+<!-- /illustration: normal-matrix-0a589f2085 -->
+
 位置与切向量服从几何变换，但法线的职责是继续垂直于变换后的表面。
 
 若原切向量 `t` 和法线 `n` 满足 `n^T t=0`，线性变换为 `A`，则：
@@ -129,6 +141,12 @@ A*t = [2,-1,0]
 法线、光方向、视线方向必须处于同一坐标空间。切线空间法线贴图还要通过 TBN 基转换；它不等于把贴图 RGB 当世界法线。
 
 ## 6. Texture 是采样信号，不只是图片
+
+<!-- illustration: texture-sampling-bcf8802390 -->
+![一张纹理有四份不同契约。从文件到采样值：颜色编码、坐标定位、重建过滤和业务用途不能混成一个开关。](images/texture-sampling.png)
+
+*图：一张纹理有四份不同契约。从文件到采样值：颜色编码、坐标定位、重建过滤和业务用途不能混成一个开关。*
+<!-- /illustration: texture-sampling-bcf8802390 -->
 
 需要分开记录：
 

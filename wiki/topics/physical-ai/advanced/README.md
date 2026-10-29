@@ -1,6 +1,12 @@
+---
+permalink: /wiki/topics/physical-ai/advanced/
+physical_ai_reader: advanced
+---
 # Physical AI：底层原理与实现细节
 
 2026-10-27，深化版 2.0。前版是知识地图，本册补到数学模型、算法过程和实现接口。前版文件保持不变。
+
+2026-10-29：本页可直接阅读完整图文正文与公式；PDF、Word 与仓库中的独立 HTML 保留原导出版。见[网页修订记录](../archive-notes.md)。
 
 最终 PDF 为 55 页，正文及附录约 3.3 万汉字，109 组独立显示公式，109 个一手资料入口。21 篇论文元数据另存，未知字段没有补估计值。
 

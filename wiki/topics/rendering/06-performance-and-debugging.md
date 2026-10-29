@@ -52,6 +52,12 @@ CSS 画布宽高为 `W,H`，实际使用像素比为 `r` 时，像素数近似 `
 
 ## 4. WebGL 2 的 GPU timer query
 
+<!-- illustration: gpu-profiling-380bbcac01 -->
+![异步 GPU 计时：圈定工作，稍后读结果。JS 中 draw 的提交耗时不能代替 GPU 工作耗时。](images/gpu-profiling.png)
+
+*图：异步 GPU 计时：圈定工作，稍后读结果。JS 中 draw 的提交耗时不能代替 GPU 工作耗时。*
+<!-- /illustration: gpu-profiling-380bbcac01 -->
+
 先检测 `EXT_disjoint_timer_query_webgl2`。它不是所有目标浏览器必然提供的能力。[P2]
 
 下面是可嵌入已有 context 的诊断片段，不是完整应用：

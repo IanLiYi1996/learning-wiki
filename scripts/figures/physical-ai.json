@@ -1,0 +1,287 @@
+[
+  {
+    "id": "physical-feedback", "topic": "physical-ai", "kind": "flow",
+    "title": "真实状态、观测、策略动作与控制输入",
+    "subtitle": "o 是测量，a 是策略动作，u 是执行接口输入；数组形状相同也不等于语义相同。",
+    "nodes": [["传感器观测 o", "图像、编码器、接触等测量"], ["估计／历史", "从可用证据推断当前状态"], ["策略动作 a", "根据任务条件决定做什么"], ["动作适配与控制", "坐标、IK、时标、限位与反馈"], ["执行输入 u", "按设备接口输出命令"], ["身体与环境 s", "真实运动、接触和扰动"]],
+    "loop": "新测量闭环",
+    "note": "策略、世界模型、状态估计和控制器承担不同职责；图不表示实机验收。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/README.md", "after": "## 从哪里开始"},
+      {"file": "wiki/topics/physical-ai/advanced/chapters/01_system_model.md", "after": "### 1.1 先确定研究的是哪个系统", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 2.1 先看运行时的过程"}
+    ]
+  },
+  {
+    "id": "robot-2r", "topic": "physical-ai", "kind": "geometry",
+    "title": "同一个末端点，可以对应两种关节构型",
+    "subtitle": "平面 2R 原创教学例：连杆长度都是 1，目标点为 (1, 1)，角度用弧度。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/02_robot_geometry.md", "after": "### 手算 2R：位置、速度与力映射", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/advanced/chapters/14_workbook.md", "after": "### 14.2 正运动学与逆运动学：两个关节怎样到同一点", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 3.3 正运动学、逆运动学和雅可比"}
+    ]
+  },
+  {
+    "id": "actuator-dynamics", "topic": "physical-ai", "kind": "flow",
+    "title": "从执行器输入到机器人运动",
+    "subtitle": "电压、电流、电机转矩、关节力矩和实际运动分别建模。",
+    "nodes": [["驱动输入", "电压／电流目标等设备接口"], ["电机电气过程", "电流、反电动势与约束"], ["电机转矩", "电流转换；非任意输出"], ["传动与关节", "减速、摩擦、反射惯量"], ["机构动力学", "惯性、重力、外力与接触"], ["实际运动", "状态反馈；饱和与延迟入模"]],
+    "loop": "状态反馈",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/03_dynamics_contact.md", "after": "### 执行器与传动：电压不是关节力矩", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]}
+    ]
+  },
+  {
+    "id": "ekf-cycle", "topic": "physical-ai", "kind": "flow",
+    "title": "EKF：预测、创新、增益与后验",
+    "subtitle": "估计更新改变我们对状态的判断，不是直接改变设备运动。",
+    "nodes": [["上次后验", "状态均值 + 协方差"], ["动力学预测", "控制历史、采样时间与 Q"], ["当前有效观测", "时间对齐；不能缺测填零"], ["创新与增益", "观测 − 预测；H、R、S、K"], ["后验更新", "均值修正 + Joseph 协方差"], ["诊断与保存", "残差、接受标记与时间戳"]],
+    "loop": "下一次预测",
+    "note": "图示欧氏局部高斯近似；流形、错配、重复证据和可观测性另行处理。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/04_estimation_slam.md", "after": "### EKF：每一轮究竟更新哪些数组", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 4.2 感知和状态估计有何区别"}
+    ]
+  },
+  {
+    "id": "planning-control", "topic": "physical-ai", "kind": "flow",
+    "title": "任务、可达性、路径、轨迹与跟踪",
+    "subtitle": "末端可达 ≠ 整机无碰撞 ≠ 动力学可行 ≠ 任务实际成功。",
+    "nodes": [["任务目标", "要完成什么；阶段判据"], ["IK 与候选配置", "几何可达、限位和姿态"], ["路径规划", "配置空间；验证整条边"], ["时间参数化", "q、dq、ddq 与速度／力矩约束"], ["反馈控制", "跟踪带时间的参考"], ["任务效果确认", "设备反馈 + 物体／工位结果"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/05_planning_control.md", "after": "### 路径到轨迹：还缺一条时间规律", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 5.1 任务、路径和轨迹"},
+      {"file": "wiki/topics/physical-ai/notes/robotics-control-deployment.md", "after": "## 规划决定目标，控制持续纠偏"}
+    ]
+  },
+  {
+    "id": "mpc-horizon", "topic": "physical-ai", "kind": "flow",
+    "title": "MPC：预测 H 步，只执行首步",
+    "subtitle": "滚动视界以新观测重新求解，不把整段预测当开环执行计划。",
+    "nodes": [["当前估计", "对齐到命令生效时刻"], ["预测未来 H 步", "动力学、参考与控制边界"], ["求解优化", "代价 + 约束；上轮解作初值"], ["检查结果", "状态码、可行性、残差、超时"], ["只执行第一步", "u(t|t) 交给执行层"], ["获取新观测", "确认实际输入与状态变化"]],
+    "loop": "滚动再优化",
+    "placements": [{"file": "wiki/topics/physical-ai/advanced/chapters/05_planning_control.md", "after": "### MPC：优化未来多步，只执行第一步", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]}]
+  },
+  {
+    "id": "vla-tensors", "topic": "physical-ai", "kind": "flow",
+    "title": "VLA 的输入张量、融合表示与动作接口",
+    "subtitle": "这是多模态教学接口，不表示每个具体模型都支持全部输入。",
+    "nodes": [["观测与条件", "图像、可用历史、语言／状态"], ["编码与投影", "patch／语言 token／数值特征"], ["统一表示", "位置、相机、时间与有效性"], ["融合网络", "Attention；不是物理真实状态"], ["动作头", "离散 token 或连续动作"], ["解码与适配", "单位、坐标、归一化、执行时间"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/06_representation_vla.md", "after": "### 06.1 输入不是状态：先建立张量接口", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 6.5 读网络图时，追踪信息怎样走"}
+    ]
+  },
+  {
+    "id": "diffusion-flow", "topic": "physical-ai", "kind": "compare",
+    "title": "扩散与 Flow Matching：监督目标不同",
+    "subtitle": "两者都可生成动作段；环境时间、扩散步和生成时间分别记录。",
+    "columns": ["环节", "DDPM 教学路径", "Flow Matching 教学路径"],
+    "rows": [["训练输入", "示范动作段 + 噪声步 k + 条件", "噪声到数据插值 + 时间 τ + 条件"], ["监督目标", "本次采样的已知噪声 ε", "插值路径速度 x_data − z"], ["推理过程", "从高噪声逐步反向去噪", "从噪声沿学习速度场积分"], ["最终交付", "反归一化后的动作段", "反归一化后的动作段"], ["执行边界", "时间对齐后执行前缀，再观测", "时间对齐后执行前缀，再观测"]],
+    "note": "这是正文指定的简单路径；不是把两种算法或不同代码时间方向混为同一个实现。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/07_imitation_generators.md", "after": "### 07.4 DDPM：先定义噪声过程，再定义学习目标", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 7.4 Flow Matching 与扩散的关系"},
+      {"file": "wiki/topics/physical-ai/notes/models-learning.md", "after": "## 通俗笔记"}
+    ]
+  },
+  {
+    "id": "actor-critic", "topic": "physical-ai", "kind": "flow",
+    "title": "Actor-Critic：动作与价值监督分工",
+    "subtitle": "环境给奖励；critic 评估，actor 调整策略，不使用专家动作作为同一种标签。",
+    "nodes": [["状态／有效历史", "完全或部分可观测条件"], ["Actor 策略", "采样动作与 log probability"], ["环境转移", "动作作用，获得下一状态"], ["奖励／终止", "terminal 与截断分开"], ["Critic 与目标", "价值、bootstrap／回报估计"], ["Actor 更新", "优势／价值信号；算法各自约束"]],
+    "loop": "下一批交互",
+    "note": "PPO clip 不是动作安全硬约束；SAC 熵不是随机动作安全保证。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/08_rl.md", "after": "### 08.2 Actor-Critic：谁输出动作，谁提供监督", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 7.7 再认识 PPO、SAC 和 Actor-Critic"}
+    ]
+  },
+  {
+    "id": "world-model-roles", "topic": "physical-ai", "kind": "compare",
+    "title": "世界模型：观测更新、想象训练与执行",
+    "subtitle": "能预测画面不等于辨识了真实物理；想象训练不等于运行时每步搜索。",
+    "columns": ["阶段／方法", "看哪些证据、做什么", "输出与边界"],
+    "rows": [["观测更新", "真实观测 + 前一动作 + 循环记忆", "形成后验潜在表示"], ["先验想象", "从当前表示沿动作条件转移", "没有未来真实图像输入"], ["Dreamer 训练", "想象奖励／继续头 + actor／critic", "更新策略与价值；模型误差另评估"], ["Dreamer 执行", "更新表示后直接从 actor 取动作", "不是每步在线候选搜索"], ["PlaNet 规划", "搜索候选动作段；模型预测评价", "只执行首步，再观测重规划"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/09_world_models.md", "after": "### 09.4 想象 actor-critic 与执行时规划", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 8.2 三种常见用途"}
+    ]
+  },
+  {
+    "id": "causal-alignment", "topic": "physical-ai", "kind": "compare",
+    "title": "训练样本的因果对齐：当时拿得到吗",
+    "subtitle": "教学决策时刻 t = 100 ms；采集早于 t 还不够，到达也必须不晚于 t。",
+    "columns": ["记录", "时间", "能否用于当前输入"],
+    "rows": [["较早图像", "在 100 ms 前采集且已到达", "可以；另查数据年龄／有效性"], ["近邻图像", "99 ms 采集，105 ms 到达", "不能；当时尚不可用"], ["未来图像", "采集在 100 ms 之后", "不能用未来最近邻补缺失"], ["命令标签", "独立的动作／发令记录", "不能用执行后状态倒填命令"], ["数据划分", "按 episode／session 等分组", "相邻帧不拆成独立训练与测试"]],
+    "note": "离线几何重建与模拟实时输入是不同任务，允许使用的证据范围必须明示。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/10_data_pipeline.md", "after": "### 10.2 异频对齐：因果性由“当时能否拿到”决定", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]}
+    ]
+  },
+  {
+    "id": "simulation-step", "topic": "physical-ai", "kind": "flow",
+    "title": "一步物理仿真包含哪些计算",
+    "subtitle": "渲染画面、碰撞几何和约束求解不是同一工作。",
+    "nodes": [["模型与状态", "机构、参数、当前配置／速度"], ["执行器与外力", "控制输入、重力与扰动"], ["碰撞检测", "候选几何、间隙与接触法向"], ["约束求解", "法向、摩擦、模式与冲量／力"], ["积分更新", "按离散算法推进运动"], ["观测与检查", "传感器、残差、步长与失败"]],
+    "loop": "下一仿真步",
+    "note": "细分步长检查离散误差，不证明参数、接触模型或真实部署正确。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/11_simulation.md", "after": "### 11.1 一步仿真不是“把物体移到下一帧”", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]}
+    ]
+  },
+  {
+    "id": "runtime-chunk", "topic": "physical-ai", "kind": "flow",
+    "title": "异步策略动作段的接收与执行",
+    "subtitle": "Policy、轨迹适配、Servo 与独立安全链分别承担责任。",
+    "nodes": [["采集与到达", "采集时刻／可用时刻／时钟映射"], ["异步推理", "完成事件，不是 enqueue 返回"], ["动作段验证", "序列、版本、frame、单位与有效期"], ["对齐执行窗口", "过期增量前缀不任意裁掉"], ["Servo 读更新写", "按设备接口跟踪有效参考"], ["反馈／看门狗", "陈旧、耗尽、NaN、失联等分类"]],
+    "note": "保护动作须按设备风险预定义；图示不规定通用“保持位置”或“力矩归零”。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/12_runtime.md", "after": "### 12.5 异步 Chunk：过期比“没算完”更危险", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 12.3 有哪些时间需要测量"}
+    ]
+  },
+  {
+    "id": "wilson-evidence", "topic": "physical-ai", "kind": "intervals",
+    "title": "同为 90% 成功率，证据精度不同",
+    "subtitle": "正文两组数值教学例：9/10 与 90/100 的 95% Wilson 区间。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/advanced/chapters/13_evaluation.md", "after": "### 13.2 90% 成功率并不是一个精度无限的事实", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]},
+      {"file": "wiki/topics/physical-ai/advanced/chapters/14_workbook.md", "after": "### 14.7 时间对齐与统计", "mirrors": ["wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md"]}
+    ]
+  },
+  {
+    "id": "industry-lifecycle", "topic": "physical-ai", "kind": "flow",
+    "title": "Physical AI 项目的交付链",
+    "subtitle": "权重、软件、硬件、服务和整套工作站是不同交付物。",
+    "nodes": [["任务与设备", "场景、物体、接口与成功判据"], ["数据与仿真", "版本化轨迹、场景与物理条件"], ["训练与适配", "示范／交互 + 模型／数据配置"], ["规划与控制", "位姿、轨迹、命令与反馈"], ["部署与验证", "运行包、时限、回归及限制"], ["现场运行", "任务、告警、恢复与责任交接"]],
+    "loop": "失败证据回流",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/01_lifecycle.md", "after": "### 1.1 一个项目不是只购买一个模型", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 2.4 开发时还有另一条过程"},
+      {"file": "wiki/topics/physical-ai/concept-map.md", "after": "## 内容与使用顺序"}
+    ]
+  },
+  {
+    "id": "robot-data-assets", "topic": "physical-ai", "kind": "flow",
+    "title": "机器人日志怎样变成训练资产",
+    "subtitle": "记录容器、查看器、标注服务与训练清单承担不同职责。",
+    "nodes": [["采集契约", "图像、状态、命令、时间与权限"], ["记录容器", "如 MCAP；保留 schema 与附件"], ["查看与检索", "回放、事件定位与片段筛选"], ["审核与派生标签", "动作、任务边界、标定与质量"], ["分组与版本", "episode／session；防数据泄漏"], ["训练清单", "样本、处理流程与可追踪来源"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/02_real_data.md", "after": "## 02 真实数据采集、标注与管理", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 9.5 一份可以照着检查的数据工作流"},
+      {"file": "wiki/topics/physical-ai/notes/data-simulation-evaluation.md", "after": "## 数据：视频、动作和状态不是一回事"}
+    ]
+  },
+  {
+    "id": "scene-physics-twin", "topic": "physical-ai", "kind": "compare",
+    "title": "场景描述、物理引擎、仿真与数字孪生",
+    "subtitle": "画面逼真、接触准确和任务可靠性是不同测试对象。",
+    "columns": ["对象", "主要职责", "不自动提供"],
+    "rows": [["OpenUSD 等场景描述", "组合与交换几何、材质等资产", "不是物理求解器"], ["物理引擎", "运动、接触、约束与积分", "不自动匹配真实参数"], ["仿真平台", "组织场景、物理、渲染与传感器", "不自动成为指定实物孪生"], ["数字孪生", "绑定真实对象、参数与更新记录", "不是任何好看的三维场景"], ["世界模型", "从经验学习条件演化／预测", "生成画面不保证动力学与动作正确"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/03_scene_sim.md", "after": "## 03 场景建模、数字孪生与物理仿真", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 10.1 先区分五样东西"},
+      {"file": "wiki/topics/physical-ai/notes/data-simulation-evaluation.md", "after": "## 仿真：场景描述不等于物理求解"},
+      {"file": "wiki/topics/physical-ai/conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md", "after": "### 6.2 OpenUSD、Isaac Sim、Isaac Lab 和模型的分工"}
+    ]
+  },
+  {
+    "id": "synthetic-supervision", "topic": "physical-ai", "kind": "compare",
+    "title": "合成图片、生成视频与动作示范",
+    "subtitle": "先确定监督类型，再决定生成、扩增与验证方式。",
+    "columns": ["产物", "可提供的监督", "还需验证"],
+    "rows": [["合成图像／标签", "视觉检测、分割、深度等", "场景、渲染与真实视觉差异"], ["生成视频", "场景变化、视觉理解或预测材料", "通常不自动有可执行机器人命令"], ["仿真动作轨迹", "执行器／任务定义下的动作序列", "动作语义、状态、接触与成功判据"], ["示范扩增", "重定向／变换后的行为记录", "运动可行性、坐标与有效性"]],
+    "placements": [{"file": "wiki/topics/physical-ai/industry/chapters/04_synthetic.md", "after": "## 04 合成数据与示范扩增", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}]
+  },
+  {
+    "id": "training-handoff", "topic": "physical-ai", "kind": "flow",
+    "title": "训练交付的不只有 checkpoint",
+    "subtitle": "训练执行与实验管理分层；模型登记也不等于现场运行授权。",
+    "nodes": [["数据／环境", "版本、schema、任务与后端"], ["训练／微调", "算法、模型与可复现配置"], ["实验记录", "run、数据／模型关系与评估"], ["Checkpoint", "权重 + 模型结构"], ["完整交接包", "归一化、动作／观测配置、证据"], ["部署团队验收", "目标设备精度、时限与运行限制"]],
+    "placements": [{"file": "wiki/topics/physical-ai/industry/chapters/05_training.md", "after": "## 05 训练、微调与实验管理产品", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}]
+  },
+  {
+    "id": "model-platform-delivery", "topic": "physical-ai", "kind": "compare",
+    "title": "动作模型、具身推理与商业工作单元",
+    "subtitle": "获取入口、接口适配和客户现场证据分别记录。",
+    "columns": ["交付类型", "典型输出", "集成责任"],
+    "rows": [["公开动作模型", "策略动作／动作段", "权重、transform、归一化、机器人 schema"], ["具身推理服务", "空间分析、步骤或工具请求", "任务执行器与下游动作／反馈"], ["商业智能工作单元", "限定物料／任务的操作系统", "设备、软件、维护与合同验收"], ["共同边界", "各自在已披露范围内工作", "不能由演示推断通用自主与安全"]],
+    "placements": [{"file": "wiki/topics/physical-ai/industry/chapters/06_model_platforms.md", "after": "## 06 机器人模型与商业智能平台", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}]
+  },
+  {
+    "id": "manipulator-software", "topic": "physical-ai", "kind": "flow",
+    "title": "机械臂软件：感知、规划与硬件控制",
+    "subtitle": "规划成功不等于轨迹已执行，更不等于物体已抓取。",
+    "nodes": [["传感器与标定", "图像／点云 + 时间／frame"], ["感知与估计", "物体位姿 + 当前关节状态"], ["任务／运动请求", "目标、机器人模型与场景"], ["MoveIt 等规划层", "可行轨迹；交给执行接口"], ["控制器／硬件适配", "ros2_control：read → update → write"], ["驱动与实际反馈", "运动跟踪 + 抓取／物体结果"]],
+    "loop": "更新状态与场景",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/07_perception_control.md", "after": "## 07 感知、运动规划与机器人控制产品", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/notes/robotics-control-deployment.md", "after": "## 两条典型信息流"}
+    ]
+  },
+  {
+    "id": "edge-deployment", "topic": "physical-ai", "kind": "layers",
+    "title": "边缘部署的四层责任",
+    "subtitle": "峰值算力、模型推理速度和端到端控制时限不是同一个指标。",
+    "layers": [["计算宿主", "模块／工业 PC；电源、散热、传感器与载板"], ["系统与依赖", "OS、驱动、CUDA／适配栈、设备接口及版本"], ["模型运行时", "权重／ONNX → engine；shape、精度、插件与目标硬件"], ["运行系统", "采集、预处理、队列、动作时限、反馈与故障策略"]],
+    "placements": [{"file": "wiki/topics/physical-ai/industry/chapters/08_edge_deploy.md", "after": "## 08 边缘推理与工业运行环境", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}]
+  },
+  {
+    "id": "validation-modes", "topic": "physical-ai", "kind": "compare",
+    "title": "日志检查、开环回归与闭环验证",
+    "subtitle": "播放相同记录，不意味着新策略的动作已经改变了环境。",
+    "columns": ["方式", "输入与反馈", "能回答的问题"],
+    "rows": [["日志检查", "已经发生的状态与事件", "时间、错误上下文、状态转换"], ["开环回归", "同样记录 → 新软件输出", "预处理、感知／规划输出差异"], ["闭环验证", "新动作改变模拟／真实对象的后续输入", "闭环任务行为；仍受模型与试验范围限制"], ["交接证据", "版本、初始化、输入集、判据、失败材料", "不是只有一个“通过”标签"]],
+    "note": "回放可能重发命令话题；回归环境与真实设备执行域隔离。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/09_validation.md", "after": "### 怎样衔接成系统测试", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 13.4 怎样报告一次自己的实验"}
+    ]
+  },
+  {
+    "id": "fleet-business-handoff", "topic": "physical-ai", "kind": "flow",
+    "title": "多机任务：请求接受、动作完成与业务交接",
+    "subtitle": "唯一调度权、适配器和本地执行边界明确后，才谈车队与业务协同。",
+    "nodes": [["业务任务", "MES／WMS 创建任务 ID"], ["车队／资源调度", "机器人、通道、门、电梯等协调"], ["适配器", "转换任务／接口；版本匹配"], ["机器人接受／拒绝", "本地能力、约束与故障状态"], ["执行与反馈", "导航／设备动作实际完成"], ["业务确认", "物料交接、任务关闭、审计"]],
+    "note": "请求成功 ≠ 已接受 ≠ 已完成；可视化多品牌不证明具备统一交通仲裁。",
+    "placements": [
+      {"file": "wiki/topics/physical-ai/industry/chapters/10_fleet_operations.md", "after": "### 交付与衔接：谁派任务，谁确认动作", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]},
+      {"file": "wiki/topics/physical-ai/industry/chapters/12_interfaces_reading.md", "after": "### 12.2 两个接口例子", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}
+    ]
+  },
+  {
+    "id": "solution-evidence", "topic": "physical-ai", "kind": "compare",
+    "title": "端到端方案，先读清证据范围",
+    "subtitle": "软件能获取、商业能联系、客户曾运行、计划将扩展，是不同事实。",
+    "columns": ["证据", "可以记录什么", "不能直接推出什么"],
+    "rows": [["公开包／文档", "可获取的代码、权重或工具", "自己的任务已无需集成"], ["商业产品／支持", "约定获取与交付形式", "目标现场全部要求都满足"], ["供应商案例", "公开披露的客户与任务范围", "独立性能审计"], ["客户现场披露", "指定地点、时间、流程的运行证据", "任意工位与对象都可泛化"], ["试点／未来计划", "限定试点或已宣布扩展", "计划中的设备已正式运行"]],
+    "placements": [{"file": "wiki/topics/physical-ai/industry/chapters/11_solutions_cases.md", "after": "## 11 端到端组合与客户公开案例", "mirrors": ["wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md"]}]
+  },
+  {
+    "id": "physical-learning-dependencies", "topic": "physical-ai", "kind": "flow",
+    "title": "Physical AI：按依赖关系学习",
+    "subtitle": "每阶段都交付接口解释、数值练习或可复查的测试设计。",
+    "nodes": [["系统变量", "状态、观测、动作、输入与反馈"], ["机构与控制", "坐标、FK／IK、动力学与轨迹"], ["感知与数据", "标定、估计、时间与动作语义"], ["仿真与监督", "接触求解、示范、扩增与差异"], ["模型与学习", "BC、VLA、RL、世界模型"], ["运行与评测", "时限、故障、判据、统计与交接"]],
+    "placements": [
+      {"file": "wiki/topics/physical-ai/learning-roadmap.md", "after": "# Physical AI 学习路线与自测"},
+      {"file": "wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md", "after": "### 14.1 按依赖关系学"}
+    ]
+  },
+  {
+    "id": "gtc-robot-stack", "topic": "physical-ai", "kind": "layers",
+    "title": "会议机器人技术栈：按职责读发布",
+    "subtitle": "沿用报告的 2026-10-26 资料口径；不因本次配图更新开放或供货状态。",
+    "layers": [["数据与资产", "示范记录、人类动作数据、虚拟场景；动作监督另外检查"], ["学习与仿真", "Isaac Lab 组织任务／训练；Newton 等后端求解物理"], ["策略模型", "GR00T 等按观测与指令输出动作；身体与数据需适配"], ["机端软件", "运行时、连接、驱动、动作有效期与反馈"], ["完整系统", "机器人硬件、控制与现场安全；演示不自动成为量产"]],
+    "placements": [{"file": "wiki/topics/physical-ai/conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md", "after": "## 二、机器人：从记录示范到训练，再到机器上运行"}]
+  },
+  {
+    "id": "gtc-driving-stack", "topic": "physical-ai", "kind": "layers",
+    "title": "自动驾驶：模型、数据、宿主与测试",
+    "subtitle": "模型输出、车载硬件和验证平台属于不同责任层。",
+    "layers": [["数据／场景", "驾驶记录、训练材料、道路与传感器仿真"], ["驾驶模型", "感知／推理与驾驶策略；核对输入输出及版本"], ["车载宿主", "Thor／DRIVE AGX 等计算与接口条件"], ["系统集成", "传感器配置、车辆控制、DRIVE 软件与运行约束"], ["测试与证据", "Halos／dSPACE 等测试链；项目阶段与安全证据分开"]],
+    "note": "沿用会议报告口径；图示分工，不推断全部车辆或模型已正式部署。",
+    "placements": [{"file": "wiki/topics/physical-ai/conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md", "after": "## 四、自动驾驶：驾驶模型、数据工具和测试"}]
+  }
+]

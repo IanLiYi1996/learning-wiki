@@ -119,6 +119,16 @@ def verify_hashes(root, records):
         require(path.is_file(), f"Missing deliverable: {row['path']}")
         actual = hashlib.sha256(path.read_bytes()).hexdigest()
         require(actual == row["sha256"], f"SHA-256 mismatch: {row['path']}")
+        if "original_sha256" in row:
+            # Prove the revision is additive: removing only marked figure blocks
+            # must recover the archived original byte-for-byte.
+            original = re.sub(
+                rb"\n<!-- illustration: ([a-z0-9-]+) -->\n.*?"
+                rb"<!-- /illustration: \1 -->\n",
+                b"", path.read_bytes(), flags=re.S,
+            )
+            require(hashlib.sha256(original).hexdigest() == row["original_sha256"],
+                    f"Original prose changed: {row['path']}")
 
 
 def verify_supporting_files(root, paths):
@@ -165,6 +175,12 @@ def check_archive(root=ROOT):
     manifest = json.loads((root / "archive-manifest.json").read_text(encoding="utf-8"))
     verify_supporting_files(root, manifest["required_supporting_files"])
     verify_hashes(root, manifest["deliverables"])
+    illustration_assets = 0
+    if "illustrated_revision" in manifest:
+        assets_path = archive_path(root, manifest["illustrated_revision"]["asset_manifest"])
+        assets = json.loads(assets_path.read_text(encoding="utf-8"))["assets"]
+        verify_hashes(root, assets)
+        illustration_assets = len(assets)
     products = json.loads((root / "industry/products.json").read_text(encoding="utf-8"))
     with (root / "industry/products.csv").open(encoding="utf-8-sig", newline="") as stream:
         rows = list(csv.DictReader(stream))
@@ -182,6 +198,7 @@ def check_archive(root=ROOT):
         require(counts[key] == expected, f"Count mismatch: {key}")
     return {"status": "passed", **counts, "json_files": len(json_files),
             "markdown_local_links": local_links,
+            "illustration_assets": illustration_assets,
             "scope": "Offline archive integrity, not product or model validation."}
 
 

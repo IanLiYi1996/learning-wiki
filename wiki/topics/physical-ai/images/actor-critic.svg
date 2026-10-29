@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="590" viewBox="0 0 1040 590" role="img" aria-labelledby="title desc">
+<title id="title">Actor-Critic：动作与价值监督分工</title>
+<desc id="desc">环境给奖励；critic 评估，actor 调整策略，不使用专家动作作为同一种标签。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="590" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">Actor-Critic：动作与价值监督分工</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">环境给奖励；critic 评估，actor 调整策略，不使用专家动作作为同一种标签。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">状态／有效历史</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">完全或部分可观测条件</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Actor 策略</text>
+<text x="520.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">采样动作与 log</text>
+<text x="520.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">probability</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">环境转移</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">动作作用，获得下一状态</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">奖励／终止</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">terminal 与截断分开</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Critic 与目标</text>
+<text x="520.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">价值、bootstrap／回报估计</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Actor 更新</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">优势／价值信号；算法各自约束</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 184,428 L 184,455 L 24,455 L 24,188 L 56,188" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="58.5" y="442.0" width="91" height="25" fill="#fff"/>
+<text x="104.0" y="460.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">下一批交互</text>
+<line x1="40" y1="526" x2="1000" y2="526" stroke="#e0e7e2"/>
+<text x="40" y="549" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">蓝色：前向信息　紫色：反馈／再执行</text>
+<text x="40" y="571" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">PPO clip 不是动作安全硬约束；SAC 熵不是随机动作安全保证。</text>
+</g>
+</svg>

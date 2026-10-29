@@ -43,6 +43,12 @@ Bitcoin 节点先验证协议规则，再在有效链之间比较累计工作量
 
 ## 4. 钱包处于哪些边界之间
 
+<!-- illustration: transaction-trust-boundaries-40d181a126 -->
+![从用户意图到业务入账的六道边界。签名合法、广播接收、执行成功与资产到账分别验证。](../images/transaction-trust-boundaries.png)
+
+*图：从用户意图到业务入账的六道边界。签名合法、广播接收、执行成功与资产到账分别验证。*
+<!-- /illustration: transaction-trust-boundaries-40d181a126 -->
+
 ```text
 用户意图
   → 业务审批（允许做什么）

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="465" viewBox="0 0 1040 465" role="img" aria-labelledby="title desc">
+<title id="title">同为 90% 成功率，证据精度不同</title>
+<desc id="desc">正文两组数值教学例：9/10 与 90/100 的 95% Wilson 区间。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="465" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">同为 90% 成功率，证据精度不同</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">正文两组数值教学例：9/10 与 90/100 的 95% Wilson 区间。</text>
+<text x="56" y="173" font-size="23" fill="#23312b" font-weight="600" text-anchor="start">9 / 10</text>
+<line x1="656.2719999999999" y1="167" x2="938.824" y2="167" stroke="#2563eb" stroke-width="6"/>
+<line x1="656.2719999999999" y1="153" x2="656.2719999999999" y2="181" stroke="#2563eb" stroke-width="3"/>
+<text x="656.2719999999999" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="middle">59.6%</text>
+<line x1="938.824" y1="153" x2="938.824" y2="181" stroke="#2563eb" stroke-width="3"/>
+<text x="938.824" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="middle">98.2%</text>
+<circle cx="878.8000000000001" cy="167" r="8" fill="#15803d"/>
+<text x="56" y="289" font-size="23" fill="#23312b" font-weight="600" text-anchor="start">90 / 100</text>
+<line x1="824.632" y1="283" x2="911.74" y2="283" stroke="#2563eb" stroke-width="6"/>
+<line x1="824.632" y1="269" x2="824.632" y2="297" stroke="#2563eb" stroke-width="3"/>
+<text x="824.632" y="325" font-size="17" fill="#23312b" font-weight="400" text-anchor="middle">82.6%</text>
+<line x1="911.74" y1="269" x2="911.74" y2="297" stroke="#2563eb" stroke-width="3"/>
+<text x="911.74" y="325" font-size="17" fill="#23312b" font-weight="400" text-anchor="middle">94.5%</text>
+<circle cx="878.8000000000001" cy="283" r="8" fill="#15803d"/>
+<line x1="220" y1="360" x2="952" y2="360" stroke="#63736a"/>
+<text x="220" y="386" font-size="16" fill="#23312b" font-weight="400" text-anchor="middle">0%</text>
+<text x="403.0" y="386" font-size="16" fill="#23312b" font-weight="400" text-anchor="middle">25%</text>
+<text x="586.0" y="386" font-size="16" fill="#23312b" font-weight="400" text-anchor="middle">50%</text>
+<text x="769.0" y="386" font-size="16" fill="#23312b" font-weight="400" text-anchor="middle">75%</text>
+<text x="952" y="386" font-size="16" fill="#23312b" font-weight="400" text-anchor="middle">100%</text>
+<line x1="40" y1="401" x2="1000" y2="401" stroke="#e0e7e2"/>
+<text x="40" y="425" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">绿色点：经验比例 90%；蓝线：正文 95% Wilson 区间，需独立同分布二项假设。</text>
+</g>
+</svg>

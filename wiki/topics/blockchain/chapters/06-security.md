@@ -6,6 +6,12 @@
 
 ## 1. 密钥、种子、助记词、地址不是同一对象
 
+<!-- illustration: key-derivation-d1f02a4b8e -->
+![助记词、种子、密钥与地址。对象的泄露范围、恢复用途和网络编码不同。](../images/key-derivation.png)
+
+*图：助记词、种子、密钥与地址。对象的泄露范围、恢复用途和网络编码不同。*
+<!-- /illustration: key-derivation-d1f02a4b8e -->
+
 ```text
 助记词 + 可选 passphrase → seed
 seed → 根扩展密钥 → 按路径派生子密钥 → 公钥 → 特定网络地址
@@ -24,6 +30,12 @@ BIP39 定义的是助记词编码和 seed 生成；BIP32 定义 secp256k1 的分
 工程建议：备份要记录网络、算法、派生路径、描述符、账户范围、恢复权限和验证结果。不要在 repo、日志、截图或测试 fixture 存真实助记词、xprv、MPC share 或 HSM 用户口令。
 
 ## 2. 冷热钱包、链上多签、MPC、HSM 是不同维度
+
+<!-- illustration: security-dimensions-8e455e0d86 -->
+![冷热、多签、MPC、HSM：四种不同维度。这些手段可以组合；密钥不导出也不代表不会签错交易。](../images/security-dimensions.png)
+
+*图：冷热、多签、MPC、HSM：四种不同维度。这些手段可以组合；密钥不导出也不代表不会签错交易。*
+<!-- /illustration: security-dimensions-8e455e0d86 -->
 
 | 方案 | 控制边界 | 主要收益 | 仍然需要治理 |
 | --- | --- | --- | --- |
