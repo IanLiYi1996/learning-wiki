@@ -1,0 +1,549 @@
+[
+  {
+    "id": "moveit2",
+    "name": "MoveIt 2",
+    "vendor": "MoveIt 开源项目",
+    "stages": [7],
+    "category": "机械臂运动规划与执行衔接",
+    "access_status": "BSD-3-Clause 开源；按适配 ROS 2 分支获取二进制包或源码。",
+    "inputs": ["URDF/SRDF 与机器人配置", "关节状态和 TF", "规划场景、点云与运动目标"],
+    "outputs": ["关节轨迹", "规划与执行反馈"],
+    "interfaces": ["move_group ROS actions/services", "C++ MoveGroupInterface", "FollowJointTrajectory"],
+    "deployment_modes": ["机器人本地规划主机", "外部 ROS 2 规划主机"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "官方代码、许可和架构文档可获取。"},
+      "customer": {"level": "not_verified", "detail": "不将 MoveIt Pro 客户案例自动归属开源 MoveIt 2。"},
+      "scope": {"detail": "机械臂几何规划与执行接口，不是机器人侧 action server、伺服驱动或安全控制器。"}
+    },
+    "limits": ["需要机器人侧驱动和配置", "碰撞结果依赖模型与场景", "不由此推断整机实时或安全保证"],
+    "sources": [
+      {"title": "move_group architecture", "url": "https://moveit.picknik.ai/main/doc/concepts/move_group.html", "type": "official_documentation", "claim_scope": "职责、输入状态、ROS 接口和控制器接缝"},
+      {"title": "MoveIt 2 repository", "url": "https://github.com/moveit/moveit2", "type": "official_code", "claim_scope": "源码、许可和项目可获取性"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "moveit-pro",
+    "name": "MoveIt Pro",
+    "vendor": "PickNik",
+    "stages": [7],
+    "category": "商业机器人操作开发平台与运行时",
+    "access_status": "商业许可；Desktop App、Runtime 与 Core 按产品形态获取；主版本支持周期公开。",
+    "inputs": ["机器人模型与配置", "传感器数据", "行为树与任务目标"],
+    "outputs": ["任务与行为执行状态", "规划和控制请求", "运行诊断"],
+    "interfaces": ["ROS 2 Control API", "自定义 C++ 组件扩展", "Desktop App 到 Runtime 的产品接口"],
+    "deployment_modes": ["开发客户端与 Runtime 同机", "客户端与机器人 Runtime 分机", "运行时生产部署"],
+    "evidence": {
+      "availability": {"level": "commercial_supported", "detail": "公开商业产品规格、安装入口和版本支持政策。"},
+      "customer": {"level": "vendor_named_pilot", "entities": ["BMW Group"], "detail": "供应商案例明确首个应用准备从实验室试点进入生产，不是全面量产。"},
+      "scope": {"detail": "商业操作应用平台；必须区别于开源 MoveIt 项目和单独 Core 库。"}
+    },
+    "limits": ["冻结主版本和依赖组合", "客户试点不代表全部生产场景", "产品生产级措辞不构成整机安全认证"],
+    "sources": [
+      {"title": "Technical specifications", "url": "https://docs.picknik.ai/technical_specifications/", "type": "official_documentation", "claim_scope": "产品职责、硬件接口和部署形态"},
+      {"title": "Major releases and LTS", "url": "https://docs.picknik.ai/software_installation/major_releases/", "type": "official_documentation", "claim_scope": "主版本与支持期限"},
+      {"title": "BMW automotive case", "url": "https://picknik.ai/case-study-automotive/", "type": "vendor_case", "claim_scope": "具名使用及实验室试点准备转生产的范围"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "nav2",
+    "name": "Nav2",
+    "vendor": "ros-navigation / Open Navigation",
+    "stages": [7],
+    "category": "移动机器人导航框架",
+    "access_status": "开源 ROS 2 工具链；维护方提供专业服务；按目标发行版匹配。",
+    "inputs": ["地图或环境表征", "定位、TF 与里程计", "传感器观测", "目标与运动约束"],
+    "outputs": ["导航路径", "底盘运动命令", "导航任务和恢复状态"],
+    "interfaces": ["ROS actions/services/topics", "行为树节点", "规划与控制插件"],
+    "deployment_modes": ["机器人本地 ROS 2 导航栈", "对应发行版的软件包或源码部署"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain_with_services", "detail": "官方文档、代码及专业服务入口公开。"},
+      "customer": {"level": "maintainer_adoption_statement", "detail": "企业采用表述来自维护方；未逐厂核验生产配置和规模。"},
+      "scope": {"detail": "移动机器人单机导航与行为编排，不是多车队全局资源仲裁。"}
+    },
+    "limits": ["需要机器人底盘驱动和定位配置", "不替代制动与伺服闭环", "多机窄通道和设施资源需额外协调"],
+    "sources": [
+      {"title": "Nav2 documentation", "url": "https://docs.nav2.org/rolling/", "type": "official_documentation", "claim_scope": "导航职责、模块接口、服务与采用方表述"},
+      {"title": "Navigation2 repository", "url": "https://github.com/ros-navigation/navigation2", "type": "official_code", "claim_scope": "开源获取与按发行版使用"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "ros2-control",
+    "name": "ros2_control",
+    "vendor": "ros-controls 开源社区",
+    "stages": [7],
+    "category": "控制器管理与硬件抽象",
+    "access_status": "开源发行包及源码；Jazzy 文档用于接口例，不声称 Jazzy 为最新版本。",
+    "inputs": ["机器人描述", "控制参考", "硬件状态接口"],
+    "outputs": ["硬件命令接口", "组件与控制器状态", "循环诊断"],
+    "interfaces": ["ControllerInterface 插件", "硬件 read/write", "状态与命令接口", "Controller Manager services"],
+    "deployment_modes": ["机器人本地控制循环", "模拟或真实硬件组件适配"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "公开架构、发行包获取与源码入口。"},
+      "customer": {"level": "vendor_integration_support", "entities": ["Universal Robots"], "detail": "UR 官方 driver 明确兼容 ros2_control；这不是任意硬件的客户生产证明。"},
+      "scope": {"detail": "标准化控制器和设备驱动接缝；实时行为依赖平台与具体驱动。"}
+    },
+    "limits": ["ROS 2 不保证硬实时", "需核验阻塞、内存和调度", "命令限幅与异常处理取决于配置和驱动"],
+    "sources": [
+      {"title": "Getting Started and architecture", "url": "https://control.ros.org/jazzy/doc/getting_started/getting_started.html", "type": "official_documentation", "claim_scope": "架构、插件和获取"},
+      {"title": "Controller Manager", "url": "https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html", "type": "official_documentation", "claim_scope": "循环、生命周期、诊断及异常"},
+      {"title": "UR integration paths", "url": "https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html", "type": "official_documentation", "claim_scope": "UR driver 与 ros2_control 集成"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "mech-vision-mech-viz",
+    "name": "Mech-Vision / Mech-Viz",
+    "vendor": "Mech-Mind",
+    "stages": [7],
+    "category": "工业三维视觉与视觉引导运动",
+    "access_status": "商业软件，经供应商渠道与相机、IPC、机器人版本组合获取。",
+    "inputs": ["图像与点云", "工件及视觉项目", "机器人、抓手与场景模型", "机器人或 PLC 请求"],
+    "outputs": ["目标位姿及标签", "抓取路径", "运动或 I/O 请求及处理状态"],
+    "interfaces": ["TCP socket 标准接口", "机器人侧接口程序", "Master-Control 程序或适用 SDK"],
+    "deployment_modes": ["IPC 上视觉系统", "返回结果给机器人或 PLC", "适用集成下的视觉侧主控"],
+    "evidence": {
+      "availability": {"level": "commercial_documented", "detail": "当前产品与集成文档公开；两产品规划功能存在交叠。"},
+      "customer": {"level": "vendor_anonymous_production_case", "detail": "供应商点焊上料现场案例未具名客户；不能补写客户名称或承诺指标。"},
+      "scope": {"detail": "视觉与视觉引导取放，不是所有工件的免标定通用应用。"}
+    },
+    "limits": ["标定、光照和抓手几何影响结果", "接口模式决定控制权", "匿名案例不能当作独立客户验证"],
+    "sources": [
+      {"title": "Vision system and communication", "url": "https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html", "type": "official_documentation", "claim_scope": "输入输出、软件职责和两种通信模式"},
+      {"title": "Automotive components for spot welding", "url": "https://www.mech-mind.com/cases/picking-of-automotive-components-for-spot-welding.html", "type": "vendor_case", "claim_scope": "匿名现场应用，不支持具名客户或普遍性能承诺"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "ur-polyscope-ros2-driver",
+    "name": "UR PolyScope / Universal Robots ROS 2 Driver",
+    "vendor": "Universal Robots",
+    "stages": [7],
+    "category": "机器人控制器软件与外部应用接口",
+    "access_status": "PolyScope 随适用机器人系统提供；官方 ROS 2 driver 开源且由供应商支持。",
+    "inputs": ["控制器程序", "外部轨迹与 I/O 请求", "速度缩放与状态条件"],
+    "outputs": ["控制器执行的运动", "机器人状态与 I/O 反馈", "暂停和故障状态"],
+    "interfaces": ["URScript", "RTDE", "ROS topics/services/actions", "ros2_control"],
+    "deployment_modes": ["机器人内 PolyScope", "外部 Linux ROS 2 driver", "适用 PolyScope X 的内置 ROS 2 路径"],
+    "evidence": {
+      "availability": {"level": "commercial_controller_and_official_open_source_driver", "detail": "官网明确提供并支持 driver，官方仓库及控制器软件接口公开。"},
+      "customer": {"level": "not_verified_for_driver", "detail": "官网工厂集成案例不能自动证明客户使用该 ROS driver。"},
+      "scope": {"detail": "区分 PolyScope X、PolyScope 5、CB3 和内置 ROS 2 的发行版限制。"}
+    },
+    "limits": ["不绕过机器人控制器直接驱动电机", "内置 ROS 2 不保证任意发行版互通", "保留速度缩放和异常映射"],
+    "sources": [
+      {"title": "PolyScope integration", "url": "https://www.universal-robots.com/products/software/integration/", "type": "official_product", "claim_scope": "控制器软件职责及工业、ROS、RTDE 接口"},
+      {"title": "ROS 2 integration paths", "url": "https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html", "type": "official_documentation", "claim_scope": "内置 ROS 与外部 driver 的区别"},
+      {"title": "Official ROS 2 driver", "url": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver", "type": "official_code", "claim_scope": "源码、Linux 条件和控制器覆盖范围"},
+      {"title": "Develop with ROS/ROS2", "url": "https://www.universal-robots.com/developer/communication-protocol/ros-and-ros2-driver/", "type": "official_documentation", "claim_scope": "供应商支持与功能范围"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "abb-egm-rw6-example",
+    "name": "ABB Externally Guided Motion (EGM，RobotWare 6 接口例)",
+    "vendor": "ABB Robotics",
+    "stages": [7],
+    "category": "存量工业控制器外部运动引导",
+    "access_status": "核验到 RobotWare 6.14、修订 F 的正式控制器选件与手册；当前其它控制器的供货和兼容未外推。",
+    "inputs": ["外部关节或笛卡尔目标", "路径修正测量", "RAPID 配置与执行状态"],
+    "outputs": ["当前及计划位置", "引导或修正后的控制器运动", "执行状态"],
+    "interfaces": ["UDP", "Protobuf egm.proto", "EGM RAPID 组件"],
+    "deployment_modes": ["IRC5 / RobotWare 6.14 与对应 EGM 选件", "外部通信端点及控制器程序"],
+    "evidence": {
+      "availability": {"level": "historical_controller_option_documented", "detail": "官方手册明确选件、版本和通信协议；不是当前所有 SKU 的供货证明。"},
+      "customer": {"level": "application_examples_only", "detail": "手册列上料和焊缝跟踪例示，未具名生产客户。"},
+      "scope": {"detail": "仅作为存量控制器接口例；不混入最新 OmniCore/RobotWare 规格。"}
+    },
+    "limits": ["不是通用 ROS 2 driver", "不是任意力矩控制权限", "需配置坐标、单位、控制模式与失联处理", "下载签名失效可按 3HAC073319-001 在 ABB Library 查询"],
+    "sources": [
+      {"title": "Application manual EGM, RobotWare 6.14, revision F", "url": "https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt", "type": "official_manual", "claim_scope": "版本、选件、三种职责、UDP/Protobuf 与代码示例"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "jetson-jetpack",
+    "name": "NVIDIA Jetson / JetPack",
+    "vendor": "NVIDIA",
+    "stages": [8],
+    "category": "机器人本地计算模块与适配软件栈",
+    "access_status": "开发套件、生产模块及官方软件栈可获取；Thor 正式可供声明发布于 2025-08-25。",
+    "inputs": ["传感器数据", "AI 模型", "应用与设备配置"],
+    "outputs": ["感知及推理结果", "应用层控制请求"],
+    "interfaces": ["Linux 与设备驱动", "CUDA", "推理与传感器 SDK"],
+    "deployment_modes": ["开发套件", "生产模块与 OEM 载板", "本地应用或容器"],
+    "evidence": {
+      "availability": {"level": "commercial_hardware_and_official_software", "detail": "供应商正式声明 Thor 开发套件及生产模块可用，软件栈有官方入口。"},
+      "customer": {"level": "vendor_named_early_adoption", "entities": ["Agility Robotics"], "detail": "供应商列为早期采用方，不证明全部整机量产规模。"},
+      "scope": {"detail": "计算宿主；各代模块和 JetPack 组合分别核验，不将开发套件视为完成整机集成。"}
+    },
+    "limits": ["载板、散热、电源和驱动仍需集成", "代际规格不可混写", "峰值算力不等于闭环周期保证"],
+    "sources": [
+      {"title": "JetPack official stack", "url": "https://developer.nvidia.com/embedded/jetpack", "type": "official_product", "claim_scope": "软件栈、平台支持与开发接缝"},
+      {"title": "Jetson Thor availability", "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-Powered-Jetson-Thor-Now-Available-Accelerating-the-Age-of-General-Robotics/default.aspx", "type": "vendor_announcement", "claim_scope": "正式可供与早期采用披露"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "tensorrt",
+    "name": "NVIDIA TensorRT",
+    "vendor": "NVIDIA",
+    "stages": [8],
+    "category": "GPU 推理引擎构建与运行 SDK",
+    "access_status": "官方 SDK、软件包及容器渠道；目标平台版本以支持矩阵为准。",
+    "inputs": ["ONNX 或网络定义", "模型权重", "输入形状与精度策略", "运行时输入张量"],
+    "outputs": ["硬件相关 engine", "预测张量"],
+    "interfaces": ["C++/Python builder 与 runtime", "ONNX parser", "trtexec", "自定义插件 API"],
+    "deployment_modes": ["本地进程内 runtime", "应用容器", "适用 NVIDIA 软件栈"],
+    "evidence": {
+      "availability": {"level": "official_sdk", "detail": "文档化构建、获取与应用内运行路径。"},
+      "customer": {"level": "not_verified_for_robot_application", "detail": "不将 Jetson 客户名单转作 TensorRT 特定生产应用证明。"},
+      "scope": {"detail": "模型构建及推理，不包括相机处理、机器人控制和完整应用部署。"}
+    },
+    "limits": ["engine 不是任意硬件通用文件", "算子和插件覆盖需核验", "数值和完整流水线延迟需测试", "不把最新 SDK 版本绑定到任意 JetPack"],
+    "sources": [
+      {"title": "TensorRT Quick Start Guide", "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html", "type": "official_documentation", "claim_scope": "模型构建、接口、获取渠道和硬件相关产物"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "igx-thor",
+    "name": "NVIDIA IGX Thor",
+    "vendor": "NVIDIA",
+    "stages": [8],
+    "category": "工业、机器人及医疗边缘计算平台",
+    "access_status": "官方确认开发套件可购及生产软件发布；T5000/T7000 生产形态可查，但未逐一核验各地现货。",
+    "inputs": ["多模态传感器数据", "AI 模型与应用", "平台及企业栈配置"],
+    "outputs": ["本地推理与传感器处理结果", "平台运行管理信息"],
+    "interfaces": ["GPU 与传感器 SDK", "IGX 平台接口", "企业软件及支持入口"],
+    "deployment_modes": ["IGX Thor 开发套件", "T5000 模块或 T7000 板卡的 OEM 集成形态", "企业软件订阅配置"],
+    "evidence": {
+      "availability": {"level": "platform_and_developer_kit_available", "detail": "2026 年 3 月披露开发套件可购，同文生产模块/板卡为后续供货；不以生产软件支持列表替代现货证明。"},
+      "customer": {"level": "vendor_named_adoption_and_development", "entities": ["Hitachi Rail", "Caterpillar"], "detail": "分别披露预测维护/自主检查采用及座舱应用开发，未证明整机普遍量产。"},
+      "scope": {"detail": "IGX Thor、IGX Orin、开发套件、生产形态和软件支持范围分别记录。"}
+    },
+    "limits": ["JetPack 不自动获得 IGX 企业长期支持", "OEM 整机交付须单独核验", "部件及平台安全能力不推成整机安全认证"],
+    "sources": [
+      {"title": "IGX platform", "url": "https://developer.nvidia.com/igx", "type": "official_product", "claim_scope": "平台、开发及生产形态"},
+      {"title": "GTC 2026 IGX availability and adoption", "url": "https://blogs.nvidia.com/blog/gtc-2026-news/", "type": "vendor_announcement", "claim_scope": "已可购开发套件、后续生产形态和具名采用阶段"},
+      {"title": "IGX-SW production release", "url": "https://forums.developer.nvidia.com/t/igx-sw-2-0-is-now-live/363924", "type": "official_release_announcement", "claim_scope": "生产软件发布，不证明所有硬件 SKU 现货"},
+      {"title": "NVAIE for IGX", "url": "https://docs.nvidia.com/igx/user-guide/latest/NVAIE/nvaie.html", "type": "official_documentation", "claim_scope": "企业订阅支持及 JetPack 支持边界"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "onnx-runtime",
+    "name": "ONNX Runtime",
+    "vendor": "Microsoft / ONNX Runtime 项目",
+    "stages": [8],
+    "category": "跨硬件模型推理运行时",
+    "access_status": "官方开源代码与发布包；EP 的生产、预览及弃用状态逐项确认。",
+    "inputs": ["ONNX 模型", "命名输入张量", "Execution Provider 与会话配置"],
+    "outputs": ["模型输出张量", "后端及运行配置信息"],
+    "interfaces": ["InferenceSession", "Python、C/C++、C# 等 API", "Execution Provider 接口"],
+    "deployment_modes": ["边缘本地进程", "应用容器", "目标系统适用绑定与后端"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "官方源码、获取和 EP 接口公开。"},
+      "customer": {"level": "first_party_non_robot_production_use", "entities": ["Microsoft Windows", "Microsoft Office", "Bing"], "detail": "官方披露通用软件采用，不当作机器人客户案例。"},
+      "scope": {"detail": "跨硬件模型执行，后端状态和算子覆盖不是统一保证。"}
+    },
+    "limits": ["CPU 回退可改变延迟和数值路径", "需记录实际后端分配与依赖", "不负责机器人状态机或硬实时"],
+    "sources": [
+      {"title": "Execution Providers", "url": "https://onnxruntime.ai/docs/execution-providers/", "type": "official_documentation", "claim_scope": "节点分配、API、回退及不同后端状态"},
+      {"title": "ONNX Runtime home", "url": "https://onnxruntime.ai/", "type": "official_product", "claim_scope": "跨平台绑定及 Microsoft 产品采用披露"},
+      {"title": "ONNX Runtime repository", "url": "https://github.com/microsoft/onnxruntime", "type": "official_code", "claim_scope": "开源获取"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "openvino",
+    "name": "OpenVINO",
+    "vendor": "Intel / OpenVINO 项目",
+    "stages": [8],
+    "category": "设备模型编译与推理工具链",
+    "access_status": "官方开源代码、软件包和容器；设备插件与驱动须匹配。",
+    "inputs": ["ONNX、IR 等支持模型", "张量", "设备和推理请求配置"],
+    "outputs": ["CompiledModel", "模型输出张量"],
+    "interfaces": ["C/C++/Python API", "Core.compile_model", "InferRequest", "张量接口"],
+    "deployment_modes": ["本地 runtime", "应用容器", "适用 CPU/GPU/NPU 后端", "通过 ONNX Runtime OpenVINO EP 的另一集成路径"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "官方接口、获取和源码公开。"},
+      "customer": {"level": "vendor_named_development_adoption", "entities": ["Onyx Healthcare", "FREE Bionics"], "detail": "2026-07-17 外骨骼 AI 开发披露，不证明临床有效性、认证或量产规模。"},
+      "scope": {"detail": "模型优化、设备编译与推理，不等于外骨骼控制或医疗资格。"}
+    },
+    "limits": ["首次编译加载和异步排队纳入测试", "AUTO 不替代固定部署条件", "算子与动态形状依设备核验"],
+    "sources": [
+      {"title": "Inference pipeline", "url": "https://docs.openvino.ai/2026/openvino-workflow/running-inference.html", "type": "official_documentation", "claim_scope": "模型输入、编译、推理 API 和设备模式"},
+      {"title": "OpenVINO repository", "url": "https://github.com/openvinotoolkit/openvino", "type": "official_code", "claim_scope": "开源获取"},
+      {"title": "Onyx and FREE Bionics development disclosure", "url": "https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-powered-medical-exoskeleton-helps-patients-get-back-on-their-feet.html", "type": "vendor_case", "claim_scope": "具名外骨骼开发采用，不支持医疗效果或量产规模结论"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "siemens-ipc-industrial-edge",
+    "name": "Siemens SIMATIC IPC / Industrial Edge",
+    "vendor": "Siemens",
+    "stages": [8],
+    "category": "工业边缘宿主与应用运行管理",
+    "access_status": "正式商业设备与软件渠道；当前目录含多个代际，不按名称猜测最新型号。",
+    "inputs": ["现场数据", "连接器配置", "容器化应用与设备配置"],
+    "outputs": ["边缘分析结果", "应用部署状态", "设备运行信息"],
+    "interfaces": ["设备 Ethernet/USB", "Docker 容器", "平台公开 API"],
+    "deployment_modes": ["SIMATIC IPC Edge 设备", "适用面板与虚拟设备", "本地或云管理部署"],
+    "evidence": {
+      "availability": {"level": "commercial_documented", "detail": "官网设备目录及平台运行架构可查。"},
+      "customer": {"level": "not_verified_for_specific_robot_ipc", "detail": "不由工业平台应用案例推断某机器人使用特定 IPC。"},
+      "scope": {"detail": "工业应用宿主与生命周期；普通容器数据处理与 PLC/运动闭环分开。"}
+    },
+    "limits": ["实时数据不等于硬实时伺服", "虚拟控制器支持条件单独核验", "跨域数据有效期和失联行为需交付"],
+    "sources": [
+      {"title": "Industrial Edge devices", "url": "https://www.siemens.com/en-us/products/industrial-edge/devices/", "type": "official_product", "claim_scope": "设备系列、接口与部署形态"},
+      {"title": "Industrial Edge architecture", "url": "https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/", "type": "official_product", "claim_scope": "容器、公开接口、控制/数据平面及管理方式；通过官网 HTML 读取"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "applied-intuition-automotive-validation",
+    "name": "Applied Intuition 汽车验证与在环方案",
+    "vendor": "Applied Intuition",
+    "stages": [9],
+    "category": "汽车仿真、软件验证与 HIL 集成",
+    "access_status": "正式商业工具与工程集成；公开产品入口，不臆造所有台架通用 API。",
+    "inputs": ["场景和真实日志", "传感器及车辆模型", "被测汽车软件或 ECU", "测试要求"],
+    "outputs": ["场景评估结果", "在环测试证据", "验证追踪信息"],
+    "interfaces": ["产品 SDK 化工作流", "按被测对象适配的传感器/硬件注入与时间同步", "合作测试硬件端点"],
+    "deployment_modes": ["适用云、本地或隔离工具环境", "与测试硬件集成的汽车 HIL 台架"],
+    "evidence": {
+      "availability": {"level": "commercial_tooling_and_integration", "detail": "当前工具平台公开；NI 公告证明仿真与测试硬件的分工。"},
+      "customer": {"level": "vendor_named_automotive_collaboration", "entities": ["Porsche"], "detail": "2024 合作披露 SIL/HIL 与车辆测试，不证明某车型所有测试由某单品完成。"},
+      "scope": {"detail": "本记录只采用汽车 ADAS/AD/车辆软件分支，不把道路验证扩展为通用机器人结论。"}
+    },
+    "limits": ["测试硬件与模型需项目适配", "合作公告不等于所有具体接口规格公开", "仿真覆盖不能替代真实系统未知故障分析"],
+    "sources": [
+      {"title": "Current products", "url": "https://www.appliedintuition.com/products", "type": "official_product", "claim_scope": "当前工具入口、SDK 工作流和部署环境"},
+      {"title": "NI validation partnership", "url": "https://www.appliedintuition.com/press-releases/national-instruments", "type": "vendor_announcement", "claim_scope": "汽车仿真与 HIL 硬件分工"},
+      {"title": "Porsche collaboration", "url": "https://www.appliedintuition.com/press-releases/porsche", "type": "vendor_announcement", "claim_scope": "具名汽车合作及 SIL/HIL/车辆测试范围"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "dspace-scalexio-automotive-hil",
+    "name": "dSPACE SCALEXIO（汽车 HIL 分支）",
+    "vendor": "dSPACE",
+    "stages": [9],
+    "category": "汽车 ECU 实时闭环硬件在环",
+    "access_status": "按项目配置的商业实时硬件与软件组合；部分文档或服务需注册。",
+    "inputs": ["真实 ECU", "车辆/环境实时模型", "I/O 和总线配置", "测试及故障注入定义"],
+    "outputs": ["闭环响应", "捕获数据", "测试判据与故障结果"],
+    "interfaces": ["模拟/数字 I/O", "总线与网络", "FMI", "适用组件 ASAM XIL API"],
+    "deployment_modes": ["实验室汽车 HIL 台架", "项目定制硬件及信号调理配置"],
+    "evidence": {
+      "availability": {"level": "commercial_hil_platform", "detail": "产品、获取与 FSX 扩展及接口有官方说明。"},
+      "customer": {"level": "vendor_named_automotive_use", "entities": ["Geely"], "detail": "供应商客户页具名评价明确 SCALEXIO 与 ASM 的混动 ECU 开发测试。"},
+      "scope": {"detail": "仅记录汽车 ECU 测试；HIL 中 ECU 被测，RCP 替代 ECU 是不同流程。"}
+    },
+    "limits": ["故障注入能力依硬件配置", "模型误差仍存在", "不从汽车台架推断通用机器人接触验证"],
+    "sources": [
+      {"title": "SCALEXIO overview", "url": "https://www.dspace.com/en/pub/home/products/hw/simulator_hardware/scalexio.cfm", "type": "official_product", "claim_scope": "HIL/RCP 职责、输入输出、硬件及模型接口"},
+      {"title": "SCALEXIO FSX", "url": "https://www.dspace.com/en/pub/home/news/dspace_pressroom/press/scalexio-fsx-extension.cfm", "type": "vendor_announcement", "claim_scope": "正式扩展、故障注入与 ASAM XIL"},
+      {"title": "Customer opinions", "url": "https://www.dspace.com/en/pub/home/company/customers.cfm", "type": "vendor_customer_quote", "claim_scope": "Geely 的具体汽车开发测试用途，不作统一性能证明"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "foxglove-replay",
+    "name": "Foxglove（日志回放与验证证据分支）",
+    "vendor": "Foxglove",
+    "stages": [9],
+    "category": "机器人事件时间轴检查与回放前端",
+    "access_status": "当前商业应用/服务按席位或许可获取；本地文件也有访问条件。",
+    "inputs": ["MCAP 或 ROS bag 等记录", "WebSocket 回放流", "消息定义和时间戳"],
+    "outputs": ["可视化事件证据", "播放、暂停、定位请求", "共享的诊断上下文"],
+    "interfaces": ["本地文件加载", "Foxglove WebSocket", "SDK PlaybackControl"],
+    "deployment_modes": ["本地应用与记录", "连接自有播放器", "适用远端数据服务"],
+    "evidence": {
+      "availability": {"level": "commercial_documented_tool", "detail": "当前回放文档、格式和文件访问条件公开。"},
+      "customer": {"level": "named_robot_development_integration", "entities": ["Dexory"], "detail": "官方介绍 Dexory 播放器同时连接 Foxglove 与 ROS 2；不是闭环重现实验保证。"},
+      "scope": {"detail": "回放检查和测试证据前端，不重列数据平台其它功能。"}
+    },
+    "limits": ["旧 db3 缺少消息定义", "日志时间与消息时间须对齐", "视觉一致不等于自动回归通过", "旧日志不自动闭环响应新动作"],
+    "sources": [
+      {"title": "Playback", "url": "https://docs.foxglove.dev/docs/visualization/playback", "type": "official_documentation", "claim_scope": "回放操作、时间顺序和同步"},
+      {"title": "Local data", "url": "https://docs.foxglove.dev/docs/visualization/connecting/local-data", "type": "official_documentation", "claim_scope": "格式、db3 限制与席位条件"},
+      {"title": "PlaybackControl and Dexory player", "url": "https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control", "type": "vendor_integration_example", "claim_scope": "具名播放器集成与双输出"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "rosbag2-replay",
+    "name": "rosbag2",
+    "vendor": "ROS 2 / ros2 开源项目",
+    "stages": [9],
+    "category": "ROS 2 消息记录与回归输入回放",
+    "access_status": "开源代码及发行版工具链；未执行安装或播放。",
+    "inputs": ["ROS 2 话题", "回放记录", "话题、时序与 QoS 配置"],
+    "outputs": ["存储记录", "按所选配置重发的 ROS 消息"],
+    "interfaces": ["ros2 bag CLI", "录制/播放库与存储插件"],
+    "deployment_modes": ["机器人侧记录", "与设备执行域隔离的测试主机回放"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "官方仓库含获取、录制与播放说明。"},
+      "customer": {"level": "not_verified_for_specific_customer_rosbag2", "detail": "案例中的 rosbag 支持不自动证明特定 rosbag2 版本生产使用。"},
+      "scope": {"detail": "消息记录与重发；回归判据由测试程序实现。"}
+    },
+    "limits": ["可重发指令话题，测试必须隔离设备端", "初始状态、消息定义、TF 和 QoS 影响结果", "不自动提供闭环环境"],
+    "sources": [
+      {"title": "rosbag2 official repository", "url": "https://github.com/ros2/rosbag2", "type": "official_code", "claim_scope": "源码、CLI、记录与回放语义；替代受限 ROS 文档站"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "mirfleet",
+    "name": "MiRFleet",
+    "vendor": "Mobile Industrial Robots",
+    "stages": [10],
+    "category": "MiR 车队任务与运行协调",
+    "access_status": "商业车队软件和设备集成渠道；公开学院及支持入口；不使用旧博客容量作为当前规格。",
+    "inputs": ["任务和优先级", "地图", "MiR 机器人运行状态"],
+    "outputs": ["机器人任务分配", "任务进展", "障碍与执行反馈"],
+    "interfaces": ["Web 管理界面", "REST 接口", "官方教材 Fleet 查询端点"],
+    "deployment_modes": ["集中 Fleet 服务与车载软件", "与上层 ERP/WMS 或工位接口集成"],
+    "evidence": {
+      "availability": {"level": "commercial_fleet_software_documented", "detail": "供应商职责说明和当前 API 教材入口可查，部署条件按具体系统核验。"},
+      "customer": {"level": "vendor_named_factory_use", "entities": ["FORVIA Faurecia Písek"], "detail": "案例明确 Fleet 用于组织任务；ERP 集成仍作为后续目标。"},
+      "scope": {"detail": "MiR 车队；不自动扩展到任意厂商原生互操作。"}
+    },
+    "limits": ["Fleet、车载软件与地图版本匹配", "旧路线图和容量不能作当前承诺", "外部接口确认与交通权限需另核"],
+    "sources": [
+      {"title": "MiRFleet responsibility", "url": "https://mobile-industrial-robots.com/blog/higher-order-mobile-robotics", "type": "official_product_explanation", "claim_scope": "职责和接口层次；不采用旧容量或路线图"},
+      {"title": "MiR Academy software integration", "url": "https://academy.mobile-industrial-robots.com/free-skill-paths/software-integration/", "type": "official_training", "claim_scope": "公开 REST/Fleet 接口教材入口"},
+      {"title": "FORVIA Faurecia case", "url": "https://mobile-industrial-robots.com/de/falle/forvia", "type": "vendor_case", "claim_scope": "具名工厂 Fleet 使用与 ERP 后续目标"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "inorbit",
+    "name": "InOrbit",
+    "vendor": "InOrbit.AI",
+    "stages": [10],
+    "category": "机器人运维与任务编排接口",
+    "access_status": "商业云平台；开发者方案及 robot/edge 接入组件有公开入口。",
+    "inputs": ["遥测与诊断", "任务事件", "业务系统上下文", "经配置的操作请求"],
+    "outputs": ["运行视图", "告警与事件", "任务追踪", "机器人或车队操作请求"],
+    "interfaces": ["REST APIs", "Robot SDK", "ROS 1/2 集成", "Edge SDK"],
+    "deployment_modes": ["云平台与机器人 agent/SDK", "经连接器接入的边缘系统"],
+    "evidence": {
+      "availability": {"level": "commercial_platform_with_public_interfaces", "detail": "开发者方案、配置、接口与集成文档可查。"},
+      "customer": {"level": "named_partner_demo", "entities": ["Instock", "OTTO"], "detail": "Robot Space 和 Automate 2024 远程演示，不作客户仓库普遍生产证据。"},
+      "scope": {"detail": "遥测、任务与多系统编排，实际动作依接入端接口与本地状态机。"}
+    },
+    "limits": ["云端请求不等于机器人接受", "订阅权限与保留策略须确认", "失联、陈旧状态和操作员争用需处理"],
+    "sources": [
+      {"title": "InOrbit developer docs", "url": "https://developer.inorbit.ai/docs", "type": "official_documentation", "claim_scope": "REST、SDK、ROS、配置与权限"},
+      {"title": "Developer Edition", "url": "https://developer.inorbit.ai/pricing-dev", "type": "official_product", "claim_scope": "当前获取方案，不引用价格作决策"},
+      {"title": "Instock and InOrbit", "url": "https://www.inorbit.ai/blog/instock-and-inorbit", "type": "vendor_partner_demo", "claim_scope": "具名伙伴演示与真实范围，不支持客户生产规模"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "open-rmf",
+    "name": "Open-RMF",
+    "vendor": "Open-RMF 开源项目 / OSRA 项目治理",
+    "stages": [10],
+    "category": "多车队与楼宇资源协调",
+    "access_status": "免费开源模块、源码及 demos；部署方维护服务、导航图和适配器。",
+    "inputs": ["任务", "导航图", "机器人位置、电量与执行状态", "门、电梯等设施状态"],
+    "outputs": ["任务分配", "交通协商结果", "经 adapter 转换的车队请求"],
+    "interfaces": ["C++ fleet adapter API", "Python bindings", "ROS 2 消息", "适配模板与车队自有 API"],
+    "deployment_modes": ["部署方自管的 ROS 2 协调服务", "与已有车队管理器或机器人 API 适配"],
+    "evidence": {
+      "availability": {"level": "open_source_toolchain", "detail": "官方代码、demos、治理与接口文档公开。"},
+      "customer": {"level": "not_verified_for_named_production_site", "detail": "官网医疗起源和 demos 不被改写成具名医院生产配置。"},
+      "scope": {"detail": "接入模式区分 Full Control、Traffic Light 等；协调权限依机器人侧能力。"}
+    },
+    "limits": ["只读不等于全控制", "导航图、坐标和状态回报必须一致", "非参与设备不自动纳入协商", "不替代本地避障与运动闭环"],
+    "sources": [
+      {"title": "Open-RMF official site", "url": "https://www.open-rmf.org/", "type": "official_product", "claim_scope": "开源、设施互操作、demos 和项目治理"},
+      {"title": "Open-RMF root repository", "url": "https://github.com/open-rmf/rmf", "type": "official_code", "claim_scope": "项目获取"},
+      {"title": "Mobile robot fleet integration", "url": "https://osrf.github.io/ros2multirobotbook/integration_fleets.html", "type": "official_documentation", "claim_scope": "公开 API、适配和不同控制模式"},
+      {"title": "Fleet adapter tutorial", "url": "https://osrf.github.io/ros2multirobotbook/integration_fleets_adapter_tutorial.html", "type": "official_documentation", "claim_scope": "状态、命令与完成确认责任"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "formant",
+    "name": "Formant",
+    "vendor": "Formant",
+    "stages": [10],
+    "category": "遥测、事件与远程现场支持",
+    "access_status": "商业云平台与 Linux agent/SDK；官网当前 formant.ai，文档和应用仍使用 formant.io。",
+    "inputs": ["状态和应用遥测", "视频与事件", "经授权的命令", "设备配置"],
+    "outputs": ["历史查询及诊断上下文", "命令执行状态", "遥操作会话"],
+    "interfaces": ["Agent SDK", "Cloud SDK", "Formant API", "WebRTC 遥操作"],
+    "deployment_modes": ["云平台与受支持 Linux agent", "应用 SDK 接入", "浏览器与设备遥操作会话"],
+    "evidence": {
+      "availability": {"level": "commercial_documented_platform", "detail": "当前官网与支持矩阵、agent、公开 SDK 文档可查；域名迁移不意味着停供。"},
+      "customer": {"level": "vendor_named_field_use", "entities": ["Burro"], "detail": "供应商案例描述农场监控、远程支持和 rosbag；未用旧案例推当前车队数量。"},
+      "scope": {"detail": "历史遥测与实时介入职责分开，不是所有厂商的交通仲裁器。"}
+    },
+    "limits": ["遥测补传不等于允许延迟执行运动命令", "许可、权限和网络条件独立核验", "本地失联行为与命令有效期需交付"],
+    "sources": [
+      {"title": "Current Formant site", "url": "https://www.formant.ai/", "type": "official_product", "claim_scope": "当前服务入口，不使用动态数量作证明"},
+      {"title": "Formant agent", "url": "https://docs.formant.io/docs/the-formant-agent", "type": "official_documentation", "claim_scope": "agent、支持条件、遥测、WebRTC 和命令"},
+      {"title": "API and SDK overview", "url": "https://docs.formant.io/reference/api-sdk-overview", "type": "official_documentation", "claim_scope": "设备与云侧 SDK 分工"},
+      {"title": "Burro field use", "url": "https://www.formant.ai/burro", "type": "vendor_case", "claim_scope": "具名农场机器人监控与现场支持用途"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "isaac-ros",
+    "name": "NVIDIA Isaac ROS（感知、定位与地图组件）",
+    "vendor": "NVIDIA",
+    "stages": [7],
+    "category": "ROS 2 加速感知、定位与地图工具链",
+    "access_status": "官方文档、组件仓库及适配环境获取入口公开；依赖与许可逐包确认。",
+    "inputs": ["按组件接入的相机图像和标定信息", "深度或 IMU", "地图组件所需的位姿", "ROS 节点与传感器配置"],
+    "outputs": ["按组件输出的检测或分割结果", "位姿与里程计", "三维重建与导航代价地图"],
+    "interfaces": ["ROS 2 节点", "话题和服务", "launch 与组件配置"],
+    "deployment_modes": ["支持 GPU 平台上的机器人 ROS 2 数据流", "按官方环境和包依赖集成"],
+    "evidence": {
+      "availability": {"level": "public_toolchain", "detail": "官方组件目录、定位与地图文档及仓库可查，不列版本大全。"},
+      "customer": {"level": "not_assessed", "detail": "按本次范围不扩查客户案例；不宣称特定客户生产部署。"},
+      "scope": {"detail": "本记录覆盖感知、定位与地图 ROS 2 组件；区别于 JetPack 系统/计算依赖和 TensorRT 模型引擎。"}
+    },
+    "limits": ["各组件的输入输出和许可不同", "支持 GPU、ROS 分支与传感器条件须匹配", "标定、时钟和坐标需集成核验", "GPU 加速不保证整条链路硬实时"],
+    "sources": [
+      {"title": "Isaac ROS official documentation", "url": "https://nvidia-isaac-ros.github.io/", "type": "official_documentation", "claim_scope": "组件分类、ROS 工具链职责与获取入口"},
+      {"title": "Isaac ROS Common repository", "url": "https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common", "type": "official_code", "claim_scope": "组件环境、公共工具与仓库可获取性"},
+      {"title": "Isaac ROS Visual SLAM", "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html", "type": "official_documentation", "claim_scope": "定位组件、观测输入和里程计输出"},
+      {"title": "Isaac ROS Nvblox", "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html", "type": "official_documentation", "claim_scope": "深度与位姿输入、三维重建、导航代价地图及适配条件"}
+    ],
+    "checked_at": "2026-10-27"
+  },
+  {
+    "id": "curobo",
+    "name": "cuRobo",
+    "vendor": "NVIDIA / NVlabs",
+    "stages": [7],
+    "category": "GPU 运动生成算法库",
+    "access_status": "官方 Apache-2.0 仓库与 Python API 文档公开；需要匹配 CUDA 计算环境。",
+    "inputs": ["机器人模型和碰撞几何", "障碍场景", "当前关节状态", "目标末端位姿"],
+    "outputs": ["规划成功或失败状态", "优化关节轨迹", "插值轨迹"],
+    "interfaces": ["Python 模型/状态/场景 API", "逆运动学模块", "碰撞查询、轨迹优化与运动规划模块"],
+    "deployment_modes": ["CUDA GPU 主机上的应用内算法库", "通过应用集成层连接 ROS/MoveIt 与轨迹执行端"],
+    "evidence": {
+      "availability": {"level": "public_toolchain", "detail": "公开官方代码、模型/场景接口及运动生成文档。"},
+      "customer": {"level": "not_assessed", "detail": "按本次范围不扩查客户；不将演示或算法基准作为客户生产证明。"},
+      "scope": {"detail": "生成候选运动轨迹，不是 MoveIt 整套 ROS 应用框架、伺服控制器或运动完成反馈。"}
+    },
+    "limits": ["几何近似和障碍更新决定碰撞模型", "关节顺序、单位及执行约束须一致", "轨迹下发与实际执行确认需要集成层", "规划成功不等于现场执行保证"],
+    "sources": [
+      {"title": "cuRobo official documentation", "url": "https://curobo.org/", "type": "official_documentation", "claim_scope": "CUDA 运动生成算法库的职责与模块"},
+      {"title": "Motion planning workflow", "url": "https://nvlabs.github.io/curobo/latest/getting-started/motion_planning.html", "type": "official_documentation", "claim_scope": "模型、障碍、起始状态、目标输入及规划状态/轨迹输出"},
+      {"title": "Public Python API", "url": "https://nvlabs.github.io/curobo/latest/reference/api_overview.html", "type": "official_documentation", "claim_scope": "模型、状态、场景及算法公开接口"},
+      {"title": "NVlabs cuRobo repository", "url": "https://github.com/NVlabs/curobo", "type": "official_code", "claim_scope": "代码获取与 Apache-2.0 许可"}
+    ],
+    "checked_at": "2026-10-27"
+  }
+]

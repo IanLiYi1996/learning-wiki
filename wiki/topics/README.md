@@ -5,3 +5,4 @@
 ## 主题索引
 
 - [大数据技术](big-data/README.md)
+- [Physical AI](physical-ai/README.md)：按工程阶段对读产品方案和底层原理

@@ -1,0 +1,21 @@
+{
+  "chapters": 14,
+  "chapter_files": [
+    "01_system_model.md",
+    "02_robot_geometry.md",
+    "03_dynamics_contact.md",
+    "04_estimation_slam.md",
+    "05_planning_control.md",
+    "06_representation_vla.md",
+    "07_imitation_generators.md",
+    "08_rl.md",
+    "09_world_models.md",
+    "10_data_pipeline.md",
+    "11_simulation.md",
+    "12_runtime.md",
+    "13_evaluation.md",
+    "14_workbook.md"
+  ],
+  "sources": 109,
+  "source_urls_unique": 109
+}

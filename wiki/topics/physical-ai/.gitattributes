@@ -1,0 +1,6 @@
+# Preserve archived deliverable bytes across platforms (manifest uses SHA-256).
+Physical_AI_* -text
+advanced/Physical_AI_* -text
+industry/Physical_AI_* -text
+conferences/gtc-berlin-2026/GTC_Berlin_* -text
+industry/products.csv -text

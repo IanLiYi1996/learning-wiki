@@ -1,0 +1,11 @@
+{
+  "schema": "passed",
+  "citations_checked": 255,
+  "native_math_expressions": 975,
+  "misbound_citations": 0,
+  "live_page_fields": 1,
+  "dynamic_toc": "recalculate on open in Word",
+  "source_math_expressions": 975,
+  "equation_count_match": true,
+  "non_math_empty_paragraphs": 0
+}

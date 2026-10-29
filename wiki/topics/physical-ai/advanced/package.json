@@ -1,0 +1,9 @@
+{
+  "name": "physical-ai-technical-handbook",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Pinned offline SVG mathematics rendering for a Chinese technical handbook.",
+  "dependencies": {
+    "mathjax-full": "3.2.2"
+  }
+}

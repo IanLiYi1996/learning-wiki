@@ -10,6 +10,11 @@
 - [学习资源](wiki/resources/README.md)：书籍、课程、论文和工具
 - [笔记模板](templates/learning-note.md)：新建学习笔记时使用
 
+## 已整理的专题
+
+- [Physical AI](wiki/topics/physical-ai/README.md)：业界产品与端到端方案、底层原理、学习路线、离线练习及 GTC 资料
+- [大数据技术](wiki/topics/big-data/README.md)：技术分层、学习路线与 Palantir 研究
+
 ## 使用方式
 
 1. 新内容先记入 `wiki/inbox/`。

@@ -1,0 +1,98 @@
+{
+  "scope": "Teaching calculations only: no learned policy, physics engine, or hardware.",
+  "tests_passed": 11,
+  "checks": [
+    "Analytic Jacobian agrees with central differences.",
+    "Two analytic IK branches reach the same point.",
+    "Damped numerical IK converges in the teaching configuration.",
+    "Damping bounds the local update near a singular configuration.",
+    "Ideal scalar feedback matches the derived recurrence.",
+    "Scalar Kalman posterior and Joseph covariance agree.",
+    "Multimodal squared error prefers an unsupported midpoint.",
+    "Forward-noising sample moments match the specified Gaussian.",
+    "Constant-velocity flow reaches its endpoint; no model was trained.",
+    "Equal empirical success rates have different Wilson intervals.",
+    "Causal alignment selects only a sample already available."
+  ],
+  "jacobian_max_abs_error": 6.93832769016467e-11,
+  "analytic_ik": [
+    {
+      "q": [
+        0.0,
+        1.5707963267948966
+      ],
+      "position": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "q": [
+        1.5707963267948966,
+        -1.5707963267948966
+      ],
+      "position": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "numerical_ik": {
+    "iterations": 10,
+    "q": [
+      1.2991294886128313,
+      -1.6709637565643012
+    ],
+    "position": [
+      1.199999993492277,
+      0.5999999987409503
+    ],
+    "position_error": 6.628398373636738e-09
+  },
+  "near_singular_update": {
+    "inverse": [
+      999.9999999996669,
+      -1999.9999999998338
+    ],
+    "inverse_norm": 2236.067977499492,
+    "damped": [
+      1.9760479041512413e-08,
+      -4.0119760478232454e-08
+    ],
+    "damped_norm": 4.47221613160723e-08
+  },
+  "scalar_feedback_20_steps": {
+    "stable_abs_error": 9.5367431640625e-07,
+    "unstable_abs_error": 38.337599924474866
+  },
+  "scalar_kalman": {
+    "gain": 0.8,
+    "mean": 1.6,
+    "variance": 0.8
+  },
+  "bimodal_mse": {
+    "midpoint": 1.0,
+    "positive_mode": 2.0
+  },
+  "forward_noising": {
+    "sample_mean": 0.4234053199013136,
+    "sample_variance": 0.6365575117846661,
+    "expected_mean": 0.42,
+    "expected_variance": 0.64
+  },
+  "constant_flow_endpoint": 2.0000000000000004,
+  "wilson_95": {
+    "9_of_10": [
+      0.5958499732047615,
+      0.9821237869049271
+    ],
+    "90_of_100": [
+      0.8256343384950865,
+      0.9447708629393249
+    ]
+  },
+  "causal_alignment": {
+    "query_time": 0.12,
+    "selected_time": 0.1
+  }
+}

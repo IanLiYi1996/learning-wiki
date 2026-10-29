@@ -1,0 +1,162 @@
+{
+  "pdf_pages": 25,
+  "source_entries": 54,
+  "unique_source_urls": 54,
+  "chinese_characters": 14240,
+  "bookmarks": 82,
+  "pdf_links": 294,
+  "citations_checked": 258,
+  "misbound_citations": 0,
+  "pages": [
+    {
+      "page": 1,
+      "characters": 253,
+      "content_bottom": 646.3,
+      "empty": false
+    },
+    {
+      "page": 2,
+      "characters": 467,
+      "content_bottom": 679.1,
+      "empty": false
+    },
+    {
+      "page": 3,
+      "characters": 958,
+      "content_bottom": 731.1,
+      "empty": false
+    },
+    {
+      "page": 4,
+      "characters": 1037,
+      "content_bottom": 772.6,
+      "empty": false
+    },
+    {
+      "page": 5,
+      "characters": 1011,
+      "content_bottom": 753.5,
+      "empty": false
+    },
+    {
+      "page": 6,
+      "characters": 983,
+      "content_bottom": 757.5,
+      "empty": false
+    },
+    {
+      "page": 7,
+      "characters": 1113,
+      "content_bottom": 773.2,
+      "empty": false
+    },
+    {
+      "page": 8,
+      "characters": 887,
+      "content_bottom": 703.4,
+      "empty": false
+    },
+    {
+      "page": 9,
+      "characters": 1128,
+      "content_bottom": 717.8,
+      "empty": false
+    },
+    {
+      "page": 10,
+      "characters": 1045,
+      "content_bottom": 721.1,
+      "empty": false
+    },
+    {
+      "page": 11,
+      "characters": 1130,
+      "content_bottom": 765.1,
+      "empty": false
+    },
+    {
+      "page": 12,
+      "characters": 1019,
+      "content_bottom": 685.4,
+      "empty": false
+    },
+    {
+      "page": 13,
+      "characters": 997,
+      "content_bottom": 771.9,
+      "empty": false
+    },
+    {
+      "page": 14,
+      "characters": 883,
+      "content_bottom": 722.4,
+      "empty": false
+    },
+    {
+      "page": 15,
+      "characters": 1081,
+      "content_bottom": 724.0,
+      "empty": false
+    },
+    {
+      "page": 16,
+      "characters": 1160,
+      "content_bottom": 738.3,
+      "empty": false
+    },
+    {
+      "page": 17,
+      "characters": 1040,
+      "content_bottom": 771.1,
+      "empty": false
+    },
+    {
+      "page": 18,
+      "characters": 884,
+      "content_bottom": 732.8,
+      "empty": false
+    },
+    {
+      "page": 19,
+      "characters": 1038,
+      "content_bottom": 677.7,
+      "empty": false
+    },
+    {
+      "page": 20,
+      "characters": 1001,
+      "content_bottom": 734.4,
+      "empty": false
+    },
+    {
+      "page": 21,
+      "characters": 1008,
+      "content_bottom": 740.9,
+      "empty": false
+    },
+    {
+      "page": 22,
+      "characters": 753,
+      "content_bottom": 756.7,
+      "empty": false
+    },
+    {
+      "page": 23,
+      "characters": 809,
+      "content_bottom": 547.4,
+      "empty": false
+    },
+    {
+      "page": 24,
+      "characters": 2154,
+      "content_bottom": 750.3,
+      "empty": false
+    },
+    {
+      "page": 25,
+      "characters": 1309,
+      "content_bottom": 491.6,
+      "empty": false
+    }
+  ]
+}
