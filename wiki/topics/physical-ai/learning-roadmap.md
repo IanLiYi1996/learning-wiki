@@ -1,5 +1,11 @@
 # Physical AI 学习路线与自测
 
+<!-- illustration: physical-learning-dependencies-49f3bc0622 -->
+![Physical AI：按依赖关系学习。每阶段都交付接口解释、数值练习或可复查的测试设计。](images/physical-learning-dependencies.png)
+
+*图：Physical AI：按依赖关系学习。每阶段都交付接口解释、数值练习或可复查的测试设计。*
+<!-- /illustration: physical-learning-dependencies-49f3bc0622 -->
+
 归档日期：2026-10-28。以下是已有教材的阅读和练习安排，不增加新的产品状态结论。
 
 使用方法：每阶段分别记录“能解释”“能算或验证”“能描述产品交接”。读完一章不自动等于掌握；没有做过的实验保持未完成，不把教学程序结果当实机验证。

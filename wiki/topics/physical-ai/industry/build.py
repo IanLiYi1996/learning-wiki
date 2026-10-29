@@ -83,6 +83,8 @@ def assemble():
         )[0]
         text = rewrite_prose_links(text, citation)
         text = re.sub(r"(\[S\d+\])(?=\[S\d+\])", r"\1、", text)
+        # Chapter notes are one directory deeper than the assembled manuscript.
+        text = text.replace("](../../images/", "](../images/")
         chapters.append(text.strip())
     appendices = (ROOT / "appendices.md").read_text(encoding="utf-8")
     front = (ROOT / "frontmatter.md").read_text(encoding="utf-8")

@@ -7,6 +7,12 @@
 
 ## 1. 新旧关系先分清
 
+<!-- illustration: stablecoin-conversions-c64ced5c56 -->
+![四种转换，不是一个无状态 swap。资产身份、库存、份额和跨链最终性分别建模。](../images/stablecoin-conversions.png)
+
+*图：四种转换，不是一个无状态 swap。资产身份、库存、份额和跨链最终性分别建模。*
+<!-- /illustration: stablecoin-conversions-c64ced5c56 -->
+
 | 旧讲法 | 新的准确拆法 | 属于什么变化 |
 | --- | --- | --- |
 | DAI就是用ETH借出的稳定币 | 抵押借贷仍是基础，另有PSM、链外资产路径、USDS及其转换接口 | 资产 / 协议机制扩展 |
@@ -211,6 +217,12 @@ Fast message 的 attestation 带有效性边界；过期不等于源 burn 永久
 本次不复制整套 ABI，也不硬编码路线、合约地址、费用或时限。接入时匹配目标版本的官方 API / 部署表。
 
 ## 9. 钱包需要一条跨链业务状态机
+
+<!-- illustration: cctp-states-875446dbfc -->
+![CCTP：原生销毁、证明、目标铸造。源链 burn 成功不等于目标链业务付款已经完成。](../images/cctp-states.png)
+
+*图：CCTP：原生销毁、证明、目标铸造。源链 burn 成功不等于目标链业务付款已经完成。*
+<!-- /illustration: cctp-states-875446dbfc -->
 
 建议模型：
 

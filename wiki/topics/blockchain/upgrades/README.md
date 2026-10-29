@@ -66,6 +66,12 @@
 
 ## 学习顺序
 
+<!-- illustration: blockchain-roadmap-132b2393cd -->
+![从协议对象走到钱包工程验证。进阶标准是交付可解释、可复查的输出，不是刷完名词。](../images/blockchain-roadmap.png)
+
+*图：从协议对象走到钱包工程验证。进阶标准是交付可解释、可复查的输出，不是刷完名词。*
+<!-- /illustration: blockchain-roadmap-132b2393cd -->
+
 先读与自己任务相关的一篇，再回到基础篇核对不变的原理：
 
 1. 钱包签名 / 托管：Ethereum → AWS → Bitcoin。

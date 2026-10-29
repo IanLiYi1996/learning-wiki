@@ -15,6 +15,12 @@ PPT 说“EOA 没有代码”仅适合基础模型。Ethereum 主网 Pectra 已�
 
 ## 2. 三层位置：变量、存储树、全局状态树
 
+<!-- illustration: ethereum-state-proof-51ebf15d80 -->
+![Solidity 变量、存储证明与 stateRoot。逻辑槽位计算和 secure trie 路径哈希是两个不同步骤。](../images/ethereum-state-proof.png)
+
+*图：Solidity 变量、存储证明与 stateRoot。逻辑槽位计算和 secure trie 路径哈希是两个不同步骤。*
+<!-- /illustration: ethereum-state-proof-51ebf15d80 -->
+
 示例是独立教学合约，不对应任何真实代币：
 
 ```solidity

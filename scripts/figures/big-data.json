@@ -1,0 +1,105 @@
+[
+  {
+    "id": "data-platform-layers", "topic": "big-data", "kind": "layers",
+    "title": "大数据平台：数据生命周期与控制面",
+    "subtitle": "按职责组织，不把产品名称当互斥技术分类。",
+    "layers": [["数据源／采集", "数据库、应用事件、文件、API → 批采集／CDC／Connector"], ["传输与保存", "事件流、原始持久化、文件布局与保留"], ["处理与消费", "批／流计算、SQL、BI、API、机器学习"], ["开放数据层", "存储介质 + 文件格式 + 表格式 + Catalog"], ["横切控制面", "编排、元数据、治理、质量、可观测与安全"], ["运行底座", "调度、环境、CI/CD、成本、可靠性与多租户"]],
+    "placements": [{"file": "wiki/topics/big-data/README.md", "after": "# 大数据技术"}, {"file": "wiki/topics/big-data/technology-landscape-research.md", "after": "## 结论摘要"}]
+  },
+  {
+    "id": "file-table-catalog-engine", "topic": "big-data", "kind": "compare",
+    "title": "介质、文件、表、Catalog 与引擎",
+    "subtitle": "它们可以组合，不能互相替代。",
+    "columns": ["对象", "回答的问题", "典型机制"],
+    "rows": [["存储介质", "字节保存在哪里", "磁盘、HDFS、对象存储"], ["文件格式", "文件内部如何编码", "Parquet／ORC 列式与压缩"], ["表格式", "多个文件怎样形成一致表状态", "快照、元数据、事务日志"], ["Catalog", "表叫什么、当前 metadata 在哪", "发现、定位与提交协调"], ["计算／查询引擎", "谁执行转换与 SQL", "扫描、join、shuffle、执行状态"]],
+    "placements": [{"file": "wiki/topics/big-data/technology-landscape-research.md", "after": "## 一、先固定五个最容易混淆的对象"}]
+  },
+  {
+    "id": "three-platform-flows", "topic": "big-data", "kind": "compare",
+    "title": "同一平台的三条流",
+    "subtitle": "只画数据流，会漏掉重跑、版本、授权与影响分析。",
+    "columns": ["流", "主要路径", "帮助回答"],
+    "rows": [["数据流", "源 → 采集 → 保存 → 处理 → 查询／消费", "什么数据去了哪里、如何变换"], ["控制流", "代码／配置 → 发布／编排 → 运行／恢复", "谁触发、何时重试、怎样回滚"], ["元数据流", "schema／owner／run／质量 → Catalog／血缘／审计", "来自哪里、影响谁、谁有权操作"]],
+    "note": "三条流以 dataset、job、run、版本和权限等标识建立关联。",
+    "placements": [{"file": "wiki/topics/big-data/technology-landscape-research.md", "after": "## 三、把系统画成数据流、控制流和元数据流"}]
+  },
+  {
+    "id": "end-to-end-delivery", "topic": "big-data", "kind": "flow",
+    "title": "端到端一致处理，不只靠 checkpoint",
+    "subtitle": "Source、处理状态和 sink 的恢复语义一起定义交付保证。",
+    "nodes": [["可重放 Source", "offset、保留范围与事件身份"], ["状态化计算", "窗口、聚合、join 与更新"], ["一致性快照", "状态与读取位置协调"], ["输出提交", "事务或匹配的幂等 sink"], ["故障恢复", "恢复状态／位置并重放"], ["结果核对", "重复、丢失、乱序与外部副作用"]],
+    "note": "引擎自称 exactly-once 不证明任意外部 API、邮件或数据库副作用都满足同一边界。",
+    "placements": [{"file": "wiki/topics/big-data/technology-landscape-research.md", "after": "### 4. 批处理与流处理"}]
+  },
+  {
+    "id": "ontology-stack", "topic": "big-data", "kind": "layers", "connect": true,
+    "title": "Ontology 位于数据资产之上的操作层",
+    "subtitle": "它组织业务语义与受控行动，不替代底层存储、表格式和计算引擎。",
+    "layers": [["业务源系统", "ERP、CRM、MES、WMS、数据库、IoT、文档与 API"], ["数据平台", "采集、湖仓、数仓、流处理、查询与模型"], ["Ontology", "Objects／Properties／Links + Logic + Actions + Security"], ["操作应用", "业务工作台、自定义应用、自动化与 Agent"], ["业务反馈", "受控写回、通知、决策记录、效果与审计"]],
+    "placements": [{"file": "wiki/topics/big-data/palantir-ontology.md", "after": "## 它在大数据架构中的位置"}]
+  },
+  {
+    "id": "ontology-four-responsibilities", "topic": "big-data", "kind": "compare",
+    "title": "Data、Logic、Action、Security",
+    "subtitle": "从“知道业务是什么”走到“谁能在什么条件下改变它”。",
+    "columns": ["职责", "正式能力", "工程问题"],
+    "rows": [["Data", "对象、属性、关系、接口与数据绑定", "身份、source of truth、更新与质量"], ["Logic", "Functions、模型、优化与规则", "稳定逻辑可复用，不埋在 Prompt"], ["Action", "参数、条件、校验、编辑与 side effects", "幂等、审批、写回与补偿"], ["Security", "用户、资源、数据策略、scope 与审计", "读权限不自动传播到导出／下游"]],
+    "placements": [{"file": "wiki/topics/big-data/palantir-ontology.md", "after": "## 四个核心层次"}]
+  },
+  {
+    "id": "ontology-agent-action", "topic": "big-data", "kind": "flow",
+    "title": "Agent 建议怎样进入受控业务 Action",
+    "subtitle": "查询上下文、确定性计算、批准与实际写入分层。",
+    "nodes": [["读取业务对象", "权限过滤后的对象与关系"], ["Function／模型", "规则、风险、优化器"], ["形成建议", "解释影响与成本"], ["人工／策略审批", "具体参数、对象与条件"], ["预定义 Action", "校验、权限、编辑与 side effects"], ["审计与效果", "决策上下文、外部对账与反馈"]],
+    "note": "Ontology 内部事务不自动与 ERP webhook 组成跨系统原子事务。",
+    "placements": [{"file": "wiki/topics/big-data/palantir-ontology.md", "after": "### 5. 安全的写入模式"}, {"file": "wiki/topics/big-data/palantir-ontology.md", "after": "### Agent 工作流"}]
+  },
+  {
+    "id": "fde-lifecycle", "topic": "big-data", "kind": "flow",
+    "title": "FDE：发现问题、交付、采用与产品反馈",
+    "subtitle": "生产系统被使用并产生结果，才形成有效闭环。",
+    "nodes": [["Embed / Frame", "现场理解；定义决策与成功指标"], ["Integrate / Model", "数据基础与最小业务模型"], ["Build / Iterate", "最短价值链；与用户验证"], ["Productionize", "测试、权限、恢复与运行责任"], ["Adopt / Measure", "培训、采用率、KPI 与成本"], ["Productize", "重复模式 → 通用能力与交接"]],
+    "loop": "下一客户复用",
+    "placements": [{"file": "wiki/topics/big-data/palantir-fde.md", "after": "## FDE 交付生命周期"}]
+  },
+  {
+    "id": "human-ai-fde", "topic": "big-data", "kind": "compare",
+    "title": "人类 FDE 与 AI FDE 的责任区别",
+    "subtitle": "工程杠杆不等于完整替代业务判断、关系和生产责任。",
+    "columns": ["对象", "主要承担", "必须保留的边界"],
+    "rows": [["人类 FDE", "问题发现、架构、客户协作、交付与结果", "判断、业务与现场责任"], ["AI FDE", "Foundry 内探索、实现、工具操作与检查", "用户权限、工具批准和评审"], ["共同工作流", "计划 → 实现 → 观察 → 测试 → 提案", "预览／Evals 不代替完整生产验收"]],
+    "placements": [{"file": "wiki/topics/big-data/palantir-fde.md", "after": "## 两个 FDE"}]
+  },
+  {
+    "id": "ai-fde-change-control", "topic": "big-data", "kind": "compare",
+    "title": "AI FDE 的两条变更评审路线",
+    "subtitle": "Global Branch Proposal 与 Git Pull Request 是相关但不同的评审系统。",
+    "columns": ["对象", "评审路径", "授权与记录"],
+    "rows": [["可分支平台资源", "Global Branch → Proposal → 合并检查／政策审批 → Main", "不是所有资源都支持该路径"], ["代码仓库", "Git branch → PR → CI／Review → Main", "保留代码、测试与评审证据"], ["不支持分支／敏感操作", "按工具批准策略单独确认", "继承用户权限不代表自动最小权限"], ["审计", "会话活动 + 平台 audit logs", "Chat outline 不自动等于不可变合规审计"]],
+    "placements": [{"file": "wiki/topics/big-data/palantir-fde.md", "after": "## Branch、Proposal 与 PR"}]
+  },
+  {
+    "id": "operating-model-axes", "topic": "big-data", "kind": "compare",
+    "title": "Operating Model：三种管理粒度",
+    "subtitle": "公开资料重构，不是 Palantir 的内部汇报线或正式组织编制图。",
+    "columns": ["粒度", "负责的对象", "相关接口"],
+    "rows": [["业务分部", "Government／Commercial 的经营与财务", "资源投入与绩效观察"], ["客户账户", "具体任务、交付、采用与扩张", "Sales／Echo／Delta／Design／专业保障"], ["产品能力", "跨客户复用的长期平台原语", "Dev／Product Engineering 与产品 owner"], ["任务小队", "围绕项目动态协作的建议抽象", "不是已公开统一固定 account pod 编制"]],
+    "placements": [{"file": "wiki/topics/big-data/palantir-operating-model.md", "after": "## 一张总图"}]
+  },
+  {
+    "id": "field-product-flywheel", "topic": "big-data", "kind": "flow",
+    "title": "Field-to-product：平台与现场双向反馈",
+    "subtitle": "只有明确产品 owner、迁移计划和采用指标，才会减少后续定制。",
+    "nodes": [["通用平台能力", "Dev 长期拥有原语"], ["发布到现场", "交付与基础设施处理环境差异"], ["FDE 组合交付", "Design／DS 接入用户工作流"], ["真实运行结果", "采用、业务效果与故障证据"], ["抽象重复问题", "与产品工程定义稳定接口"], ["产品化与迁移", "更多账户复用；减少客户分叉"]],
+    "loop": "进入下一版本",
+    "note": "这是正文重构与建议模型，不是公司公开的正式 RACI 或内部组织流程。",
+    "placements": [{"file": "wiki/topics/big-data/palantir-operating-model.md", "after": "## 六、field-to-product 飞轮"}, {"file": "wiki/topics/big-data/palantir-fde.md", "after": "## FDE 增长飞轮"}]
+  },
+  {
+    "id": "big-data-roadmap", "topic": "big-data", "kind": "flow",
+    "title": "从数据链路走到可运营的平台",
+    "subtitle": "每阶段都以架构解释、可运行实验和故障恢复记录验收。",
+    "nodes": [["基础", "SQL、OS、网络与分布式系统"], ["离线链路", "批采集、列式存储、模型、BI"], ["实时链路", "CDC、事件时间、状态与恢复"], ["湖仓协作", "表、快照、Catalog 与多引擎"], ["治理与语义", "质量、血缘、权限、业务 Action"], ["平台与专题", "运行、成本、实验与架构复盘"]],
+    "placements": [{"file": "wiki/topics/big-data/learning-roadmap.md", "after": "# 大数据学习路线"}]
+  }
+]

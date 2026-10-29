@@ -48,6 +48,12 @@ VAO（vertex array object）保存读取配置与 buffer 引用，不保存一�
 
 ## 3. 从图元装配到屏幕覆盖
 
+<!-- illustration: gpu-pipeline-b8781ca2f5 -->
+![一个三角形从顶点到 framebuffer。按数据依赖追踪管线；不是硬件逐块串行执行的时间表。](images/gpu-pipeline.png)
+
+*图：一个三角形从顶点到 framebuffer。按数据依赖追踪管线；不是硬件逐块串行执行的时间表。*
+<!-- /illustration: gpu-pipeline-b8781ca2f5 -->
+
 规范的教学主线如下；这描述数据依赖，不规定硬件必须逐块串行执行。[S1] §2.4、图 2.1、§1.4。
 
 ```text
@@ -100,6 +106,12 @@ MSAA 时内建坐标与接口插值位置须遵守各自规则，不保证任意
 另一个例外是窗口深度：它按窗口顶点深度线性插值，不能把它当普通属性再套一次上述公式。[S1] 公式 (3.8)。
 
 ## 5. fragment、pixel 与 sample 不是同一回事
+
+<!-- illustration: fragment-pixel-sample-c5800752b1 -->
+![Fragment、pixel、sample：三种粒度。覆盖、着色、存储分别判断，不从 MSAA 样本数推断 shader 次数。](images/fragment-pixel-sample.png)
+
+*图：Fragment、pixel、sample：三种粒度。覆盖、着色、存储分别判断，不从 MSAA 样本数推断 shader 次数。*
+<!-- /illustration: fragment-pixel-sample-c5800752b1 -->
 
 pixel 是 framebuffer 的二维位置；sample 是其中的采样与存储位置；fragment 是图元光栅化产生的候选贡献及其关联数据。
 同一 pixel 可接收多个图元的 fragment，之后可能拒绝、覆盖或混合；fragment 不等于最终显示像素。[S1] 第 3 章导言、§4.1。

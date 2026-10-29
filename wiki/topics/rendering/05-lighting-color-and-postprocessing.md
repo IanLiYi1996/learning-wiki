@@ -81,6 +81,12 @@ roughnessMap.colorSpace = THREE.NoColorSpace;
 
 ## 5. 为什么必须在线性空间计算光照
 
+<!-- illustration: linear-color-79acad31a6 -->
+![颜色贴图、线性光照与显示输出。在线性工作空间计算；最终显示转换不缺失，也不重复。](images/linear-color.png)
+
+*图：颜色贴图、线性光照与显示输出。在线性工作空间计算；最终显示转换不缺失，也不重复。*
+<!-- /illustration: linear-color-79acad31a6 -->
+
 以 `[0,1]` 标量为例，sRGB 解码到线性值：
 
 $$
@@ -143,6 +149,12 @@ main pass：表面位置 -> 光空间 -> 深度比较 -> 光照可见性
 G-buffer 往往包含法线、深度、材质参数等，不意味着存下所有几何或解决了所有可见性问题。WebGL 2 的 MRT 是构建多附件流程的能力，不等于已有完整 deferred renderer。
 
 ## 8. 后处理就是纹理之间的依赖图
+
+<!-- illustration: postprocessing-98c37214be -->
+![后处理链就是资源依赖链。每一段都明确输入、输出、尺寸、格式和所有者。](images/postprocessing.png)
+
+*图：后处理链就是资源依赖链。每一段都明确输入、输出、尺寸、格式和所有者。*
+<!-- /illustration: postprocessing-98c37214be -->
 
 典型 WebGLRenderer 路线：
 

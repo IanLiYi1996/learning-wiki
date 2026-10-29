@@ -13,6 +13,12 @@ UTXO、最多累计工作量、主网难度调整与脚本花费规则不能因�
 
 ## 2. MuSig2：把“签名可相加”还原成完整协作协议
 
+<!-- illustration: musig2-session-ee5fef15ae -->
+![MuSig2 是完整会话，不是把签名相加。n-of-n 协作；所有参与者绑定同一消息、密钥上下文与 nonce 会话。](../images/musig2-session.png)
+
+*图：MuSig2 是完整会话，不是把签名相加。n-of-n 协作；所有参与者绑定同一消息、密钥上下文与 nonce 会话。*
+<!-- /illustration: musig2-session-ee5fef15ae -->
+
 ### 旧简化为什么不够
 
 两个各自完成的 Schnorr 签名不能直接相加成一份目标签名。BIP327 的 MuSig2 是 n-of-n 协同签名，参与者共同确定密钥、nonce、消息与聚合过程；它不是任意 t-of-n 门限方案。[BIP327](https://github.com/bitcoin/bips/blob/master/bip-0327.mediawiki)
@@ -103,6 +109,12 @@ finalizer与extractor版本
 “支持 PSBT”“支持 Taproot”“能最终化脚本路径”不能合并为一个勾选项。
 
 ### 在线观察 + 离线签名的完整职责
+
+<!-- illustration: psbt-offline-df73a7834a -->
+![在线观察与离线签名的职责交接。PSBT 携带协作材料，不携带种子或私钥，也不自动批准付款。](../images/psbt-offline.png)
+
+*图：在线观察与离线签名的职责交接。PSBT 携带协作材料，不携带种子或私钥，也不自动批准付款。*
+<!-- /illustration: psbt-offline-df73a7834a -->
 
 ```text
 在线watch-only：收款扫描、选币、构造PSBT

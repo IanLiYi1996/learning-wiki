@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-29",
+  "scope": "Original local teaching illustrations.",
+  "assets": [
+    {
+      "path": "images/physical-feedback.svg",
+      "sha256": "5bce9c8ec5397535b37ca418c3c9145318311f7d13bbe734a6bd16bcf3ff0204"
+    },
+    {
+      "path": "images/physical-feedback.png",
+      "sha256": "e8a9bdab5ccac8f0744861dd7916752660ac2868715eec6f78c0d5a33d8bba3a"
+    },
+    {
+      "path": "images/robot-2r.svg",
+      "sha256": "f625370f8be61555b88f84fe2f8c81f7344daa5f9d6483bb0fa8610efaf1a623"
+    },
+    {
+      "path": "images/robot-2r.png",
+      "sha256": "68f9ba9678cf09dc6c3506804e027ec008550be89dd7ee48e2fe7889ef135699"
+    },
+    {
+      "path": "images/actuator-dynamics.svg",
+      "sha256": "e37f68afb7dc1b6abe38accd4c1593978c610c74b98a8f47d087f4994eabf78e"
+    },
+    {
+      "path": "images/actuator-dynamics.png",
+      "sha256": "75395aa4588083fbfc9e0c4c47f48272ff8367054e0b20e65b9a84c96faa75c2"
+    },
+    {
+      "path": "images/ekf-cycle.svg",
+      "sha256": "34a2dfb1bfb71ee42cbfc6f3b55ba2df79caf530c60c9284c4c6062f6763a37c"
+    },
+    {
+      "path": "images/ekf-cycle.png",
+      "sha256": "1dbe4b5784f309f6e54678a8b181a47303880f8240eb518626de2a7572d78d40"
+    },
+    {
+      "path": "images/planning-control.svg",
+      "sha256": "af06f6046b719239cd0c7d46629d1be407dec740f42e9464d2bbe51c1eef4d24"
+    },
+    {
+      "path": "images/planning-control.png",
+      "sha256": "c80d69dca6f9397c60cd3c540ed548703497f2fb57aeedc710b2c71cf1365ed3"
+    },
+    {
+      "path": "images/mpc-horizon.svg",
+      "sha256": "892d4c1e1bcec33833255982e386144aba90556f7419a00a87aa83a28ceb0589"
+    },
+    {
+      "path": "images/mpc-horizon.png",
+      "sha256": "2e4fed5f36ed95dc5ac78d37eb035b7f766c54f0b3797c55ca2e66e7ef2f2cb1"
+    },
+    {
+      "path": "images/vla-tensors.svg",
+      "sha256": "ef1947e4978dd3413424175a60d5fb513983475534668486c79ddb452bdf5cff"
+    },
+    {
+      "path": "images/vla-tensors.png",
+      "sha256": "e032b303c74a832d5a0832b905e69b913a1706eb570b3ab6875e446ad0eb78a2"
+    },
+    {
+      "path": "images/diffusion-flow.svg",
+      "sha256": "9d868c4ccfe8cf6e466385d416818eba70fc5246a1075c5a25f74c52105f2cfb"
+    },
+    {
+      "path": "images/diffusion-flow.png",
+      "sha256": "f149cdea90b6bf8ac398c1af7443bf08be633241ed36219557f26ffbf60b2ca6"
+    },
+    {
+      "path": "images/actor-critic.svg",
+      "sha256": "f71e936dcf6c1d803c15dc9c75f373ef1e56346446c9d12d69b95ac60904b157"
+    },
+    {
+      "path": "images/actor-critic.png",
+      "sha256": "53143d4eb58dc60720ad19ebdb499fd0608086f06282c5f0c881948393d60791"
+    },
+    {
+      "path": "images/world-model-roles.svg",
+      "sha256": "aaee6042f22e15e5de19b55b482ceee2a6d000580c900ff02ecd1518fb10011a"
+    },
+    {
+      "path": "images/world-model-roles.png",
+      "sha256": "50eeaccd695591d4a8280c37a0a134edc04810bb22f4b47c7a7dec71b4013131"
+    },
+    {
+      "path": "images/causal-alignment.svg",
+      "sha256": "f7415c7d97f3891265842cf3b884fa0a1a69e313d81c28c7cec8f94758c2fd87"
+    },
+    {
+      "path": "images/causal-alignment.png",
+      "sha256": "bf1cd1f89fbf89b43e36ea28a4b72d0911c79f9179cfec92d5461b7b6384d801"
+    },
+    {
+      "path": "images/simulation-step.svg",
+      "sha256": "e6ae4dbfe5079b3f38a5569f32baf3c0f814378f1e39429cf9736f0166c3d411"
+    },
+    {
+      "path": "images/simulation-step.png",
+      "sha256": "ea12ccb1d7f2f60e3771b423ca70d614c3e9635473a3390ea6fca7882237a57b"
+    },
+    {
+      "path": "images/runtime-chunk.svg",
+      "sha256": "9daa198d686f1439c9f9a6ecc081105ccd91cfa834b69d529eb20592e8b58189"
+    },
+    {
+      "path": "images/runtime-chunk.png",
+      "sha256": "0d81a77d1df12430785c388e0924553490c17a229a2d0b648114a953aace6fa1"
+    },
+    {
+      "path": "images/wilson-evidence.svg",
+      "sha256": "edd119c92ddf27e38ff6eb3a4cc4076e8cb9c189b5595361ab64e1ea94e27d19"
+    },
+    {
+      "path": "images/wilson-evidence.png",
+      "sha256": "c04b76370e90e112827988aeb8e3c4413134c2e450f2bf82185cef664f14b6f8"
+    },
+    {
+      "path": "images/industry-lifecycle.svg",
+      "sha256": "7f7bae0bd0944c90afd12fb36e351c6ed83680af15d367d7469faa48210e350a"
+    },
+    {
+      "path": "images/industry-lifecycle.png",
+      "sha256": "efa4826432300b930172e62e12dd321b17789704ff938bcb36c66ee11abacbd5"
+    },
+    {
+      "path": "images/robot-data-assets.svg",
+      "sha256": "60ae78fe8ebc0d2a78b9a0b9935bc586d5eb68aef5e0a5fd30f9d89009504ef7"
+    },
+    {
+      "path": "images/robot-data-assets.png",
+      "sha256": "d060bdb99843e5ddb3cba7093027f0c91e4bfe11d49c8919b0518c290bf5e3d6"
+    },
+    {
+      "path": "images/scene-physics-twin.svg",
+      "sha256": "88caa68f97142ab409e16ae32a4110ea4a0a3a4771a55be39fbd172805d47226"
+    },
+    {
+      "path": "images/scene-physics-twin.png",
+      "sha256": "0af69eff7e159d801c20f9bf9e84f580e53e7a267e1926e960b13f5d787d1ad1"
+    },
+    {
+      "path": "images/synthetic-supervision.svg",
+      "sha256": "fe2ba6c37f33a47bb93d71848025a10bd1866c5255a4ec3c31fc832ce2a92761"
+    },
+    {
+      "path": "images/synthetic-supervision.png",
+      "sha256": "312dddae440ccc86346469faf08aa7b88adf0ae9a91d537250740982c21cc516"
+    },
+    {
+      "path": "images/training-handoff.svg",
+      "sha256": "e835f5bdbb3c34d3610823168b9f3a945cb848c54de6befa388c3344ccbe2d4f"
+    },
+    {
+      "path": "images/training-handoff.png",
+      "sha256": "256f273f92f564101aa0dd48643b5de6d99c4c0255b432cff485a10341edd935"
+    },
+    {
+      "path": "images/model-platform-delivery.svg",
+      "sha256": "76093012bfcaa4cbd538b0bd4de71798c2d44eb44cd906d73a666abf696be079"
+    },
+    {
+      "path": "images/model-platform-delivery.png",
+      "sha256": "48fa822f8289189aaf7d72a8128968681a49c99a1b910d8cd13a1efb75297329"
+    },
+    {
+      "path": "images/manipulator-software.svg",
+      "sha256": "b2f25d14eb7855c469eb9de4a1039e7b89952fd2f87a048718c0d7002d1c217b"
+    },
+    {
+      "path": "images/manipulator-software.png",
+      "sha256": "8bf16347748b4f257d5a8f39be0fb80e3b22c987f3740592b8ddda9f816c8d75"
+    },
+    {
+      "path": "images/edge-deployment.svg",
+      "sha256": "9fca5547ad27a6fdf9f16f67ae1cfeb6b7a1120a3be8b5c9ac856d7a80d5be0f"
+    },
+    {
+      "path": "images/edge-deployment.png",
+      "sha256": "4d8b35c3ae6ba44cb5783fe8097d3db78235a5e3eeaf059437e1b4b6c1dc7e49"
+    },
+    {
+      "path": "images/validation-modes.svg",
+      "sha256": "87d80b2553d0370f1e2c059626cd3e68a7b30735af79a068ea81ebab8c04b69c"
+    },
+    {
+      "path": "images/validation-modes.png",
+      "sha256": "d4605ce7277ea26e31d3a779d6ebd39eb784aa8ea2fa68dafb56e28fdd1ab88d"
+    },
+    {
+      "path": "images/fleet-business-handoff.svg",
+      "sha256": "1d0e6cce59a1cd3592e0ac5908ebbbec8e5273be54f2f7a33f7c3b09862d6ed5"
+    },
+    {
+      "path": "images/fleet-business-handoff.png",
+      "sha256": "e71ed07c72dca60c59d22c00087a0467925600d015c79b56837fa15811194b5f"
+    },
+    {
+      "path": "images/solution-evidence.svg",
+      "sha256": "d98ee08878f21ec25d24feee064db3585694564b8fb4263b2a730b75cdcf2261"
+    },
+    {
+      "path": "images/solution-evidence.png",
+      "sha256": "28a5b25608694ef84e26a59e44518a1c2bcbcae9266c7b0bf389e5215cacaeaf"
+    },
+    {
+      "path": "images/physical-learning-dependencies.svg",
+      "sha256": "e6e6014ca5713ad9cb5d21161a53ae3892dccdd6036021ddb41d2cd0b2bd39b7"
+    },
+    {
+      "path": "images/physical-learning-dependencies.png",
+      "sha256": "6d35a1272612e3eeeab3290e064446f0e868834c4ef114f63b2f8416a11f2863"
+    },
+    {
+      "path": "images/gtc-robot-stack.svg",
+      "sha256": "f67abd2638967626a09621241ca42c1e4bfdffa04721c18f22dfb6af11c4f4a0"
+    },
+    {
+      "path": "images/gtc-robot-stack.png",
+      "sha256": "f49d656fd554e40ce6a18b4811dc510815276eb8c24ebaf857c8594d99fdcd0d"
+    },
+    {
+      "path": "images/gtc-driving-stack.svg",
+      "sha256": "e83b5bef9a8928f652a8fc29a881d5099a4cbe4742370c6e6deeb0528ab7c00f"
+    },
+    {
+      "path": "images/gtc-driving-stack.png",
+      "sha256": "964e916597b22402cfb503606f9d0527d76cb9250347e7e17a81412417c36288"
+    }
+  ]
+}

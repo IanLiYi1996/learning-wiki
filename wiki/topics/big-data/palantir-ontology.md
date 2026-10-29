@@ -61,6 +61,12 @@ Palantir 在向 SEC 提交的
 
 ## 它在大数据架构中的位置
 
+<!-- illustration: ontology-stack-9f81c339cc -->
+![Ontology 位于数据资产之上的操作层。它组织业务语义与受控行动，不替代底层存储、表格式和计算引擎。](images/ontology-stack.png)
+
+*图：Ontology 位于数据资产之上的操作层。它组织业务语义与受控行动，不替代底层存储、表格式和计算引擎。*
+<!-- /illustration: ontology-stack-9f81c339cc -->
+
 ```text
 数据源与业务系统
 ERP | CRM | MES | WMS | 数据库 | IoT | 文档 | API
@@ -86,6 +92,12 @@ Ontology 不替代对象存储、湖仓表格式、流处理或查询引擎。
 它消费这些系统产生的数据和模型，把它们组织成可被业务应用使用的操作模型。
 
 ## 四个核心层次
+
+<!-- illustration: ontology-four-responsibilities-062390e3be -->
+![Data、Logic、Action、Security。从“知道业务是什么”走到“谁能在什么条件下改变它”。](images/ontology-four-responsibilities.png)
+
+*图：Data、Logic、Action、Security。从“知道业务是什么”走到“谁能在什么条件下改变它”。*
+<!-- /illustration: ontology-four-responsibilities-062390e3be -->
 
 Palantir 在
 [Why create an Ontology?](https://www.palantir.com/docs/foundry/ontology/why-ontology/)
@@ -364,6 +376,12 @@ Actions -> Agent 可以调用的受控写入工具
 
 ### 5. 安全的写入模式
 
+<!-- illustration: ontology-agent-action-e6cb4ce915 -->
+![Agent 建议怎样进入受控业务 Action。查询上下文、确定性计算、批准与实际写入分层。](images/ontology-agent-action.png)
+
+*图：Agent 建议怎样进入受控业务 Action。查询上下文、确定性计算、批准与实际写入分层。*
+<!-- /illustration: ontology-agent-action-e6cb4ce915 -->
+
 推荐路径：
 
 ```text
@@ -484,6 +502,12 @@ NotifyCustomer
 ```
 
 ### Agent 工作流
+
+<!-- illustration: ontology-agent-action-99fdfc740c -->
+![Agent 建议怎样进入受控业务 Action。查询上下文、确定性计算、批准与实际写入分层。](images/ontology-agent-action.png)
+
+*图：Agent 建议怎样进入受控业务 Action。查询上下文、确定性计算、批准与实际写入分层。*
+<!-- /illustration: ontology-agent-action-99fdfc740c -->
 
 ```text
 1. Agent 查询未来七天可能缺料的订单。

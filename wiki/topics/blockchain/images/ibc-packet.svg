@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="524" viewBox="0 0 1040 524" role="img" aria-labelledby="title desc">
+<title id="title">IBC packet：发送、接收、ack 与超时</title>
+<desc id="desc">Relayer 搬运消息与证明；验证由两端 client 与应用规则完成。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="524" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">IBC packet：发送、接收、ack 与超时</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">Relayer 搬运消息与证明；验证由两端 client 与应用规则完成。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">阶段／分支</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">两端状态与操作</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">验证边界</text>
+<rect x="40" y="180" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">准备与 Send</text>
+<rect x="220" y="180" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">绑定 client／应用；源链保存 packet</text>
+<text x="233" y="234" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">commitment</text>
+<rect x="610.0" y="180" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">sequence、counterparty、版本与路由</text>
+<rect x="40" y="258" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="287" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">接收分支</text>
+<rect x="220" y="258" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">relayer 搬运 packet／proof；目标写</text>
+<text x="233" y="312" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">receipt 并处理</text>
+<rect x="610.0" y="258" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">目标 client 验证源承诺；receipt 防重复</text>
+<rect x="40" y="336" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="365" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Ack 返回</text>
+<rect x="220" y="336" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="365" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">目标写 ack；源链验证后清原发送承诺</text>
+<rect x="610.0" y="336" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="365" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">ack 可表示应用错误，不只是成功</text>
+<rect x="40" y="404" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="433" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">未接收的 Timeout</text>
+<text x="53" y="458" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">分支</text>
+<rect x="220" y="404" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="433" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">超时后证明目标未接收；源链清承诺并处理</text>
+<rect x="610.0" y="404" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="433" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不是成功 Ack 后的下一步；无 ack 不等于无</text>
+<text x="623.0" y="458" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">receipt</text>
+<line x1="40" y1="460" x2="1000" y2="460" stroke="#e0e7e2"/>
+<text x="40" y="484" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">本地计时结束不会自动退款；资产处置由具体应用定义。</text>
+</g>
+</svg>

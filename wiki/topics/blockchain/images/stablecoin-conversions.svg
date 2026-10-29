@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="494" viewBox="0 0 1040 494" role="img" aria-labelledby="title desc">
+<title id="title">四种转换，不是一个无状态 swap</title>
+<desc id="desc">资产身份、库存、份额和跨链最终性分别建模。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="494" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">四种转换，不是一个无状态 swap</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">资产身份、库存、份额和跨链最终性分别建模。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">路线</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">计量／状态对象</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">必须核对</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">DAI ↔ USDS</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">两个独立合约中的代币余额</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">Converter、授权与两端变化</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">USDC ↔ LitePSM</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">pocket 库存与 DAI buffer</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">tin／tout、halt 与可用容量</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">USDS ↔ sUSDS</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">assets 与 vault shares</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">preview、max、取整与实际执行</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">CCTP 跨链</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">burn／证明／目标 mint</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">路线、发行方证明与异步恢复</text>
+<line x1="40" y1="430" x2="1000" y2="430" stroke="#e0e7e2"/>
+<text x="40" y="454" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">对照的是职责与条件，不是性能排名。</text>
+</g>
+</svg>

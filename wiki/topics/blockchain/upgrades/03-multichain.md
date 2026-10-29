@@ -1,5 +1,11 @@
 # 03｜多链升级：Polygon 的证明边界、Polkadot 的资源调度与 IBC 的协议演进
 
+<!-- illustration: multichain-responsibilities-ecf24822e0 -->
+![多链升级，先辨认改变的是哪一层。资源分配、证明、消息与共享安全不能用同一个“升级”词替代。](../images/multichain-responsibilities.png)
+
+*图：多链升级，先辨认改变的是哪一层。资源分配、证明、消息与共享安全不能用同一个“升级”词替代。*
+<!-- /illustration: multichain-responsibilities-ecf24822e0 -->
+
 - 核查日：2026-10-29（北京时间）。
 - 旧内容定位：PPT 38–42；[生态基础篇](../chapters/04-ecosystem.md)、[纠错表](../corrections.md)、[二次复核](../notes/follow-up-verification.md)。
 - 学习目标：说明资源、执行、共识、数据可用性、消息与资产分别由谁负责，并据此设计迁移验收。
@@ -171,6 +177,12 @@ client 不是“相信 relayer 说发生了什么”。它按对应实现验证�
 **版本陷阱：**latest 文档描述 packet 可带多个 payload，并讨论一次目的端执行的原子回滚；但官方 Hub 版本页列 ibc-go **v10.7.0**，该 tag 的 `Packet.ValidateBasic` 要求 payload 数量恰好为 1。因此，Hub 当前能力不能从 latest 的多 payload 描述直接推导，更不能扩展成所有跨链调用全局原子提交。[MC-U25｜latest 描述](https://docs.cosmos.network/ibc/latest/intro)、[MC-U34｜Hub 版本](https://docs.cosmos.network/hub/latest/start/versions)、[MC-U28｜固定版限制](https://raw.githubusercontent.com/cosmos/ibc-go/v10.7.0/modules/core/04-channel/v2/types/packet.go)
 
 ### 3.3 Commitment、relayer、ack 与 timeout 的完整路径
+
+<!-- illustration: ibc-packet-e59d435b7c -->
+![IBC packet：发送、接收、ack 与超时。Relayer 搬运消息与证明；验证由两端 client 与应用规则完成。](../images/ibc-packet.png)
+
+*图：IBC packet：发送、接收、ack 与超时。Relayer 搬运消息与证明；验证由两端 client 与应用规则完成。*
+<!-- /illustration: ibc-packet-e59d435b7c -->
 
 下面按 v10.7.0 的 v2 实现解释；classic 同样有发送、接收、确认、超时生命周期，但标识、排序和存储路径不同，不能复用未经适配的报文字节。[MC-U27｜classic 格式](https://raw.githubusercontent.com/cosmos/ibc-go/v10.7.0/modules/core/04-channel/types/packet.go)、[MC-U29｜v2 实现](https://raw.githubusercontent.com/cosmos/ibc-go/v10.7.0/modules/core/04-channel/v2/keeper/packet.go)
 

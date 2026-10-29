@@ -6,6 +6,12 @@
 
 ## 1. UTXO 是输出，不是账户余额
 
+<!-- illustration: utxo-transition-c0fe10ad6c -->
+![UTXO：花旧输出，创建新输出。钱包余额是可控制输出的视图，不是地址账户上的 balance 字段。](../images/utxo-transition.png)
+
+*图：UTXO：花旧输出，创建新输出。钱包余额是可控制输出的视图，不是地址账户上的 balance 字段。*
+<!-- /illustration: utxo-transition-c0fe10ad6c -->
+
 一个 outpoint 由 `(txid, vout)` 指定。输出记录金额与 scriptPubKey；输入引用它并提供满足花费条件的材料。钱包“余额”是根据自己能控制的输出计算出来的视图，不是 Bitcoin 链上一个地址账户的 balance 字段。[B01][B14]
 
 ```text
@@ -74,6 +80,12 @@ scriptSig 字段没有删除：
 
 ## 6. witness commitment 如何进入区块承诺
 
+<!-- illustration: segwit-commitment-74de603749 -->
+![区块头不变，怎样仍承诺 witness。witness root、coinbase commitment 与区块头 txid root 不是同一个值。](../images/segwit-commitment.png)
+
+*图：区块头不变，怎样仍承诺 witness。witness root、coinbase commitment 与区块头 txid root 不是同一个值。*
+<!-- /illustration: segwit-commitment-74de603749 -->
+
 设 `H₂` 是双 SHA-256：
 
 ```text
@@ -110,6 +122,12 @@ vsize  = ceil(weight / 4)
 这里的 vsize 公式是 BIP141 基础大小模型。Core 的 mempool policy / RPC 还可能按 sigops size 调整其 vsize；新版 cluster mempool、CPFP / RBF 与相关费用口径见 [升级篇 Bitcoin 工程](../upgrades/06-bitcoin-wallets.md)，不要把基础公式当成所有客户端字段的完整定义。
 
 ## 8. Taproot：增加新路径，旧 ECDSA 不会自动消失
+
+<!-- illustration: taproot-paths-9622e84f08 -->
+![Taproot 的密钥与两种花费路径。Internal key + 脚本树承诺的 tweak → output key Q。](../images/taproot-paths.png)
+
+*图：Taproot 的密钥与两种花费路径。Internal key + 脚本树承诺的 tweak → output key Q。*
+<!-- /illustration: taproot-paths-9622e84f08 -->
 
 - BIP340：Schnorr 签名规范。
 - BIP341：P2TR 输出、tweak 与 key / script path。

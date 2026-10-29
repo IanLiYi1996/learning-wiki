@@ -1,0 +1,124 @@
+[
+  {
+    "id": "gpu-pipeline", "topic": "rendering", "kind": "flow",
+    "title": "一个三角形从顶点到 framebuffer",
+    "subtitle": "按数据依赖追踪管线；不是硬件逐块串行执行的时间表。",
+    "nodes": [["顶点读取", "buffer 字节 + VAO 布局"], ["顶点 shader", "写出完整齐次 gl_Position"], ["图元装配", "mode + 顶点／索引顺序"], ["裁剪与透视除法", "先齐次裁剪，再除以 w"], ["视口与光栅化", "覆盖判定 + 属性插值"], ["片段 shader", "计算候选颜色／可选深度"], ["测试与混合", "scissor、stencil、depth、blend"], ["颜色存储", "输出路由 + 写入掩码"], ["framebuffer", "候选 fragment 不等于最终 pixel"]],
+    "placements": [{"file": "wiki/topics/rendering/01-gpu-pipeline-and-shaders.md", "after": "## 3. 从图元装配到屏幕覆盖"}]
+  },
+  {
+    "id": "fragment-pixel-sample", "topic": "rendering", "kind": "compare",
+    "title": "Fragment、pixel、sample：三种粒度",
+    "subtitle": "覆盖、着色、存储分别判断，不从 MSAA 样本数推断 shader 次数。",
+    "columns": ["对象", "表示什么", "关系与边界"],
+    "rows": [["Fragment", "图元光栅化产生的候选贡献", "可被测试拒绝；同一 pixel 可接收多个 fragment"], ["Pixel", "framebuffer 的二维位置", "不是天然对应一个图元或一次着色"], ["Sample", "像素内的采样／存储位置", "MSAA 保留多个样本；着色结果可供多个覆盖样本使用"]],
+    "placements": [{"file": "wiki/topics/rendering/01-gpu-pipeline-and-shaders.md", "after": "## 5. fragment、pixel 与 sample 不是同一回事"}]
+  },
+  {
+    "id": "coordinate-spaces", "topic": "rendering", "kind": "flow",
+    "title": "M、V、P 与屏幕坐标的六个空间",
+    "subtitle": "列向量约定：p_clip = P × V × M × p_local，右侧矩阵先作用。",
+    "nodes": [["模型空间", "几何局部坐标"], ["世界空间", "M：对象放到世界"], ["相机空间", "V：相机世界变换的逆"], ["齐次裁剪空间", "P：输出 x、y、z、w"], ["NDC", "先裁剪，再除以 w"], ["窗口空间", "viewport 映射到绘制缓冲区"]],
+    "note": "WebGL 常规 NDC Z 为 −1…1；WebGPU 为 0…1。窗口坐标不默认等于 DOM 坐标。",
+    "placements": [{"file": "wiki/topics/rendering/02-coordinates-and-sampling.md", "after": "## 1. 先确定坐标约定，再写矩阵"}]
+  },
+  {
+    "id": "normal-matrix", "topic": "rendering", "kind": "compare",
+    "title": "非均匀缩放后的正确法线",
+    "subtitle": "正文例：t = (1, −1, 0)，n = (1, 1, 0)，A = diag(2, 1, 1)。",
+    "columns": ["对象", "变换结果", "与新切向量的关系"],
+    "rows": [["切向量", "A t = (2, −1, 0)", "表面的方向按 A 变换"], ["错误法线", "A n = (2, 1, 0)", "点积 = 3；已不垂直"], ["正确法线", "A⁻ᵀ n = (0.5, 1, 0)", "点积 = 0；之后归一化"]],
+    "note": "法线矩阵要求 A 可逆；插值后还需归一化，并保持光线／视线在同一空间。",
+    "placements": [{"file": "wiki/topics/rendering/02-coordinates-and-sampling.md", "after": "## 5. 法线为什么用逆转置矩阵"}]
+  },
+  {
+    "id": "texture-sampling", "topic": "rendering", "kind": "layers",
+    "title": "一张纹理有四份不同契约",
+    "subtitle": "从文件到采样值：颜色编码、坐标定位、重建过滤和业务用途不能混成一个开关。",
+    "layers": [["存储", "格式／类型／颜色编码／mip levels"], ["定位", "UV／寻址模式／翻转／纹理变换"], ["重建", "nearest／linear／mipmap／各向异性"], ["用途", "颜色贴图 ≠ 法线／粗糙度／深度等数据贴图"]],
+    "note": "mip LOD 依赖屏幕导数；PNG／JPEG 的网络压缩不等于 GPU 压缩。",
+    "placements": [{"file": "wiki/topics/rendering/02-coordinates-and-sampling.md", "after": "## 6. Texture 是采样信号，不只是图片"}]
+  },
+  {
+    "id": "webgl-resource-binding", "topic": "rendering", "kind": "compare",
+    "title": "WebGL 数据、布局、程序和目标分开管理",
+    "subtitle": "绑定一个对象不等于上传数据，也不等于提交绘制。",
+    "columns": ["对象", "持有／描述什么", "不能替代什么"],
+    "rows": [["Buffer", "顶点／索引／uniform 等字节存储", "CPU 数组变更不会自动同步"], ["VAO", "attribute 读取配置、buffer 引用、index 绑定", "不是顶点数据的副本"], ["Program", "链接后的 shader 与接口位置", "不包含全部深度／混合状态"], ["Texture / sampler", "图像存储与采样配置", "uniform 的纹理 unit 只是绑定槽"], ["Framebuffer", "附件引用、绘制目标", "complete 不保证本次 draw 正确"]],
+    "placements": [{"file": "wiki/topics/rendering/03-webgl2-api-and-resource-model.md", "after": "## 3. Buffer、attribute、VAO、index、uniform 与 texture unit"}]
+  },
+  {
+    "id": "ping-pong", "topic": "rendering", "kind": "flow",
+    "title": "Ping-pong：读写不同纹理，再交换角色",
+    "subtitle": "同次 draw 不采样正在写入的 attachment image。",
+    "nodes": [["Pass 1 输入", "读取 Texture A"], ["Pass 1 运算", "shader 采样并计算"], ["Pass 1 输出", "写 FBO 的 Texture B"], ["Pass 2 输入", "读取 Texture B"], ["Pass 2 运算", "相同或另一处理阶段"], ["Pass 2 输出", "写 FBO 的 Texture A"]],
+    "loop": "交换并继续",
+    "note": "正常按序 GPU pass 不需要逐次 finish；每次明确 target、viewport、mask、blend。",
+    "placements": [{"file": "wiki/topics/rendering/03-webgl2-api-and-resource-model.md", "after": "## 8. Depth、blending、透明度与反馈循环"}]
+  },
+  {
+    "id": "context-restoration", "topic": "rendering", "kind": "flow",
+    "title": "Context 丢失后的重建顺序",
+    "subtitle": "CPU 的资源描述可以保留；旧 GPU handle 即使非 null，也不能继续使用。",
+    "nodes": [["Lost 事件", "停止帧循环与提交"], ["保留 CPU 描述", "资产、配置、确定初值／快照"], ["Restored 事件", "重新查询能力与扩展"], ["重建 GPU 资源", "buffers、textures、VAO、FBO 等"], ["重建接口与状态", "program、locations、viewport"], ["恢复应用", "隔离旧异步回调；核对新世代"]],
+    "placements": [{"file": "wiki/topics/rendering/03-webgl2-api-and-resource-model.md", "after": "## 10. Context loss / restoration 与资源生命周期"}]
+  },
+  {
+    "id": "three-render", "topic": "rendering", "kind": "flow",
+    "title": "Three.js 的一帧怎样走到 draw",
+    "subtitle": "对象图、渲染列表、program 和 GPU 状态是不同层。",
+    "nodes": [["Scene + Camera", "更新对象与相机矩阵"], ["收集可见对象", "visible／layers／frustum"], ["渲染列表", "opaque／transmissive／transparent"], ["排序与附加 pass", "阴影、透射等可增加绘制"], ["Program variant", "材质 + 场景特性 + cache key"], ["上传与状态", "uniform、VAO、depth、blend"], ["绘制范围", "drawRange ∩ group ∩ buffer"], ["真正的 draw", "arrays／elements／instanced"], ["渲染目标", "framebuffer 或后处理输入"]],
+    "placements": [{"file": "wiki/topics/rendering/04-threejs-and-frameworks.md", "after": "## 3. render 内部：遍历、裁剪与排序"}]
+  },
+  {
+    "id": "three-updates", "topic": "rendering", "kind": "compare",
+    "title": "改值、上传数据和改变代码结构",
+    "subtitle": "needsUpdate 不属于一个通用的“全部重新编译”开关。",
+    "columns": ["改动", "需要处理的层", "典型动作"],
+    "rows": [["uniform 数值", "已链接程序的数据", "更新 uniforms[name].value"], ["attribute 数组", "GPU buffer 上传版本", "attribute.needsUpdate"], ["texture 图像", "纹理上传与配置", "texture.needsUpdate"], ["shader / defines", "程序结构与缓存选择", "material.needsUpdate；正确 cache key"], ["生成代码闭包", "结构变化不能只靠函数文本识别", "新 cache key + 重选程序条件"]],
+    "placements": [{"file": "wiki/topics/rendering/04-threejs-and-frameworks.md", "after": "## 8. onBeforeCompile 与 needsUpdate：两个独立条件"}]
+  },
+  {
+    "id": "linear-color", "topic": "rendering", "kind": "flow",
+    "title": "颜色贴图、线性光照与显示输出",
+    "subtitle": "在线性工作空间计算；最终显示转换不缺失，也不重复。",
+    "nodes": [["颜色资产", "如标注为 sRGB 的颜色贴图"], ["输入解码", "转为线性工作空间"], ["材质与光照", "BRDF、灯光、环境"], ["HDR／后处理", "明确每个 target 的表示"], ["Tone mapping", "映射显示可表达的范围"], ["输出转换", "编码为目标显示空间"]],
+    "note": "法线／roughness 等数据贴图不是颜色，不按 sRGB 色值解码。",
+    "placements": [{"file": "wiki/topics/rendering/05-lighting-color-and-postprocessing.md", "after": "## 5. 为什么必须在线性空间计算光照"}]
+  },
+  {
+    "id": "postprocessing", "topic": "rendering", "kind": "flow",
+    "title": "后处理链就是资源依赖链",
+    "subtitle": "每一段都明确输入、输出、尺寸、格式和所有者。",
+    "nodes": [["主场景", "相机 + 几何 + 材质"], ["离屏 Target A", "保存场景颜色／深度"], ["效果 Pass", "如 blur／边缘；读 A 写 B"], ["Target B", "独立于被采样的 A"], ["最终显示 Pass", "核对 tone mapping／输出转换"], ["Canvas", "resize 时同步所有相关资源"]],
+    "placements": [{"file": "wiki/topics/rendering/05-lighting-color-and-postprocessing.md", "after": "## 8. 后处理就是纹理之间的依赖图"}]
+  },
+  {
+    "id": "gpu-profiling", "topic": "rendering", "kind": "flow",
+    "title": "异步 GPU 计时：圈定工作，稍后读结果",
+    "subtitle": "JS 中 draw 的提交耗时不能代替 GPU 工作耗时。",
+    "nodes": [["检测扩展", "缺失则明确 GPU 时间缺测"], ["Begin query", "TIME_ELAPSED_EXT"], ["提交目标工作", "draw／被测 pass"], ["End query", "不立刻忙等结果"], ["后续帧检查", "available + GPU_DISJOINT_EXT"], ["采用或丢弃", "ready 且无 disjoint 才取值"]],
+    "placements": [{"file": "wiki/topics/rendering/06-performance-and-debugging.md", "after": "## 4. WebGL 2 的 GPU timer query"}]
+  },
+  {
+    "id": "webgpu-command", "topic": "rendering", "kind": "flow",
+    "title": "WebGPU 的资源、管线、编码与提交",
+    "subtitle": "显式描述兼容性；queue.submit 返回不表示 GPU 已完成。",
+    "nodes": [["Adapter / Device", "检查 features 与 limits"], ["资源与模块", "buffer／texture／sampler／WGSL"], ["布局与 Pipeline", "bindings、entry points、targets"], ["Command encoder", "begin render／compute pass"], ["设置与执行", "pipeline + bind groups；draw／dispatch"], ["提交队列", "end pass；finish；queue.submit"]],
+    "placements": [{"file": "wiki/topics/rendering/07-webgpu-wgsl-and-tsl.md", "after": "## 2. 显式 pipeline 与 bind group"}]
+  },
+  {
+    "id": "tsl-backends", "topic": "rendering", "kind": "layers", "connect": true,
+    "title": "TSL、NodeMaterial 与后端着色语言",
+    "subtitle": "TSL 描述计算，不是在 GPU 上解释执行普通 JavaScript。",
+    "layers": [["开发者表达", "TSL 节点、组合、条件与输入"], ["材质／渲染器", "NodeMaterial 组织资源、光照与管线"], ["后端生成", "WebGPU → WGSL；适用 WebGL 2 路径 → GLSL"], ["设备能力", "分别验收计算、后处理、格式和 feature；fallback 不自动等价"]],
+    "placements": [{"file": "wiki/topics/rendering/07-webgpu-wgsl-and-tsl.md", "after": "## 5. Three.js 为什么引入 TSL"}]
+  },
+  {
+    "id": "rendering-roadmap", "topic": "rendering", "kind": "flow",
+    "title": "Web 渲染的学习依赖",
+    "subtitle": "先把一个三角形和资源契约弄清，再进入框架、材质与新后端。",
+    "nodes": [["数学与坐标", "向量、矩阵、w、采样"], ["原生三角形", "compile／link／VAO／draw"], ["深度与纹理", "MVP、mipmap、resize"], ["Three.js", "对象、缓存、状态与上传"], ["光照与颜色", "PBR、阴影、线性空间"], ["多 Pass 与测量", "资源依赖；CPU／GPU 分测"], ["WebGPU / TSL", "pipeline、binding、后端边界"]],
+    "placements": [{"file": "wiki/topics/rendering/learning-roadmap.md", "after": "# 学习路线与实验"}, {"file": "wiki/topics/rendering/README.md", "after": "# Shader 与 Web 渲染技术"}]
+  }
+]

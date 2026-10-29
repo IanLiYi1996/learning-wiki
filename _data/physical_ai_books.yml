@@ -1,0 +1,158 @@
+---
+books:
+- key: knowledge
+  label: 知识全景
+  title: 知识全景与学习指南
+  file: Physical_AI_知识全景与学习指南.md
+  source_path: wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.md
+  sha256: adb4b6c6a6f93fcc23f8b211013e582e709761e90b0e2c8fe84a668a28129874
+  fragment: physical-ai/books/knowledge.html
+  chapters:
+  - label: 一、先把 Physical AI 的范围弄清楚
+    id: reader-knowledge--一先把-physical-ai-的范围弄清楚
+  - label: 二、一套系统怎样拿起杯子
+    id: reader-knowledge--二一套系统怎样拿起杯子
+  - label: 三、机器人基础：坐标、关节和运动
+    id: reader-knowledge--三机器人基础坐标关节和运动
+  - label: 四、感知、状态估计和定位
+    id: reader-knowledge--四感知状态估计和定位
+  - label: 五、规划和控制：想做什么与怎样执行
+    id: reader-knowledge--五规划和控制想做什么与怎样执行
+  - label: 六、模型地图：VLM、VLA、策略和世界模型
+    id: reader-knowledge--六模型地图vlmvla策略和世界模型
+  - label: 七、学习方法：模型从哪里学会动作
+    id: reader-knowledge--七学习方法模型从哪里学会动作
+  - label: 八、世界模型：预测、想象和生成环境
+    id: reader-knowledge--八世界模型预测想象和生成环境
+  - label: 九、数据：示范、视频和轨迹
+    id: reader-knowledge--九数据示范视频和轨迹
+  - label: 十、仿真、数字孪生和 Sim-to-Real
+    id: reader-knowledge--十仿真数字孪生和-sim-to-real
+  - label: 十一、技术栈：每一层放什么
+    id: reader-knowledge--十一技术栈每一层放什么
+  - label: 十二、部署：模型推理不是整个运行系统
+    id: reader-knowledge--十二部署模型推理不是整个运行系统
+  - label: 十三、评测：怎样知道真的会做
+    id: reader-knowledge--十三评测怎样知道真的会做
+  - label: 十四、怎样系统学习
+    id: reader-knowledge--十四怎样系统学习
+  - label: 十五、练习与掌握程度检查
+    id: reader-knowledge--十五练习与掌握程度检查
+  - label: 附录 A：术语速查
+    id: reader-knowledge--附录-a术语速查
+  - label: 附录 B：论文、版本与资料边界
+    id: reader-knowledge--附录-b论文版本与资料边界
+  - label: 附录 C：一手来源
+    id: reader-knowledge--附录-c一手来源
+- key: industry
+  label: 业界产品
+  title: 业界产品与端到端方案
+  file: industry/Physical_AI_业界产品与端到端方案.md
+  source_path: wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md
+  sha256: 4109207e389998b49b7f2b0faa2420f03bc03c972d453cb1aba8bfb92527040b
+  fragment: physical-ai/books/industry.html
+  chapters:
+  - label: 01 阶段地图：工作、产品与成熟证据
+    id: reader-industry--01-阶段地图工作产品与成熟证据
+  - label: 02 真实数据采集、标注与管理
+    id: reader-industry--02-真实数据采集标注与管理
+  - label: 03 场景建模、数字孪生与物理仿真
+    id: reader-industry--03-场景建模数字孪生与物理仿真
+  - label: 04 合成数据与示范扩增
+    id: reader-industry--04-合成数据与示范扩增
+  - label: 05 训练、微调与实验管理产品
+    id: reader-industry--05-训练微调与实验管理产品
+  - label: 06 机器人模型与商业智能平台
+    id: reader-industry--06-机器人模型与商业智能平台
+  - label: 07 感知、运动规划与机器人控制产品
+    id: reader-industry--07-感知运动规划与机器人控制产品
+  - label: '08 边缘推理与工业运行环境'
+    id: reader-industry--08-边缘推理与工业运行环境
+  - label: '09 验证、回放与系统测试方案'
+    id: reader-industry--09-验证回放与系统测试方案
+  - label: 10 多机调度、遥测与现场运维
+    id: reader-industry--10-多机调度遥测与现场运维
+  - label: 11 端到端组合与客户公开案例
+    id: reader-industry--11-端到端组合与客户公开案例
+  - label: 12 把产品接起来：交付接口与原理对照
+    id: reader-industry--12-把产品接起来交付接口与原理对照
+  - label: 附录 A 产品形态和常见接口词汇
+    id: reader-industry--附录-a-产品形态和常见接口词汇
+  - label: 附录 B 产品清单与复查方式
+    id: reader-industry--附录-b-产品清单与复查方式
+  - label: 附录 C 产品文档与客户披露
+    id: reader-industry--附录-c-产品文档与客户披露
+- key: advanced
+  label: 底层原理
+  title: 底层原理与实现细节
+  file: advanced/Physical_AI_底层原理与实现细节.md
+  source_path: wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.md
+  sha256: 5052c2549552f552d6962f772c5e5697dabbcd5da846b054a636fccac71fce33
+  fragment: physical-ai/books/advanced.html
+  chapters:
+  - label: 01 系统的数学模型：状态、观测、动作与反馈
+    id: reader-advanced--01-系统的数学模型状态观测动作与反馈
+  - label: 02 机构与几何：SE(3)、FK、IK 与雅可比
+    id: reader-advanced--02-机构与几何se3fkik-与雅可比
+  - label: 03 动力学与接触：力如何变成运动
+    id: reader-advanced--03-动力学与接触力如何变成运动
+  - label: 04 感知与估计：标定、贝叶斯、EKF 与 SLAM
+    id: reader-advanced--04-感知与估计标定贝叶斯ekf-与-slam
+  - label: 05 规划与控制：搜索、优化、PID、MPC 与全身控制
+    id: reader-advanced--05-规划与控制搜索优化pidmpc-与全身控制
+  - label: 06 表示与网络：从像素和语言到机器人动作
+    id: reader-advanced--06-表示与网络从像素和语言到机器人动作
+  - label: 07 模仿与生成策略：BC、动作分块、扩散与 Flow Matching
+    id: reader-advanced--07-模仿与生成策略bc动作分块扩散与-flow-matching
+  - label: '08 强化学习：Bellman、Actor-Critic、PPO 与 SAC'
+    id: reader-advanced--08-强化学习bellmanactor-criticppo-与-sac
+  - label: '09 世界模型：状态预测、想象学习与模型误差'
+    id: reader-advanced--09-世界模型状态预测想象学习与模型误差
+  - label: 10 数据工程：时间对齐、动作语义、采样与训练样本
+    id: reader-advanced--10-数据工程时间对齐动作语义采样与训练样本
+  - label: 11 物理仿真：积分、碰撞、约束求解与 Sim-to-Real
+    id: reader-advanced--11-物理仿真积分碰撞约束求解与-sim-to-real
+  - label: 12 运行系统：通信、调度、GPU 推理与故障处理
+    id: reader-advanced--12-运行系统通信调度gpu-推理与故障处理
+  - label: 13 评测与诊断：指标、统计、不确定性与误差归因
+    id: reader-advanced--13-评测与诊断指标统计不确定性与误差归因
+  - label: 14 数值练习与系统贯通：把公式变成可检查的计算
+    id: reader-advanced--14-数值练习与系统贯通把公式变成可检查的计算
+  - label: 附录 A 统一符号与算法边界
+    id: reader-advanced--附录-a-统一符号与算法边界
+  - label: 附录 B 先修知识与可复现材料
+    id: reader-advanced--附录-b-先修知识与可复现材料
+  - label: 附录 C 一手来源与实现入口
+    id: reader-advanced--附录-c-一手来源与实现入口
+- key: gtc
+  label: GTC 资料
+  title: GTC Berlin 2026 内容整理
+  file: conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md
+  source_path: wiki/topics/physical-ai/conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md
+  sha256: 05d1bde517087b15e770acf88e553745185328184d0b52de7e321dd3885e90ed
+  fragment: physical-ai/books/gtc.html
+  chapters:
+  - label: 内容概览
+    id: reader-gtc--内容概览
+  - label: 一、Cosmos：让 AI 理解场景，也能推演接下来会发生什么
+    id: reader-gtc--一cosmos让-ai-理解场景也能推演接下来会发生什么
+  - label: 二、机器人：从记录示范到训练，再到机器上运行
+    id: reader-gtc--二机器人从记录示范到训练再到机器上运行
+  - label: 三、工厂：数字孪生、异常处理和生产协调
+    id: reader-gtc--三工厂数字孪生异常处理和生产协调
+  - label: 四、自动驾驶：驾驶模型、数据工具和测试
+    id: reader-gtc--四自动驾驶驾驶模型数据工具和测试
+  - label: 五、计算设备和公开性能数据
+    id: reader-gtc--五计算设备和公开性能数据
+  - label: 六、Physical AI 技术栈
+    id: reader-gtc--六physical-ai-技术栈
+  - label: 七、版本、开放时间和供货信息
+    id: reader-gtc--七版本开放时间和供货信息
+  - label: 八、相关会议场次
+    id: reader-gtc--八相关会议场次
+  - label: 附录 A：名词对照
+    id: reader-gtc--附录-a名词对照
+  - label: 附录 B：技术报告与资料版本
+    id: reader-gtc--附录-b技术报告与资料版本
+  - label: 附录 C：原始资料
+    id: reader-gtc--附录-c原始资料

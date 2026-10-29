@@ -45,6 +45,12 @@ Warmup 应覆盖实际输入 shape、推理 profile 和内存路径，把首次�
 
 ### 12.5 异步 Chunk：过期比“没算完”更危险
 
+<!-- illustration: runtime-chunk-f3d7cc0987 -->
+![异步策略动作段的接收与执行。Policy、轨迹适配、Servo 与独立安全链分别承担责任。](../../images/runtime-chunk.png)
+
+*图：异步策略动作段的接收与执行。Policy、轨迹适配、Servo 与独立安全链分别承担责任。*
+<!-- /illustration: runtime-chunk-f3d7cc0987 -->
+
 推理线程读取不可变观测快照，附带 `episode_epoch`、`request_seq`、`t_obs`、`model_version`；完成后发布带 `t_ready`、每项计划执行时间和 `valid_until` 的 chunk。控制线程通过有界双缓冲或队列消费，不等待 GPU。一个原创接收条件为：
 
 $$

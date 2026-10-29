@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="426" viewBox="0 0 1040 426" role="img" aria-labelledby="title desc">
+<title id="title">Taproot 的密钥与两种花费路径</title>
+<desc id="desc">Internal key + 脚本树承诺的 tweak → output key Q。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="426" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">Taproot 的密钥与两种花费路径</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">Internal key + 脚本树承诺的 tweak → output key Q。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">路径</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">提供什么</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">保留的边界</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Key path</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">对 output key Q 的有效 Schnorr 签名</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不揭示备用脚本；不是旧 DER ECDSA</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Script path</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">选中脚本 + control block／Merkle 路径</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">只揭示使用分支；仍执行相应脚本规则</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">隐私含义</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">未使用的策略可被隐藏</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">交易金额与资金图等信息并不消失</text>
+<line x1="40" y1="362" x2="1000" y2="362" stroke="#e0e7e2"/>
+<text x="40" y="386" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">对照的是职责与条件，不是性能排名。</text>
+</g>
+</svg>

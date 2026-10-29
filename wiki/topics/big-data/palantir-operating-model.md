@@ -67,6 +67,12 @@ FDE 模式把账户现场和产品能力连接起来。一个健康的部署不�
 
 ## 一张总图
 
+<!-- illustration: operating-model-axes-0e59b6e2fc -->
+![Operating Model：三种管理粒度。公开资料重构，不是 Palantir 的内部汇报线或正式组织编制图。](images/operating-model-axes.png)
+
+*图：Operating Model：三种管理粒度。公开资料重构，不是 Palantir 的内部汇报线或正式组织编制图。*
+<!-- /illustration: operating-model-axes-0e59b6e2fc -->
+
 以下是本文对 Palantir operating model 的公开资料重构：
 
 ```text
@@ -672,6 +678,12 @@ Product primitive / template / platform improvement
 ```
 
 ## 六、field-to-product 飞轮
+
+<!-- illustration: field-product-flywheel-3fefaac336 -->
+![Field-to-product：平台与现场双向反馈。只有明确产品 owner、迁移计划和采用指标，才会减少后续定制。](images/field-product-flywheel.png)
+
+*图：Field-to-product：平台与现场双向反馈。只有明确产品 owner、迁移计划和采用指标，才会减少后续定制。*
+<!-- /illustration: field-product-flywheel-3fefaac336 -->
 
 ### 1. 飞轮的两个方向
 

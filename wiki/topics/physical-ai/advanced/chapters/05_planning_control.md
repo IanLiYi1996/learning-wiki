@@ -47,6 +47,12 @@ RRT 不先铺满高维网格，而逐次生长树：
 
 ### 路径到轨迹：还缺一条时间规律
 
+<!-- illustration: planning-control-5b6a9a044b -->
+![任务、可达性、路径、轨迹与跟踪。末端可达 ≠ 整机无碰撞 ≠ 动力学可行 ≠ 任务实际成功。](../../images/planning-control.png)
+
+*图：任务、可达性、路径、轨迹与跟踪。末端可达 ≠ 整机无碰撞 ≠ 动力学可行 ≠ 任务实际成功。*
+<!-- /illustration: planning-control-5b6a9a044b -->
+
 搜索得到的折线只决定“经过哪里”。令路径参数为 $\sigma\in[0,1]$，不用 s，以免与真实状态冲突：
 
 $$
@@ -106,6 +112,12 @@ $q_t,u_t,e_t$ 为标量，参考固定，$K_p$ 在此速度接口下量纲为每
 程序应把观测时间、计算耗时、通信和保持延迟都计入闭环模型；不能只看平均周期。逆动力学可给出前馈，但模型误差、饱和和时延仍需反馈处理；理想模型下的误差线性化也不是实际跟踪保证。[Modern Robotics §11.4，Part 3：计算力矩控制](https://modernrobotics.northwestern.edu/nu-gm-book-resource/11-4-motion-control-with-torque-or-force-inputs-part-3-of-3/)
 
 ### MPC：优化未来多步，只执行第一步
+
+<!-- illustration: mpc-horizon-c57d1b26e1 -->
+![MPC：预测 H 步，只执行首步。滚动视界以新观测重新求解，不把整段预测当开环执行计划。](../../images/mpc-horizon.png)
+
+*图：MPC：预测 H 步，只执行首步。滚动视界以新观测重新求解，不把整段预测当开环执行计划。*
+<!-- /illustration: mpc-horizon-c57d1b26e1 -->
 
 在时刻 t，MPC 从当前估计 $\hat s_t$ 出发预测 H 步，状态维度 d、输入维度 $n_u$：
 

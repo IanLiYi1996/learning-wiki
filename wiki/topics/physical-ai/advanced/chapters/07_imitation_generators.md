@@ -39,6 +39,12 @@ ACT 的 temporal ensemble 合并的是“不同预测时刻对同一个执行时
 
 ### 07.4 DDPM：先定义噪声过程，再定义学习目标
 
+<!-- illustration: diffusion-flow-d9e03d146e -->
+![扩散与 Flow Matching：监督目标不同。两者都可生成动作段；环境时间、扩散步和生成时间分别记录。](../../images/diffusion-flow.png)
+
+*图：扩散与 Flow Matching：监督目标不同。两者都可生成动作段；环境时间、扩散步和生成时间分别记录。*
+<!-- /illustration: diffusion-flow-d9e03d146e -->
+
 把归一化的示范动作段展平为 $x^{(0)}\in\mathbb R^{D}$，其中 $D=H_a d_a$。扩散步记作 $k$，不与环境时间 $t$ 混用。DDPM 的前向过程为：
 
 $$

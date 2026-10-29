@@ -85,6 +85,12 @@ Cosmos 仓库列出的已知问题包括：较长视频中前后不一致、物�
 
 ## 二、机器人：从记录示范到训练，再到机器上运行
 
+<!-- illustration: gtc-robot-stack-a5e10f6bc8 -->
+![会议机器人技术栈：按职责读发布。沿用报告的 2026-10-26 资料口径；不因本次配图更新开放或供货状态。](../../images/gtc-robot-stack.png)
+
+*图：会议机器人技术栈：按职责读发布。沿用报告的 2026-10-26 资料口径；不因本次配图更新开放或供货状态。*
+<!-- /illustration: gtc-robot-stack-a5e10f6bc8 -->
+
 ### 2.1 Isaac Capture 记录什么
 
 Isaac Capture 用来收集机器人学习所需的数据。人通过遥操作设备控制机器人，或用 VR 头显、智能眼镜等设备记录操作示范，系统再整理人的动作、场景和传感器数据。[6] [17]
@@ -193,6 +199,12 @@ Schneider 提供 Vera Rubin 电力和冷却参考设计，并与 AVEVA 合作开
 
 ## 四、自动驾驶：驾驶模型、数据工具和测试
 
+<!-- illustration: gtc-driving-stack-83b3215fdc -->
+![自动驾驶：模型、数据、宿主与测试。模型输出、车载硬件和验证平台属于不同责任层。](../../images/gtc-driving-stack.png)
+
+*图：自动驾驶：模型、数据、宿主与测试。模型输出、车载硬件和验证平台属于不同责任层。*
+<!-- /illustration: gtc-driving-stack-83b3215fdc -->
+
 ### 4.1 Alpamayo 2 Edge 做什么
 
 Alpamayo 2 Edge 是约 20 亿参数的驾驶推理模型，针对 DRIVE AGX Thor 优化，设计运行频率为 10Hz。它根据车内获得的场景信息规划行驶轨迹，并生成规划说明。[23] [25]
@@ -285,6 +297,12 @@ Cosmos 的性能文档分别列出生成模型和理解／推理模型的数据�
 这些程序运行在 CPU、GPU 和操作系统上。CUDA 提供 NVIDIA GPU 的计算支持，PyTorch 提供训练所需的张量计算和自动求导，TensorRT 负责已训练模型的推理运行。训练可以使用工作站或数据中心 GPU；设备端则使用 Jetson、DRIVE 等计算平台。[42] [43] [45] [25]
 
 ### 6.2 OpenUSD、Isaac Sim、Isaac Lab 和模型的分工
+
+<!-- illustration: scene-physics-twin-1339cfe061 -->
+![场景描述、物理引擎、仿真与数字孪生。画面逼真、接触准确和任务可靠性是不同测试对象。](../../images/scene-physics-twin.png)
+
+*图：场景描述、物理引擎、仿真与数字孪生。画面逼真、接触准确和任务可靠性是不同测试对象。*
+<!-- /illustration: scene-physics-twin-1339cfe061 -->
 
 OpenUSD 是描述和组合三维场景的工具与格式。它可以保存物体、层级关系和动画等信息；USD Physics 相关描述还可以保存刚体、碰撞、关节和质量等属性。[37] [38]
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+<title id="title">ECDSA 签名返回后，链适配还没结束</title>
+<desc id="desc">签名摘要、返回编码与交易编码分别处理；不是对 txid 任意签一下。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="540" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">ECDSA 签名返回后，链适配还没结束</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">签名摘要、返回编码与交易编码分别处理；不是对 txid 任意签一下。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">解释完整交易</text>
+<text x="184.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">独立核对网络、收款、金额与费</text>
+<text x="184.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">用</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">计算链用摘要</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">BTC sighash／EVM Keccak</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">ECDSA 签名</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">已计算摘要避免再次哈希</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">解析并规范化</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">DER 或 r∥s；处理 low-S</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="349.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">适配链格式</text>
+<text x="520.0" y="384.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">BTC script／witness；EVM</text>
+<text x="520.0" y="407.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">parity</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">本地验证与保存</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">完整签名 payload 后再广播</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="476" x2="1000" y2="476" stroke="#e0e7e2"/>
+<text x="40" y="500" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">此路径不生成 BIP340 Schnorr，不自动提供 BIP32 派生。</text>
+</g>
+</svg>

@@ -59,6 +59,12 @@ CPU 顶点数组改动后还可能需要重新计算 bounding sphere/box。纯 v
 
 ## 3. render 内部：遍历、裁剪与排序
 
+<!-- illustration: three-render-8c31957b0d -->
+![Three.js 的一帧怎样走到 draw。对象图、渲染列表、program 和 GPU 状态是不同层。](images/three-render.png)
+
+*图：Three.js 的一帧怎样走到 draw。对象图、渲染列表、program 和 GPU 状态是不同层。*
+<!-- /illustration: three-render-8c31957b0d -->
+
 下面是理解普通渲染路径的简图，不是声称所有 pass 只有一次遍历：
 
 ```text
@@ -191,6 +197,12 @@ material.uniforms.uTime.value = elapsedSeconds;
 [S07] 输出要求：[Color Management](https://github.com/mrdoob/three.js/blob/9b4a2ac29c63ccb43fd51c5661f2f873ac2c39b8/manual/pages/color-management.html)；实际 chunks：[tonemapping_fragment](https://github.com/mrdoob/three.js/blob/9b4a2ac29c63ccb43fd51c5661f2f873ac2c39b8/src/renderers/shaders/ShaderChunk/tonemapping_fragment.glsl.js)、[colorspace_fragment](https://github.com/mrdoob/three.js/blob/9b4a2ac29c63ccb43fd51c5661f2f873ac2c39b8/src/renderers/shaders/ShaderChunk/colorspace_fragment.glsl.js)。
 
 ## 8. onBeforeCompile 与 needsUpdate：两个独立条件
+
+<!-- illustration: three-updates-3a042f61a9 -->
+![改值、上传数据和改变代码结构。needsUpdate 不属于一个通用的“全部重新编译”开关。](images/three-updates.png)
+
+*图：改值、上传数据和改变代码结构。needsUpdate 不属于一个通用的“全部重新编译”开关。*
+<!-- /illustration: three-updates-3a042f61a9 -->
 
 `onBeforeCompile(shader, renderer)` 可改内置 shader 源码及 uniforms，从而保留原有 PBR 等模型的一部分实现。它不是每帧执行的动画 hook；冻结路径在为材质取得未缓存的 program 时调用它。[S08][S03]
 

@@ -1,5 +1,11 @@
 # 学习路线与实验
 
+<!-- illustration: rendering-roadmap-4bede3cb2c -->
+![Web 渲染的学习依赖。先把一个三角形和资源契约弄清，再进入框架、材质与新后端。](images/rendering-roadmap.png)
+
+*图：Web 渲染的学习依赖。先把一个三角形和资源契约弄清，再进入框架、材质与新后端。*
+<!-- /illustration: rendering-roadmap-4bede3cb2c -->
+
 研究日期：2026-10-29。以“能解释、能改动、能验证”为进阶标准，不按刷完多少教程判断。
 
 ## 阶段 0：补齐最少的数学

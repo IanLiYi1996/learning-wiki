@@ -20,6 +20,12 @@ WebGPU 定义图形与通用计算 API；WGSL 定义对应着色语言。核验�
 
 ## 2. 显式 pipeline 与 bind group
 
+<!-- illustration: webgpu-command-469bf172bc -->
+![WebGPU 的资源、管线、编码与提交。显式描述兼容性；queue.submit 返回不表示 GPU 已完成。](images/webgpu-command.png)
+
+*图：WebGPU 的资源、管线、编码与提交。显式描述兼容性；queue.submit 返回不表示 GPU 已完成。*
+<!-- /illustration: webgpu-command-469bf172bc -->
+
 一份 render pipeline 联结 Shader entry point、顶点布局、图元、颜色目标、混合、深度/模板和多重采样设置。资源绑定布局约束各个 binding 的类型、阶段可见性与其他属性。[W1]
 
 ```text
@@ -95,6 +101,12 @@ compute pipeline 可以读写适当的 storage 数据并按 workgroup 调度。�
 典型后续方向是粒子更新、光列表构建、图像计算等；本次未执行这些 GPU 实验，不提供虚构的加速比。
 
 ## 5. Three.js 为什么引入 TSL
+
+<!-- illustration: tsl-backends-9b275d041a -->
+![TSL、NodeMaterial 与后端着色语言。TSL 描述计算，不是在 GPU 上解释执行普通 JavaScript。](images/tsl-backends.png)
+
+*图：TSL、NodeMaterial 与后端着色语言。TSL 描述计算，不是在 GPU 上解释执行普通 JavaScript。*
+<!-- /illustration: tsl-backends-9b275d041a -->
 
 TSL 用 JavaScript 的节点表达组织着色计算，由后端构建成 WGSL 或 GLSL。它不是在 GPU 上解释执行普通 JS，也不是任意 JS 都可无约束编译。[W3]
 

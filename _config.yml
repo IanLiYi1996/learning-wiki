@@ -52,3 +52,9 @@ exclude:
   - scripts
   - tests
   - wiki/topics/blockchain/source
+  # Archived standalone exports otherwise overwrite the illustrated Markdown routes.
+  # The original bytes remain in the repository; PDF/Word downloads are unchanged.
+  - wiki/topics/physical-ai/Physical_AI_知识全景与学习指南.html
+  - wiki/topics/physical-ai/advanced/Physical_AI_底层原理与实现细节.html
+  - wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.html
+  - wiki/topics/physical-ai/conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.html

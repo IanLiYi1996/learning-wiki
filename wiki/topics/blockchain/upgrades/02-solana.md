@@ -98,6 +98,12 @@ Alpenglow 本身不要求重写普通 `sendTransaction`、账户读取、程序�
 
 ## 6. 完整付款与事件消费流程
 
+<!-- illustration: solana-bank-consumer-b41c029838 -->
+![Solana：候选观察桶与账务身份分离。同 slot 的不同 bank 不混合；通知到达顺序不作为执行顺序。](../images/solana-bank-consumer.png)
+
+*图：Solana：候选观察桶与账务身份分离。同 slot 的不同 bank 不混合；通知到达顺序不作为执行顺序。*
+<!-- /illustration: solana-bank-consumer-b41c029838 -->
+
 以下是基于接口契约的**工程建议**，不是本次完成的生产验收。以普通 recent-blockhash 转账为例：
 
 1. **创建业务请求。** 保存 network、收款对象、最小单位整数金额、requestId；预留余额。一次业务请求可以有多次尝试，但不能各付款一次。

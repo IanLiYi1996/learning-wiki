@@ -1,5 +1,11 @@
 # Shader 与 Web 渲染技术
 
+<!-- illustration: rendering-roadmap-6e07a3f57c -->
+![Web 渲染的学习依赖。先把一个三角形和资源契约弄清，再进入框架、材质与新后端。](images/rendering-roadmap.png)
+
+*图：Web 渲染的学习依赖。先把一个三角形和资源契约弄清，再进入框架、材质与新后端。*
+<!-- /illustration: rendering-roadmap-6e07a3f57c -->
+
 研究日期：2026-10-29。以 WebGL 2 / GLSL ES 3.00 为底层教学主线，Three.js 版本基线为 `0.186.1`。
 
 目标不是背框架 API，而是能解释：一份几何数据怎样变成屏幕上的图像；为什么同一个 Shader 在不同设置下会变暗、出错或变慢；框架替你管理了哪些工作。

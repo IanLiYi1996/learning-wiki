@@ -1,0 +1,1796 @@
+<!-- Generated from wiki/topics/physical-ai/industry/Physical_AI_业界产品与端到端方案.md; edit the source, not this fragment. -->
+<h2 id="reader-industry--physical-ai业界产品与端到端方案">Physical AI：业界产品与端到端方案</h2>
+
+<p>生命周期、产品能力、获取方式、接口衔接与落地证据</p>
+
+<p>资料核验：2026-10-27｜行业篇 1.0</p>
+
+<p>本册回答实际项目中的问题：每个阶段做什么，现成产品提供什么，前后怎样连接，以及公开资料能证明它做到哪一步。覆盖商业软件、开源工具链、机器人模型平台和具体应用系统，不把它们放在一张性能排行榜上。</p>
+
+<p>“公开可获取”“具备正式产品支持”“客户场景中运行”“限定任务试点”“已宣布的后续部署”分别记录。客户官网披露也不等于第三方审计；本文没有自行测试产品性能、安装机器人系统或验证供应商兼容承诺。</p>
+
+<p>已有《底层原理与实现细节》保留。本册侧重业界实现，第 12 章把产品阶段对应回原理章节。先读第 1 章建立阶段地图，再按工作阶段查第 2—10 章；第 11 章展示产品如何组成应用与客户披露的实际边界。</p>
+
+<h3 id="reader-industry--01-阶段地图工作产品与成熟证据">01 阶段地图：工作、产品与成熟证据</h3>
+
+<h4 id="reader-industry--11-一个项目不是只购买一个模型">1.1 一个项目不是只购买一个模型</h4>
+
+<!-- illustration: industry-lifecycle-fd6e7706ee -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/industry-lifecycle.png' | relative_url }}" alt="Physical AI 项目的交付链。权重、软件、硬件、服务和整套工作站是不同交付物。" loading="lazy" decoding="async"></p>
+
+<p><em>图：Physical AI 项目的交付链。权重、软件、硬件、服务和整套工作站是不同交付物。</em><br>
+<!-- /illustration: industry-lifecycle-fd6e7706ee --></p>
+
+<p>Physical AI 项目中的产品至少有几种不同交付形式。机器人整机承担运动和传感；工业应用软件组织某类任务；仿真和数据平台支持开发；训练框架生成模型；推理运行时执行模型；控制和现场系统把指令变成可追踪的任务。</p>
+
+<p>读产品页时先看交付物。得到一个模型权重文件、一个可配置的机器人工作站、一套云端数据服务，和一个有维护合同的仓库自动化系统，意味着不同的集成责任。开源工具链也可以长期维护和用于工程，但“能下载”并不代表已有你的任务、硬件和现场接口。</p>
+
+<p>本册采用下表组织阶段。它是阅读与项目拆解方式，不要求所有应用都从头经过每一步。专用工业方案可能已经把多个阶段封装在供应商交付中。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>阶段</th>
+      <th>实际工作</th>
+      <th>应有的输出</th>
+      <th>本册对应产品</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>任务与设备定义</td>
+      <td>明确物体、环境、动作与设备接口</td>
+      <td>任务范围、设备配置、成功判据</td>
+      <td>工业工作站、整机与应用方案</td>
+    </tr>
+    <tr>
+      <td>真实数据</td>
+      <td>采集、回放、标注、检索与划分</td>
+      <td>带时间和动作语义的轨迹／数据版本</td>
+      <td>Foxglove、Rerun、Scale、Roboto</td>
+    </tr>
+    <tr>
+      <td>场景与仿真</td>
+      <td>建模、运行物理、验证布局和运动</td>
+      <td>场景、物理配置、虚拟工作站</td>
+      <td>RobotStudio、Process Simulate、Isaac Sim、MuJoCo、Gazebo</td>
+    </tr>
+    <tr>
+      <td>合成扩增</td>
+      <td>生成图像、标签或执行轨迹</td>
+      <td>明确监督类型的合成数据</td>
+      <td>Replicator、Mimic、Cosmos</td>
+    </tr>
+    <tr>
+      <td>训练与微调</td>
+      <td>训练策略、管理实验和检查点</td>
+      <td>权重、配置、评测及可复现记录</td>
+      <td>PyTorch、Isaac Lab、LeRobot、W&amp;B、MLflow</td>
+    </tr>
+    <tr>
+      <td>模型平台</td>
+      <td>将观察和任务映射到动作或推理</td>
+      <td>模型调用／权重及其接口契约</td>
+      <td>GR00T、openpi、OpenVLA、Gemini Robotics；商业专用智能平台</td>
+    </tr>
+    <tr>
+      <td>感知、规划与控制</td>
+      <td>定位、抓取、生成路径和执行参考</td>
+      <td>位姿、轨迹、设备命令与反馈</td>
+      <td>MoveIt、Nav2、ros2_control、工业视觉与控制器</td>
+    </tr>
+    <tr>
+      <td>边缘部署</td>
+      <td>优化推理、接入设备、维护时限</td>
+      <td>运行包、设备配置、模型与接口版本</td>
+      <td>Jetson／JetPack、TensorRT、IGX、OpenVINO、工业运行环境</td>
+    </tr>
+    <tr>
+      <td>验证</td>
+      <td>场景测试、日志回放、仿真与硬件测试</td>
+      <td>任务结果、失败记录、回归报告</td>
+      <td>回放工具、Applied Intuition、车辆测试平台</td>
+    </tr>
+    <tr>
+      <td>现场运行</td>
+      <td>派发任务、多机协同、监控与维护</td>
+      <td>任务状态、异常、设备健康与运行记录</td>
+      <td>MiR Fleet、InOrbit、OpenRMF、供应商运维平台</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>表中的功能在第 2—10 章的卡片和一手资料中逐项展开。一个名称可能出现在多阶段，因为它确实承担多种职责；这不意味着它能替代所有其它产品。</p>
+
+<h4 id="reader-industry--12-成熟拆成可核验的事实">1.2 “成熟”拆成可核验的事实</h4>
+
+<p>本册不打成熟度分数，而记录两个维度。</p>
+
+<p>第一维是交付与获取：是否有公开代码／权重、安装与接口文档、正式软件版本、商业联系与支持入口；是否还处于受限访问、合作开发或预览。源代码开放和模型权重可用是两件事，试用入口与可独立部署也不同。</p>
+
+<p>第二维是任务落地：只看到演示，还是有供应商案例、客户公告、正式商业运行或多场地扩展？证据需保留任务、地点、时间和统计口径。产品提供方的宣传、客户发布和独立测试不能互相替代。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>资料表述</th>
+      <th>本册怎样记录</th>
+      <th>不能直接推出什么</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>官方文档与发布包可访问</td>
+      <td>可获取的软件／模型工具</td>
+      <td>在某个工厂无需集成即可运行</td>
+    </tr>
+    <tr>
+      <td>产品页、授权和支持入口</td>
+      <td>正式商业产品形态</td>
+      <td>已满足特定任务所有要求</td>
+    </tr>
+    <tr>
+      <td>厂商发布客户案例</td>
+      <td>供应商披露的现场应用</td>
+      <td>独立性能审计或所有客户的效果</td>
+    </tr>
+    <tr>
+      <td>客户披露在限定流程运行</td>
+      <td>客户公开的现场证据</td>
+      <td>可泛化到不同对象、工位和任务</td>
+    </tr>
+    <tr>
+      <td>试点／验证期间完成任务</td>
+      <td>生产环境中的试点证据</td>
+      <td>全场地、长期、无人工介入交付</td>
+    </tr>
+    <tr>
+      <td>新合同或新增站点计划</td>
+      <td>已宣布的扩展，保留预计日期</td>
+      <td>计划中的设备已经投入运行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这是事实分类，不是“商业一定优于开源”或“新模型一定未成熟”的判断。工业应用的部分模块可能已经稳定交付，通用任务适配仍可能需要研发。</p>
+
+<h4 id="reader-industry--13-三种产品组合责任边界不同">1.3 三种产品组合，责任边界不同</h4>
+
+<p>整套应用交付通常将设备、末端工具、感知、任务软件和服务一起约定。客户重点核验具体工作流程、现场接入和维护边界，而非单独研究内部模型的参数量。</p>
+
+<p>组件式集成把视觉、规划、控制器、数据库等分别连接。它允许按接口组合工具，但集成者需要处理坐标、时间、任务状态、错误恢复和版本兼容。功能看起来能对上，不代表已有官方支持的连接器。</p>
+
+<p>模型驱动研发从公开或受限机器人模型出发，准备观察与动作数据、微调、评测、部署，再接到机器人。这里的模型下载往往只是流程中的一站；即使采用通用模型，仍需查清动作表示、身体适配和执行条件。</p>
+
+<h4 id="reader-industry--14-产品卡片看哪些字段">1.4 产品卡片看哪些字段</h4>
+
+<p>本册每张卡片说明产品职责、输入输出、获取／部署、衔接和证据边界。产品清单另存为 <code>products.csv</code> 和 <code>products.json</code>，便于按阶段检索。</p>
+
+<p>没有公开接口或用户侧细节的系统，就保留“具体集成需供应商确认”，不凭一般机器人架构补出私有接口。商业报价、区域供货与合同条款未逐项核验，不以开源组件价格推算整套系统成本。</p>
+
+<h3 id="reader-industry--02-真实数据采集标注与管理">02 真实数据采集、标注与管理</h3>
+
+<!-- illustration: robot-data-assets-3ca04c29d1 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/robot-data-assets.png' | relative_url }}" alt="机器人日志怎样变成训练资产。记录容器、查看器、标注服务与训练清单承担不同职责。" loading="lazy" decoding="async"></p>
+
+<p><em>图：机器人日志怎样变成训练资产。记录容器、查看器、标注服务与训练清单承担不同职责。</em><br>
+<!-- /illustration: robot-data-assets-3ca04c29d1 --></p>
+
+<h4 id="reader-industry--阶段工作与交付物">阶段工作与交付物</h4>
+
+<p>这一阶段把现场运行、遥操作示范和测试记录变成可查找、可复核、可交给训练与评测的资产。交付物应包括原始日志、相机与机器人标定版本、设备及软件版本、任务与事件标签、轨迹边界、数据权限，以及可重复生成的数据集清单。命令、实测状态和人工解释必须分开保存；日志浏览器能显示动作曲线，不意味着数据已经具有合格的机器人动作监督。</p>
+
+<p>本章用五类证据描述公开状态：正式获取入口、官方文档或代码、客户自己的披露、供应商发布的客户案例、预览或研究示例。不同证据不能互换。“可商业访问”只表示官网明确提供商业入口，不表示本次已经签约或实测全部服务。以下状态统一核验至 <strong>2026-10-27</strong>；原始采集、审核标注、目录管理与训练样本整理的衔接是本章原创参考流程，不冒称某个客户的内部架构。</p>
+
+<h4 id="reader-industry--foxglove多模态记录的查看组织与协作平台">Foxglove：多模态记录的查看、组织与协作平台</h4>
+
+<p>Foxglove 面向机器人日志的日常使用：接入相机、点云、位姿、曲线和文本记录，输出可共享的回放视图、事件和可检索录制集合。输入可以是 MCAP、受支持的 ROS 日志或实时数据；已有 ROS 系统可经 Foxglove Bridge 接入，自定义程序可使用 C++、Python、Rust SDK，把流写入 MCAP 或传到查看器。团队再通过 API、CLI、webhook 将录制与内部处理任务衔接。<a href="https://docs.foxglove.dev/docs">S1</a>、<a href="https://docs.foxglove.dev/docs/sdk">S2</a></p>
+
+<p>获取形式包括桌面与浏览器应用；Data Platform 文档列出供应商托管、自有存储配合托管，以及客户自管数据平面，后一形式默认仍有供应商认证协调，不能直接称完全离线。<a href="https://docs.foxglove.dev/docs/data">S3</a> 公开证据不仅有界面演示：Foxglove 披露 Dexory 的 MCAP 播放器集成，保留独立播放进程，同时向 Foxglove 与 ROS 2 输出数据。这个例子证明回放接口可接入既有软件栈，不证明整个仓库机器人生产系统由 Foxglove 管理。<a href="https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control">S4</a></p>
+
+<p>接口边界是记录、观察与数据组织。任务标签和导出结果仍需项目定义语义；不能把可视化、事件标记或在线连接当作自动校准、完整标注服务、控制安全认证或策略训练系统。</p>
+
+<h4 id="reader-industry--mcap可独立采用的日志容器不是云产品">MCAP：可独立采用的日志容器，不是云产品</h4>
+
+<p>MCAP 是保存带时间戳发布／订阅消息的开放容器格式，可承载不同序列化编码。其输入是消息、schema、channel 和辅助附件，输出是 <code>.mcap</code> 文件；索引、分块与压缩让读者按时间和主题定位记录，标定文件等上下文也可随附件保存。它与 Foxglove 有紧密生态关系，但使用 MCAP 不要求购买或接入 Foxglove Data Platform。<a href="https://mcap.dev/spec">S5</a></p>
+
+<p>接入方式是在采集程序或日志系统的写入层采用 MCAP 库，再由支持该格式的播放器、分析工具或转换器读取。项目必须保留消息定义和编码，分别解释记录时间、发布时间与消息内部采集时间；文件扩展名相同，不代表动作单位、坐标系和时钟已经一致。MCAP 项目提供公开规范和开源实现，是可直接取得的基础组件，而非只能通过销售演示访问的服务。<a href="https://mcap.dev/">S6</a></p>
+
+<p>公开使用证据可见 Dexory 的播放器集成：MCAP 被用来载入、回放并向 ROS 2 重发记录。这支持“已有机器人软件集成”的判断，不支持把 MCAP 说成自带数据审核、账号权限、机群分析或标注产能的管理平台。<a href="https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control">S4</a> 格式保证的是如何装载消息，消息是否完整、可信、可用于训练仍由采集与审核流程负责。</p>
+
+<h4 id="reader-industry--rerun代码优先的时空数据层与查看器">Rerun：代码优先的时空数据层与查看器</h4>
+
+<p>Rerun SDK 将多频率、多模态数据记录为带时间与实体路径的表示，输入包括图像、3D 几何、机器人状态和已有日志，输出包括 <code>.rrd</code> 记录、查看器视图、查询结果及派生数据层。Python、Rust、C++ 日志接口可嵌入算法；当前官方 SDK 页面还列出 MCAP／ROS 2 转换、SQL／dataframe 查询、目录服务和 PyTorch dataloader。接入并不要求机器人整体迁移：可先在现有处理程序中记录少量关键观测和结果，再建立共享 schema。<a href="https://rerun.io/sdk">S7</a></p>
+
+<p>开源 SDK 与本地目录服务公开可取，查看器支持桌面、浏览器和 notebook。<a href="https://github.com/rerun-io/rerun">S8</a> 商业 Rerun Hub 是对象存储之上的目录、索引与流式访问后端，当前产品页提供客户存储及商务接洽入口，具体部署与准入需确认；相关公告明确使用 private preview，本次未找到能够确认全面开放 GA 的声明，故不将 SDK 与 Hub 合并判断成熟度。<a href="https://rerun.io/hub">S9</a>、<a href="https://rerun.io/blog/data-layer-for-robot-learning">S10</a></p>
+
+<p>官网列出 LeRobot 使用 Rerun 检查机器人数据与训练运行，属于公开开源集成证据，并不是客户量产披露。SDK 中新增处理、审核和训练接口也应按具体版本检查实验性标记。它帮助检查标签与组织派生层，但不会自动产生真实机器人命令，亦不替代人工审核制度。<a href="https://rerun.io/sdk">S7</a></p>
+
+<h4 id="reader-industry--scale-physical-ai数据采集与标注服务">Scale Physical AI：数据采集与标注服务</h4>
+
+<p>Scale 的 Physical AI Data Engine 属于服务型数据供给：输入是机器人形态、任务、物体、环境和质量要求，也可涉及已有记录的丰富与标注；交付是定制采集的示范、多模态 grounding 注释及约定的数据集。官方介绍同时列出定制采集、标注和已有数据供给，不是仅售卖一个本地标注编辑器。<a href="https://scale.com/physical-ai">S11</a>、<a href="https://scale.com/blog/physical-ai">S12</a></p>
+
+<p>接入首先是与其工程、采集及运营团队确定数据规格、传感器配置、审核规则和交付验收，再进入本方目录与训练流程。官网提供联系入口，属于可商业接洽的服务；本次未核验到统一公开的机器人 episode SDK 或跨项目固定交付 schema，不能替供应商编造直接可调用的动作数据 API。托管、处理地域、权利范围与文件形式应以具体项目披露为准。</p>
+
+<p>供应商公告列出 Physical Intelligence、Generalist AI 与 Cobot，并附有客户负责人对合作的表述。它能证明存在公开披露的数据合作及供应商采集业务，不能独立证明任一客户的部署规模、所有机器人任务的生产表现，亦不能把供应商公布的数据量当成跨产品性能排名。<a href="https://scale.com/blog/physical-ai">S12</a> 尤其是人类示范和语义注释，不会自动成为某台机器人的可执行动作；命令层、重定向、时钟和机器人接口仍须在交付规格中明确。</p>
+
+<h4 id="reader-industry--roboto-ai日志检索分析自动化与数据整理">Roboto AI：日志检索、分析自动化与数据整理</h4>
+
+<p>Roboto 的职责是把机器人记录变成可查询的数据集、事件、统计结果和训练／评测候选片段。它读取 ROS、MCAP、PX4、Parquet 等受支持格式；输入经上传或自有存储桶接入，Python SDK、CLI 和 API 再连接分析代码。Actions 执行用户定义的后处理，Triggers 在条件满足时启动处理，Collections 组织筛选出的数据；这与简单打开单条日志的查看器不是同一交付层。<a href="https://www.roboto.ai/docs">S13</a>、<a href="https://www.roboto.ai/docs/learn/formats">S14</a></p>
+
+<p>商业访问有明确证据：官网同时提供免费注册入口、付费方案，以及托管和客户 AWS 环境内 self-managed 形式。本次只核验公开入口，没有创建账户，也不保证任意地区或权限条件都能开通。无需凭融资或品牌印象推断它是“仅研究原型”，同样不能据官网扩展性表述认定其已经普遍大规模生产。<a href="https://www.roboto.ai/pricing">S15</a></p>
+
+<p>供应商的 BRINC 案例披露了飞行日志接入、自有 S3、Python 分析和出厂 QA 检查，属于明确任务范围内的客户应用证据；文中的效率数字属于该案例陈述，不外推到其他机器人。<a href="https://www.roboto.ai/customers/brinc">S16</a> 分析报告、AI 摘要和通过／失败标签不是独立安全结论；整理出的片段也需另行审核动作监督与数据使用权。</p>
+
+<h4 id="reader-industry--同类对照与交付衔接">同类对照与交付衔接</h4>
+
+<p>下表整理本章已核验的职责，不比较性能或推荐采购。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>产品／组件</th>
+      <th>主要交付层</th>
+      <th>获取或部署形式</th>
+      <th>交给下一阶段什么</th>
+      <th>不应混淆的边界</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MCAP</td>
+      <td>消息文件容器</td>
+      <td>开放规范、开源实现</td>
+      <td>原始记录、schema、附件与索引</td>
+      <td>没有自带云目录和标注产能</td>
+    </tr>
+    <tr>
+      <td>Foxglove</td>
+      <td>查看、协作与录制目录</td>
+      <td>桌面／浏览器，托管或自托管数据平台</td>
+      <td>回放视图、事件、筛选后的记录</td>
+      <td>查看与标记不等于完成动作标注</td>
+    </tr>
+    <tr>
+      <td>Rerun SDK／Hub</td>
+      <td>时空表示、查询及数据访问</td>
+      <td>SDK 本地开源；Hub 联系获取</td>
+      <td>
+<code>.rrd</code>、查询、派生层及数据读取接口</td>
+      <td>SDK 可访问性不证明 Hub 已全面 GA</td>
+    </tr>
+    <tr>
+      <td>Scale Physical AI</td>
+      <td>采集与标注供给</td>
+      <td>商业项目服务</td>
+      <td>约定规格的数据集与注释</td>
+      <td>项目交付接口不能假定统一</td>
+    </tr>
+    <tr>
+      <td>Roboto AI</td>
+      <td>日志分析、筛选和自动化</td>
+      <td>公开注册，付费托管／AWS 自管</td>
+      <td>事件、统计、Collections 和数据片段</td>
+      <td>案例中的 QA 使用不等于安全认证</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一个可执行的组织方式是：先约定日志 schema 与权限，再选用记录容器；把事件审核与派生标签回写到目录，最后生成版本化训练清单。Foxglove、Rerun、Roboto 的接口可以衔接文件与处理脚本，但本章不宣称三者默认开箱互通。</p>
+
+<h3 id="reader-industry--03-场景建模数字孪生与物理仿真">03 场景建模、数字孪生与物理仿真</h3>
+
+<!-- illustration: scene-physics-twin-678d164db0 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/scene-physics-twin.png' | relative_url }}" alt="场景描述、物理引擎、仿真与数字孪生。画面逼真、接触准确和任务可靠性是不同测试对象。" loading="lazy" decoding="async"></p>
+
+<p><em>图：场景描述、物理引擎、仿真与数字孪生。画面逼真、接触准确和任务可靠性是不同测试对象。</em><br>
+<!-- /illustration: scene-physics-twin-678d164db0 --></p>
+
+<h4 id="reader-industry--阶段工作与交付物-1">阶段工作与交付物</h4>
+
+<p>场景工程把 CAD、机器人描述、现场测量、设备配置及流程要求变成可执行的虚拟试验环境。交付物不只是三维画面，还包括机器人和工装模型、碰撞与传感器配置、控制接口、版本化测试场景，以及离线程序、验证报告或训练用环境。数字孪生还需绑定具体真实对象、参数来源和更新记录，不能仅凭模型外观宣布已与实物一致。</p>
+
+<p>本章区分三种工作：工业单元的离线编程与虚拟调试、机器人软件／学习环境的闭环测试、汽车虚拟试驾。它们可以交换部分资产，却不是同一个交付物。以下“获取、支持、客户案例、研究”的描述均按 <strong>2026-10-27</strong> 可读的一手资料标注；有文档和开源发行的组件不被自动归为“不成熟”，商业客户案例也不被外推成通用 AI 或安全认证。</p>
+
+<h4 id="reader-industry--abb-robotstudio围绕-abb-控制器的离线工程环境">ABB RobotStudio：围绕 ABB 控制器的离线工程环境</h4>
+
+<p>RobotStudio 用于机器人单元布局、运动验证、程序编写和现场调试前的离线检查。输入是机器人配置、工装／几何、目标路径及程序，输出是可复用的工作站模型、ABB 机器人程序和运动、节拍等检查结果。其关键接口是 ABB Virtual Controller：使用真实控制软件对应的程序与配置进行虚拟执行，而不是只播放手绘动画。随后由工程流程将验证后的程序与配置接到实际控制器。<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-desktop">S17</a></p>
+
+<p>获取形式包括 PC 桌面软件和商业许可；Suite 官网还列出云协作、路径规划和程序辅助，许可页说明浮动许可及离线借用。各模块的适用条件应按具体许可核对，不能把“云许可”理解成所有计算都在浏览器中完成。<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite">S18</a>、<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-license">S19</a></p>
+
+<p>ABB 历史 Evolut 案例披露了布局、夹具检查、节拍验证和离线程序编制，构成工业工程使用证据，但不是 2026 年部署规模统计。<a href="https://library.e.abb.com/public/646aec8533a54008887d8b4146bb1d1a/rs_casestudy_evolut_en_web.pdf">S20</a> 产品中的 AI Assistant 或自动路径规划不把它变成通用机器人智能；现场标定、工艺验收和安全措施仍在软件接口之外。</p>
+
+<h4 id="reader-industry--siemens-tecnomatix-process-simulate产线过程与虚拟调试">Siemens Tecnomatix Process Simulate：产线过程与虚拟调试</h4>
+
+<p>Process Simulate 面向制造过程的三维验证，输入是设备和产品几何、布局、机器人动作、工艺顺序及控制逻辑；输出是制造研究模型、离线程序、节拍／碰撞检查和虚拟调试结果。接入通常围绕生产单元建模，再连接真实或仿真的 PLC 逻辑；它覆盖机器人、人工操作与产线事件，不等同于统计生产物流的 Plant Simulation，也不是一套通用强化学习环境。<a href="https://www.siemens.com/en-us/products/tecnomatix/offerings/">S21</a></p>
+
+<p>官方提供商业产品和 Process Simulate X 订阅形态，X 的发布说明涉及云协作、授权和部署管理。当前目录与历史发布中的模块命名已有差别，不能根据旧文章把模块组合当成当前固定报价。Tecnomatix Connector 可向 Omniverse 传递几何及仿真内容，接口目的主要是资产衔接和可视化协作，不表示两个求解器自动产生一致物理结果。<a href="https://blogs.sw.siemens.com/tecnomatix/introducing-process-simulate-x-digital-manufacturing-powered-by-cloud-technologies/">S22</a></p>
+
+<p>Siemens 的 Ingemat 案例披露该工程公司将 Process Simulate 用于机器人仿真和虚拟调试，任务涉及汽车自动化工程；这是供应商客户案例，不能泛化成所有工厂的产量提升。<a href="https://blogs.sw.siemens.com/tecnomatix/ingemat-a-virtual-commissioning-success-story/">S23</a> 仿真交付仍依赖模型、控制代码和接口映射，不能代替真实设备的工艺及安全验收。</p>
+
+<h4 id="reader-industry--isaac-sim机器人场景传感器与软件闭环的平台">Isaac Sim：机器人场景、传感器与软件闭环的平台</h4>
+
+<p>Isaac Sim 将机器人与环境资产、物理运行、传感器输出和外部机器人软件连接在同一场景中。输入可来自 URDF、MJCF、CAD 或 USD，输出包括仿真状态、相机／其他传感器数据、合成数据及测试记录。工程接入可使用 Python、Kit 扩展和 ROS 2；学习任务通常进一步接 Isaac Lab，而不是把 Isaac Sim 本体称作已训练策略。<a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/">S24</a>、<a href="https://github.com/isaac-sim/IsaacSim">S25</a></p>
+
+<p>公开源码、发行与文档入口均可访问，官方说明涵盖工作站、容器和 Python 工作流。本文固定文档版本用于复查接口，不宣称其为最新版本；源码、Kit、第三方依赖和资产的授权须分别核对，不能把“代码开放”解读为所有内容无条件再分发。</p>
+
+<p>NVIDIA 的 AWS 早期采用公告将 Amazon Robotics 的 Proteus 传感器仿真列为使用方向，是供应商披露的开发应用，不证明真实机群的策略均经该平台训练或已通过安全认证。<a href="https://blogs.nvidia.com/blog/gpu-aws-omniverse-isaac-sim-robots/">S26</a> USD 是场景表示，物理与传感器计算由所配置后端完成；模型外观、碰撞代理与控制时序需单独核验，跨版本也不能默认兼容。</p>
+
+<h4 id="reader-industry--mujoco可嵌入程序的动力学与接触仿真器">MuJoCo：可嵌入程序的动力学与接触仿真器</h4>
+
+<p>MuJoCo 的交付中心是动力学计算，而非工厂数据管理或 PLC 工程。输入是 MJCF、受支持的 URDF、执行器与环境参数以及每步控制输入，输出是状态、接触、力和传感器结果。接入方式是在 C／C++ 或 Python 程序中装载模型并运行仿真，再把读写接口封装给控制、优化或训练代码；MJX 等计算路径需要按自身支持范围检查，不能仅替换名称便认为结果与性能完全相同。<a href="https://github.com/google-deepmind/mujoco">S27</a></p>
+
+<p>项目提供开源代码、版本化二进制和 Python 接口，属于正式公开可取得、有文档的基础软件，不因没有云销售页面而被归为演示产品。具体模型、任务库、数据记录和实验调度由上层负责；模型库也不能代替对真实机器人的参数标定。</p>
+
+<p>Google DeepMind 的 MuJoCo Playground 提供运动控制、操作和 sim-to-real 研究环境，是官方可执行代码及研究示范的证据；本次没有将其当作具名客户的量产报告。<a href="https://github.com/google-deepmind/mujoco_playground">S28</a> 接口边界尤其在执行器和接触假设：相同几何模型并不保证相同真实执行效果，仿真步进接口也不是工业机器人可直接加载的生产程序。</p>
+
+<h4 id="reader-industry--gazebo面向机器人软件集成的模块化仿真栈">Gazebo：面向机器人软件集成的模块化仿真栈</h4>
+
+<p>Gazebo 接收机器人和世界描述、插件、传感器配置及控制消息，输出仿真状态、传感器流和测试记录。项目以版本化库组合提供物理、渲染、传感器和 transport 能力；SDF world 组织场景，机器人模型和插件定义行为。接 ROS 2 时，经 <code>ros_gz</code> bridge 映射消息类型与方向，而不是所有 Gazebo topic 自动成为 ROS topic。<a href="https://gazebosim.org/docs/harmonic/ros2_integration/">S29</a></p>
+
+<p>获取形式是公开源码和发行包，可在本地用 GUI 查看，也可由测试程序驱动服务端。官方支持表列有 Harmonic、Jetty 等 LTS，须按 ROS 发行与插件兼容性确定组合；Gazebo Classic 已在 2025 年结束生命周期，不能把它与当前 Gazebo 的支持状态混写。<a href="https://gazebosim.org/docs/latest/releases/">S30</a>、<a href="https://classic.gazebosim.org/">S31</a></p>
+
+<p>Open Robotics 披露 Gazebo 用于 DARPA SubT 虚拟赛道，证明复杂多机器人场景与测试基础设施的实际使用，证据类型是研究竞赛，不是商业机群量产。<a href="https://www.openrobotics.org/blog/2021/9/27/darpa-subt-final-competition">S32</a> 传感器、物理引擎和插件各有支持边界；ROS 消息连接成功，也不意味着时钟、坐标、控制动态和实机表现都已一致。工程交付还应固定场景、插件与桥接配置，让回归任务能够重复运行，而不只是交付运行截图。</p>
+
+<h4 id="reader-industry--汽车分支carla-与-ipg-carmaker">汽车分支：CARLA 与 IPG CarMaker</h4>
+
+<p><strong>CARLA</strong> 的核心是自动驾驶研究场景：道路、交通参与者、天气和传感器配置进入仿真服务端，Python／C++ 客户端控制场景并接收图像、雷达等数据。它提供公开代码与资产，采用客户端／服务端架构，适合构建研究、训练和测试用场景；本次依据官方介绍确认可访问性与接口，没有据社区普及度宣称任何整车项目已完成量产验证。<a href="https://carla.org/">S33</a>、<a href="https://carla.readthedocs.io/en/latest/start_introduction/">S34</a></p>
+
+<p><strong>IPG CarMaker</strong> 围绕车辆虚拟试驾和控制软件测试，输入包括车辆模型、道路、驾驶／交通及测试定义，输出是试验运行和评估结果。官方商业产品明确覆盖 MIL、SIL、HIL、VIL，即模型、软件、硬件和整车在环；产品形态涉及 PC、无界面运行、云及台架集成。本次核验了正式产品与接口说明，未核验特定客户当前生产规模。<a href="https://www.ipg-automotive.com/solutions/product-portfolio/carmaker">S35</a> 它不是机械臂离线编程工具，也不能凭在环接口宣称整个自动驾驶功能已获安全批准。</p>
+
+<h4 id="reader-industry--同类别对照与交付衔接">同类别对照与交付衔接</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>产品</th>
+      <th>主要验证对象</th>
+      <th>核心接入与输出</th>
+      <th>本次证据层级</th>
+      <th>不能默认替代</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RobotStudio</td>
+      <td>ABB 机器人单元及程序</td>
+      <td>Virtual Controller → 工作站与机器人程序</td>
+      <td>商业入口、文档、历史供应商客户案例</td>
+      <td>通用 AI、现场标定与安全验收</td>
+    </tr>
+    <tr>
+      <td>Process Simulate</td>
+      <td>制造过程及控制逻辑</td>
+      <td>三维研究／PLC 连接 → 离线程序与虚拟调试</td>
+      <td>商业目录、X 发布、Ingemat 案例</td>
+      <td>物流仿真或通用策略训练</td>
+    </tr>
+    <tr>
+      <td>Isaac Sim</td>
+      <td>场景、传感器及机器人软件栈</td>
+      <td>USD／Python／ROS 2 → 观测、状态、数据</td>
+      <td>官方源码／文档、早期采用披露</td>
+      <td>已训练策略和实机保证</td>
+    </tr>
+    <tr>
+      <td>MuJoCo</td>
+      <td>动力学、接触与控制／学习环境</td>
+      <td>模型／代码调用 → 状态、力、传感器</td>
+      <td>正式开源发行、官方研究环境</td>
+      <td>PLC 工程与产线管理</td>
+    </tr>
+    <tr>
+      <td>Gazebo</td>
+      <td>机器人软件及插件集成</td>
+      <td>SDF／插件／ROS bridge → 多种传感器流</td>
+      <td>支持表、文档、研究竞赛</td>
+      <td>自动完成时序及参数校准</td>
+    </tr>
+    <tr>
+      <td>CARLA</td>
+      <td>道路交通与自动驾驶研究</td>
+      <td>客户端 API → 场景和传感器结果</td>
+      <td>公开平台、代码和文档</td>
+      <td>车辆量产或法规合规结论</td>
+    </tr>
+    <tr>
+      <td>CarMaker</td>
+      <td>车辆与控制系统在环测试</td>
+      <td>虚拟试驾／台架接口 → 试验评估</td>
+      <td>正式商业产品及接口说明</td>
+      <td>通用机器人场景工程</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>本章原创衔接原则是：先确认最终交付是工业程序、测试报告还是训练环境，再建立资产与接口版本清单；模型转移后逐项核对几何、控制和传感器语义。可交换 CAD、USD 或日志，不等于可以直接互换控制器、物理求解器和验收结论。</p>
+
+<h3 id="reader-industry--04-合成数据与示范扩增">04 合成数据与示范扩增</h3>
+
+<!-- illustration: synthetic-supervision-04ae6f58d1 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/synthetic-supervision.png' | relative_url }}" alt="合成图片、生成视频与动作示范。先确定监督类型，再决定生成、扩增与验证方式。" loading="lazy" decoding="async"></p>
+
+<p><em>图：合成图片、生成视频与动作示范。先确定监督类型，再决定生成、扩增与验证方式。</em><br>
+<!-- /illustration: synthetic-supervision-04ae6f58d1 --></p>
+
+<h4 id="reader-industry--阶段工作与交付物-2">阶段工作与交付物</h4>
+
+<p>这个阶段补充稀缺任务、场景与外观条件，交付物可以是带几何真值的感知数据、仿真执行过的机器人示范，也可以是待审核的生成视频及文本标签。三者必须分别登记来源、生成配置、版本、质量检查和使用权限。图像、分割标签、动作命令与“任务成功”判断不是同一种监督；不能把生成得自然的视频直接写进动作字段。</p>
+
+<p>下面按 <strong>2026-10-27</strong> 一手页面的实际状态介绍产品。Replicator 属于场景驱动的数据生成组件，Mimic 属于示范轨迹扩增流程，Cosmos 属于模型与工具家族。当前 Cosmos 已转向 Cosmos 3；Predict2.5、Transfer2.5、Reason2 的代码仍可查，但官方均标明有限维护。这里分别介绍其接口用途，不把旧分支称为当前主线，也不根据演示视频宣布客户量产。<a href="https://github.com/NVIDIA/cosmos">S36</a>、<a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5">S37</a></p>
+
+<h4 id="reader-industry--omniverse-replicator场景与标签驱动的感知数据生成">Omniverse Replicator：场景与标签驱动的感知数据生成</h4>
+
+<p>Replicator 用于定制合成数据流水线，输入是 USD 场景、物体语义、相机、材质和随机化规则，输出是渲染图像及启用的深度、分割、检测框等注释。接入方式是在 Kit／Isaac Sim 中使用扩展和 Python API，定义生成触发、annotator 和 writer，再把输出接入已有训练目录；writer 决定实际文件和元数据形式，不存在一个对所有任务适用的默认数据集。<a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_replicator.html">S38</a>、<a href="https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html">S39</a></p>
+
+<p>官方公开文档、API 和脚本示例，说明它不是只有宣传视频的概念；获取通常随所使用的 Omniverse／Isaac Sim 运行环境，而非一个与环境无关的独立云标注账号。交付应同时保留语义映射和生成配置，便于复核与重建。环境、依赖、资产和再分发授权需要分开核对，本次不执行下载安装。</p>
+
+<p>Isaac Sim 的固定版本教程列出物体、场景、AMR 导航和 UR10 码垛随机化工作流，是可查的官方应用示例，不是某个客户的生产效果披露。<a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/replicator_tutorials/index.html">S40</a> 注释正确性依赖场景语义与配置；渲染几何真值不自动变成现实准确标签，感知输出也不自动带机器人动作监督。</p>
+
+<h4 id="reader-industry--isaac-lab-mimic从机器人示范扩增可执行轨迹">Isaac Lab Mimic：从机器人示范扩增可执行轨迹</h4>
+
+<p>Mimic 接收少量机器人示范、对象位姿、子任务边界和兼容环境配置，生成经过环境执行与成功判定筛选的新示范。它以对象相关的子任务变换和轨迹拼接扩展示范，交付包含观测与动作的 HDF5 记录；与仅改变图像外观不同，动作来自明确的机器人控制接口。<a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html">S41</a></p>
+
+<p>接入已有 Isaac Lab 环境时，需要实现末端位姿读取、目标位姿到动作、动作到目标位姿、夹爪动作、对象位姿及子任务信号等 helpers。这里的函数约定决定轨迹能否执行，不能把任意人的手部视频直接塞入生成器。获取形式是 Isaac Lab 开源工作流及脚本，运行在相容的仿真与计算环境中；本章固定版本用于核验，不称其为最新发行。</p>
+
+<p>官方堆叠和倒料教程提供采集、标注、生成及训练示例，证据类型是可执行开发／研究示范，未被当作某个客户的量产案例。文档也明确提醒非确定性回放：生成时通过不代表每次重播均通过。成功判据、子任务切分和对象变化决定覆盖范围，扩增数据还需与源示范共同分组划分，不能跨训练与测试泄漏。<a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html#common-pitfalls-when-generating-data">S42</a></p>
+
+<h4 id="reader-industry--cosmos-3当前统一家族按任务选择生成或推理接口">Cosmos 3：当前统一家族，按任务选择生成或推理接口</h4>
+
+<p>当前 Cosmos 官网与主仓库将 Cosmos 3 作为统一多模态家族。Reasoner 的接口以文本与视觉为输入、文本为输出；Generator 可使用文本、视觉、音频和动作条件，并按任务输出视觉、音频或动作。接入要选择相应 checkpoint 与 recipe，再将生成结果或推理回答送入审核、数据处理或指定策略工作流；不能因为家族支持动作就认为任意视频模型会输出关节命令。<a href="https://github.com/NVIDIA/cosmos">S36</a></p>
+
+<p>官方提供模型集合、推理／后训练配方和浏览器试用入口，属于公开可访问的模型与代码生态；某些依赖仍要求接受访问条件，不能将“公开入口”写成无条件商用授权。部署形式包括 GPU 推理、后训练及服务化，具体模型的输入、输出和资源要求按对应说明核对。<a href="https://www.nvidia.com/en-us/ai/cosmos/">S43</a></p>
+
+<p>仓库展示场景转换、动作条件预测和机器人操作演示，证明存在参考模型与接口示例，不是具名客户的规模生产证据。本次不采用产品页排名或“物理一致”的营销表述作为验收结论。输出动作需要机器人形态、动作空间、数据和控制适配；普通生成视频仍只有生成画面，不能冒充实测状态和执行命令。</p>
+
+<h4 id="reader-industry--cosmos-predict25视频世界预测分支与专用动作条件配方">Cosmos Predict2.5：视频世界预测分支与专用动作条件配方</h4>
+
+<p>Predict2.5 的常见用途是依据文本或视觉条件预测／生成后续视频，输入通过推理配置进入模型，输出为视频片段，可用于候选场景扩充和视觉训练素材。接入现有数据流程时应保留输入片段、条件、生成版本和审核结果，再与真实数据分开管理。它不是给仿真器提供精确接触力的动力学库，也不直接替代 USD 场景。<a href="https://github.com/nvidia-cosmos/cosmos-predict2.5">S44</a></p>
+
+<p>公开代码仍列有推理、后训练及模型获取入口，但仓库顶部已标注不再积极开发、仅有限维护，当前主线转向 Cosmos 3。获取形式是代码、模型和 GPU 工作流，而非随手下载即可兼容任意机器人的成品控制系统。</p>
+
+<p>本分支还提供动作条件视频预测及专用 policy 配方。动作条件文档明确需要配对机器人状态与动作作为输入条件：它是“已有动作预测画面”，不是从普通画面自动发现真实命令。<a href="https://github.com/nvidia-cosmos/cosmos-predict2.5/blob/main/docs/post-training_video2world_action.md">S45</a> 官方研究配方与模型发布可证明这些特定能力可查，不能证明任一客户量产；不同任务 checkpoint 的输出也不可混称为同一动作接口。</p>
+
+<h4 id="reader-industry--cosmos-transfer25以空间条件控制视频外观">Cosmos Transfer2.5：以空间条件控制视频外观</h4>
+
+<p>Transfer2.5 面向条件控制的世界视频生成：输入可以包括已有视频、提示词和深度、边缘、分割、模糊图等空间控制，输出是按条件生成的视觉片段。接入时可由仿真导出控制视频，再在参数文件中指定各控制通道、权重和输出目录；官方示例也提供从输入画面计算部分控制的路径。它增加外观变化，不负责替物理引擎计算机器人轨迹。<a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5/blob/main/docs/inference.md">S46</a></p>
+
+<p>获取是公开仓库、模型入口和 GPU 推理／后训练流程；当前该版本已转入有限维护，不能把它写成仍在持续扩展的独立主线产品。示例中的 robot depth、edge、segmentation 和 multi-control 参数文件构成可检查的参考应用，不等于客户自动驾驶或操作任务已量产。<a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5">S37</a></p>
+
+<p>接口边界在标签继承：条件画面与输出相似，不保证所有对象轮廓、遮挡和细节严格保留。若生成器移动、增添或删除了物体，原检测框和分割标签须重新核验；原动作也只有在时间、几何及控制语义保持时才可作为关联信息，不能因为视觉“更真实”而自动视为新动作真值。</p>
+
+<h4 id="reader-industry--cosmos-reason2审核与解释辅助不是视频生成器">Cosmos Reason2：审核与解释辅助，不是视频生成器</h4>
+
+<p>Reason2 是可定制的视觉语言推理模型，输入是图像／视频和提示，输出是文本回答及任务所约定的描述。它可嵌入候选片段审核、事件描述或标签建议流程：应用构建提示及结果 schema，接本地批处理或模型服务，再把回答与原视频、时间范围关联保存。它既不同于 Transfer 的条件视频生成，也不同于 Mimic 的机器人示范执行。<a href="https://github.com/nvidia-cosmos/cosmos-reason2">S47</a></p>
+
+<p>仓库公开模型入口、Transformers 推理及在线／离线部署说明，但当前顶部同样标注有限维护、后续主线转到 Cosmos 3。本次把这些可访问代码和样例记录为模型／研究生态证据，没有据宣传中的“理解物理”宣称输出可替代真实接触测试或人工质量审核。</p>
+
+<p>具体接入时应把建议标签与人工确认标签分列，明确是否允许回答不确定、如何回溯证据、哪些样本需要复核。自然语言“拿起物体”不是关节、末端或力矩命令；文本判断的任务成功也不是机器人执行确认。即使服务返回可解析 JSON，字段完整仍不证明语义正确，模型回答不能自动成为原始数据真值。</p>
+
+<h4 id="reader-industry--同类对照与数据衔接">同类对照与数据衔接</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>工具／分支</th>
+      <th>输入核心</th>
+      <th>输出核心</th>
+      <th>能否直接交付动作监督</th>
+      <th>本次证据状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Replicator</td>
+      <td>场景、语义、传感器与随机化</td>
+      <td>感知数据和选定注释</td>
+      <td>单靠图像生成不能；需另有控制记录</td>
+      <td>官方 API、运行环境及工作流</td>
+    </tr>
+    <tr>
+      <td>Mimic</td>
+      <td>机器人示范、对象、子任务与环境</td>
+      <td>执行及筛选后的示范</td>
+      <td>可在明确动作接口中生成，仍须审核</td>
+      <td>开源脚本、固定版本研究示例</td>
+    </tr>
+    <tr>
+      <td>Cosmos 3</td>
+      <td>任务对应的多模态条件</td>
+      <td>文本或生成模态，含专用动作路径</td>
+      <td>取决于任务模型与机器人适配；视频本身不能</td>
+      <td>当前主线入口、模型及参考演示</td>
+    </tr>
+    <tr>
+      <td>Predict2.5</td>
+      <td>文本／视觉，专用配方可加动作</td>
+      <td>视频；专用 policy 另行核对</td>
+      <td>普通视频不能，动作条件也不是新命令标签</td>
+      <td>公开旧分支，有限维护</td>
+    </tr>
+    <tr>
+      <td>Transfer2.5</td>
+      <td>视频及空间控制</td>
+      <td>条件生成视频</td>
+      <td>不自动产生；继承标签须检查一致性</td>
+      <td>公开旧分支、输入参数示例</td>
+    </tr>
+    <tr>
+      <td>Reason2</td>
+      <td>视频／图像及提示</td>
+      <td>文本与建议标签</td>
+      <td>不能直接输出已执行机器人动作记录</td>
+      <td>公开旧分支、推理与部署说明</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>本章原创衔接流程是：先确定要补的是感知标签、动作示范还是视觉条件，再生成；保留源数据到生成数据的关联，执行任务专属审核，最后发布独立版本的数据清单。若将仿真渲染送入 Transfer，或用 Reason 辅助筛选 Mimic 片段，必须把额外质量门作为项目实现，不能称为客户已经采用的默认组合。</p>
+
+<h3 id="reader-industry--05-训练微调与实验管理产品">05 训练、微调与实验管理产品</h3>
+
+<!-- illustration: training-handoff-51ecc9a13f -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/training-handoff.png' | relative_url }}" alt="训练交付的不只有 checkpoint。训练执行与实验管理分层；模型登记也不等于现场运行授权。" loading="lazy" decoding="async"></p>
+
+<p><em>图：训练交付的不只有 checkpoint。训练执行与实验管理分层；模型登记也不等于现场运行授权。</em><br>
+<!-- /illustration: training-handoff-51ecc9a13f --></p>
+
+<p>本章以 2026-10-27 的公开文档为核验口径。训练框架、机器人工作流和实验管理是不同责任层：框架计算梯度，机器人工作流组织数据或环境，实验平台保存过程与产物。下面按交付职责分类，不按品牌排序。<code>main</code>、<code>latest</code> 指访问日可查文档，不意味着任意旧发布包都具有相同接口。</p>
+
+<h4 id="reader-industry--本阶段应交付什么">本阶段应交付什么</h4>
+
+<p>进入模型适配前，团队应交付可追溯的数据或环境版本、观测／动作字段、单位与频率，以及不混入训练集的验证划分。完成训练后应交付 checkpoint、归一化统计、模型和优化器配置、依赖版本、随机种子、训练日志、闭环评估记录及恢复／回滚说明。这是本手册定义的交接包，不是任一产品自动提供的生产验收证书。</p>
+
+<p>实验系统里至少把“数据版本—训练 run—模型版本—评估条件”关联起来。只保存最低 loss 的文件名，无法说明它对应哪台机器人、哪个相机位置或哪种动作定义；同样，登记成“production”也不代表已经完成硬件、安全和现场验收。</p>
+
+<h4 id="reader-industry--pytorch训练基础组件不是机器人方案">PyTorch：训练基础组件，不是机器人方案</h4>
+
+<p>PyTorch 提供张量运算、自动求导、模型模块、优化器和数据加载组件。前端接收经过项目预处理的图像、本体状态、动作标签或交互样本，后端产出更新后的模型参数与训练统计；任务损失、数据语义、机器人接口仍由上层代码定义。官方基础教程按数据、模型、求导、优化、保存加载组织流程，不能把这一通用能力写成预装的抓取、运动或产线方案。<a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">S48</a></p>
+
+<p>获取方式是安装匹配设备的软件包或使用项目源码，在本地工作站、服务器或云计算节点执行 Python 训练程序。设备需求取决于网络、批大小及构建支持，不是所有训练必须使用同一种 GPU。多进程训练可接 <code>torch.distributed</code> 与 DDP；计算节点、通信后端、驱动和网络配置需匹配，不能因“支持分布式”就假设已有调度、容错和集群运维。<a href="https://docs.pytorch.org/docs/2.14/distributed.html">S49</a></p>
+
+<p>它能作为 LeRobot、仿真 RL 库或自有训练程序的计算底座；交接时还要保存数据处理、优化器状态及动作恢复配置。公开文档证明的是组件可取得和接口可实现，不证明目标机器人已有可用策略，也不代替仿真器、示范采集、实验审批、实时控制器和安全联锁。<a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">S48</a></p>
+
+<h4 id="reader-industry--isaac-lab仿真任务与策略训练工作流">Isaac Lab：仿真任务与策略训练工作流</h4>
+
+<p>Isaac Lab 的职责是组织机器人资产、场景、传感器、动作和任务环境，再与训练算法连接。输入不仅是机器人模型，还包括场景、奖励／终止条件、观测配置和随机化参数；输出是交互轨迹及训练侧生成的策略，而不是由物理后端直接输出“通用机器人权重”。当前公开文档提供共享资产、传感器和场景接口，并把后端选择落实到任务支持的配置。<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">S50</a></p>
+
+<p>多后端应按当前范围写清：PhysX 通过 Isaac Sim／Omniverse Kit 运行；Newton 是 Warp 原生路径，不要求 Isaac Sim；OvPhysX 可在不带 Kit 的进程里使用 PhysX，并有独立安装项，不能与 Kit 在同一进程混用。Newton 文档列出 MJWarp、Kamino、VBD、MPM 等求解器入口，但某个环境能用哪些 preset，要看该任务的支持列表，不能推断全部功能互通。<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">S50</a>、<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics-backends/newton.html">S51</a></p>
+
+<p>这是公开软件与研究／工程开发工作流，设备依赖随后端、渲染和并行规模变化。版本、求解器及任务 preset 应随实验记录保存。项目需另交付 checkpoint、资产转换、关节顺序及目标控制接口，并在切换后端时验证语义和接触行为；公开后端代码不等于实机部署包，不替代现场标定、安全控制和系统集成。<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics-backends/newton.html">S51</a></p>
+
+<h4 id="reader-industry--lerobot示范采集训练和策略运行的连接层">LeRobot：示范采集、训练和策略运行的连接层</h4>
+
+<p>LeRobot 提供 Python 原生的机器人接口与示范学习工作流。前端通过受支持的机器人、遥操作器和相机采集同步视频、状态与动作，按 LeRobotDataset 组织；中间训练或微调策略，后端将策略接回机器人。官方流程明确区分 Teleoperate、Record、Train、Deploy，示范数据也可从 Hugging Face Hub 获取。没有实机时可处理已有数据或做文档列出的仿真评估，不能据此宣称已完成现场验证。<a href="https://huggingface.co/docs/lerobot/main/index">S52</a></p>
+
+<p>当前 <code>main</code> 文档要求从源码安装，并提示常规安装应对应稳定版本；不能把 <code>main</code> 的机器人、策略和命令列表全部倒填给旧包。访问日部署文档使用 <code>lerobot-rollout</code>，可选同步推理和异步动作 chunk，并可将运行数据记录为新 episode。训练产生的权重仍依赖观测字段、动作维度、归一化和时间对齐，换机器人通常还需要驱动与处理器适配。<a href="https://huggingface.co/docs/lerobot/main/index">S52</a>、<a href="https://huggingface.co/docs/lerobot/inference">S53</a></p>
+
+<p>实机流程需要硬件组装、校准、相机配置、设备连接，以及适合所选策略的计算资源。交付物是数据集、策略配置／checkpoint 和运行适配配置，而非包含全部机械、电气和安全责任的商品机器人系统；文档中的自主运行或人工接管策略不能代替风险评估、限位与独立停机措施。<a href="https://huggingface.co/docs/lerobot/inference">S53</a></p>
+
+<h4 id="reader-industry--wb实验记录产物版本和协作管理">W&amp;B：实验记录、产物版本和协作管理</h4>
+
+<p>W&amp;B 的实验管理层接收训练程序主动记录的配置、loss、任务指标、系统统计和产物，输出 run 页面、对比视图与可查询记录。它不决定机器人动作，也不把录入的“成功率”自动转成统一评估标准；任务定义、测试 episode 和失败分类仍需项目提供。SDK 可嵌入现有训练循环，不要求把训练算法改成某种特定机器人策略。<a href="https://docs.wandb.ai/models/track">S54</a></p>
+
+<p>Artifacts 将数据、checkpoint、评估表等作为有版本的输入输出，关联产生和使用它们的 run。由此可以追溯某个微调结果使用了哪版数据、哪项评估，但外部文件引用及实际保存内容要由团队约定，不能认为上传一个权重文件就包含全部环境与硬件配置。数据是否允许离开现场、视频和任务日志是否包含敏感信息，也需在上传前明确。<a href="https://docs.wandb.ai/models/artifacts">S55</a></p>
+
+<p>当前官方托管文档列出 Forge、Dedicated Cloud 和 Self-Managed：前两种由服务方管理基础设施，后一种由客户维护自己的实例。可通过 SDK 接入服务或企业部署；训练算力仍在训练执行端，平台部署另有存储、网络、权限与维护需求。商用服务的可取得性不等于机器人运行 SLA，W&amp;B 不替代训练环境、策略推理服务器、产线监控或安全系统。<a href="https://docs.wandb.ai/platform/hosting/hosting-options/">S56</a></p>
+
+<h4 id="reader-industry--mlflow可自建的-tracking-与模型登记层">MLflow：可自建的 tracking 与模型登记层</h4>
+
+<p>MLflow Tracking 用 API 和 UI 记录参数、代码版本、指标与产物，将训练过程组织为 experiment 和 run；当前模型跟踪还可把 checkpoint 与指定数据集的评估关联。输入是训练程序记录的信息及模型文件，输出是可查询的实验和模型记录。它不负责生成示范、定义奖励，也不会从通用 autologging 自动理解机器人的任务成功条件。<a href="https://mlflow.org/docs/latest/ml/tracking/">S57</a></p>
+
+<p>部署可从本地记录扩展到独立 HTTP tracking server，后端数据库保存 run 元数据，artifact store 保存较大的权重、图片及数据文件。设备主要是服务端计算、数据库、存储与网络；真正训练所需 GPU 仍由训练程序提供。自建不是零运维：备份、认证、访问控制及大文件路径需要配置，托管服务的治理能力也不能无条件归到所有 OSS 安装上。<a href="https://mlflow.org/docs/latest/ml/tracking/">S57</a></p>
+
+<p>Model Registry 维护模型版本、来源 run、标签和 alias，可让应用引用某个版本或可移动的发布别名。开放实现和托管版本的权限能力要分别核对。项目交付时应把登记的版本、实际权重和测试条件绑定；切换 alias 只是软件引用的切换，不是现场换模型的安全审批。它不替代机器人驱动、实时动作队列、硬件验收或闭环可执行性检查。<a href="https://mlflow.org/docs/latest/model-registry/">S58</a></p>
+
+<h4 id="reader-industry--同类别对照训练执行与实验管理分开比较">同类别对照：训练执行与实验管理分开比较</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>训练实现／工作流</th>
+      <th>输入责任</th>
+      <th>输出责任</th>
+      <th>公开获取与边界</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PyTorch</td>
+      <td>项目提供样本、模型和损失</td>
+      <td>参数更新与序列化模型</td>
+      <td>
+<a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">S48</a>；不包含机器人方案</td>
+    </tr>
+    <tr>
+      <td>Isaac Lab</td>
+      <td>资产、场景、任务与后端配置</td>
+      <td>环境交互和训练接口</td>
+      <td>
+<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">S50</a>；任务兼容范围分别核对</td>
+    </tr>
+    <tr>
+      <td>LeRobot</td>
+      <td>机器人驱动、同步示范及策略配置</td>
+      <td>数据集、训练策略与 rollout</td>
+      <td>
+<a href="https://huggingface.co/docs/lerobot/main/index">S52</a>；稳定包与 main 不混用</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>实验管理产品</th>
+      <th>记录／版本对象</th>
+      <th>部署责任</th>
+      <th>不负责的层</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>W&amp;B</td>
+      <td>run、数据和模型 Artifacts</td>
+      <td><a href="https://docs.wandb.ai/platform/hosting/hosting-options/">S56</a></td>
+      <td>
+<a href="https://docs.wandb.ai/models/track">S54</a>不由实验平台代办</td>
+    </tr>
+    <tr>
+      <td>MLflow</td>
+      <td>run、logged model、Registry version／alias</td>
+      <td>
+<a href="https://mlflow.org/docs/latest/ml/tracking/">S57</a>，托管治理另外核对</td>
+      <td>
+<a href="https://mlflow.org/docs/latest/model-registry/">S58</a>不等于现场认证</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>前一表比较责任位置，不表示三者可直接互换；后一表才是实验管理层的同类对照。两类可组合，不需要为了记录实验替换全部训练代码。</p>
+
+<h4 id="reader-industry--算法与物理引擎补充">算法与物理引擎补充</h4>
+
+<p>RSL-RL 是公开的机器人学习算法库，当前主仓库列出 PPO、student-teacher distillation 和多 GPU 支持，额外算法另在 extras 分支；它需要连接环境，不自行提供全部物理资产。<a href="https://github.com/leggedrobotics/rsl_rl">S59</a></p>
+
+<p>Brax 的当前 README 明确自 0.13.0 起仅 <code>brax/training</code> 处于积极维护范围，环境与物理模拟指向 MuJoCo Playground、MJX 或 MuJoCo Warp。旧的“四条物理 pipeline”说明仍在页内，不能忽略维护警告，继续把它们统称当前完整支持。<a href="https://github.com/google/brax">S60</a></p>
+
+<p>MJX 是通过 JAX／XLA 运行的 MuJoCo 物理实现，提供可批处理的模型与状态，不是动作基础模型，也不是实验管理 SaaS。它与 CPU MuJoCo 的 API 和功能并非完全等价；资产和接触配置应按功能表检查。<a href="https://mujoco.readthedocs.io/en/stable/mjx.html">S61</a></p>
+
+<h4 id="reader-industry--典型连接流程">典型连接流程</h4>
+
+<p>下面是本手册的组合方式，不表示厂商提供了整条链的统一支持合同：</p>
+
+<pre><code class="language-text">示范路线：机器人／相机 → LeRobot 数据与适配 → 策略训练／微调 → checkpoint
+仿真路线：资产／任务 → Isaac Lab 指定后端 → RSL-RL 等算法 → checkpoint
+共同旁路：训练与评估程序 → W&amp;B 或 MLflow → 数据／run／模型版本关系
+交接：checkpoint + 归一化 + 接口配置 + 评估记录 → 模型与部署团队
+</code></pre>
+
+<p>数据流程见 <a href="https://huggingface.co/docs/lerobot/main/index">S52</a>，环境与算法边界见 <a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">S50</a>、<a href="https://github.com/leggedrobotics/rsl_rl">S59</a>，记录对象见 <a href="https://docs.wandb.ai/models/artifacts">S55</a>、<a href="https://mlflow.org/docs/latest/ml/tracking/">S57</a>。上图不省略交接包，也不把训练完成当作可直接开启实机自主运行的授权。</p>
+
+<h3 id="reader-industry--06-机器人模型与商业智能平台">06 机器人模型与商业智能平台</h3>
+
+<!-- illustration: model-platform-delivery-342c399f50 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/model-platform-delivery.png' | relative_url }}" alt="动作模型、具身推理与商业工作单元。获取入口、接口适配和客户现场证据分别记录。" loading="lazy" decoding="async"></p>
+
+<p><em>图：动作模型、具身推理与商业工作单元。获取入口、接口适配和客户现场证据分别记录。</em><br>
+<!-- /illustration: model-platform-delivery-342c399f50 --></p>
+
+<p>核验日期为 2026-10-27。本章区分两类采购／开发对象：可下载、可改造的机器人模型与工具链，以及围绕特定工作单元交付的商业智能系统。公开代码、模型预览、客户部署是不同证据；代码存在不能证明任意机器人、任意动作接口或任意现场已具备生产可用模型。</p>
+
+<h4 id="reader-industry--本阶段应交付什么-1">本阶段应交付什么</h4>
+
+<p>模型选型后，应交付选定版本、权重与代码来源、许可范围、观测／动作 schema、训练数据使用权限、目标设备配置和适配评估。受限服务另需明确账号、API／SDK、配额、区域及访问审批；商业项目则应形成约定任务、物料范围、设备与软件接口、异常处理、验收条件和服务责任清单。这是本手册的交接要求，不自动由一个 checkpoint 或演示视频满足。</p>
+
+<p>比较时先问输出是什么：动作模型生成策略动作；具身推理模型生成空间分析、计划或工具调用；商业智能平台通常交付一个可运行的限定工作单元。它们可以连接，但不可把推理回答直接当作通过安全检查的控制指令。</p>
+
+<h4 id="reader-industry--nvidia-isaac-gr00t公开模型栈与适配工具">NVIDIA Isaac GR00T：公开模型栈与适配工具</h4>
+
+<p>GR00T 的公开仓库提供机器人基础模型、推理和训练／后训练工具，以及数据处理和评估入口。前端接入图像、语言和机器人状态，数据中的 embodiment 定义、状态与动作分组要与模型配置一致；后端输出供下游控制器解释的动作。训练或适配还需要相应示范及数据配置，公开预训练权重不是自动生成目标机器人的标定、关节顺序和控制接口。<a href="https://github.com/NVIDIA/Isaac-GR00T">S62</a></p>
+
+<p>访问日仓库可查 N1.7 权重下载、微调／后训练和单 GPU 示例；所依赖的 Cosmos-Reason2 骨干是 gated 模型，运行前还须申请访问并认证。计算设备、显存与依赖按所选路径核对，不能把示例配置当作统一要求。输出策略还需连接驱动、动作缩放与执行频率，获取代码／权重不表示已取得现场支持或整机交付。<a href="https://github.com/NVIDIA/Isaac-GR00T">S62</a></p>
+
+<p>当前 canonical 官方产品页明确列出 GR00T 1.7、3B 和 commercial license，并提供 Jetson Thor／TensorRT 部署及 LeRobot 连接入口；本章以此页记录当前商用与部署范围，不沿用旧入口可能缓存的状态。仓库正文与 License 小节对权重许可证仍有不同表述，具体权重授权应查对应模型卡及附带许可。商业许可与部署路径不等于目标机器人已完成控制、安全和现场验收。<a href="https://www.nvidia.com/en-us/industries/robotics/isaac-groot/">S63</a>、<a href="https://github.com/NVIDIA/Isaac-GR00T">S62</a></p>
+
+<h4 id="reader-industry--physical-intelligence-openpi可复用的策略开发仓库">Physical Intelligence openpi：可复用的策略开发仓库</h4>
+
+<p>openpi 是 Physical Intelligence 公开的策略代码与部分模型 checkpoint 入口。官方 README 当前列出 π₀、π₀-FAST、π₀.₅，并提供推理、微调和样例适配路径；这些是可下载的软件／模型资源，不是供应商全部商业技术的公开副本。输入依所选配置包括图像、语言和机器人状态，输出为相应动作段，具体维度及字段由目标机器人 adapter 定义。<a href="https://github.com/Physical-Intelligence/openpi">S64</a></p>
+
+<p>接入已有机器人时要实现输入、输出 transform，将机器人原始数据映射到模型字段，并按训练数据计算归一化统计。微调路径需要可用示范、数据配置和 GPU 训练资源；某个公开配置能够跑通，不意味着机械臂坐标、夹爪方向或数据许可已自动兼容。交接应保留 checkpoint、norm statistics、训练配置和 adapter，而非只交一个模型名称。<a href="https://github.com/Physical-Intelligence/openpi">S64</a></p>
+
+<p>官方部署路径包含策略服务器与机器人客户端，允许把大模型推理计算和机器人运行环境分开。服务器返回动作后，客户端仍承担时间对齐、队列、驱动和运行控制；网络往返及 stale chunk 不能由模型仓库自行消除。状态应记为公开代码／部分权重、研究与工程适配入口，不把它称为通用生产模型或已包含安全联锁的商用工作站。<a href="https://github.com/Physical-Intelligence/openpi">S64</a></p>
+
+<h4 id="reader-industry--openvlaoft原始动作模型与扩展微调配方">OpenVLA／OFT：原始动作模型与扩展微调配方</h4>
+
+<p>原始 OpenVLA 提供公开 VLA 权重、训练／微调代码及推理示例，以图像和指令生成机器人动作；其官方接口按数据集统计恢复动作。OFT 是另一个官方仓库中的扩展配方，当前可查并行解码、动作 chunk、连续动作头，以及多图／本体信息的设置，不能把这些能力追溯为原始发布版的输入输出。<a href="https://github.com/openvla/openvla">S65</a>、<a href="https://github.com/moojink/openvla-oft">S66</a></p>
+
+<p>输入训练数据要满足所选配方要求，OFT 仓库为新 RLDS 数据、动作／观测处理、L1／扩散头和 checkpoint 加载提供代码。输出的动作段必须与目标 embodiment 的动作坐标、归一化及执行前缀对齐；扩散头和 L1 头不是仅换文件名即可互换的权重。GPU、CUDA／PyTorch 环境和训练资源由具体配方决定，不能从可下载权重推断任何边缘设备都能满足时延。<a href="https://github.com/moojink/openvla-oft">S66</a></p>
+
+<p>获取方式是公开源码、模型资源及自行构建的运行端，不是合同式机器人智能服务。适配方还应留存所选仓库版本。官方仓库中的仿真 benchmark 和真实机器人评估说明证明的是可复现路径，不证明新工厂、陌生硬件或未覆盖操作已经验收。模型层不替代示范质量控制、运行端兼容测试、运动控制和安全审批。<a href="https://github.com/openvla/openvla">S65</a>、<a href="https://github.com/moojink/openvla-oft">S66</a></p>
+
+<h4 id="reader-industry--gemini-roboticser动作与具身推理分开访问">Gemini Robotics／ER：动作与具身推理分开访问</h4>
+
+<p>Gemini Robotics 产品族包含承担动作生成的 VLA 路线，以及 ER（Embodied Reasoning）空间／任务推理路线。访问日 Google 产品页列出 Robotics 2、ER 2 和 On-Device 2，分别承担动作、推理与本地动作模型角色，并保留模型测试等待名单。不能把 ER 可调用理解为动作模型已向所有开发者开放，也不能把高层推理结果当成直接驱动电机的输出。<a href="https://deepmind.google/models/gemini-robotics/">S67</a></p>
+
+<p>当前 Gemini API 文档已列 Gemini Robotics-ER 2 preview，前端接受图像、视频、音频和文本，后端输出文本及供应用解析的工具／空间信息；这是服务 API，不是公开下载的动作权重。旧 ER 1.6 带有八月底关闭说明，不能仅凭仍存在的型号表判断可调用，本章按 ER 2 预览入口记录。账号、条款与配额仍需实际核对。<a href="https://ai.google.dev/gemini-api/docs/robotics-overview">S68</a></p>
+
+<p>动作模型接入机器人还需适配传感器、本体状态与动作接口，公开演示和产品页没有提供所有客户可取得的通用生产部署包。目标硬件和示范需求也需随获准的模型接入方式确认。ER 可位于任务理解或上层规划层，下游要有执行器、反馈和约束；本章不把云端 API 的延迟、推理文本或模型演示视为运动控制、安全联锁和现场验收的替代物。<a href="https://deepmind.google/models/gemini-robotics/">S67</a>、<a href="https://ai.google.dev/gemini-api/docs/robotics-overview">S68</a></p>
+
+<h4 id="reader-industry--osaro围绕拣选和包装交付的智能层">OSARO：围绕拣选和包装交付的智能层</h4>
+
+<p>OSARO 当前官网提供商业联系入口，并以 SightWorks、AutoModel 等视觉／学习能力连接拣选、装袋、配套和拆垛等工作单元。前端是现场图像、物料与工作单元任务信息，后端是供合作机器人和系统执行的决策及操作结果；公开页面没有等价于可下载通用动作模型的权重接口，具体设备、协议和维护责任要在项目范围内确定。<a href="https://www.osaro.com/">S69</a></p>
+
+<p>这条路线的获取方式是商业交付与合作集成，而非把开源策略装到任意机械臂。物料变化、视觉条件、抓取工具和包装设备会影响实施边界；供应商介绍中的自动学习能力不等于项目不需要数据、配置或验收。采购应要求明确输入物料范围、失败／人工接管流程和工作单元接口，而不是只采购一个抽象的“机器人基础模型”。<a href="https://www.osaro.com/">S69</a></p>
+
+<p>客户证据单独标明：Zenni 官网 2023-11-14 的自述介绍 OSARO 在其履约流程中的拣取并送入装袋机，记录的是眼镜订单包装场景。该客户披露比供应商自行列客户名称更具体，但不是第三方审计，也不能证明 2026 年的运行时长、服务承诺或全部产品已覆盖其他行业。OSARO 智能层不替代机械、电气、WMS 接口和安全系统的项目责任。<a href="https://www.zennioptical.com/blog/revolutionizing-eyewear-fulfillment-the-role-of-robotics/">S70</a></p>
+
+<h4 id="reader-industry--dexterity特定物流操作的商业机器人智能系统">Dexterity：特定物流操作的商业机器人智能系统</h4>
+
+<p>Dexterity 的 Mech 页面列出装载、码垛／拆垛等工业任务，客户通过项目渠道获取。前端组合现场传感、箱体信息和任务要求，后端实现限定工作单元操作，不是公开下载的通用机器人权重。官网曾开放 Foresight API Challenge，当前已标注结束，不能据此认为公众可持续取得商业模型 API。<a href="https://www.dexterity.ai/mech">S71</a>、<a href="https://www.dexterity.ai/">S72</a></p>
+
+<p>设备依赖包括与任务配套的机器人、末端执行器、感知和现场计算；客户输入、设施约束、异常处理和接口需随项目确认。训练数据及内部模型不是本章能公开核实的客户可导出资产，不能承诺用户可自行微调全部模型或替换任意硬件。交付物按合同中的任务、设备、软件和维护边界确定，不以开源模型的 checkpoint 交接方式类推。<a href="https://www.dexterity.ai/mech">S71</a></p>
+
+<p>客户方证据是 FedEx 官网 2026-07-30 联合公告：双方在 Maryland 的 Hagerstown Hub 扩展 Foresight 与 Mech 自动拖车装载部署，将项目从此前试点扩大到生产范围。它确认指定客户和任务，不是独立测评或跨场景认证。本章不复述装载架构、产能数字，也不把该交付当作运输业务软件、安全管理与整厂集成的替代物。<a href="https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub">S73</a></p>
+
+<h4 id="reader-industry--同类别对照模型访问与商业交付分别看">同类别对照：模型访问与商业交付分别看</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>模型／开发平台</th>
+      <th>输出职责</th>
+      <th>可核验访问状态</th>
+      <th>接入前仍需明确</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GR00T</td>
+      <td>embodiment 条件动作</td>
+      <td>
+<a href="https://github.com/NVIDIA/Isaac-GR00T">S62</a>；<a href="https://www.nvidia.com/en-us/industries/robotics/isaac-groot/">S63</a>
+</td>
+      <td>对应模型卡许可、数据 schema、适配和交付责任</td>
+    </tr>
+    <tr>
+      <td>openpi</td>
+      <td>目标机器人动作段</td>
+      <td>
+<a href="https://github.com/Physical-Intelligence/openpi">S64</a>，自行适配</td>
+      <td>transforms、归一化、服务／客户端职责</td>
+    </tr>
+    <tr>
+      <td>OpenVLA／OFT</td>
+      <td>原版动作或扩展动作 chunk</td>
+      <td>
+<a href="https://github.com/openvla/openvla">S65</a>与 <a href="https://github.com/moojink/openvla-oft">S66</a>分别公开</td>
+      <td>配方、动作头、checkpoint 与运行端匹配</td>
+    </tr>
+    <tr>
+      <td>Gemini Robotics／ER</td>
+      <td>VLA 动作与 ER 推理分工</td>
+      <td>
+<a href="https://deepmind.google/models/gemini-robotics/">S67</a>；<a href="https://ai.google.dev/gemini-api/docs/robotics-overview">S68</a>
+</td>
+      <td>访问审批、账号、输入约定和下游执行器</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>商业智能平台</th>
+      <th>本章确认的任务范围</th>
+      <th>供应商证据</th>
+      <th>客户方证据性质</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OSARO</td>
+      <td>拣选及包装工作单元</td>
+      <td><a href="https://www.osaro.com/">S69</a></td>
+      <td>
+<a href="https://www.zennioptical.com/blog/revolutionizing-eyewear-fulfillment-the-role-of-robotics/">S70</a>，不作当前运行保证</td>
+    </tr>
+    <tr>
+      <td>Dexterity</td>
+      <td>物流操作工作单元</td>
+      <td><a href="https://www.dexterity.ai/">S72</a></td>
+      <td>
+<a href="https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub">S73</a>，非独立审计</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>第一表比较模型层职责与获取方式；第二表比较限定任务的商用交付证据。两张表不合成性能榜，也不根据是否开源判定哪条路线具有更高价值。</p>
+
+<h4 id="reader-industry--典型连接流程-1">典型连接流程</h4>
+
+<p>以下连接由项目团队明确责任，不声称任一供应商覆盖全部层：</p>
+
+<pre><code class="language-text">公开模型：数据／机器人 schema → 选定代码与权重 → 适配／微调
+          → 评估及模型登记 → 策略服务／运行端 → 下游控制与安全层
+
+ER 服务：图像／任务 → 受支持 API → 空间理解／步骤／工具请求
+         → 任务执行器与动作策略 → 反馈检查
+
+商业交付：物料与现场任务边界 → 供应商项目定义 → 限定工作单元
+          → 合同验收与服务责任 → 工业集成章节规定的接口
+</code></pre>
+
+<p>模型服务与适配路径可核对 <a href="https://github.com/Physical-Intelligence/openpi">S64</a>、<a href="https://github.com/moojink/openvla-oft">S66</a>；ER 输出边界见 <a href="https://ai.google.dev/gemini-api/docs/robotics-overview">S68</a>；商业交付范围见 <a href="https://www.osaro.com/">S69</a>、<a href="https://www.dexterity.ai/">S72</a>。此处只定义层间交接，不重复工业集成架构或客户案例的详细设计。</p>
+
+<h3 id="reader-industry--07-感知运动规划与机器人控制产品">07 感知、运动规划与机器人控制产品</h3>
+
+<!-- illustration: manipulator-software-accdc6651b -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/manipulator-software.png' | relative_url }}" alt="机械臂软件：感知、规划与硬件控制。规划成功不等于轨迹已执行，更不等于物体已抓取。" loading="lazy" decoding="async"></p>
+
+<p><em>图：机械臂软件：感知、规划与硬件控制。规划成功不等于轨迹已执行，更不等于物体已抓取。</em><br>
+<!-- /illustration: manipulator-software-accdc6651b --></p>
+
+<p>本章核验日为 2026-10-27。“成熟”在这里不是统一评分：可获取的开源代码、正式商业产品、供应商生产案例、具名客户披露、试点和研究原型是不同证据。案例只说明其公开范围，不能把品牌合作、下载数量或控制接口的存在推成整机量产。以下按“感知结果—运动请求—控制器执行”介绍产品，不将它们视为可以直接互换的整套系统。</p>
+
+<h4 id="reader-industry--isaac-rosros-2-加速感知定位与地图组件">Isaac ROS：ROS 2 加速感知、定位与地图组件</h4>
+
+<p>Isaac ROS 是 NVIDIA 的加速 ROS 2 组件工具链，本卡覆盖感知、定位与地图分支。各组件接入图像、标定信息、深度或 IMU，输出检测/分割结果、位姿/里程计或地图；Visual SLAM 估计运动，nvblox 将深度与位姿转换为三维重建及导航代价地图，输入输出应按包区分。<a href="https://nvidia-isaac-ros.github.io/">S74</a>、<a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html">S75</a></p>
+
+<p>公开接缝包括 ROS 2 节点、话题、服务和 launch 配置，可接入已有机器人数据流。官方文档与仓库提供组件和环境获取入口，部署要匹配支持的 GPU、ROS 分支及传感器配置；本卡只标“公开工具链”，不补写客户生产证据，也不将所有依赖视为同一种许可。<a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">S76</a>、<a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html">S77</a></p>
+
+<p>它不同于提供系统/计算依赖的 JetPack，也不同于构建和执行模型的 TensorRT；这里交付的是机器人算法组件及其连接关系。传感器标定、时钟和坐标仍由集成方核验，GPU 加速不等于整条链路硬实时。<a href="https://nvidia-isaac-ros.github.io/">S74</a></p>
+
+<h4 id="reader-industry--moveit开源机械臂规划与执行框架">MoveIt：开源机械臂规划与执行框架</h4>
+
+<p>MoveIt 2 把机器人模型、当前关节状态、坐标变换、障碍物和目标位姿接成运动规划请求，输出关节轨迹及执行反馈。<code>move_group</code> 提供 ROS actions/services，C++ 接口和 RViz 插件可发请求，轨迹通过 <code>FollowJointTrajectory</code> 交给下游控制器；它自己不提供机器人侧的该 action server。<a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">S78</a></p>
+
+<p>代码以 BSD-3-Clause 发布，可按匹配的 ROS 2 分支使用二进制包或源码，部署在机器人计算机或规划主机；URDF、SRDF、运动学插件和规划配置属于实际交付物，而不是下载后自动获得的适配。证据等级是可查的开源工具链与官方代码，不用仓库活跃度代替客户量产证明。<a href="https://github.com/moveit/moveit2">S79</a></p>
+
+<p>它解决几何规划与轨迹衔接，不等于视觉识别器、伺服驱动器或安全控制器。碰撞结果依赖模型、标定和场景更新；商业支持、部署维护和客户应用证据应与下面的 MoveIt Pro 分开记录。<a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">S78</a></p>
+
+<h4 id="reader-industry--moveit-pro商业开发平台与机器人运行时">MoveIt Pro：商业开发平台与机器人运行时</h4>
+
+<p>MoveIt Pro 是 PickNik 的商业操作应用平台，不是给开源 MoveIt 换一个名字。输入包含机器人模型、传感器数据和行为树任务，运行时完成行为执行、规划与控制接口衔接；Desktop App 用于编辑、调试和监视，Runtime 部署到机器人，二者可以分机。公开文档说明 ROS 2 Control 接口与自定义组件扩展，并区分低层 Core 库。<a href="https://docs.picknik.ai/technical_specifications/">S80</a></p>
+
+<p>获取走商业许可与供应商安装渠道，主版本有公开支持周期；应冻结应用、容器/软件包、ROS 分支和机器人配置的对应关系，不把开发分支当生产支持承诺。<a href="https://docs.picknik.ai/software_installation/major_releases/">S81</a></p>
+
+<p>供应商披露 BMW 使用行为树、视觉与规划做抓取重定位，但同页明确首个应用仍准备从实验室试点转生产。因此此例标为“供应商具名试点”，不写成全面量产，也不据其生产级措辞推断整机安全认证。<a href="https://picknik.ai/case-study-automotive/">S82</a></p>
+
+<h4 id="reader-industry--curobogpu-运动生成算法库">cuRobo：GPU 运动生成算法库</h4>
+
+<p>cuRobo 将机器人模型与碰撞几何、障碍场景、当前关节状态和目标末端位姿作为输入，利用 GPU 并行逆运动学、碰撞检查与轨迹优化，返回规划状态、优化轨迹及插值轨迹。输出是可交给执行层的关节运动序列，不是机器人已完成运动的反馈。<a href="https://nvlabs.github.io/curobo/latest/getting-started/motion_planning.html">S83</a></p>
+
+<p>公开 Python API 提供模型/状态/场景表示，以及逆运动学、轨迹优化和运动规划模块；官方仓库按 Apache-2.0 公开，可在匹配的 CUDA 计算环境中嵌入应用。本卡证据等级是“公开工具链”，未另核客户生产部署，不将文档演示或基准结果转成应用性能承诺。<a href="https://nvlabs.github.io/curobo/latest/reference/api_overview.html">S84</a>、<a href="https://github.com/NVlabs/curobo">S85</a></p>
+
+<p>它是运动生成库，不是 MoveIt 的整套 ROS 场景/任务/执行框架，也不是伺服控制器。ROS/MoveIt 接入、轨迹下发和实际执行确认仍需集成层；碰撞几何近似、状态与障碍更新，以及关节顺序、单位和执行约束都须保持一致，规划成功不能替代这些条件。<a href="https://curobo.org/">S86</a></p>
+
+<h4 id="reader-industry--nav2移动机器人的导航应用框架">Nav2：移动机器人的导航应用框架</h4>
+
+<p>Nav2 面向移动与地面机器人：输入地图或环境表征、定位/里程计、传感器观测、机器人运动约束和导航目标，输出路径、底盘运动命令及任务状态。行为树通过 ROS action/service 编排规划、控制和恢复等服务器，算法以插件替换；这与机械臂的抓取轨迹规划是不同职责。<a href="https://docs.nav2.org/rolling/">S87</a></p>
+
+<p>项目提供开源代码及按 ROS 发行版组织的工具链，Open Navigation 提供专业服务。部署时需要机器人侧驱动、坐标关系、传感器和底盘接口；实际交付应包含导航配置、地图版本、行为树与故障处理，而不是只有一个目标坐标。官方“被企业采用”的表述属于维护方披露，本卡不将其换算成某客户的生产规模。<a href="https://github.com/ros-navigation/navigation2">S88</a></p>
+
+<p>Nav2 不承担混合厂商车队的全局资源仲裁，也不替代底盘的制动与伺服闭环。单机能成功导航，不代表多机共享窄通道、门和电梯不会冲突；该衔接交给第 10 章的调度层。<a href="https://docs.nav2.org/rolling/">S87</a></p>
+
+<h4 id="reader-industry--ros2_control控制器与硬件之间的标准接缝">ros2_control：控制器与硬件之间的标准接缝</h4>
+
+<p>ros2_control 的核心不是另一套路径搜索器，而是 Controller Manager、控制器插件与硬件组件。输入为参考指令、机器人描述和硬件读回的状态；控制循环执行 read、update、write，输出位置、速度或力/力矩等硬件命令接口。ROS services 管理组件生命周期与接口占用，避免多个控制器同时争用同一资源。<a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html">S89</a></p>
+
+<p>它是按 ROS 发行版发布的开源框架，可源码适配驱动或使用对应包；此处读取 Jazzy 文档说明接口，不称 Jazzy 为最新版本。UR 官方 driver 的兼容声明是可查集成证据，但不是任意自制硬件的实时性能证明。<a href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html">S90</a></p>
+
+<p>真实边界在驱动阻塞、内存操作、操作系统调度及设备链路。Controller Manager 文档提供循环与诊断机制；“用了 ROS 2”不保证硬实时，周期上限和异常恢复必须按目标运行环境核验，并保留异常原因。<a href="https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html">S91</a></p>
+
+<h4 id="reader-industry--mech-vision--mech-viz工业三维视觉与视觉引导运动">Mech-Vision / Mech-Viz：工业三维视觉与视觉引导运动</h4>
+
+<p>Mech-Vision 将相机图像/点云及项目配置变成工件位姿、标签或抓取路径；Mech-Viz 接收视觉结果、机器人与场景模型，组织可视化流程并规划取放运动。新版文档也说明 Mech-Vision 可提供部分路径规划，不能按旧版名称把两者功能硬切成永不重叠的两层。<a href="https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html">S92</a></p>
+
+<p>软件在 IPC 上运行，通过供应商渠道获取与相机、机器人匹配的版本。标准接口模式可用 TCP socket 请求并返回位姿/路径，由机器人或 PLC 保留动作决策；Master-Control 模式则由视觉侧发送运动或 I/O 命令，集成责任明显不同。<a href="https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html">S92</a></p>
+
+<p>官方点焊上料案例描述了现场工件识别、选取和路径规划，但客户未具名，记为“供应商匿名生产应用案例”，不据此替任何具体工件承诺精度或节拍。其边界还包括曝光、手眼标定、夹具和抓手几何，以及接口返回失败时的工位逻辑。<a href="https://www.mech-mind.com/cases/picking-of-automotive-components-for-spot-welding.html">S93</a></p>
+
+<h4 id="reader-industry--ur-polyscope-与官方-ros-2-driver控制器和外部应用不能混为一层">UR PolyScope 与官方 ROS 2 driver：控制器和外部应用不能混为一层</h4>
+
+<p>PolyScope 是 UR 机器人控制器上的编程、运动执行和集成软件；外部 ROS 2 driver 则把应用侧轨迹、I/O 请求与机器人状态连接到控制器。可查接口包括 URScript、RTDE、ROS topics/services/actions 与 ros2_control，输出是控制器实际执行的运动及状态，不是绕过控制器直接驱动电机。<a href="https://www.universal-robots.com/products/software/integration/">S94</a></p>
+
+<p>PolyScope 随适用机器人系统提供，官方 driver 开源并由 UR 明确支持，运行在外部 Linux 主机。控制器内置 ROS 2 功能和外部 driver 是两条不同路径；内置功能与控制器自带 ROS 发行版绑定，不能从“支持 ROS 2”推成任意版本互通。<a href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html">S90</a>、<a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver">S95</a></p>
+
+<p>产品状态证据是正式控制器软件及厂商维护驱动；官网工厂案例不能自动证明使用了该 ROS driver。配置还需区分 PolyScope X、PolyScope 5 与旧 CB3，保留速度缩放、暂停/故障与上层轨迹执行之间的状态映射，始终以控制器实际版本为准。<a href="https://www.universal-robots.com/developer/communication-protocol/ros-and-ros2-driver/">S96</a></p>
+
+<h4 id="reader-industry--abb-egm外部运动引导接口的控制器例子">ABB EGM：外部运动引导接口的控制器例子</h4>
+
+<p>Externally Guided Motion 是 RobotWare 的可选控制器功能，不是通用 ROS 2 驱动。Position Stream 向外部发送运动状态；Position Guidance 接收外部生成的关节或笛卡尔目标；Path Correction 用外部测量修正已编程路径。所核验的官方手册将传感器通道定义为 UDP 与 Protobuf，并给出 <code>egm.proto</code> 和 RAPID 侧组件。<a href="https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt">S97</a></p>
+
+<p>此证据明确属于 IRC5 / RobotWare 6.14、手册修订 F，是存量控制器接口例，不能标成最新 OmniCore / RobotWare 的规格。部署需要对应 EGM 选件、外部通信端点及控制器程序；文档中的上料和焊缝跟踪是应用例示，不是具名客户生产证明。<a href="https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt">S97</a></p>
+
+<p>工程交付必须固定消息坐标、单位、控制模式和失联处理，验证外部目标与控制器滤波/限幅后的执行差异，并保存配置。周期通信接口既不是任意力矩控制权限，也不是外部网络到机器人运动的硬实时保证。</p>
+
+<h4 id="reader-industry--本阶段交付物与下一阶段接口">本阶段交付物与下一阶段接口</h4>
+
+<p>本阶段应形成可部署的机器人配置、标定结果与坐标字典、视觉结果 schema、运动请求/执行反馈契约、控制器兼容矩阵和故障状态映射。这里的交付要求是本手册的工程组织建议，不是每个产品都自动生成的功能清单。交给第 08 章的对象包括模型、算法包、依赖与许可、硬件驱动和预期资源需求；运行时交给第 09 章验证的则是可观测状态及可重放输入。</p>
+
+<h3 id="reader-industry--08-边缘推理与工业运行环境">08 边缘推理与工业运行环境</h3>
+
+<!-- illustration: edge-deployment-0ccd22389b -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/edge-deployment.png' | relative_url }}" alt="边缘部署的四层责任。峰值算力、模型推理速度和端到端控制时限不是同一个指标。" loading="lazy" decoding="async"></p>
+
+<p><em>图：边缘部署的四层责任。峰值算力、模型推理速度和端到端控制时限不是同一个指标。</em><br>
+<!-- /illustration: edge-deployment-0ccd22389b --></p>
+
+<p>核验日：2026-10-27。边缘部署至少有三种不同对象：承载计算的模块/工业 PC、执行模型的推理库、维护操作系统与应用的运行平台。本章按此分层，不把某 GPU 的能力、某 SDK 的可用性或某板卡的认证外推为整台机器人的实时与安全能力。工业运行环境采用可核实的 Siemens IPC / Industrial Edge 分支，不把未经确认的第三方 ROS 桥接仓库包装成 Beckhoff 正式产品。</p>
+
+<h4 id="reader-industry--jetson--jetpack计算模块与适配软件栈">Jetson / JetPack：计算模块与适配软件栈</h4>
+
+<p>Jetson 是机器人本地计算硬件系列，JetPack 是对应的软件栈。应用输入相机、传感器、模型与任务数据，输出感知结果或上层控制请求；公开开发接缝包括 Linux 驱动、CUDA、推理库和传感器相关 SDK。JetPack 不是伺服控制器，它提供算法运行条件，具体执行闭环仍需机器人侧软件与设备接口。<a href="https://developer.nvidia.com/embedded/jetpack">S98</a></p>
+
+<p>开发套件用于开发，生产模块用于整机集成，两者的载板、散热、电源和接口责任不能混同。NVIDIA 在 2025-08-25 宣布 Jetson Thor 开发套件及生产模块正式可用，并列出 Agility Robotics 等早期采用方；这是供应商具名采用披露，不证明每个采用方已经大规模交付整机。<a href="https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-Powered-Jetson-Thor-Now-Available-Accelerating-the-Age-of-General-Robotics/default.aspx">S99</a></p>
+
+<p>交付要固定具体模块、Jetson Linux/JetPack、驱动和载板支持组合，不能把旧 Nano、Orin 与 Thor 的接口、内存或软件条件拼成一个虚构型号。热降频、图像搬运与并发任务会改变整条感知链的延迟，峰值算力不是控制周期的保证。<a href="https://developer.nvidia.com/embedded/jetpack">S98</a></p>
+
+<h4 id="reader-industry--tensorrt把训练模型构建成目标-gpu-的推理引擎">TensorRT：把训练模型构建成目标 GPU 的推理引擎</h4>
+
+<p>TensorRT 接收训练模型，通常从 ONNX 导入，再结合目标硬件、输入形状和精度策略构建 engine；运行时接收张量、返回预测张量。公开接口包括 C++/Python builder 与 runtime、ONNX parser 和 <code>trtexec</code>；因此“模型转换成功”和“应用已正确处理相机数据”是两个不同交付检查。<a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html">S100</a></p>
+
+<p>官方提供软件包、容器等获取渠道，也作为 NVIDIA 计算栈组件使用。其可查状态是正式 SDK 和文档化部署路径；本卡没有另行核验某机器人客户的 TensorRT 生产应用，不能把 Jetson 采用名单直接移作此库的客户证据。<a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html">S100</a></p>
+
+<p>engine 是面向硬件的构建产物，不应当作任意设备通用的模型文件。应随模型保留输入输出名称、布局、动态形状范围、精度/量化约定和构建环境，并重新核验支持矩阵。算子缺失、自定义插件与数值变化会影响部署；只测 engine 时间也会遗漏采集、预处理、传输和后处理。<a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html">S100</a></p>
+
+<h4 id="reader-industry--nvidia-igx已正式提供的平台但供货与支持须按形态区分">NVIDIA IGX：已正式提供的平台，但供货与支持须按形态区分</h4>
+
+<p>IGX 面向工业、机器人和医疗边缘系统，承载传感器处理、AI 推理及企业运行栈；应用通过 GPU/传感器 SDK 和平台管理接口集成，输出仍是业务结果或上层控制信息。官方区分 IGX Thor、旧 IGX Orin、开发套件以及 T5000 模块/T7000 板卡形态，不是 Jetson 任意型号的另一名称。<a href="https://developer.nvidia.com/igx">S101</a></p>
+
+<p>2026 年 3 月的官方发布确认 IGX Thor 开发套件可购，并有生产软件栈；同份发布仍将生产模块/板卡供货写为后续。因此本卡确认平台及开发套件正式可供，不声称所有生产 SKU 在各地都有现货。NVIDIA 披露 Hitachi Rail 的预测维护/检查采用及 Caterpillar 的开发应用，分别保留其公开阶段。<a href="https://blogs.nvidia.com/blog/gtc-2026-news/">S102</a>、<a href="https://forums.developer.nvidia.com/t/igx-sw-2-0-is-now-live/363924">S103</a></p>
+
+<p>企业软件订阅的支持范围与普通开发栈不同，官方特别说明 IGX 上的 JetPack 不自动享有企业长期支持。硬件、软件、OEM 整机和支持合同应分别固定；平台功能安全机制或部件认证也不等于采用它的机器人获得整机安全认证。<a href="https://docs.nvidia.com/igx/user-guide/latest/NVAIE/nvaie.html">S104</a></p>
+
+<h4 id="reader-industry--onnx-runtime跨硬件执行模型后端仍需逐项核验">ONNX Runtime：跨硬件执行模型，后端仍需逐项核验</h4>
+
+<p>ONNX Runtime 接收 ONNX 模型和按输入名称组织的张量，通过 <code>InferenceSession</code> 返回模型输出。Execution Provider 将可支持的节点或子图分配给 CPU、GPU、NPU 等后端；Python、C/C++、C# 等接口让上层应用可以保留相近调用方式，而不是为每个加速器重写完整业务。<a href="https://onnxruntime.ai/docs/execution-providers/">S105</a></p>
+
+<p>项目以开源代码和发布包获取，可部署在本地边缘进程或应用容器。官方披露 Windows、Office、Bing 等产品采用，说明通用软件生产应用，但这些不是机器人现场案例；不同 EP 也可能分别处于生产、预览或弃用状态，不能沿用一个总的“已成熟”标签。<a href="https://onnxruntime.ai/">S106</a>、<a href="https://github.com/microsoft/onnxruntime">S107</a></p>
+
+<p>CPU 回退可能让模型“能运行”，却改变延迟、内存搬运和数值路径。交付需记录实际后端、节点分配、依赖库、模型 opset 和输入布局，不能只看是否返回输出；本库不负责机器人状态机、运动合法性或硬实时调度。<a href="https://onnxruntime.ai/docs/execution-providers/">S105</a></p>
+
+<h4 id="reader-industry--openvinointel-设备上的模型准备与推理运行时">OpenVINO：Intel 设备上的模型准备与推理运行时</h4>
+
+<p>OpenVINO 将模型读取/转换、设备编译和推理请求连接起来。输入可为 ONNX、IR 等模型及观测张量，输出由模型定义；公开 C/C++/Python 接口包括 Core、<code>compile_model</code>、InferRequest 与张量接口，可选择 CPU、GPU、NPU 或适用的设备选择模式。<a href="https://docs.openvino.ai/2026/openvino-workflow/running-inference.html">S108</a></p>
+
+<p>工具链开源，官方提供安装包、容器和源码；部署时仍需匹配设备插件、驱动与操作系统。Intel 在 2026-07-17 披露 Onyx Healthcare、FREE Bionics 使用 OpenVINO 开发外骨骼 AI 应用，记为“供应商具名开发/采用披露”，不把文章的康复愿景当作临床有效性、认证或量产规模证明。<a href="https://github.com/openvinotoolkit/openvino">S109</a>、<a href="https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-powered-medical-exoskeleton-helps-patients-get-back-on-their-feet.html">S110</a></p>
+
+<p>OpenVINO 的直接 runtime 与 ONNX Runtime 的 OpenVINO EP 是两条集成路径，不必同时套用。设备编译、首次加载和异步排队也应计入上线测试；AUTO 选择不能替代明确的部署后端和资源预算，目标模型算子与动态形状仍需核验。部署交付应保留编译配置。<a href="https://docs.openvino.ai/2026/openvino-workflow/running-inference.html">S108</a></p>
+
+<h4 id="reader-industry--siemens-simatic-ipc--industrial-edge工业宿主与应用生命周期">Siemens SIMATIC IPC / Industrial Edge：工业宿主与应用生命周期</h4>
+
+<p>SIMATIC IPC 提供工业计算宿主，Industrial Edge 提供设备运行环境、应用分发与管理。输入是现场数据、连接器配置和容器化应用，输出是边缘分析结果、状态与应用部署结果；公开接缝包括设备网络/USB 接口、Docker 容器及平台公开 API，而不是一套统一的机器人关节驱动协议。<a href="https://www.siemens.com/en-us/products/industrial-edge/devices/">S111</a>、<a href="https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/">S112</a></p>
+
+<p>商业产品可通过供应商设备与软件渠道获取，官方区分 IPC、面板、虚拟设备及管理部署模式。目录同时保留多个代际，本章不把列出的旧 IPC 条目称为最新硬件。当前证据是正式产品与运行架构；未据平台案例声称某具体机器人已经采用特定 IPC 型号。<a href="https://www.siemens.com/en-us/products/industrial-edge/devices/">S111</a></p>
+
+<p>“实时现场数据”与“硬实时伺服执行”不是同义词：容器应用能够交换数据，不意味着普通推理线程承担了 PLC/运动控制任务。工程交付需注明各闭环在哪个运行域执行、跨域数据有效期与失联策略；若另用虚拟控制器，也要核验其独立支持条件，不能从 IPC 的工业属性推断所有进程都实时。<a href="https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/">S112</a></p>
+
+<h4 id="reader-industry--本阶段交付物与验证衔接">本阶段交付物与验证衔接</h4>
+
+<p>建议交付一份发布清单：硬件/载板、系统镜像、驱动、推理库、模型及 engine 哈希、输入输出 schema、量化与形状约定、许可和支持期限。附上冷启动、稳态并发、内存、热状态与完整感知链延迟的测试定义，再交第 09 章实施验证。算法进程只产生有时间戳、可拒收的结果或请求；控制器/PLC 的执行边界另行记录，不能由“平均推理很快”替代。</p>
+
+<h3 id="reader-industry--09-验证回放与系统测试方案">09 验证、回放与系统测试方案</h3>
+
+<p>核验日：2026-10-27。本阶段接收第 08 章冻结的模型、运行栈与配置，产出“在什么输入、接口、版本和判据下通过”的证据。下面将汽车控制器的在环测试与真实机器人日志回放分开介绍；汽车测试产品可以提供方法与接口参考，但其道路场景模型和传感器注入适配不能直接证明仓储机器人、机械臂或人形机器人有效。</p>
+
+<h4 id="reader-industry--applied-intuition汽车软件验证与在环集成方案">Applied Intuition：汽车软件验证与在环集成方案</h4>
+
+<p>Applied Intuition 的车辆工具方案把场景/真实日志、传感器模型与被测软件接入仿真和评估流程，输出测试结果与可追踪的场景证据。当前官网提供 SDK 化工作流和云、本地、隔离环境等部署入口；具体 HIL 数据注入、时间同步和硬件端点仍要按被测控制器集成，不能臆造一个通用于所有机器人控制器的 ROS API。<a href="https://www.appliedintuition.com/products">S113</a></p>
+
+<p>获取方式是商业产品与工程集成。供应商和 NI 的联合公告明确区分 Applied 的对象/传感器仿真与 NI 的 HIL 测试硬件；不是安装一个仿真应用就获得完整硬件台架。Porsche 合作公告涉及 SIL、HIL 与车辆测试，记为“供应商具名汽车合作披露”，不证明指定车型的全部测试都用某个单品完成。<a href="https://www.appliedintuition.com/press-releases/national-instruments">S114</a>、<a href="https://www.appliedintuition.com/press-releases/porsche">S115</a></p>
+
+<p>本卡仅覆盖汽车 ADAS/AD/车辆软件分支。道路传感器、交通参与者和 ECU 时序需匹配实际对象；公开合作不等于全套接口规格公开，也不能用仿真覆盖率取代真实系统的未知故障分析。</p>
+
+<h4 id="reader-industry--dspace-scalexio汽车-ecu-的闭环硬件在环">dSPACE SCALEXIO：汽车 ECU 的闭环硬件在环</h4>
+
+<p>SCALEXIO 以实时模型、I/O 配置及被测 ECU 为输入，模拟 ECU 所看到的车辆/环境信号，读取其控制输出并形成闭环。输出包括响应轨迹、捕获数据、故障注入结果与自动测试判据。它与 RCP 的职责不同：HIL 中 ECU 仍是真实被测对象，RCP 才可能由实时系统替代 ECU 的控制功能。<a href="https://www.dspace.com/en/pub/home/products/hw/simulator_hardware/scalexio.cfm">S116</a></p>
+
+<p>产品是按项目配置的商业硬件与软件组合，公开接缝包括总线/网络、模拟与数字 I/O、FMI 模型集成，以及适用组件的 ASAM XIL 自动化接口；故障插入与信号调理需要具体硬件，而非所有机箱自动具备。<a href="https://www.dspace.com/en/pub/home/news/dspace_pressroom/press/scalexio-fsx-extension.cfm">S117</a></p>
+
+<p>供应商客户页中 Geely 的具名评价明确涉及 SCALEXIO 与 ASM 的混动控制器开发测试，证据范围就是该汽车用途。本章也仅采用汽车 ECU 分支：没有工位接触、机器人传动和网络模型的对应验证，不能把汽车 HIL 台架直接称为通用机器人验证方案。<a href="https://www.dspace.com/en/pub/home/company/customers.cfm">S118</a></p>
+
+<h4 id="reader-industry--foxglove--rosbag2真实机器人事件的记录检查和输入回放">Foxglove + rosbag2：真实机器人事件的记录、检查和输入回放</h4>
+
+<p>rosbag2 接收 ROS 2 消息并记录，也可按选定话题回放为 ROS 消息；Foxglove 接收本地/远端记录或 WebSocket 流，提供时间轴检查与可视化。输出是可重看、可定位的事件证据，配合被测软件才形成回归测试，不能把“看起来轨迹一致”当作机器自动判定通过。<a href="https://github.com/ros2/rosbag2">S119</a>、<a href="https://docs.foxglove.dev/docs/visualization/playback">S120</a></p>
+
+<p>rosbag2 为开源工具链，Foxglove 当前应用/服务按商业席位或许可获取；本地文件访问、云存储和桥接组件的获取条件应分别记录。官方文档支持 MCAP、ROS bag 等格式，同时提醒旧 <code>.db3</code> 缺少消息定义，不宜假设自定义消息天然可回放。<a href="https://docs.foxglove.dev/docs/visualization/connecting/local-data">S121</a></p>
+
+<p>Dexory 的公开播放器由 Foxglove 官方介绍，可同时驱动可视化和向 ROS 2 栈重发 MCAP；这是具名真实机器人开发集成证据，不是整机闭环复现保证。应记录消息定义、时钟、TF、初始状态与 QoS；存储格式和数据管理细节交叉参见数据章，不重列平台全功能。<a href="https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control">S4</a></p>
+
+<h4 id="reader-industry--怎样衔接成系统测试">怎样衔接成系统测试</h4>
+
+<!-- illustration: validation-modes-1056588867 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/validation-modes.png' | relative_url }}" alt="日志检查、开环回归与闭环验证。播放相同记录，不意味着新策略的动作已经改变了环境。" loading="lazy" decoding="async"></p>
+
+<p><em>图：日志检查、开环回归与闭环验证。播放相同记录，不意味着新策略的动作已经改变了环境。</em><br>
+<!-- /illustration: validation-modes-1056588867 --></p>
+
+<p>以下是本手册建议的交付组织，不是上述平台自动具备的统一能力。每项测试至少记录被测版本、输入集、初始状态、运行环境、输出判据与失败证据，并区分：</p>
+
+<ul>
+  <li>日志检查：解释已经发生的事件，检查时间顺序、状态转换和故障上下文。</li>
+  <li>开环回归：将相同记录输入新软件，比较感知、估计或规划输出；软件产生的新动作没有改变原记录中的环境。</li>
+  <li>闭环验证：模型或真实被测对象根据新输出产生后续输入。汽车 HIL 的 ECU—仿真环境闭环属于这一类，但模型误差仍存在。</li>
+</ul>
+
+<p>日志播放可能向 ROS 图重新发布指令话题，因此回归环境应与设备执行域隔离，只将明确选定的观测输入交给被测程序；测试脚本不应自动连到真实机器人执行端。本次工作未执行任何设备、安装命令或实机参数配置。<a href="https://github.com/ros2/rosbag2">S119</a></p>
+
+<p>交给第 10 章的不是一个“测试通过”标签，而是与发布清单绑定的回归结果、已知限制、遥测项、现场告警规则与回滚条件。网络中断、时钟错位、软件重启、命令重发、算力竞争和地图/标定变化，都应有明确的失败分类及证据入口，避免现场故障只能靠口头描述。</p>
+
+<h3 id="reader-industry--10-多机调度遥测与现场运维">10 多机调度、遥测与现场运维</h3>
+
+<p>核验日：2026-10-27。单机控制、车队任务分配、跨厂商交通协调、遥测和人工介入有不同的责任边界。以下产品可在接口清楚时组合，但“一个面板能看到多种机器人”不等于“已经能仲裁所有机器人在门、电梯和窄通道中的动作”。本阶段承接第 09 章的版本与失败分类，形成现场可执行的运维契约。</p>
+
+<h4 id="reader-industry--mirfleetmir-车队的任务与运行协调">MiRFleet：MiR 车队的任务与运行协调</h4>
+
+<p>MiRFleet 接收任务、地图与各机器人状态，选择适合的 MiR 机器人执行任务并向操作员报告进展/障碍。它连接集中车队服务与车载软件，Web 界面用于运行管理；MiR Academy 的公开教材明确介绍 REST 请求和 Fleet 的机器人查询接口，可供 ERP/WMS 等上层系统集成。<a href="https://mobile-industrial-robots.com/blog/higher-order-mobile-robotics">S122</a>、<a href="https://academy.mobile-industrial-robots.com/free-skill-paths/software-integration/">S123</a></p>
+
+<p>获取属于 MiR 的商业软件与设备集成渠道；部署需固定 Fleet、机器人软件、地图及外部接口版本，不能把旧博客中的容量或路线图当当前规格。FORVIA Faurecia Písek 的官方案例明确使用 MiR Fleet 组织任务，是“供应商具名工厂应用”，不是仅购买机器人而推断用了车队软件。<a href="https://mobile-industrial-robots.com/de/falle/forvia">S124</a></p>
+
+<p>案例中的 ERP 接入仍写为后续目标，不应改成已经完成。MiR 车队协调也不能自动推成任意品牌原生互操作；其它车队的接入能力、任务确认与交通权限必须另行核验。<a href="https://mobile-industrial-robots.com/de/falle/forvia">S124</a></p>
+
+<h4 id="reader-industry--inorbit机器人运维数据任务接口与跨系统编排">InOrbit：机器人运维数据、任务接口与跨系统编排</h4>
+
+<p>InOrbit 接收机器人遥测、任务事件及业务系统上下文，输出运行视图、事件/告警、任务追踪和经配置的操作请求。公开接缝包括 REST API、Robot SDK、ROS 1/2 集成及 Edge SDK；可通过 agent、非 ROS 代码或连接器接入，因此不能仅把它理解成一个 ROS 可视化工具。<a href="https://developer.inorbit.ai/docs">S125</a></p>
+
+<p>产品采用商业云平台与机器人/边缘接入组件，开发者方案有明确功能与获取入口，具体订阅权限及保留策略须按方案确认。供应商公开的 Instock + OTTO 跨系统编排案例是在 Robot Space 与展会远程演示，记为“具名伙伴演示”，不将其描述为已在客户仓库普遍生产运行。<a href="https://developer.inorbit.ai/pricing-dev">S126</a>、<a href="https://www.inorbit.ai/blog/instock-and-inorbit">S127</a></p>
+
+<p>API 的可调用性不代表机器人必定接受请求。平台可编排任务与介入，但实际动作由机器人/车队接口兑现；联网丢失、状态陈旧和同一机器人多操作员争用，都必须由接入合同及本地状态机处理，不能让云端操作覆盖机器人执行边界。<a href="https://developer.inorbit.ai/docs">S125</a></p>
+
+<h4 id="reader-industry--open-rmf开源多车队与楼宇资源协调">Open-RMF：开源多车队与楼宇资源协调</h4>
+
+<p>Open-RMF 输入任务、导航图、机器人位置/电量/执行状态，以及门、电梯等设施状态，输出任务分配与交通协商结果，再由 fleet adapter 转成各车队 API。公开接缝包括 C++ API、Python bindings、ROS 2 消息和适配模板；Full Control 与只允许暂停/继续的 Traffic Light Control 等接入模式能力不同。<a href="https://osrf.github.io/ros2multirobotbook/integration_fleets.html">S128</a></p>
+
+<p>它是免费开源模块化工具链，有官方仓库与演示工程，通常由部署方维护服务、地图和适配器。官方说明源于医疗场景并提供酒店、办公室等 demos；本卡以可获取工具链与接口为证据，没有另核具名医院的生产配置，不将 demo、行业起源或合作标志写成现场客户部署。<a href="https://www.open-rmf.org/">S129</a>、<a href="https://github.com/open-rmf/rmf">S130</a></p>
+
+<p>适配器必须准确报告位置、命令完成和中断，并具备约定的导航/暂停权限。只读接入不能被当成全控制接入；导航图遗漏、坐标不一致或非参与设备占用空间，都可能使调度假设失效。Open-RMF 的资源协调不替代机器人本地避障与运动闭环。<a href="https://osrf.github.io/ros2multirobotbook/integration_fleets_adapter_tutorial.html">S131</a></p>
+
+<h4 id="reader-industry--formant遥测事件上下文与远程支持">Formant：遥测、事件上下文与远程支持</h4>
+
+<p>Formant 接收机器人状态、视频、事件和应用数据，提供历史查询、现场诊断、经授权的命令与遥操作通道。官方 agent 是 Linux 侧程序，上传数据并处理定义好的命令；遥操作使用 WebRTC，公开 Agent SDK、Cloud SDK 与 API 区分设备侧数据接入、云侧查询和组织管理。<a href="https://docs.formant.io/docs/the-formant-agent">S132</a>、<a href="https://docs.formant.io/reference/api-sdk-overview">S133</a></p>
+
+<p>服务通过商业平台获取，机器人端按支持矩阵部署 agent 或应用 SDK；官网现入口为 <code>formant.ai</code>，文档/应用仍使用 <code>formant.io</code>，不能把域名迁移误判为停供。Burro 的供应商具名案例涉及农场机器人监控、遥操作和 rosbag 支持，说明实际现场运维使用，不据旧案例推断当前机器人数量。<a href="https://www.formant.ai/">S134</a>、<a href="https://www.formant.ai/burro">S135</a></p>
+
+<p>历史数据上传与实时遥操作链路不是同一种保证：缓存可补传遥测，却不能把过期运动命令延后执行仍视为正常。遥操作权限、命令有效期、网络中断后的本地行为及审计应独立交付；它不是所有品牌通用的交通仲裁器。<a href="https://docs.formant.io/docs/the-formant-agent">S132</a></p>
+
+<h4 id="reader-industry--交付与衔接谁派任务谁确认动作">交付与衔接：谁派任务，谁确认动作</h4>
+
+<!-- illustration: fleet-business-handoff-4c9b94bd21 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/fleet-business-handoff.png' | relative_url }}" alt="多机任务：请求接受、动作完成与业务交接。唯一调度权、适配器和本地执行边界明确后，才谈车队与业务协同。" loading="lazy" decoding="async"></p>
+
+<p><em>图：多机任务：请求接受、动作完成与业务交接。唯一调度权、适配器和本地执行边界明确后，才谈车队与业务协同。</em><br>
+<!-- /illustration: fleet-business-handoff-4c9b94bd21 --></p>
+
+<p>本手册建议交付一份分层责任表：业务系统创建任务，车队服务分配，适配器转换，本地系统接受或拒绝，机器人回报实际完成，运维平台保存可查询事件。组合部署时须指定同一资源的唯一调度权和同一机器人的操作权；不能让两个平台都认为自己可以重新派发同一任务。</p>
+
+<p>每次任务至少关联任务 ID、机器人 ID、发布版本、地图版本、时间戳和终止原因；“请求成功”“机器人已接受”“实际完成”应是三个状态。现场事件应能链接回第 09 章的复现材料，第 08 章的发布清单以及第 07 章的执行接口，这些是建议的工程契约，不是假定每个平台都有同名字段。</p>
+
+<p>移交运行团队的内容还应包括告警所有者、远程介入权限、失联/重启/重复请求处理、数据保留与导出方式，以及配置变更和回滚记录。车队界面、AI 助手或自动恢复脚本都不能成为省略现场执行边界的理由。本次核验未接入任何客户账户、设备或生产系统。</p>
+
+<h3 id="reader-industry--11-端到端组合与客户公开案例">11 端到端组合与客户公开案例</h3>
+
+<!-- illustration: solution-evidence-199118f231 -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/solution-evidence.png' | relative_url }}" alt="端到端方案，先读清证据范围。软件能获取、商业能联系、客户曾运行、计划将扩展，是不同事实。" loading="lazy" decoding="async"></p>
+
+<p><em>图：端到端方案，先读清证据范围。软件能获取、商业能联系、客户曾运行、计划将扩展，是不同事实。</em><br>
+<!-- /illustration: solution-evidence-199118f231 --></p>
+
+<h4 id="reader-industry--111-研发新的机械臂策略组件式参考组合">11.1 研发新的机械臂策略：组件式参考组合</h4>
+
+<p>这是一条依据各阶段职责整理的研发组合，不是某客户已采用的架构，也不是供应商联合验证的安装包。</p>
+
+<p>真实机器人提供图像、关节状态和实际命令；记录／回放平台保留时间、标定与任务轨迹；数据工具生成训练窗口和划分；仿真系统建立可重置环境；训练框架和机器人模型生成检查点；运行时完成输入处理和动作解码；执行层再接到设备。对应产品的获取和接口见第 2—8 章。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>环节</th>
+      <th>可以对应的产品类别</th>
+      <th>应交付的东西</th>
+      <th>不能省掉的适配</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>采集与检查</td>
+      <td>LeRobot、Foxglove／MCAP、Rerun</td>
+      <td>轨迹、消息、任务与标定记录</td>
+      <td>动作命令与实测状态分开</td>
+    </tr>
+    <tr>
+      <td>环境与扩增</td>
+      <td>Isaac Sim／Isaac Lab、MuJoCo、Mimic</td>
+      <td>场景、任务接口、合成轨迹</td>
+      <td>机器人机构、控制模式与时间</td>
+    </tr>
+    <tr>
+      <td>策略训练</td>
+      <td>PyTorch、LeRobot、openpi、GR00T 等</td>
+      <td>检查点、预处理、动作契约</td>
+      <td>目标机器人数据与模型支持条件</td>
+    </tr>
+    <tr>
+      <td>推理与执行</td>
+      <td>目标设备运行时、ROS 2 驱动和控制层</td>
+      <td>有时限的动作／目标和反馈</td>
+      <td>运行引擎是否支持该模型、坐标与限幅</td>
+    </tr>
+    <tr>
+      <td>评测与迭代</td>
+      <td>任务测试、回放和实验管理</td>
+      <td>成功／失败、延迟与可复现版本</td>
+      <td>仿真结果与实机结果分别记录</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这里没有预设所有模型都能直接导出到 TensorRT，也没有预设所有机器人都接受同一动作。对于完整应用，集成者仍需确认数据、检查点、运行包和设备接口一致；换模型或换身体时，需要重新核对这些契约。</p>
+
+<h4 id="reader-industry--112-工业视觉取放与包装已有应用软件的组合">11.2 工业视觉取放与包装：已有应用软件的组合</h4>
+
+<p><strong>Mech-Mind 与 UR 的接口例子。</strong> UR 的官方产品目录列有 Mech-Mind 3D Vision，包括工业 3D 相机、视觉／机器人编程软件和 URCap 集成。其公开范围涉及无序抓取、上下料、定位及码垛／拆垛；这个目录入口证明存在明确的产品与机器人集成形式，而不是只展示一个视觉模型。<a href="https://www.universal-robots.com/plus/products/mech-mind-robotics/mech-mind-3d-vision/">S136</a></p>
+
+<p>按职责看，相机提供场景数据，视觉处理给出物体与抓取相关结果，应用规划和设备程序组织动作，机器人及工具实际执行。工位对象、遮挡、工具、设备型号和软件版本仍需配置与确认；“目录里有 URCap”不能推出任意 UR、任意物体都已完成验证。</p>
+
+<p><strong>ABB PickMaster Twin 的打包形式。</strong> PickMaster 面向视觉引导的随机物料流抓取与包装，结合视觉和输送跟踪；Twin 的 PowerPac／Operator 连接数字工作站、运行与操作界面，官方页还说明 PackML 集成和 OmniCore／IRC5 兼容范围。它提供的是具体应用软件，不是一个通用机器人 VLA 权重。<a href="https://www.abb.com/global/en/areas/robotics/products/software/pickmaster-twin">S137</a></p>
+
+<p>这类流程可以是“物料到达 → 相机／传感器识别 → 应用跟踪与选取 → 控制器与夹具执行 → 包装状态与运行记录”。训练模块是否需要由客户准备，取决于该应用产品，不应把通用模型研发步骤强加到所有工业方案。</p>
+
+<p>这里两组例子是公开的产品集成形态。它们的任务对象、设备生态和支持范围不同，不按宣传中的最高吞吐量排优劣。</p>
+
+<h4 id="reader-industry--113-工厂送料mir-车队与-denso-案例">11.3 工厂送料：MiR 车队与 DENSO 案例</h4>
+
+<p>MiR 发布的 DENSO 案例描述仓库到生产区域的物料运输，随后扩展到线边供料。文中明确提到与集成伙伴 ACS 一起使用 REST API 组织信息流，处理任务优先、充电与现场呼叫，并通过 MiR I/O 模块接入洁净区门的控制。证据类型是供应商发布、包含客户访谈的案例，不是本册独立测试。<a href="https://mobile-industrial-robots.com/cases/denso">S138</a></p>
+
+<p>这说明送料应用不止“地图上选一个终点”。业务系统要发出任务，车队组织机器人与资源，底盘导航执行，门和工位提供交接条件，任务系统记录结果。门禁、充电、工位确认与车辆状态是不同接口。</p>
+
+<p>可作为参考的职责组合是：业务请求 → Fleet 任务／资源调度 → AMR 导航与移动 → I/O 和工位握手 → 任务结果与现场记录。具体代码、网络与任务字段并未全部公开，不能从这份案例复原完整客户配置，更不能认定其中使用了哪套未披露的 VLA。</p>
+
+<h4 id="reader-industry--114-仓库卸箱dhl-与-boston-dynamics-stretch">11.4 仓库卸箱：DHL 与 Boston Dynamics Stretch</h4>
+
+<p>Stretch 是面向仓库箱件处理的机器人产品，供应商同时提供应用、集成和维护入口。DHL 在 2025-05-13 的公告中说明：其供应链业务已于 2023 年在北美商业使用 Stretch，随后扩展到英国和欧洲；公开任务为集装箱／拖车卸箱，并描述与输送和码垛设备的衔接。<a href="https://bostondynamics.com/products/stretch/">S139</a>、<a href="https://group.dhl.com/en/media-relations/press-releases/2025/dhl-group-signs-mou-with-boston-dynamics-and-accelerates-cross-business-automation-strategy.html">S140</a></p>
+
+<p>这是“面向特定任务的机器人应用交付”：机器人处理箱件，输送和后续仓储流程接收结果，部署与服务团队处理现场条件。用户得到的不是一个要求自己从头训练的模型压缩包。</p>
+
+<p>同一 DHL 公告还提出更多机器人部署的 MOU 和后续任务扩展。<strong>已经发生的商业使用与未来数量计划需要分开</strong>；不能把“拟新增超过 1,000 台”写成“目前已有 1,000 台 Stretch 运行”，也不能把 DHL 全部机器人数量都归到这个产品上。</p>
+
+<h4 id="reader-industry--115-仓库装车fedex-与-dexterity-mechforesight">11.5 仓库装车：FedEx 与 Dexterity Mech／Foresight</h4>
+
+<p>FedEx 在 2026-07-30 的公告中说明，在 Maryland 的 Hagerstown Hub 扩展 Dexterity 拖车装载系统，将项目推进到此前试点场地之外。公告将系统描述为由 Foresight world model 支持的 Mech 双臂设备，融合视觉、深度和触觉信息，处理箱件放置的空间、稳定性和速度。证据是客户官网的双方公告。<a href="https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub">S73</a></p>
+
+<p>从交付看，它把感知、决策、执行设备和装车工作流放在同一方案中。FedEx 的公告还提到目的地规划、拖车分配、维护和人员流程，说明现场接入不是只完成机械臂抓取。</p>
+
+<p>具体模型网络、训练数据、底层控制协议和客户日志接口没有在这份公告中全部披露。因此能介绍的是该装车系统的产品职责与现场证据，不能据此认定 Foresight 就是 Cosmos／Dreamer，也不能把它当成向任何开发者开放的通用模型 API。</p>
+
+<h4 id="reader-industry--116-人形机器人限定任务试点与商业流程分别看">11.6 人形机器人：限定任务试点与商业流程分别看</h4>
+
+<p><strong>BMW／Figure 的生产环境试点。</strong> BMW 的 2026-09-21 文章回顾了 2025 年 Spartanburg 的 Figure 02 项目：在十个月内参与超过 30,000 辆 BMW X3 的生产，取放并定位焊接用钣金件；报道还保留组件、运行时间和现场集成的口径。这里“参与车辆生产”不等于机器人完成整车制造，任务范围应保留。<a href="https://www.bmwgroup.com/en/news/general/2026/humanoid-robot-in-leipzig.html">S141</a></p>
+
+<p>能确认的应用组合是指定工序、机器人运动能力、生产系统接口与现场运维共同运行。客户没有在该文中公开所有内部模型和数据管线，不能补成“某个开源 VLA＋某仿真平台”的已验证架构。后续型号、物流排序任务与其它工厂的试点，也应保留各自时间与状态。</p>
+
+<p><strong>GXO／Agility 的商业 RaaS 流程。</strong> GXO 在 2026-10-26 公告中回顾 2024 年签订的多年 RaaS 协议：Digit 与 Agility Arc 已在 Georgia 的 Flowery Branch 仓库搬运料箱并放上输送线，累计处理超过 100,000 个料箱。Arc 的产品职责包括车队、工作流与仓储系统集成。<a href="https://investors.gxo.com/news-releases/news-release-details/gxo-and-agility-robotics-expand-partnership-accelerate">S142</a>、<a href="https://www.agilityrobotics.com/solutions">S143</a></p>
+
+<p>同一客户公告把新增 Statesville 和 Lebanon 场地的部署预计时间写为 <strong>2027 年初</strong>，先用 Digit 4，再在 Digit 5 商业可用时迁移。以本册日期 2026-10-27 看，这是已宣布的后续扩展，不能写成两处新增场地已经运行，也不能只根据新品发布认定 Digit 5 已完成该商业部署。</p>
+
+<p>这两个例子分别给出限定工序试点与特定物流流程的商业运行证据。它们都不能直接证明机器人已经具备任意工种或任意场地的通用能力。</p>
+
+<h4 id="reader-industry--117-工厂规划bmw-的数字孪生与已有工程软件">11.7 工厂规划：BMW 的数字孪生与已有工程软件</h4>
+
+<p>BMW 的 2023 年 Debrecen 虚拟生产材料说明，将 Omniverse 用于工厂布局、机器人和物流系统的虚拟规划，同时列出已有工具：Bentley MicroStation、ipolog、Siemens Process Simulate、CATIA 和 Revit。当前 BMW 生产介绍仍列出 Omniverse 作为全球协作规划环境。<a href="https://www.visit-bmwgroup.com/en/virtual-production-at-the-future-bmw-group-plant-in-debrecen/">S144</a>、<a href="https://www.bmwgroup.com/en/company/production.html">S145</a></p>
+
+<p>这类方案解决的是多源工程数据、场景、工艺和协作验证的组织。CAD／BIM／工艺工具产生各自资料，数字场景提供统一查看与规划，工作站和物流配置再交付相应执行系统。</p>
+
+<p>这个案例不能被改写成“用数字孪生自动训练所有工厂机器人”。工厂规划仿真、物理训练环境和现场自主操作属于相关但不同的阶段；一些功能在历史文档中是未来规划，应按其原始口径记录。</p>
+
+<h4 id="reader-industry--118-车辆开发商业工具链验证与车端平台">11.8 车辆开发：商业工具链、验证与车端平台</h4>
+
+<p>TRATON 在 2025-03-17 的公告说明，与 Applied Intuition 的合作建立在此前五年的 ADAS／AD 开发工具合作上，新合作涉及 Vehicle OS、开发／验证工具链与云端虚拟测试。Applied Intuition 的 Audi 合作材料也将仿真、数据管理和场景化工程放在 AD 发布与生命周期管理中。<a href="https://traton.com/en/newsroom/press-releases/the-traton-group-and-applied-intuition-announce-strategic-partnership-on-vehicle-software.html">S146</a>、<a href="https://www.appliedintuition.com/press-releases/audi">S147</a></p>
+
+<p>这是汽车领域的产品与工程链路：道路／车辆数据 → 场景与测试 → 软件版本与验证 → 车端平台 → 运行反馈。第 9 章的车辆测试产品可放到相应阶段，但这条链不是机械臂抓取的直接安装包。</p>
+
+<p>合作公告中的扩大部署目标、未来功能和范围，也不是当前所有车型已装车的证明。仿真和验证产品支持开发流程，不自动授予整车安全结论或自动驾驶系统的准入状态。</p>
+
+<h4 id="reader-industry--119-如何使用这些组合">11.9 如何使用这些组合</h4>
+
+<p>案例能确认哪些任务、哪些产品或接口、什么日期和状态，就写到哪里。参考组合则用来理解分工，不能偷换成客户原始架构。对于内部模型、训练环境和维护条件没有公开的商业系统，应保留这些空白。</p>
+
+<p>应用方案与开发工具还可以共存：购买特定任务系统后，客户仍可能用日志平台诊断、用数字孪生调整布局；研发新模型时，也可以接入成熟控制器和现场调度。阶段不要求被同一家供应商包办。</p>
+
+<h3 id="reader-industry--12-把产品接起来交付接口与原理对照">12 把产品接起来：交付接口与原理对照</h3>
+
+<h4 id="reader-industry--121-可连接不等于接口已经一致">12.1 可连接，不等于接口已经一致</h4>
+
+<p>产品介绍中常见“支持 ROS 2”“基于 USD”“提供 API”“可部署 GPU”。这些描述只说明部分入口，尚需明确消息类型、数据单位、坐标、时间语义、设备驱动和支持版本。以下是本册整理的接口工作表，不是任何供应商的通用接口承诺。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>交接位置</th>
+      <th>应交付什么</th>
+      <th>接收方还要知道什么</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>设备到记录平台</td>
+      <td>图像、状态、命令、采集／到达时间</td>
+      <td>消息编码、坐标、标定、关节顺序</td>
+    </tr>
+    <tr>
+      <td>记录到训练</td>
+      <td>episode、任务条件、动作监督与划分</td>
+      <td>动作含义、因果对齐、有效性、数据版本</td>
+    </tr>
+    <tr>
+      <td>CAD 到仿真</td>
+      <td>机构、几何、材料、传感器与物理配置</td>
+      <td>惯量、接触、执行器和碰撞代理是否齐备</td>
+    </tr>
+    <tr>
+      <td>仿真到训练</td>
+      <td>reset、观察、动作、奖励和终止</td>
+      <td>采样周期、实际控制接口、真实／模拟差异</td>
+    </tr>
+    <tr>
+      <td>训练到部署</td>
+      <td>权重、网络、输入处理与动作解码</td>
+      <td>归一化、推理精度、模型支持与设备版本</td>
+    </tr>
+    <tr>
+      <td>模型到规划／控制</td>
+      <td>目标或动作段、时间和有效期</td>
+      <td>绝对／增量、坐标、约束、参考耗尽处理</td>
+    </tr>
+    <tr>
+      <td>控制到现场系统</td>
+      <td>执行结果、设备状态、异常</td>
+      <td>完成的是轨迹还是实际任务、何时需人工介入</td>
+    </tr>
+    <tr>
+      <td>车队到 MES／WMS</td>
+      <td>任务 ID、位置／载荷、调度与结果</td>
+      <td>排队、取消、门禁、电梯、充电和重试语义</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>MES 是制造执行系统，WMS 是仓库管理系统。它们负责生产或仓库任务；机器人控制器负责执行设备运动。即使两端都叫“完成”，判据也可能不同。</p>
+
+<h4 id="reader-industry--122-两个接口例子">12.2 两个接口例子</h4>
+
+<!-- illustration: fleet-business-handoff-f94806228a -->
+<p><img src="{{ '/wiki/topics/physical-ai/images/fleet-business-handoff.png' | relative_url }}" alt="多机任务：请求接受、动作完成与业务交接。唯一调度权、适配器和本地执行边界明确后，才谈车队与业务协同。" loading="lazy" decoding="async"></p>
+
+<p><em>图：多机任务：请求接受、动作完成与业务交接。唯一调度权、适配器和本地执行边界明确后，才谈车队与业务协同。</em><br>
+<!-- /illustration: fleet-business-handoff-f94806228a --></p>
+
+<p>以模型输出“末端增量”为例，推理运行时只产生一个动作数组。应用还须明确基座／工具坐标、单位、参考位姿、执行时刻和夹爪量，再由执行层生成关节运动。将该模型接到支持位置目标的控制器，不能只改数组字段名。</p>
+
+<p>以车队系统收到“送料到工位”为例，它需要把业务请求转成机器人任务，并协调通道、门禁、等待与充电。机器人到达目标位置后，业务系统可能还要等工位确认收货。日志应区分请求接受、运动完成、物料交接和任务关闭。</p>
+
+<p>两个例子都属于本册的工程说明。某项产品是否提供这些接口，要看其实际文档和集成合同，不能由功能名称推导。</p>
+
+<h4 id="reader-industry--123-和原理教材怎样对读">12.3 和原理教材怎样对读</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>这里要理解的产品能力</th>
+      <th>《底层原理与实现细节》对应章</th>
+      <th>阅读时要核对的条件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>设备、传感器、机器人控制接口</td>
+      <td>01、02、03、04</td>
+      <td>身体、坐标、动力学、标定和状态</td>
+    </tr>
+    <tr>
+      <td>数字孪生与物理仿真</td>
+      <td>03、11</td>
+      <td>物理参数、接触、积分与验证范围</td>
+    </tr>
+    <tr>
+      <td>数据采集、扩增和管理</td>
+      <td>07、10</td>
+      <td>动作监督、因果性、标签与拆分</td>
+    </tr>
+    <tr>
+      <td>机器人模型与微调平台</td>
+      <td>06、07、08、09</td>
+      <td>输入、动作、学习目标与版本</td>
+    </tr>
+    <tr>
+      <td>运动规划与执行</td>
+      <td>02、05</td>
+      <td>可达性、碰撞、时标、约束和反馈</td>
+    </tr>
+    <tr>
+      <td>GPU 运行时与工业部署</td>
+      <td>12</td>
+      <td>精度、时限、缓冲、故障与环境</td>
+    </tr>
+    <tr>
+      <td>回放、测试和案例数据</td>
+      <td>13、14</td>
+      <td>试验条件、统计、泛化与证据边界</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>先用本册找到阶段与产品，再用原理教材理解接口为什么需要这些条件。产品更新会改变实现和支持矩阵，基础概念不会因此变成另一个类别。</p>
+
+<h4 id="reader-industry--124-读一个新产品时可以直接填这张卡">12.4 读一个新产品时，可以直接填这张卡</h4>
+
+<p>首先记录它交付的是软件、权重、硬件、服务还是完整工作站。接着核对公开文档中的输入、输出、协议与环境。然后分别记录获取状态和客户现场证据，保留日期及任务范围。最后列出尚未覆盖的集成责任，不用其它产品的一般能力替它填空。</p>
+
+<p>资料未公开的字段可以写“未公开”。这比把所有产品写成一样的“感知—决策—执行平台”更能帮助判断它在项目中的位置。</p>
+
+<h3 id="reader-industry--附录-a-产品形态和常见接口词汇">附录 A 产品形态和常见接口词汇</h3>
+
+<p>SDK 是开发工具包，不一定包含完整应用；runtime 是执行环境，不承担全部机器人任务；framework 提供组织开发的结构，仍需要任务代码、数据和配置。</p>
+
+<p>模型权重是学习得到的参数；模型代码定义其计算；部署包还包含输入处理、动作解码与依赖。开源代码不保证所有权重、数据或商业使用条件相同。</p>
+
+<p>PLC 是工业控制系统中的可编程逻辑控制器；HIL 是让真实控制硬件参与测试；RaaS 是以服务方式交付机器人及相应运行能力。它们分别描述控制角色、验证形式和交付形式，不属于同一维度的产品等级。</p>
+
+<p>机器人 driver 把特定设备接到软件接口；adapter 把不同系统的命令和状态对接。ROS 2、REST、DDS、OPC UA 等只解决约定的通信部分，具体任务与控制语义仍由系统定义。</p>
+
+<h3 id="reader-industry--附录-b-产品清单与复查方式">附录 B 产品清单与复查方式</h3>
+
+<p><code>products.json</code> 保留各产品的类别、阶段、输入输出、接口、获取形式、证据和边界；<code>products.csv</code> 用同一份记录导出，可按阶段检索。不用数字评分排序，不把缺少公开客户信息写成“无人使用”。</p>
+
+<p>本册公开案例是资料中的任务与日期，不是本次实测。商业产品支持范围、许可、设备供货、价格与服务条件可能更新，实际使用应查具体版本及供应商文件。这里的参考组合帮助理解分工，不表示官方一体化包、采购推荐或兼容认证。</p>
+
+<p>本册没有安装仿真平台、运行模型、操作机器人、调用客户系统或验证产品性能。PDF 是固定版面，Word 方便批注，Markdown 为正文源；Word 域和实际分页由兼容客户端更新。</p>
+
+<h3 id="reader-industry--附录-c-产品文档与客户披露">附录 C 产品文档与客户披露</h3>
+
+<p>引用按正文首次出现排序。产品功能、获取形式和落地案例分别核验。厂商案例、客户公告、产品文档的证据范围不同；参考组合不是官方兼容认证或采购推荐。资料访问日期为 2026-10-27，公告日期在相关段落标明。</p>
+
+<ul>
+  <li>
+    <p><a href="https://docs.foxglove.dev/docs">S1</a> 平台文档。<a href="https://docs.foxglove.dev/docs">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.foxglove.dev/docs/sdk">S2</a> SDK。<a href="https://docs.foxglove.dev/docs/sdk">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.foxglove.dev/docs/data">S3</a> 部署说明。<a href="https://docs.foxglove.dev/docs/data">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control">S4</a> Dexory 集成说明。<a href="https://foxglove.dev/blog/connect-foxglove-to-your-local-player-with-playback-control">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mcap.dev/spec">S5</a> MCAP 规范。<a href="https://mcap.dev/spec">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mcap.dev/">S6</a> MCAP 项目。<a href="https://mcap.dev/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://rerun.io/sdk">S7</a> SDK 职责。<a href="https://rerun.io/sdk">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/rerun-io/rerun">S8</a> 公开代码。<a href="https://github.com/rerun-io/rerun">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://rerun.io/hub">S9</a> Hub。<a href="https://rerun.io/hub">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://rerun.io/blog/data-layer-for-robot-learning">S10</a> 发布公告。<a href="https://rerun.io/blog/data-layer-for-robot-learning">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://scale.com/physical-ai">S11</a> Physical AI 产品。<a href="https://scale.com/physical-ai">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://scale.com/blog/physical-ai">S12</a> 服务说明。<a href="https://scale.com/blog/physical-ai">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.roboto.ai/docs">S13</a> Roboto 文档。<a href="https://www.roboto.ai/docs">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.roboto.ai/docs/learn/formats">S14</a> 支持格式。<a href="https://www.roboto.ai/docs/learn/formats">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.roboto.ai/pricing">S15</a> 获取与部署。<a href="https://www.roboto.ai/pricing">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.roboto.ai/customers/brinc">S16</a> BRINC 案例。<a href="https://www.roboto.ai/customers/brinc">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-desktop">S17</a> Desktop 职责。<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-desktop">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite">S18</a> Suite。<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-license">S19</a> 许可形式。<a href="https://www.abb.com/global/en/areas/robotics/products/software/robotstudio-suite/robotstudio-license">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://library.e.abb.com/public/646aec8533a54008887d8b4146bb1d1a/rs_casestudy_evolut_en_web.pdf">S20</a> Evolut 案例。<a href="https://library.e.abb.com/public/646aec8533a54008887d8b4146bb1d1a/rs_casestudy_evolut_en_web.pdf">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.siemens.com/en-us/products/tecnomatix/offerings/">S21</a> 当前产品目录。<a href="https://www.siemens.com/en-us/products/tecnomatix/offerings/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://blogs.sw.siemens.com/tecnomatix/introducing-process-simulate-x-digital-manufacturing-powered-by-cloud-technologies/">S22</a> X 与连接器说明。<a href="https://blogs.sw.siemens.com/tecnomatix/introducing-process-simulate-x-digital-manufacturing-powered-by-cloud-technologies/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://blogs.sw.siemens.com/tecnomatix/ingemat-a-virtual-commissioning-success-story/">S23</a> Ingemat。<a href="https://blogs.sw.siemens.com/tecnomatix/ingemat-a-virtual-commissioning-success-story/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/">S24</a> 固定 6.0.0 文档。<a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/isaac-sim/IsaacSim">S25</a> 官方代码。<a href="https://github.com/isaac-sim/IsaacSim">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://blogs.nvidia.com/blog/gpu-aws-omniverse-isaac-sim-robots/">S26</a> 采用披露。<a href="https://blogs.nvidia.com/blog/gpu-aws-omniverse-isaac-sim-robots/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/google-deepmind/mujoco">S27</a> 官方仓库。<a href="https://github.com/google-deepmind/mujoco">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/google-deepmind/mujoco_playground">S28</a> Playground。<a href="https://github.com/google-deepmind/mujoco_playground">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://gazebosim.org/docs/harmonic/ros2_integration/">S29</a> ROS 2 集成文档。<a href="https://gazebosim.org/docs/harmonic/ros2_integration/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://gazebosim.org/docs/latest/releases/">S30</a> 发行及支持表。<a href="https://gazebosim.org/docs/latest/releases/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://classic.gazebosim.org/">S31</a> Classic 状态。<a href="https://classic.gazebosim.org/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.openrobotics.org/blog/2021/9/27/darpa-subt-final-competition">S32</a> SubT 披露。<a href="https://www.openrobotics.org/blog/2021/9/27/darpa-subt-final-competition">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://carla.org/">S33</a> CARLA。<a href="https://carla.org/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://carla.readthedocs.io/en/latest/start_introduction/">S34</a> 架构说明。<a href="https://carla.readthedocs.io/en/latest/start_introduction/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.ipg-automotive.com/solutions/product-portfolio/carmaker">S35</a> CarMaker。<a href="https://www.ipg-automotive.com/solutions/product-portfolio/carmaker">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/NVIDIA/cosmos">S36</a> 当前 Cosmos 入口。<a href="https://github.com/NVIDIA/cosmos">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5">S37</a> 旧分支状态。<a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_replicator.html">S38</a> Replicator 职责。<a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_replicator.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html">S39</a> Python API。<a href="https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/replicator_tutorials/index.html">S40</a> 6.0.0 工作流。<a href="https://docs.isaacsim.omniverse.nvidia.com/6.0.0/replicator_tutorials/index.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html">S41</a> 固定 v2.2.0 文档。<a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html#common-pitfalls-when-generating-data">S42</a> 生成与限制。<a href="https://isaac-sim.github.io/IsaacLab/v2.2.0/source/overview/teleop_imitation.html#common-pitfalls-when-generating-data">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.nvidia.com/en-us/ai/cosmos/">S43</a> 产品入口。<a href="https://www.nvidia.com/en-us/ai/cosmos/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/nvidia-cosmos/cosmos-predict2.5">S44</a> Predict2.5 仓库。<a href="https://github.com/nvidia-cosmos/cosmos-predict2.5">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/nvidia-cosmos/cosmos-predict2.5/blob/main/docs/post-training_video2world_action.md">S45</a> 动作条件接口。<a href="https://github.com/nvidia-cosmos/cosmos-predict2.5/blob/main/docs/post-training_video2world_action.md">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5/blob/main/docs/inference.md">S46</a> 推理输入与配置。<a href="https://github.com/nvidia-cosmos/cosmos-transfer2.5/blob/main/docs/inference.md">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/nvidia-cosmos/cosmos-reason2">S47</a> Reason2 接口。<a href="https://github.com/nvidia-cosmos/cosmos-reason2">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">S48</a> PyTorch 基础组件。<a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.pytorch.org/docs/2.14/distributed.html">S49</a> 分布式接口。<a href="https://docs.pytorch.org/docs/2.14/distributed.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">S50</a> Isaac Lab 后端范围。<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics_backends.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics-backends/newton.html">S51</a> Newton 集成。<a href="https://isaac-sim.github.io/IsaacLab/main/source/concepts/physics-backends/newton.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://huggingface.co/docs/lerobot/main/index">S52</a> LeRobot 工作流。<a href="https://huggingface.co/docs/lerobot/main/index">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://huggingface.co/docs/lerobot/inference">S53</a> 部署接口。<a href="https://huggingface.co/docs/lerobot/inference">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.wandb.ai/models/track">S54</a> Experiments 接口。<a href="https://docs.wandb.ai/models/track">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.wandb.ai/models/artifacts">S55</a> Artifacts 范围。<a href="https://docs.wandb.ai/models/artifacts">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.wandb.ai/platform/hosting/hosting-options/">S56</a> 部署方式与责任。<a href="https://docs.wandb.ai/platform/hosting/hosting-options/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mlflow.org/docs/latest/ml/tracking/">S57</a> Tracking 文档。<a href="https://mlflow.org/docs/latest/ml/tracking/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mlflow.org/docs/latest/model-registry/">S58</a> Registry 与 alias。<a href="https://mlflow.org/docs/latest/model-registry/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/leggedrobotics/rsl_rl">S59</a> RSL-RL 官方仓库。<a href="https://github.com/leggedrobotics/rsl_rl">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/google/brax">S60</a> Brax 状态说明。<a href="https://github.com/google/brax">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mujoco.readthedocs.io/en/stable/mjx.html">S61</a> MJX 官方范围。<a href="https://mujoco.readthedocs.io/en/stable/mjx.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/NVIDIA/Isaac-GR00T">S62</a> GR00T 官方仓库。<a href="https://github.com/NVIDIA/Isaac-GR00T">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.nvidia.com/en-us/industries/robotics/isaac-groot/">S63</a> 官方产品页。<a href="https://www.nvidia.com/en-us/industries/robotics/isaac-groot/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Physical-Intelligence/openpi">S64</a> openpi 公开范围。<a href="https://github.com/Physical-Intelligence/openpi">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/openvla/openvla">S65</a> OpenVLA。<a href="https://github.com/openvla/openvla">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/moojink/openvla-oft">S66</a> OpenVLA-OFT。<a href="https://github.com/moojink/openvla-oft">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://deepmind.google/models/gemini-robotics/">S67</a> 产品角色与等待名单。<a href="https://deepmind.google/models/gemini-robotics/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://ai.google.dev/gemini-api/docs/robotics-overview">S68</a> 当前 ER API 范围。<a href="https://ai.google.dev/gemini-api/docs/robotics-overview">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.osaro.com/">S69</a> OSARO 产品范围。<a href="https://www.osaro.com/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.zennioptical.com/blog/revolutionizing-eyewear-fulfillment-the-role-of-robotics/">S70</a> Zenni 客户自述。<a href="https://www.zennioptical.com/blog/revolutionizing-eyewear-fulfillment-the-role-of-robotics/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.dexterity.ai/mech">S71</a> Mech 商业范围。<a href="https://www.dexterity.ai/mech">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.dexterity.ai/">S72</a> 当前访问状态。<a href="https://www.dexterity.ai/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub">S73</a> FedEx 客户方联合披露。<a href="https://newsroom.fedex.com/newsroom/global-english/fedex-and-dexterity-expand-physical-ai-deployment-for-autonomous-trailer-loading-at-hagerstown-hub">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://nvidia-isaac-ros.github.io/">S74</a> 组件目录。<a href="https://nvidia-isaac-ros.github.io/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html">S75</a> 地图组件。<a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">S76</a> 官方仓库。<a href="https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html">S77</a> 定位包接口。<a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">S78</a> 架构与接口。<a href="https://moveit.picknik.ai/main/doc/concepts/move_group.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/moveit/moveit2">S79</a> 官方代码。<a href="https://github.com/moveit/moveit2">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.picknik.ai/technical_specifications/">S80</a> 产品与接口规格。<a href="https://docs.picknik.ai/technical_specifications/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.picknik.ai/software_installation/major_releases/">S81</a> 发布与支持政策。<a href="https://docs.picknik.ai/software_installation/major_releases/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://picknik.ai/case-study-automotive/">S82</a> BMW 案例及阶段。<a href="https://picknik.ai/case-study-automotive/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://nvlabs.github.io/curobo/latest/getting-started/motion_planning.html">S83</a> 输入输出与流程。<a href="https://nvlabs.github.io/curobo/latest/getting-started/motion_planning.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://nvlabs.github.io/curobo/latest/reference/api_overview.html">S84</a> 公开 API。<a href="https://nvlabs.github.io/curobo/latest/reference/api_overview.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/NVlabs/curobo">S85</a> 官方仓库。<a href="https://github.com/NVlabs/curobo">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://curobo.org/">S86</a> 模型与算法职责。<a href="https://curobo.org/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.nav2.org/rolling/">S87</a> 官方架构。<a href="https://docs.nav2.org/rolling/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/ros-navigation/navigation2">S88</a> 代码与获取。<a href="https://github.com/ros-navigation/navigation2">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html">S89</a> 官方架构。<a href="https://control.ros.org/jazzy/doc/getting_started/getting_started.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html">S90</a> UR 集成说明。<a href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ros2_controller_vs_driver.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html">S91</a> 循环与诊断。<a href="https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html">S92</a> 当前产品职责。<a href="https://docs.mech-mind.net/en/suite-tutorial/latest/vision-system-introduction.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.mech-mind.com/cases/picking-of-automotive-components-for-spot-welding.html">S93</a> 案例范围。<a href="https://www.mech-mind.com/cases/picking-of-automotive-components-for-spot-welding.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.universal-robots.com/products/software/integration/">S94</a> PolyScope 接口。<a href="https://www.universal-robots.com/products/software/integration/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver">S95</a> 官方代码。<a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.universal-robots.com/developer/communication-protocol/ros-and-ros2-driver/">S96</a> 官方支持范围。<a href="https://www.universal-robots.com/developer/communication-protocol/ros-and-ros2-driver/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt">S97</a> ABB 官方手册，接口与消息定义。<a href="https://library.e.abb.com/public/f63dc4031d194a58be058eb657441180/3HAC073319%20AM%20Externally%20Guided%20Motion%20RW6-en.pdf?x-sign=BWbSjBUhUwt70d44B8HVhOH3uYGGWVQuy72oK8Yu4Vq6yiBCtA5eQE%2B8jjTH7Ypt">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://developer.nvidia.com/embedded/jetpack">S98</a> JetPack 官方职责。<a href="https://developer.nvidia.com/embedded/jetpack">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-Powered-Jetson-Thor-Now-Available-Accelerating-the-Age-of-General-Robotics/default.aspx">S99</a> 正式供货与采用范围。<a href="https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-Powered-Jetson-Thor-Now-Available-Accelerating-the-Age-of-General-Robotics/default.aspx">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html">S100</a> 构建与运行接口。<a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/quick-start-guide.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://developer.nvidia.com/igx">S101</a> 平台与形态。<a href="https://developer.nvidia.com/igx">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://blogs.nvidia.com/blog/gtc-2026-news/">S102</a> 正式可供与案例范围。<a href="https://blogs.nvidia.com/blog/gtc-2026-news/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://forums.developer.nvidia.com/t/igx-sw-2-0-is-now-live/363924">S103</a> 生产软件发布。<a href="https://forums.developer.nvidia.com/t/igx-sw-2-0-is-now-live/363924">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.nvidia.com/igx/user-guide/latest/NVAIE/nvaie.html">S104</a> 企业支持边界。<a href="https://docs.nvidia.com/igx/user-guide/latest/NVAIE/nvaie.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://onnxruntime.ai/docs/execution-providers/">S105</a> 公开 API 与后端机制。<a href="https://onnxruntime.ai/docs/execution-providers/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://onnxruntime.ai/">S106</a> 官方应用范围。<a href="https://onnxruntime.ai/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/microsoft/onnxruntime">S107</a> 官方代码。<a href="https://github.com/microsoft/onnxruntime">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.openvino.ai/2026/openvino-workflow/running-inference.html">S108</a> 官方推理流水线。<a href="https://docs.openvino.ai/2026/openvino-workflow/running-inference.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/openvinotoolkit/openvino">S109</a> 官方代码。<a href="https://github.com/openvinotoolkit/openvino">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-powered-medical-exoskeleton-helps-patients-get-back-on-their-feet.html">S110</a> 案例范围。<a href="https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-powered-medical-exoskeleton-helps-patients-get-back-on-their-feet.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.siemens.com/en-us/products/industrial-edge/devices/">S111</a> 设备目录。<a href="https://www.siemens.com/en-us/products/industrial-edge/devices/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/">S112</a> 平台架构。<a href="https://www.siemens.com/en-us/products/industrial-edge/edge-computing-architecture/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.appliedintuition.com/products">S113</a> 当前产品入口。<a href="https://www.appliedintuition.com/products">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.appliedintuition.com/press-releases/national-instruments">S114</a> HIL 集成范围。<a href="https://www.appliedintuition.com/press-releases/national-instruments">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.appliedintuition.com/press-releases/porsche">S115</a> Porsche 合作。<a href="https://www.appliedintuition.com/press-releases/porsche">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.dspace.com/en/pub/home/products/hw/simulator_hardware/scalexio.cfm">S116</a> 官方职责。<a href="https://www.dspace.com/en/pub/home/products/hw/simulator_hardware/scalexio.cfm">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.dspace.com/en/pub/home/news/dspace_pressroom/press/scalexio-fsx-extension.cfm">S117</a> 接口及正式产品扩展。<a href="https://www.dspace.com/en/pub/home/news/dspace_pressroom/press/scalexio-fsx-extension.cfm">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.dspace.com/en/pub/home/company/customers.cfm">S118</a> 具名用途证据。<a href="https://www.dspace.com/en/pub/home/company/customers.cfm">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/ros2/rosbag2">S119</a> rosbag2 官方代码与接口。<a href="https://github.com/ros2/rosbag2">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.foxglove.dev/docs/visualization/playback">S120</a> Foxglove 回放语义。<a href="https://docs.foxglove.dev/docs/visualization/playback">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.foxglove.dev/docs/visualization/connecting/local-data">S121</a> 当前格式与访问条件。<a href="https://docs.foxglove.dev/docs/visualization/connecting/local-data">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mobile-industrial-robots.com/blog/higher-order-mobile-robotics">S122</a> 职责。<a href="https://mobile-industrial-robots.com/blog/higher-order-mobile-robotics">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://academy.mobile-industrial-robots.com/free-skill-paths/software-integration/">S123</a> 公开接口入口。<a href="https://academy.mobile-industrial-robots.com/free-skill-paths/software-integration/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mobile-industrial-robots.com/de/falle/forvia">S124</a> 应用证据。<a href="https://mobile-industrial-robots.com/de/falle/forvia">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://developer.inorbit.ai/docs">S125</a> 开发者接口。<a href="https://developer.inorbit.ai/docs">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://developer.inorbit.ai/pricing-dev">S126</a> 获取状态。<a href="https://developer.inorbit.ai/pricing-dev">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.inorbit.ai/blog/instock-and-inorbit">S127</a> 演示范围。<a href="https://www.inorbit.ai/blog/instock-and-inorbit">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://osrf.github.io/ros2multirobotbook/integration_fleets.html">S128</a> 官方集成契约。<a href="https://osrf.github.io/ros2multirobotbook/integration_fleets.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.open-rmf.org/">S129</a> 产品与治理。<a href="https://www.open-rmf.org/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/open-rmf/rmf">S130</a> 官方代码。<a href="https://github.com/open-rmf/rmf">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://osrf.github.io/ros2multirobotbook/integration_fleets_adapter_tutorial.html">S131</a> 适配责任。<a href="https://osrf.github.io/ros2multirobotbook/integration_fleets_adapter_tutorial.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.formant.io/docs/the-formant-agent">S132</a> agent 职责。<a href="https://docs.formant.io/docs/the-formant-agent">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.formant.io/reference/api-sdk-overview">S133</a> API/SDK。<a href="https://docs.formant.io/reference/api-sdk-overview">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.formant.ai/">S134</a> 当前入口。<a href="https://www.formant.ai/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.formant.ai/burro">S135</a> Burro 使用范围。<a href="https://www.formant.ai/burro">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.universal-robots.com/plus/products/mech-mind-robotics/mech-mind-3d-vision/">S136</a> UR 官方 Mech-Mind 产品目录。<a href="https://www.universal-robots.com/plus/products/mech-mind-robotics/mech-mind-3d-vision/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.abb.com/global/en/areas/robotics/products/software/pickmaster-twin">S137</a> ABB PickMaster Twin 产品页。<a href="https://www.abb.com/global/en/areas/robotics/products/software/pickmaster-twin">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://mobile-industrial-robots.com/cases/denso">S138</a> MiR／DENSO 案例。<a href="https://mobile-industrial-robots.com/cases/denso">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://bostondynamics.com/products/stretch/">S139</a> Stretch 产品与服务入口。<a href="https://bostondynamics.com/products/stretch/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://group.dhl.com/en/media-relations/press-releases/2025/dhl-group-signs-mou-with-boston-dynamics-and-accelerates-cross-business-automation-strategy.html">S140</a> DHL 2025 公告。<a href="https://group.dhl.com/en/media-relations/press-releases/2025/dhl-group-signs-mou-with-boston-dynamics-and-accelerates-cross-business-automation-strategy.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.bmwgroup.com/en/news/general/2026/humanoid-robot-in-leipzig.html">S141</a> BMW 人形机器人项目说明。<a href="https://www.bmwgroup.com/en/news/general/2026/humanoid-robot-in-leipzig.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://investors.gxo.com/news-releases/news-release-details/gxo-and-agility-robotics-expand-partnership-accelerate">S142</a> GXO 2026 客户公告。<a href="https://investors.gxo.com/news-releases/news-release-details/gxo-and-agility-robotics-expand-partnership-accelerate">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.agilityrobotics.com/solutions">S143</a> Agility Digit／Arc 方案。<a href="https://www.agilityrobotics.com/solutions">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.visit-bmwgroup.com/en/virtual-production-at-the-future-bmw-group-plant-in-debrecen/">S144</a> BMW 2023 虚拟生产材料。<a href="https://www.visit-bmwgroup.com/en/virtual-production-at-the-future-bmw-group-plant-in-debrecen/">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.bmwgroup.com/en/company/production.html">S145</a> BMW 当前生产介绍。<a href="https://www.bmwgroup.com/en/company/production.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://traton.com/en/newsroom/press-releases/the-traton-group-and-applied-intuition-announce-strategic-partnership-on-vehicle-software.html">S146</a> TRATON 客户公告。<a href="https://traton.com/en/newsroom/press-releases/the-traton-group-and-applied-intuition-announce-strategic-partnership-on-vehicle-software.html">访问来源</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.appliedintuition.com/press-releases/audi">S147</a> Applied Intuition／Audi 合作材料。<a href="https://www.appliedintuition.com/press-releases/audi">访问来源</a></p>
+  </li>
+</ul>

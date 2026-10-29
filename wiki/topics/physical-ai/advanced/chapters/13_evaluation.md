@@ -16,6 +16,12 @@ $$
 
 ### 13.2 90% 成功率并不是一个精度无限的事实
 
+<!-- illustration: wilson-evidence-0f2bfc90d4 -->
+![同为 90% 成功率，证据精度不同。正文两组数值教学例：9/10 与 90/100 的 95% Wilson 区间。](../../images/wilson-evidence.png)
+
+*图：同为 90% 成功率，证据精度不同。正文两组数值教学例：9/10 与 90/100 的 95% Wilson 区间。*
+<!-- /illustration: wilson-evidence-0f2bfc90d4 -->
+
 在独立、同分布的二项试验近似下，可以用区间表示抽样不确定性。设置信水平为 $1-\alpha$，标准正态分位数为 $z=z_{1-\alpha/2}$。Wilson 区间为：
 
 $$

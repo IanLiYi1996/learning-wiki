@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">会议机器人技术栈：按职责读发布</title>
+<desc id="desc">沿用报告的 2026-10-26 资料口径；不因本次配图更新开放或供货状态。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">会议机器人技术栈：按职责读发布</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">沿用报告的 2026-10-26 资料口径；不因本次配图更新开放或供货状态。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">数据与资产</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">示范记录、人类动作数据、虚拟场景；动作监督另外检查</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">学习与仿真</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">Isaac Lab 组织任务／训练；Newton 等后端求解物理</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">策略模型</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">GR00T 等按观测与指令输出动作；身体与数据需适配</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">机端软件</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">运行时、连接、驱动、动作有效期与反馈</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">完整系统</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">机器人硬件、控制与现场安全；演示不自动成为量产</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">分层表示责任边界，不要求每层独立部署。</text>
+</g>
+</svg>

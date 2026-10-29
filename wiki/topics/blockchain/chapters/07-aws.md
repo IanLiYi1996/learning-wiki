@@ -61,6 +61,12 @@ Query 的 `NONFINAL` 指已上链但未达到其 finality 规则，不指 mempoo
 
 ## 5. KMS 与 Bitcoin ECDSA：摘要和编码由应用负责
 
+<!-- illustration: ecdsa-adaptation-990b9b3190 -->
+![ECDSA 签名返回后，链适配还没结束。签名摘要、返回编码与交易编码分别处理；不是对 txid 任意签一下。](../images/ecdsa-adaptation.png)
+
+*图：ECDSA 签名返回后，链适配还没结束。签名摘要、返回编码与交易编码分别处理；不是对 txid 任意签一下。*
+<!-- /illustration: ecdsa-adaptation-990b9b3190 -->
+
 典型配置：
 
 ```text

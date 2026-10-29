@@ -1,3 +1,7 @@
+---
+permalink: /wiki/topics/physical-ai/
+physical_ai_reader: all
+---
 # Physical AI
 
 - 类型：主题
@@ -10,6 +14,12 @@
 本次是已有资料的整理归档，不是产品状态的重新核验。公开下载、商业交付、客户运行、限定试点、预览和未来计划仍按原文分别记录，不将全部条目统称为成熟量产方案。
 
 ## 从哪里开始
+
+<!-- illustration: physical-feedback-a9ffd76dc9 -->
+![真实状态、观测、策略动作与控制输入。o 是测量，a 是策略动作，u 是执行接口输入；数组形状相同也不等于语义相同。](images/physical-feedback.png)
+
+*图：真实状态、观测、策略动作与控制输入。o 是测量，a 是策略动作，u 是执行接口输入；数组形状相同也不等于语义相同。*
+<!-- /illustration: physical-feedback-a9ffd76dc9 -->
 
 1. 读行业篇的 [阶段地图](industry/chapters/01_lifecycle.md) 和 [端到端组合与客户案例](industry/chapters/11_solutions_cases.md)，先知道各项工作交付什么。
 2. 按下表查具体产品，同时读对应原理章节。
@@ -26,6 +36,8 @@
 | GTC Berlin 2026 内容整理 | 会期发布、机器人、工厂、汽车与 Physical AI 技术栈；版本 1.2 | [Markdown](conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.md) · [PDF](conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.pdf) · [Word](conferences/gtc-berlin-2026/GTC_Berlin_2026_Physical_AI_深度调研报告.docx) |
 
 PDF 保留原交付的固定分页；Word 便于批注，目录与页码需兼容软件更新。GitHub 直接阅读可用 Markdown，公式密集章节也可查 PDF。
+
+2026-10-29：网页与 Markdown 已补中文图解，可点击放大；PDF、Word 与仓库中的独立 HTML 仍是原归档下载版，尚未加入本轮图片。详见[图文修订记录](archive-notes.md)。
 
 ## 产品阶段与底层原理对照
 
