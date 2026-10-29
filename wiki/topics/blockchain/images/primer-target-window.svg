@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="560" viewBox="0 0 1040 560" role="img" aria-labelledby="title desc">
+<title id="title">目标缩小，合格范围也缩小</title>
+<desc id="desc">放大显示 0000–0019 局部；完整教学范围仍为 0000–9999。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="560" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">目标缩小，合格范围也缩小</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">放大显示 0000–0019 局部；完整教学范围仍为 0000–9999。</text>
+<rect x="280" y="170" width="690" height="48" rx="5" fill="#f0fdf4" stroke="#15803d"/>
+<text x="290" y="200.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">0000–0019：20 个合格结果</text>
+<rect x="280" y="280" width="345" height="48" rx="5" fill="#f0fdf4" stroke="#15803d"/>
+<text x="290" y="310.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">0000–0009：10 个合格结果</text>
+<rect x="625" y="280" width="345" height="48" rx="5" fill="#fff7ed" stroke="#c2410c"/>
+<text x="635" y="310.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">0010–0019：不合格</text>
+<text x="60" y="200" font-size="20" fill="#23312b" font-weight="400" text-anchor="start">旧目标 0019</text>
+<text x="60" y="310" font-size="20" fill="#23312b" font-weight="400" text-anchor="start">新目标 0009</text>
+<text x="520" y="402" font-size="18" fill="#23312b" font-weight="400" text-anchor="middle">其他 0020–9999 在这两种目标下都不合格</text>
+<text x="520" y="442" font-size="18" fill="#23312b" font-weight="400" text-anchor="middle">均匀假设下：合格概率减半，平均尝试次数约翻倍</text>
+<line x1="40" y1="496" x2="1000" y2="496" stroke="#e0e7e2"/>
+<text x="40" y="520" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">这张图比较教学目标；主网目标由节点根据协议与历史独立计算。</text>
+</g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="560" viewBox="0 0 1040 560" role="img" aria-labelledby="title desc">
+<title id="title">资源用量乘单价，得到执行费用</title>
+<desc id="desc">简单 ETH 转账的假设；合约、委托和其他数据路径要另算。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="560" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">资源用量乘单价，得到执行费用</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">简单 ETH 转账的假设；合约、委托和其他数据路径要另算。</text>
+<path d="M 300,245 L 400,245" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="334.5" y="232.0" width="31" height="25" fill="#fff"/>
+<text x="350.0" y="250.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">乘</text>
+<path d="M 640,245 L 740,245" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="667.0" y="232.0" width="46" height="25" fill="#fff"/>
+<text x="690.0" y="250.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">得到</text>
+<rect x="60" y="165" width="240" height="160" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="180.0" y="238.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">21,000 gas</text>
+<text x="180.0" y="273.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">本次实际资源用量</text>
+<rect x="400" y="165" width="240" height="160" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="238.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">9 gwei/gas</text>
+<text x="520.0" y="273.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">8 基础费 + 1 有效小费</text>
+<rect x="740" y="165" width="240" height="160" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="860.0" y="238.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">0.000189 ETH</text>
+<text x="860.0" y="273.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">实际执行费用</text>
+<text x="520" y="403" font-size="18" fill="#23312b" font-weight="400" text-anchor="middle">费用上限不是实际扣款；执行失败仍可能消耗资源</text>
+<line x1="40" y1="496" x2="1000" y2="496" stroke="#e0e7e2"/>
+<text x="40" y="520" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">假设收款账户无代码且未委托；数字不是当前网络费率。</text>
+</g>
+</svg>

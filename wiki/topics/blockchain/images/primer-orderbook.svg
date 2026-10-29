@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="660" viewBox="0 0 1040 660" role="img" aria-labelledby="title desc">
+<title id="title">屏幕上的 100，不保证买 4 个也按 100</title>
+<desc id="desc">虚构订单簿：买卖报价暂不变，没有手续费。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="660" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">屏幕上的 100，不保证买 4 个也按 100</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">虚构订单簿：买卖报价暂不变，没有手续费。</text>
+<rect x="80" y="180" width="380" height="46" rx="5" fill="#f0fdf4" stroke="#15803d"/>
+<text x="90" y="209.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">买价 99 U：4 个</text>
+<rect x="80" y="245" width="380" height="46" rx="5" fill="#f0fdf4" stroke="#15803d"/>
+<text x="90" y="274.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">买价 98 U：8 个</text>
+<rect x="580" y="180" width="380" height="46" rx="5" fill="#fff7ed" stroke="#c2410c"/>
+<text x="590" y="209.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卖价 101 U：2 个</text>
+<rect x="580" y="245" width="380" height="46" rx="5" fill="#fff7ed" stroke="#c2410c"/>
+<text x="590" y="274.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卖价 102 U：3 个</text>
+<rect x="580" y="310" width="380" height="46" rx="5" fill="#fff7ed" stroke="#c2410c"/>
+<text x="590" y="339.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卖价 105 U：10 个</text>
+<text x="270" y="146" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">买方</text>
+<text x="770" y="146" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">卖方</text>
+<text x="520" y="426" font-size="22" fill="#23312b" font-weight="400" text-anchor="middle">买 4 个 = 2 × 101 + 2 × 102 = 406 U</text>
+<text x="520" y="474" font-size="21" fill="#23312b" font-weight="400" text-anchor="middle">均价 101.5 U；买卖价差 2 U</text>
+<text x="520" y="521" font-size="18" fill="#23312b" font-weight="400" text-anchor="middle">最后成交价、当前报价和实际成交均价是不同数字</text>
+<line x1="40" y1="596" x2="1000" y2="596" stroke="#e0e7e2"/>
+<text x="40" y="620" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">条形仅组织报价，不按宽度表示资金深度；挂单可能撤走。</text>
+</g>
+</svg>

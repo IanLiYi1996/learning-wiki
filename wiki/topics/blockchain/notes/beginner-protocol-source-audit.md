@@ -60,3 +60,15 @@
 [Aave 清算](https://aave.com/help/borrowing/liquidations)支撑健康因子解释；数值由本教程另设。原尝试的 flash-loans smart-contracts 路径未取到正文，改为 [当前指南](https://aave.com/docs/aave-v3/guides/flash-loans)。Aave 文档允许部分 `flashLoan` 路径在满足条件时开债务头寸，不能把“全部调用无条件立即还款”写成统一实现规则。
 
 再质押只作概念风险分类，不提供某个产品的实时惩罚参数或收益。支付、基金和制度的 12 条专门来源及访问限制另见 [后台研究记录](beginner-industry-source-audit.md)。
+
+## 6. 白话图解重写时的新增补证
+
+2026-10-29 追加图解读本，原 22 主题版保留为 [机制速查](../beginner-reference.md)。除既有机制核验外，补读以下一手来源：
+
+- [Bank of England 2014 货币介绍](https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-in-the-modern-economy-an-introduction)：仅用于说明银行存款/现金/记录关系，不采用历史货币比例作当前全球统计。
+- [SEC 2017 ICO 教育资料](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-16)、[2020 IEO 教育资料](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/initial)：解释发行与平台参与的不同，不把教育公告当当前具体产品合规结论。
+- [Polkastarter 文档](https://docs.polkastarter.com/)：只取 IDO / Initial DEX Offering 的第一方术语例子，不采用收益宣传、参与资格或平台推荐。
+- [EigenLayer 原始设计](https://docs.eigencloud.xyz/assets/files/EigenLayer_WhitePaper-88c47923ca0319870c611decd6e562ad.pdf)：追加服务职责/惩罚条件的再质押思路，不推断研究日任一部署的实际风险参数。
+- [Merge](https://ethereum.org/roadmap/merge/)、[网络](https://ethereum.org/developers/docs/networks/)、[治理](https://ethereum.org/governance/)和 Core v32.1 维护者源码再次对读，只采已核验机制与明确状态，不照搬指南中可能滞后的容量、收益或验证者数值。
+
+新增金融常识的 14 条来源见 [金融审计](plain-language-finance-source-audit.md)，应用与网络的 12 条核心来源见 [应用审计](plain-language-applications-source-audit.md)。正文按问题组织并绘制原创图，不复制来源图片或附件原图。

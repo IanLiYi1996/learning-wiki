@@ -258,8 +258,92 @@ def render_intervals(figure):
     return c.finish()
 
 
+def render_scene(figure):
+    """Authored teaching scenes with explicit ports and roomy labelled corridors."""
+    height = figure.get("height", 580)
+    def finite(values):
+        return all(isinstance(value, (int, float)) and math.isfinite(value)
+                   for value in values)
+
+    if not finite([height]) or height < 300:
+        raise ValueError("Scene height must be a finite positive canvas size")
+    c = Canvas(figure["title"], figure["subtitle"], height)
+    nodes = figure.get("nodes", [])
+    ids = [node["id"] for node in nodes]
+    if len(ids) != len(set(ids)):
+        raise ValueError("Scene node IDs must be unique")
+    for node in nodes:
+        x, y, w, h = (node[key] for key in ("x", "y", "w", "h"))
+        if (not finite([x, y, w, h]) or min(w, h) <= 0 or x < 40 or y < 120
+                or x+w > 1000 or y+h > height-92):
+            raise ValueError(f"Scene node outside content area: {node['id']}")
+    # Reject orthogonal edges that cut through any card, including their endpoint cards.
+    for edge in figure.get("edges", []):
+        points = edge["points"]
+        if len(points) < 2:
+            raise ValueError("Scene edge requires at least two points")
+        for x, y in points:
+            if not finite([x, y]) or not (20 <= x <= 1020 and 110 <= y <= height-76):
+                raise ValueError("Scene edge outside canvas")
+        for (ax, ay), (bx, by) in zip(points, points[1:]):
+            if (ax == bx and ay == by) or (ax != bx and ay != by):
+                raise ValueError("Scene edges must have nonzero orthogonal segments")
+            for node in nodes:
+                left, top = node["x"], node["y"]
+                right, bottom = left+node["w"], top+node["h"]
+                intersects = (
+                    ay == by and top < ay < bottom
+                    and max(min(ax, bx), left) < min(max(ax, bx), right)
+                ) or (
+                    ax == bx and left < ax < right
+                    and max(min(ay, by), top) < min(max(ay, by), bottom)
+                )
+                if intersects:
+                    raise ValueError(f"Scene arrow crosses node: {node['id']}")
+        c.arrow(points, edge.get("label", ""), edge.get("feedback", False),
+                edge.get("label_segment"))
+    for node in nodes:
+        c.box(node["x"], node["y"], node["w"], node["h"],
+              node["label"], node.get("detail", ""), node.get("color", 0))
+    for bar in figure.get("bars", []):
+        x, y, w, h = (bar[key] for key in ("x", "y", "w", "h"))
+        if (not finite([x, y, w, h]) or min(w, h) <= 0 or x < 40 or y < 120
+                or x+w > 1000 or y+h > height-92):
+            raise ValueError("Scene bar outside content area")
+        fill, stroke = PALETTE[bar.get("color", 0) % len(PALETTE)]
+        c.lines.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
+                       f'rx="5" fill="{fill}" stroke="{stroke}"/>')
+        label = bar.get("label", "")
+        if text_width(label, 17) > w-20:
+            raise ValueError("Scene bar label too wide")
+        c.text(x+10, y+h/2+6, label, 17)
+    for label in figure.get("labels", []):
+        x, y = label["x"], label["y"]
+        size = label.get("size", 18)
+        if not finite([x, y, size]) or size < 12:
+            raise ValueError("Scene label requires finite coordinates and readable size")
+        width = text_width(label["text"], size)
+        anchor = label.get("anchor", "start")
+        if anchor not in ("start", "middle"):
+            raise ValueError("Scene label anchor must be start or middle")
+        left = x-width/2 if anchor == "middle" else x
+        if left < 20 or left+width > 1020 or y-size < 110 or y > height-76:
+            raise ValueError("Scene label outside canvas")
+        color = label.get("color", "#23312b")
+        weight = label.get("weight", 400)
+        if not isinstance(color, str) or not re.fullmatch(r"#[0-9a-fA-F]{6}", color):
+            raise ValueError("Scene label color must be a hex token")
+        if weight not in (400, 600, 700):
+            raise ValueError("Scene label weight must be a supported number")
+        c.text(x, y, label["text"], size, color, weight, anchor)
+    c.footer(figure.get("note", "原创教学图；数字为假设，不是实际行情或运行结果。"),
+             any(edge.get("feedback") for edge in figure.get("edges", [])))
+    return c.finish()
+
+
 RENDERERS = {"flow": render_flow, "compare": render_compare, "layers": render_layers,
-             "geometry": render_geometry, "intervals": render_intervals}
+             "geometry": render_geometry, "intervals": render_intervals,
+             "scene": render_scene}
 
 
 def load_figures():
@@ -383,8 +467,14 @@ def main():
     parser.add_argument("--embed", action="store_true", help="Insert/update curated figures in notes")
     parser.add_argument("--check", action="store_true", help="Validate assets and placements without writing")
     parser.add_argument("--contact-sheet", type=Path, help="Save a visual review PNG to this path")
+    parser.add_argument("--id-prefix", help="Operate on one figure group without rewriting other topics")
     args = parser.parse_args()
-    figures = load_figures()
+    all_figures = load_figures()
+    figures = all_figures
+    if args.id_prefix:
+        figures = [figure for figure in figures if figure["id"].startswith(args.id_prefix)]
+        if not figures:
+            parser.error("No figures match --id-prefix")
     if not args.check:
         import cairosvg
         # Fail before writing any note if an authored heading no longer exists.
@@ -403,7 +493,9 @@ def main():
                             write_to=str(path.with_suffix(".png")), scale=2)
             if args.embed:
                 embed(figure)
-        asset_manifest(figures)
+        if not args.id_prefix or any(figure["topic"] == "physical-ai" for figure in figures):
+            # A partial Physical AI rebuild must record both changed and unchanged assets.
+            asset_manifest(all_figures)
     if args.contact_sheet:
         contact_sheet(figures, args.contact_sheet)
     print(json.dumps(validate(figures), ensure_ascii=False, indent=2))

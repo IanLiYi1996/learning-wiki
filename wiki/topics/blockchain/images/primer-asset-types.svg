@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">相似的余额，可能代表不同资产</title>
+<desc id="desc">先问谁记账、谁控制和怎样退出，不只认名字。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">相似的余额，可能代表不同资产</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">先问谁记账、谁控制和怎样退出，不只认名字。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">原生资产</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">BTC / ETH：协议直接管理；网络和规则不同</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">代币与稳定币</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">合约/程序中的数量；支撑、发行和兑付另看</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">NFT 编号</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">区分某个具体 tokenId；不自动授予全部链外权利</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">份额或凭证</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">金库、基金、质押等权益；换算和退出各有条件</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">平台余额</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">客户账内权益；不等于本人直接控制链上资产</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">这些分类轴可重叠：稳定币也可以是代币。图中没有风险排名。</text>
+</g>
+</svg>

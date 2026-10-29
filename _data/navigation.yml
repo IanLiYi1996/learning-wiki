@@ -88,7 +88,7 @@ topics:
     items:
       - label: 专题导读
         url: /wiki/topics/blockchain/
-      - label: 零基础：系统性扫盲
+      - label: 零基础：34 课图解扫盲
         url: /wiki/topics/blockchain/beginner-guide.html
       - label: 行业现状 · 2026-10-29
         url: /wiki/topics/blockchain/industry-status-2026-10-29.html

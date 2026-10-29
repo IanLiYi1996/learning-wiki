@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720" role="img" aria-labelledby="title desc">
+<title id="title">0.10 BTC 怎样拆成付款、找零和费用</title>
+<desc id="desc">旧输出完整消费，新输出承接金额；所有数字均为假设。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="720" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">0.10 BTC 怎样拆成付款、找零和费用</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">旧输出完整消费，新输出承接金额；所有数字均为假设。</text>
+<path d="M 320,323 L 400,323" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="337.0" y="310.0" width="46" height="25" fill="#fff"/>
+<text x="360.0" y="328.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">引用</text>
+<path d="M 640,323 L 690,323" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 690,323 L 690,200 L 740,200" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="692.0" y="187.0" width="46" height="25" fill="#fff"/>
+<text x="715.0" y="205.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">支付</text>
+<path d="M 690,323 L 690,350 L 740,350" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 690,350 L 690,500 L 740,500" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="667.0" y="412.0" width="46" height="25" fill="#fff"/>
+<text x="690.0" y="430.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">差额</text>
+<rect x="60" y="255" width="260" height="136" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="190.0" y="316.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">旧输出 0.1000 BTC</text>
+<text x="190.0" y="351.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">小林控制，尚未花费</text>
+<rect x="400" y="255" width="240" height="136" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="316.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">一次交易</text>
+<text x="520.0" y="351.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">满足旧花费条件</text>
+<rect x="740" y="150" width="240" height="100" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="860.0" y="193.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">0.0300 BTC</text>
+<text x="860.0" y="228.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">小周的新收款</text>
+<rect x="740" y="300" width="240" height="100" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="860.0" y="343.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">0.0699 BTC</text>
+<text x="860.0" y="378.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">小林的新找零</text>
+<rect x="740" y="450" width="240" height="100" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="860.0" y="493.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">差额 0.0001 BTC</text>
+<text x="860.0" y="528.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">本交易费用</text>
+<line x1="40" y1="656" x2="1000" y2="656" stroke="#e0e7e2"/>
+<text x="40" y="680" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">手续费不是这里创建的普通输出；它是输入总额减输出总额。</text>
+</g>
+</svg>

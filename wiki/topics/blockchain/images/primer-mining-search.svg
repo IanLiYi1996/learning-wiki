@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="700" viewBox="0 0 1040 700" role="img" aria-labelledby="title desc">
+<title id="title">候选内容合法，还要碰中 PoW 条件</title>
+<desc id="desc">四位结果仅为教学；真实规则比较 256 位哈希与目标。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="700" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">候选内容合法，还要碰中 PoW 条件</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">四位结果仅为教学；真实规则比较 256 位哈希与目标。</text>
+<path d="M 320,238 L 400,238" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="337.0" y="225.0" width="46" height="25" fill="#fff"/>
+<text x="360.0" y="243.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">计算</text>
+<path d="M 640,238 L 740,238" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="667.0" y="225.0" width="46" height="25" fill="#fff"/>
+<text x="690.0" y="243.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">判断</text>
+<path d="M 870,306 L 870,350" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 870,350 L 870,395" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 870,350 L 190,350 L 190,395" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="499.5" y="337.0" width="61" height="25" fill="#fff"/>
+<text x="530.0" y="355.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">未达标</text>
+<path d="M 190,531 L 190,572 L 30,572 L 30,238 L 60,238" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="64.5" y="559.0" width="91" height="25" fill="#fff"/>
+<text x="110.0" y="577.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">改输入再试</text>
+<rect x="60" y="170" width="260" height="136" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="190.0" y="231.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">改变候选输入</text>
+<text x="190.0" y="266.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">nonce 等允许变化的数据</text>
+<rect x="400" y="170" width="240" height="136" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="231.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">算区块头哈希</text>
+<text x="520.0" y="266.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">相同输入结果相同</text>
+<rect x="740" y="170" width="260" height="136" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="870.0" y="231.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">比较数值</text>
+<text x="870.0" y="266.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">教学目标：0009</text>
+<rect x="60" y="395" width="260" height="136" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="190.0" y="456.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">5732 / 6801</text>
+<text x="190.0" y="491.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">超过目标，继续尝试</text>
+<rect x="740" y="395" width="260" height="136" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="870.0" y="456.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">0007</text>
+<text x="870.0" y="491.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">PoW 达标，再完整验块</text>
+<line x1="40" y1="636" x2="1000" y2="636" stroke="#e0e7e2"/>
+<text x="40" y="659" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">蓝色：前向信息　紫色：反馈／再执行</text>
+<text x="40" y="681" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">PoW 成功不允许非法交易或超额奖励；有效候选也可能输掉分支竞争。</text>
+</g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620" role="img" aria-labelledby="title desc">
+<title id="title">屏幕显示、控制材料、网络记录</title>
+<desc id="desc">钱包查记录并请求签名；资产记录不藏在手机图片里。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="620" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">屏幕显示、控制材料、网络记录</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">钱包查记录并请求签名；资产记录不藏在手机图片里。</text>
+<path d="M 310,238 L 740,238" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="502.0" y="225.0" width="46" height="25" fill="#fff"/>
+<text x="525.0" y="243.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">查账</text>
+<path d="M 185,306 L 185,443 L 390,443" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="249.5" y="430.0" width="76" height="25" fill="#fff"/>
+<text x="287.5" y="448.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">请求签名</text>
+<path d="M 650,443 L 870,443 L 870,306" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="722.0" y="430.0" width="76" height="25" fill="#fff"/>
+<text x="760.0" y="448.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">已签交易</text>
+<rect x="60" y="170" width="250" height="136" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="185.0" y="231.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">手机钱包</text>
+<text x="185.0" y="266.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">展示余额、组织请求</text>
+<rect x="740" y="170" width="260" height="136" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="870.0" y="231.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">网络账本</text>
+<text x="870.0" y="266.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">记录金额与花费条件</text>
+<rect x="390" y="375" width="260" height="136" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="436.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">签名与恢复环境</text>
+<text x="520.0" y="471.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">保管私钥、策略及备份</text>
+<line x1="40" y1="556" x2="1000" y2="556" stroke="#e0e7e2"/>
+<text x="40" y="580" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">发送交易内容及签名，不上传私钥；网络账本由多个节点认可。</text>
+</g>
+</svg>

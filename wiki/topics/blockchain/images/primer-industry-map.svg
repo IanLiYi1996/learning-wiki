@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">用职责认识行业，别把它看成币价排行榜</title>
+<desc id="desc">这张图是分工地图，不是市场规模、投资优劣或部署测量。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">用职责认识行业，别把它看成币价排行榜</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">这张图是分工地图，不是市场规模、投资优劣或部署测量。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">基础网络</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">共识、执行、数据与结算</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">访问与控制</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">节点/RPC、索引、钱包、托管、智能账户</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">资产与金融</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">原生币、稳定币、交换、借贷、基金与份额</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">应用与连接</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">跨链、身份、存储、游戏、支付与机器接口</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">共同依赖</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">治理、安全、运营、成本和适用制度</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">具名产品的上线、计划、延期和退出状态，分别回到正文日期与来源。</text>
+</g>
+</svg>

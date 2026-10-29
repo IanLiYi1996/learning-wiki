@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="650" viewBox="0 0 1040 650" role="img" aria-labelledby="title desc">
+<title id="title">卖入 10 A，为什么只换出约 909.09 U</title>
+<desc id="desc">恒定乘积教学池，无费用；不是全部 AMM 的统一实现。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="650" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">卖入 10 A，为什么只换出约 909.09 U</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">恒定乘积教学池，无费用；不是全部 AMM 的统一实现。</text>
+<path d="M 340,255 L 400,255" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="347.0" y="242.0" width="46" height="25" fill="#fff"/>
+<text x="370.0" y="260.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">交换</text>
+<path d="M 640,255 L 700,255" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="60" y="165" width="280" height="180" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="200.0" y="225.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">成交前的池</text>
+<text x="200.0" y="260.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">100 A</text>
+<text x="200.0" y="283.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">10,000 U</text>
+<text x="200.0" y="306.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">乘积 1,000,000</text>
+<rect x="400" y="185" width="240" height="140" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="248.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">卖入 10 A</text>
+<text x="520.0" y="283.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">按规则换出 U</text>
+<rect x="700" y="165" width="280" height="180" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="840.0" y="225.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">成交后的池</text>
+<text x="840.0" y="260.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">110 A</text>
+<text x="840.0" y="283.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">约 9,090.91 U</text>
+<text x="840.0" y="306.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">乘积仍约 1,000,000</text>
+<text x="520" y="418" font-size="21" fill="#23312b" font-weight="400" text-anchor="middle">换出 U = 10,000 − 1,000,000 / 110 ≈ 909.09</text>
+<text x="520" y="467" font-size="19" fill="#23312b" font-weight="400" text-anchor="middle">平均每个 A 卖约 90.91 U，不是原先的边际报价 100</text>
+<text x="520" y="516" font-size="18" fill="#23312b" font-weight="400" text-anchor="middle">自己的交易改变了库存比例与下一笔报价</text>
+<line x1="40" y1="586" x2="1000" y2="586" stroke="#e0e7e2"/>
+<text x="40" y="610" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">展示金额四舍五入；计算与单位假设见正文。</text>
+</g>
+</svg>

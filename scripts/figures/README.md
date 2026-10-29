@@ -1,6 +1,6 @@
 # 学习笔记配图
 
-四个 JSON 是经过正文内容梳理的图解清单，记录内容、图型与精确插入标题。
+各 JSON 是经过正文内容梳理的图解清单，记录内容、图型与精确插入标题。
 不按标题自动拼装泛用封面，不新增来源事实，也不将图示称为实际部署证据。
 
 ## 覆盖原则
@@ -28,6 +28,8 @@ PHYSICAL_READER_SITE=_site python -m unittest discover -s tests -p 'test_*.py'
 SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 GitHub、导出与离线阅读。
 网站渐进增强选择 SVG，失败时回退 PNG；点击可放大、切换原尺寸或下载 PNG。
 补图后重建 Physical AI 阅读片段，确保页内阅读器与 Markdown 的图片和正文一致。
+
+区块链零基础图组在 `blockchain-primer.json`，覆盖白话读本的控制/记录、UTXO、PoW、订单簿、AMM、清算、跨链等问题。新增 `scene` 类型显式指定元素与箭头，检查边界及穿框；用 `--id-prefix primer-` 只重建该组，不改其他专题及 Physical AI 清单。详细假设见 [配图说明](../../wiki/topics/blockchain/images/primer-illustrations.md)。
 
 ## Physical AI 原件与图文版
 

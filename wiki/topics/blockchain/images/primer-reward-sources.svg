@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600" role="img" aria-labelledby="title desc">
+<title id="title">补贴是新发行，交易费是已有资产转移</title>
+<desc id="desc">假设此高度允许补贴 3.125 BTC，区块交易费共 0.20 BTC。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="600" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">补贴是新发行，交易费是已有资产转移</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">假设此高度允许补贴 3.125 BTC，区块交易费共 0.20 BTC。</text>
+<path d="M 190,310 L 190,408 L 400,408" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="272.0" y="395.0" width="46" height="25" fill="#fff"/>
+<text x="295.0" y="413.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">相加</text>
+<path d="M 870,310 L 870,408 L 640,408" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="732.0" y="395.0" width="46" height="25" fill="#fff"/>
+<text x="755.0" y="413.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">相加</text>
+<rect x="60" y="160" width="260" height="150" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="190.0" y="228.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">新增补贴 3.125</text>
+<text x="190.0" y="263.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">按区块高度及规则</text>
+<rect x="740" y="160" width="260" height="150" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="870.0" y="228.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">交易费用 0.20</text>
+<text x="870.0" y="263.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">交易用户支付的已有币</text>
+<rect x="400" y="340" width="240" height="136" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="401.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">上限 3.325 BTC</text>
+<text x="520.0" y="436.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">不能随意多领</text>
+<line x1="40" y1="536" x2="1000" y2="536" stroke="#e0e7e2"/>
+<text x="40" y="560" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">收入不等于利润；这是奖励算例，不是当前区块收入或挖矿回报。</text>
+</g>
+</svg>

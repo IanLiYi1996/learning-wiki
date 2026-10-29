@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600" role="img" aria-labelledby="title desc">
+<title id="title">指纹、保密、授权各有分工</title>
+<desc id="desc">不要用其中一种技术，替代另外两种要回答的问题。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="600" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">指纹、保密、授权各有分工</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">不要用其中一种技术，替代另外两种要回答的问题。</text>
+<rect x="60" y="160" width="240" height="180" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="180.0" y="231.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">哈希</text>
+<text x="180.0" y="266.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">内容 → 摘要</text>
+<text x="180.0" y="289.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">内容有没有改变？</text>
+<rect x="400" y="160" width="240" height="180" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="231.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">加密</text>
+<text x="520.0" y="266.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">明文 → 密文</text>
+<text x="520.0" y="289.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">谁能读内容？</text>
+<rect x="740" y="160" width="240" height="180" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="860.0" y="231.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">数字签名</text>
+<text x="860.0" y="266.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">消息 → 授权证据</text>
+<text x="860.0" y="289.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">谁批准了什么？</text>
+<text x="520" y="416" font-size="19" fill="#23312b" font-weight="400" text-anchor="middle">合法签名不证明签名者理解后果，也不证明收款人可信</text>
+<line x1="40" y1="536" x2="1000" y2="536" stroke="#e0e7e2"/>
+<text x="40" y="560" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">这是功能类比，不是把指纹识别、保险箱或手写签名当协议实现。</text>
+</g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620" role="img" aria-labelledby="title desc">
+<title id="title">同一份钱，出现两张付款单</title>
+<desc id="desc">两张单都可能签过字；仍需决定哪个请求可以消费这份资产。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="620" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">同一份钱，出现两张付款单</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">两张单都可能签过字；仍需决定哪个请求可以消费这份资产。</text>
+<path d="M 520,255 L 520,295" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 520,295 L 220,295 L 220,350" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="338.3" y="282.0" width="63.400000000000006" height="25" fill="#fff"/>
+<text x="370.0" y="300.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">付款 A</text>
+<path d="M 520,295 L 780,295 L 780,350" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="618.3" y="282.0" width="63.400000000000006" height="25" fill="#fff"/>
+<text x="650.0" y="300.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">付款 B</text>
+<rect x="400" y="145" width="240" height="110" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="193.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">同一份旧资产</text>
+<text x="520.0" y="228.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">小林有权花它</text>
+<rect x="80" y="350" width="280" height="128" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="220.0" y="407.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">请求 A：付小周</text>
+<text x="220.0" y="442.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">先被一些节点看到</text>
+<rect x="640" y="350" width="280" height="128" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="780.0" y="407.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">请求 B：付小陈</text>
+<text x="780.0" y="442.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">先被另一些节点看到</text>
+<line x1="40" y1="556" x2="1000" y2="556" stroke="#e0e7e2"/>
+<text x="40" y="580" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">签名负责授权；有效状态和共识顺序约束冲突消费。不是两份签名就有两份钱。</text>
+</g>
+</svg>

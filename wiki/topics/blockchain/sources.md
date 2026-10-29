@@ -138,7 +138,10 @@ C17 暂不使用，避免为没有独立来源的内容强行补号。
 
 ## 研究记录与检查
 
-- [入门篇近处来源](beginner-guide.md)：基础对象、教学算例及安全边界，各节使用原始规范/开发指南，不依赖取得原始 PPT。
+- [图解入门篇近处来源](beginner-guide.md)：生活场景、教学算例及安全边界；旧版保留为 [机制速查](beginner-reference.md)，不依赖取得原始 PPT。
+- [金融常识补课](notes/plain-language-finance-source-audit.md)：14 条一手来源，订单、供应口径、杠杆、资金费、ETP、费用与年化。
+- [应用与网络补课](notes/plain-language-applications-source-audit.md)：12 条核心一手来源，名称/身份、内容/保存、DePIN、预言机与许可网络。
+- [图解来源与重建](images/primer-illustrations.md)：30 张本地原创图，没有互联网热链或原始附件截图。
 - [行业现状近处来源](industry-status-2026-10-29.md)：日期、状态和证据等级分开，新增材料不强行重复全局编号。
 - [稳定币、支付、RWA 与制度核验](notes/beginner-industry-source-audit.md)：12 条专门来源，保留公告、观察期、访问及法律适用边界。
 - [入门协议与来源漂移复核](notes/beginner-protocol-source-audit.md)：难度/奖励源码、Glamsterdam Hoodi 延期与指南路径更新。

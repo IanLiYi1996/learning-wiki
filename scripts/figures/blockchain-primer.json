@@ -1,0 +1,374 @@
+[
+  {
+    "id":"primer-balance","topic":"blockchain","kind":"scene","height":620,
+    "title":"屏幕显示、控制材料、网络记录",
+    "subtitle":"钱包查记录并请求签名；资产记录不藏在手机图片里。",
+    "nodes":[
+      {"id":"app","x":60,"y":170,"w":250,"h":136,"label":"手机钱包","detail":"展示余额、组织请求","color":0},
+      {"id":"ledger","x":740,"y":170,"w":260,"h":136,"label":"网络账本","detail":"记录金额与花费条件","color":1},
+      {"id":"key","x":390,"y":375,"w":260,"h":136,"label":"签名与恢复环境","detail":"保管私钥、策略及备份","color":2}
+    ],
+    "edges":[
+      {"points":[[310,238],[740,238]],"label":"查账"},
+      {"points":[[185,306],[185,443],[390,443]],"label":"请求签名"},
+      {"points":[[650,443],[870,443],[870,306]],"label":"已签交易"}
+    ],
+    "note":"发送交易内容及签名，不上传私钥；网络账本由多个节点认可。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 1. 手机里显示的“钱”，到底放在哪里"}]
+  },
+  {
+    "id":"primer-double-spend","topic":"blockchain","kind":"scene","height":620,
+    "title":"同一份钱，出现两张付款单",
+    "subtitle":"两张单都可能签过字；仍需决定哪个请求可以消费这份资产。",
+    "nodes":[
+      {"id":"old","x":400,"y":145,"w":240,"h":110,"label":"同一份旧资产","detail":"小林有权花它","color":0},
+      {"id":"a","x":80,"y":350,"w":280,"h":128,"label":"请求 A：付小周","detail":"先被一些节点看到","color":1},
+      {"id":"b","x":640,"y":350,"w":280,"h":128,"label":"请求 B：付小陈","detail":"先被另一些节点看到","color":3}
+    ],
+    "edges":[
+      {"points":[[520,255],[520,295]]},
+      {"points":[[520,295],[220,295],[220,350]],"label":"付款 A"},
+      {"points":[[520,295],[780,295],[780,350]],"label":"付款 B"}
+    ],
+    "note":"签名负责授权；有效状态和共识顺序约束冲突消费。不是两份签名就有两份钱。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 2. 有银行和数据库了，为什么还要多人共同记账"}]
+  },
+  {
+    "id":"primer-linked-pages","topic":"blockchain","kind":"scene","height":560,
+    "title":"新账页引用旧账页的指纹",
+    "subtitle":"时间顺序由左到右；蓝色箭头表示向前一页引用。",
+    "nodes":[
+      {"id":"a","x":60,"y":160,"w":260,"h":160,"label":"区块 A","detail":"交易集合\n自己的摘要 H_A","color":0},
+      {"id":"b","x":400,"y":160,"w":260,"h":160,"label":"区块 B","detail":"交易集合\n引用 H_A","color":1},
+      {"id":"c","x":740,"y":160,"w":260,"h":160,"label":"区块 C","detail":"交易集合\n引用 H_B","color":2}
+    ],
+    "edges":[
+      {"points":[[400,240],[320,240]],"label":"引用"},
+      {"points":[[740,240],[660,240]],"label":"引用"}
+    ],
+    "labels":[{"x":520,"y":399,"text":"改 A 的内容 → A 的指纹变化 → 后续引用与共识条件需重新核对","size":18,"anchor":"middle"}],
+    "note":"H_A/H_B 是示意名称，不是真实区块哈希；历史稳定还依赖共识。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 3. 区块和链，就是一叠装订好的账页吗"}]
+  },
+  {
+    "id":"primer-crypto-jobs","topic":"blockchain","kind":"scene","height":600,
+    "title":"指纹、保密、授权各有分工",
+    "subtitle":"不要用其中一种技术，替代另外两种要回答的问题。",
+    "nodes":[
+      {"id":"hash","x":60,"y":160,"w":240,"h":180,"label":"哈希","detail":"内容 → 摘要\n内容有没有改变？","color":0},
+      {"id":"enc","x":400,"y":160,"w":240,"h":180,"label":"加密","detail":"明文 → 密文\n谁能读内容？","color":2},
+      {"id":"sig","x":740,"y":160,"w":240,"h":180,"label":"数字签名","detail":"消息 → 授权证据\n谁批准了什么？","color":1}
+    ],
+    "labels":[{"x":520,"y":416,"text":"合法签名不证明签名者理解后果，也不证明收款人可信","size":19,"anchor":"middle"}],
+    "note":"这是功能类比，不是把指纹识别、保险箱或手写签名当协议实现。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 6. 哈希、加密和签名：指纹、保险箱和签字不是一回事"}]
+  },
+  {
+    "id":"primer-wallet-recovery","topic":"blockchain","kind":"flow",
+    "title":"恢复材料怎样连到收款与签名",
+    "subtitle":"以常见 BIP39/BIP32 路径示意；不是所有钱包都采用它。",
+    "nodes":[["助记词与口令","可导出 seed"],["密钥派生","路径决定具体密钥"],["公钥与收款条件","生成相应网络地址"],["钱包查账","找自己可控制的资产"],["授权签名","绑定具体交易消息"],["网络验证","检查规则与控制证据"]],
+    "note":"App 密码不等于恢复材料；恢复还可能需要路径、多签配置或合约策略。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 7. 钱包、私钥、助记词：哪个能给别人，哪个不能丢"}]
+  },
+  {
+    "id":"primer-network-identity","topic":"blockchain","kind":"scene","height":640,
+    "title":"一个 App，可以查两本不同的账",
+    "subtitle":"相同地址字符不合并两个网络的资产；数字只作教学。",
+    "nodes":[
+      {"id":"app","x":400,"y":135,"w":240,"h":100,"label":"同一个钱包 App","detail":"切换访问网络","color":0},
+      {"id":"a","x":60,"y":330,"w":320,"h":150,"label":"网络 A","detail":"地址：同一段字符\n本网络原生余额：100","color":1},
+      {"id":"b","x":660,"y":330,"w":320,"h":150,"label":"网络 B","detail":"地址：同一段字符\n本网络原生余额：0","color":2}
+    ],
+    "edges":[
+      {"points":[[520,235],[520,285]]},
+      {"points":[[520,285],[220,285],[220,330]],"label":"查 A"},
+      {"points":[[520,285],[820,285],[820,330]],"label":"查 B"}
+    ],
+    "note":"资产要连同网络和合约/Mint 辨认；同名、同图标都不充分。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 8. 为什么同一个钱包里有很多链，同一个地址也能出现在不同链"}]
+  },
+  {
+    "id":"primer-utxo-change","topic":"blockchain","kind":"scene","height":720,
+    "title":"0.10 BTC 怎样拆成付款、找零和费用",
+    "subtitle":"旧输出完整消费，新输出承接金额；所有数字均为假设。",
+    "nodes":[
+      {"id":"old","x":60,"y":255,"w":260,"h":136,"label":"旧输出 0.1000 BTC","detail":"小林控制，尚未花费","color":0},
+      {"id":"tx","x":400,"y":255,"w":240,"h":136,"label":"一次交易","detail":"满足旧花费条件","color":2},
+      {"id":"pay","x":740,"y":150,"w":240,"h":100,"label":"0.0300 BTC","detail":"小周的新收款","color":1},
+      {"id":"change","x":740,"y":300,"w":240,"h":100,"label":"0.0699 BTC","detail":"小林的新找零","color":0},
+      {"id":"fee","x":740,"y":450,"w":240,"h":100,"label":"差额 0.0001 BTC","detail":"本交易费用","color":3}
+    ],
+    "edges":[
+      {"points":[[320,323],[400,323]],"label":"引用"},
+      {"points":[[640,323],[690,323]]},
+      {"points":[[690,323],[690,200],[740,200]],"label":"支付","label_segment":1},
+      {"points":[[690,323],[690,350],[740,350]]},
+      {"points":[[690,350],[690,500],[740,500]],"label":"差额"}
+    ],
+    "note":"手续费不是这里创建的普通输出；它是输入总额减输出总额。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 9. 一笔 BTC 转账：像拆开整张钞票，再把找零写回来"}]
+  },
+  {
+    "id":"primer-mining-search","topic":"blockchain","kind":"scene","height":700,
+    "title":"候选内容合法，还要碰中 PoW 条件",
+    "subtitle":"四位结果仅为教学；真实规则比较 256 位哈希与目标。",
+    "nodes":[
+      {"id":"candidate","x":60,"y":170,"w":260,"h":136,"label":"改变候选输入","detail":"nonce 等允许变化的数据","color":0},
+      {"id":"hash","x":400,"y":170,"w":240,"h":136,"label":"算区块头哈希","detail":"相同输入结果相同","color":2},
+      {"id":"check","x":740,"y":170,"w":260,"h":136,"label":"比较数值","detail":"教学目标：0009","color":1},
+      {"id":"fail","x":60,"y":395,"w":260,"h":136,"label":"5732 / 6801","detail":"超过目标，继续尝试","color":3},
+      {"id":"pass","x":740,"y":395,"w":260,"h":136,"label":"0007","detail":"PoW 达标，再完整验块","color":1}
+    ],
+    "edges":[
+      {"points":[[320,238],[400,238]],"label":"计算"},
+      {"points":[[640,238],[740,238]],"label":"判断"},
+      {"points":[[870,306],[870,350]]},
+      {"points":[[870,350],[870,395]]},
+      {"points":[[870,350],[190,350],[190,395]],"label":"未达标"},
+      {"points":[[190,531],[190,572],[30,572],[30,238],[60,238]],"label":"改输入再试","feedback":true,"label_segment":1}
+    ],
+    "note":"PoW 成功不允许非法交易或超额奖励；有效候选也可能输掉分支竞争。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 10. 挖矿：反复试一个很难碰中的条件"}]
+  },
+  {
+    "id":"primer-target-window","topic":"blockchain","kind":"scene","height":560,
+    "title":"目标缩小，合格范围也缩小",
+    "subtitle":"放大显示 0000–0019 局部；完整教学范围仍为 0000–9999。",
+    "bars":[
+      {"x":280,"y":170,"w":690,"h":48,"label":"0000–0019：20 个合格结果","color":1},
+      {"x":280,"y":280,"w":345,"h":48,"label":"0000–0009：10 个合格结果","color":1},
+      {"x":625,"y":280,"w":345,"h":48,"label":"0010–0019：不合格","color":3}
+    ],
+    "labels":[
+      {"x":60,"y":200,"text":"旧目标 0019","size":20},
+      {"x":60,"y":310,"text":"新目标 0009","size":20},
+      {"x":520,"y":402,"text":"其他 0020–9999 在这两种目标下都不合格","size":18,"anchor":"middle"},
+      {"x":520,"y":442,"text":"均匀假设下：合格概率减半，平均尝试次数约翻倍","size":18,"anchor":"middle"}
+    ],
+    "note":"这张图比较教学目标；主网目标由节点根据协议与历史独立计算。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 11. 目标值谁定，为什么矿工不能自己改成简单模式"}]
+  },
+  {
+    "id":"primer-reward-sources","topic":"blockchain","kind":"scene","height":600,
+    "title":"补贴是新发行，交易费是已有资产转移",
+    "subtitle":"假设此高度允许补贴 3.125 BTC，区块交易费共 0.20 BTC。",
+    "nodes":[
+      {"id":"subsidy","x":60,"y":160,"w":260,"h":150,"label":"新增补贴 3.125","detail":"按区块高度及规则","color":0},
+      {"id":"fees","x":740,"y":160,"w":260,"h":150,"label":"交易费用 0.20","detail":"交易用户支付的已有币","color":1},
+      {"id":"reward","x":400,"y":340,"w":240,"h":136,"label":"上限 3.325 BTC","detail":"不能随意多领","color":2}
+    ],
+    "edges":[
+      {"points":[[190,310],[190,408],[400,408]],"label":"相加"},
+      {"points":[[870,310],[870,408],[640,408]],"label":"相加"}
+    ],
+    "note":"收入不等于利润；这是奖励算例，不是当前区块收入或挖矿回报。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 12. 新币、手续费、矿工收入：别把三个数字当一个"}]
+  },
+  {
+    "id":"primer-payment-progress","topic":"blockchain","kind":"flow",
+    "title":"一个交易标识，不代表付款已完成",
+    "subtitle":"每一步回答不同问题；失败和重组不能统一叫“没发出去”。",
+    "nodes":[["授权签名","同意哪条具体请求"],["节点接收","广播结果仍可能不确定"],["区块包含","是否在认可历史里"],["执行与资产效果","有没有发生预期变化"],["确认或最终性","按本协议检查稳定性"],["业务入账","平台还要对账与风控"]],
+    "note":"顺序是教学主线，不是每个网络都共享同一接口或通知到达顺序。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 14. 点了发送后，为什么还要等：从“收到请求”到“付款完成”"}]
+  },
+  {
+    "id":"primer-gas-bill","topic":"blockchain","kind":"scene","height":560,
+    "title":"资源用量乘单价，得到执行费用",
+    "subtitle":"简单 ETH 转账的假设；合约、委托和其他数据路径要另算。",
+    "nodes":[
+      {"id":"work","x":60,"y":165,"w":240,"h":160,"label":"21,000 gas","detail":"本次实际资源用量","color":0},
+      {"id":"unit","x":400,"y":165,"w":240,"h":160,"label":"9 gwei/gas","detail":"8 基础费 + 1 有效小费","color":1},
+      {"id":"bill","x":740,"y":165,"w":240,"h":160,"label":"0.000189 ETH","detail":"实际执行费用","color":3}
+    ],
+    "edges":[{"points":[[300,245],[400,245]],"label":"乘"},{"points":[[640,245],[740,245]],"label":"得到"}],
+    "labels":[{"x":520,"y":403,"text":"费用上限不是实际扣款；执行失败仍可能消耗资源","size":18,"anchor":"middle"}],
+    "note":"假设收款账户无代码且未委托；数字不是当前网络费率。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 15. ETH 转账与 Gas：按资源计费，不是按金额抽税"}]
+  },
+  {
+    "id":"primer-asset-types","topic":"blockchain","kind":"layers",
+    "title":"相似的余额，可能代表不同资产",
+    "subtitle":"先问谁记账、谁控制和怎样退出，不只认名字。",
+    "layers":[["原生资产","BTC / ETH：协议直接管理；网络和规则不同"],["代币与稳定币","合约/程序中的数量；支撑、发行和兑付另看"],["NFT 编号","区分某个具体 tokenId；不自动授予全部链外权利"],["份额或凭证","金库、基金、质押等权益；换算和退出各有条件"],["平台余额","客户账内权益；不等于本人直接控制链上资产"]],
+    "note":"这些分类轴可重叠：稳定币也可以是代币。图中没有风险排名。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 5. 比特币、以太坊、稳定币、NFT：先分清“系统”和“资产”"}]
+  },
+  {
+    "id":"primer-consensus-roles","topic":"blockchain","kind":"compare",
+    "title":"验证、出块与访问接口不是同一职位",
+    "subtitle":"角色会重叠；不能靠名字判断权限和安全。",
+    "columns":["对象","在做什么","不应推断"],
+    "rows":[["普通全节点","按自己运行的规则验证","必须挖矿，或自动诚实"],["PoW 矿工","通过计算结果参与出块竞争","能伪造任意用户签名"],["PoS 验证者","按质押和协议规则提议/投票","存款就有固定无风险利息"],["RPC / 索引服务","供应用查询、广播或消费数据","资产自托管就已独立验证全部数据"]],
+    "note":"各网络的职责、处罚和最终性不同，不能统一套一张阈值表。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 13. 不挖矿的链怎样记账：节点、验证者和质押"}]
+  },
+  {
+    "id":"primer-allowance","topic":"blockchain","kind":"flow",
+    "title":"连接网页、授予额度、实际花费",
+    "subtitle":"一个常见代币交互路径；消息签名也可能建立权限。",
+    "nodes":[["连接界面","允许网站发起请求"],["读授权对象","哪个 spender / 合约"],["确认权限范围","资产、额度、网络等"],["授权写入","allowance / 相应状态"],["后续使用","按规则动用获准资产"],["检查或撤销","断开网页不自动清权限"]],
+    "note":"7702 委托和账户模块另有权限路径；它们不是同一种 allowance。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 17. “只是签一下”为什么可能把资产权限交出去"}]
+  },
+  {
+    "id":"primer-buy-withdraw","topic":"blockchain","kind":"flow",
+    "title":"买到平台余额，再提到自己控制",
+    "subtitle":"典型职责路径，不表示每次买卖都发一笔主网交易。",
+    "nodes":[["法币账户","入金条件与清算"],["平台买卖","报价、成交和费用"],["客户余额","平台内部记录"],["链上提币","构造与审批网络交易"],["自托管资产","本人控制相应条件"],["继续付款或兑现","链上支付 / 另走卖出"]],
+    "note":"充值、提币、法币提现不同；银行钱与链上资产不是同一份账。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 18. 买币、充值、提币、提现：钱走的是不同通道"}]
+  },
+  {
+    "id":"primer-orderbook","topic":"blockchain","kind":"scene","height":660,
+    "title":"屏幕上的 100，不保证买 4 个也按 100",
+    "subtitle":"虚构订单簿：买卖报价暂不变，没有手续费。",
+    "bars":[
+      {"x":80,"y":180,"w":380,"h":46,"label":"买价 99 U：4 个","color":1},
+      {"x":80,"y":245,"w":380,"h":46,"label":"买价 98 U：8 个","color":1},
+      {"x":580,"y":180,"w":380,"h":46,"label":"卖价 101 U：2 个","color":3},
+      {"x":580,"y":245,"w":380,"h":46,"label":"卖价 102 U：3 个","color":3},
+      {"x":580,"y":310,"w":380,"h":46,"label":"卖价 105 U：10 个","color":3}
+    ],
+    "labels":[
+      {"x":270,"y":146,"text":"买方","size":20,"anchor":"middle","weight":600},
+      {"x":770,"y":146,"text":"卖方","size":20,"anchor":"middle","weight":600},
+      {"x":520,"y":426,"text":"买 4 个 = 2 × 101 + 2 × 102 = 406 U","size":22,"anchor":"middle"},
+      {"x":520,"y":474,"text":"均价 101.5 U；买卖价差 2 U","size":21,"anchor":"middle"},
+      {"x":520,"y":521,"text":"最后成交价、当前报价和实际成交均价是不同数字","size":18,"anchor":"middle"}
+    ],
+    "note":"条形仅组织报价，不按宽度表示资金深度；挂单可能撤走。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 19. 价格、流动性、市值和 FDV：屏幕数字不等于能拿到的钱"}]
+  },
+  {
+    "id":"primer-stablecoin-path","topic":"blockchain","kind":"flow",
+    "title":"收到稳定币，离银行到账还有一段路",
+    "subtitle":"以发行方支持的储备型机制举例；不概括全部产品。",
+    "nodes":[["按规则发行","资格、支持资产和条款"],["代币入账","链上记录对应资产"],["链上转移","付款给另一控制对象"],["选择兑现路线","市场卖出 / 直接赎回"],["条件与服务","核验、费用、暂停与处理"],["法币或银行入账","最后一段还要清算"]],
+    "note":"链上 100 个余额不自动证明银行已有 100 美元；机制与资格分别核对。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 20. 稳定币：转给你 100 个，为什么不等于银行到账 100 美元"}]
+  },
+  {
+    "id":"primer-amm-reserves","topic":"blockchain","kind":"scene","height":650,
+    "title":"卖入 10 A，为什么只换出约 909.09 U",
+    "subtitle":"恒定乘积教学池，无费用；不是全部 AMM 的统一实现。",
+    "nodes":[
+      {"id":"before","x":60,"y":165,"w":280,"h":180,"label":"成交前的池","detail":"100 A\n10,000 U\n乘积 1,000,000","color":0},
+      {"id":"trade","x":400,"y":185,"w":240,"h":140,"label":"卖入 10 A","detail":"按规则换出 U","color":3},
+      {"id":"after","x":700,"y":165,"w":280,"h":180,"label":"成交后的池","detail":"110 A\n约 9,090.91 U\n乘积仍约 1,000,000","color":1}
+    ],
+    "edges":[{"points":[[340,255],[400,255]],"label":"交换"},{"points":[[640,255],[700,255]]}],
+    "labels":[
+      {"x":520,"y":418,"text":"换出 U = 10,000 − 1,000,000 / 110 ≈ 909.09","size":21,"anchor":"middle"},
+      {"x":520,"y":467,"text":"平均每个 A 卖约 90.91 U，不是原先的边际报价 100","size":19,"anchor":"middle"},
+      {"x":520,"y":516,"text":"自己的交易改变了库存比例与下一笔报价","size":18,"anchor":"middle"}
+    ],
+    "note":"展示金额四舍五入；计算与单位假设见正文。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 21. DEX 与兑换池：没挂单，价格是怎么算出来的"}]
+  },
+  {
+    "id":"primer-liquidation","topic":"blockchain","kind":"scene","height":610,
+    "title":"债务没变，抵押价值跌了",
+    "subtitle":"单一抵押物、80% 阈值的假设，不是当前资产参数。",
+    "nodes":[
+      {"id":"before","x":80,"y":165,"w":360,"h":200,"label":"初始","detail":"抵押：1000 U；债务：600 U\n健康因子约 1.33","color":1},
+      {"id":"after","x":600,"y":165,"w":360,"h":200,"label":"抵押跌价后","detail":"抵押：700 U；债务：600 U\n健康因子约 0.93","color":3}
+    ],
+    "edges":[{"points":[[440,265],[600,265]],"label":"价格下跌"}],
+    "labels":[{"x":520,"y":445,"text":"健康因子 = 抵押价值 × 阈值 / 债务价值","size":21,"anchor":"middle"}],
+    "note":"低于 1 表示可清算风险区间；实际处置由具体协议和市场规则决定。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 22. 借贷与清算：抵押物还在，为什么别人能处置它"}]
+  },
+  {
+    "id":"primer-yield-payers","topic":"blockchain","kind":"layers",
+    "title":"年化数字后面，究竟谁付钱",
+    "subtitle":"表示方法不会创造收益；本金和退出风险还要另看。",
+    "layers":[["借贷","借款人付息；债务覆盖、平台/合约及流动性有风险"],["提供流动性","交易者付费；库存组合可能变化并承受损失"],["协议质押","协议与费用安排；有运行、处罚与退出条件"],["基金资产","底层资产收益；管理、资格和赎回仍有规则"],["代币补贴","发行/分配奖励；数量增加不保证计价价值增加"]],
+    "note":"来源可以组合；APR/APY 与收益来源、币种和本金风险是不同问题。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 23. 质押、理财、金库和年化：收益究竟谁在付"}]
+  },
+  {
+    "id":"primer-leverage","topic":"blockchain","kind":"scene","height":610,
+    "title":"小本金承担大头寸，价格没归零就可能强平",
+    "subtitle":"假设 100 U 保证金、1000 U 线性多头；维持要求固定 50 U。",
+    "nodes":[
+      {"id":"start","x":60,"y":165,"w":240,"h":190,"label":"价格 100 U","detail":"名义 1000 U\n保证金权益 100 U","color":0},
+      {"id":"down","x":400,"y":165,"w":240,"h":190,"label":"价格 96 U","detail":"头寸亏 40 U\n权益剩 60 U","color":3},
+      {"id":"limit","x":740,"y":165,"w":240,"h":190,"label":"价格 95 U","detail":"头寸亏 50 U\n达到假设维持要求","color":2}
+    ],
+    "edges":[{"points":[[300,260],[400,260]],"label":"跌 4%"},{"points":[[640,260],[740,260]],"label":"再跌"}],
+    "labels":[{"x":520,"y":443,"text":"标的跌 4%，初始保证金已损失 40%（本例忽略费用）","size":20,"anchor":"middle"}],
+    "note":"实际清算价还看标记价格、费用和风险档；不能用此图算真实强平价。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 24. 现货、杠杆、期货和永续：不是都在“买一个币”"}]
+  },
+  {
+    "id":"primer-claims","topic":"blockchain","kind":"compare",
+    "title":"可转移的东西，不一定拥有同一种权利",
+    "subtitle":"先辨认资产关系；本图不判断具体账户依法享有什么保护。",
+    "columns":["你持有什么","先查什么","不是自动等于"],
+    "rows":[["自托管原生币","网络与花费控制条件","发行人固定价格赎回承诺"],["支付稳定币","发行、储备和兑付资格","银行存款或无风险现金"],["基金 / ETP 份额","产品结构、托管、费用和赎回","可以直接发链上原生币付款"],["金库 shares","底层策略、换算与退出条件","同数量底层 assets"],["NFT 编号","许可、服务与内容保存","全部版权或永续托管"]],
+    "note":"技术转移接口不替代法律权利和商业责任文件。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 25. ETF、RWA、代币化存款：你拿到的是币，还是一份权益"}]
+  },
+  {
+    "id":"primer-governance","topic":"blockchain","kind":"flow",
+    "title":"提议改规则，离大家接受还有很多步",
+    "subtitle":"一种典型理解路径；不是所有网络采用同一套激活流程。",
+    "nodes":[["提出变化","机制、理由与风险"],["讨论与审查","实现、兼容和安全"],["软件及配置","实际能执行什么"],["激活安排","网络、时间或高度"],["参与者选择","节点、运营方与用户"],["结果与分歧","共同规则 / 分裂 / 延期"]],
+    "note":"开发者和矿工都有影响力，但没有一个通用总管理员密码。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 26. 分叉、发币和 DAO：没有总管理员，也有治理和权力"}]
+  },
+  {
+    "id":"primer-rollup-jobs","topic":"blockchain","kind":"layers",
+    "title":"执行、数据、结算，分别回答什么",
+    "subtitle":"分层是职责，不是“用了证明就全部安全”的结论。",
+    "layers":[["执行","这些请求按程序算出的新状态是什么？"],["数据可用性","核验、重建和退出所需数据还能取得吗？"],["结算","哪一个状态承诺被相应基础规则最终接受？"],["产品与退出","升级、排序器、应急权限和资产出口实际能用吗？"]],
+    "note":"侧链、rollup、validium 采用不同组合；品牌不能代替具体安全模型。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 27. L1、L2、侧链、Rollup：为什么不直接把主链做得无限快"}]
+  },
+  {
+    "id":"primer-bridge-stages","topic":"blockchain","kind":"flow",
+    "title":"源链成功，离目标链到账还不止一步",
+    "subtitle":"抽象跨链流程，具体可能使用锁定、销毁或流动性机制。",
+    "nodes":[["源端操作","正确资产、网络和目标"],["源状态满足条件","按路线核对稳定性"],["传递消息或证明","谁负责搬运？"],["目标验证","凭什么接受源事件？"],["目标执行","铸造、释放或支付"],["两端业务核对","防重放、异常与退出"]],
+    "note":"通信不自动共享共识安全；Lightning 通道也不套用这套桥流程。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 28. 跨链和闪电网络：都是扩展付款，但不是同一套办法"}]
+  },
+  {
+    "id":"primer-content-storage","topic":"blockchain","kind":"flow",
+    "title":"有文件指纹，还得有人保存文件",
+    "subtitle":"内容标识、持久化、取回、真实性分别检查。",
+    "nodes":[["指定数据","哪份文件或内容"],["生成内容标识","CID 等含哈希与编码"],["保留可用副本","pinning / 存储安排"],["用户取回","服务、网络和期限"],["核对匹配","取回内容是否符合标识"],["判断内容与权利","假报告匹配后仍是假报告"]],
+    "note":"指纹不包含可恢复的全部原文；存储证明不自动验证现实事实。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 29. 除了金融，还能做什么：每种应用到底证明了什么"}]
+  },
+  {
+    "id":"primer-industry-map","topic":"blockchain","kind":"layers",
+    "title":"用职责认识行业，别把它看成币价排行榜",
+    "subtitle":"这张图是分工地图，不是市场规模、投资优劣或部署测量。",
+    "layers":[["基础网络","共识、执行、数据与结算"],["访问与控制","节点/RPC、索引、钱包、托管、智能账户"],["资产与金融","原生币、稳定币、交换、借贷、基金与份额"],["应用与连接","跨链、身份、存储、游戏、支付与机器接口"],["共同依赖","治理、安全、运营、成本和适用制度"]],
+    "note":"具名产品的上线、计划、延期和退出状态，分别回到正文日期与来源。",
+    "placements":[
+      {"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 30. 现在这个行业发展到了哪里：用几条真实进展理解，不按币价排座次"},
+      {"file":"wiki/topics/blockchain/industry-status-2026-10-29.md","after":"## 2. 按职责看行业，不按币价排座次"}
+    ]
+  },
+  {
+    "id":"primer-danger-scenarios","topic":"blockchain","kind":"compare",
+    "title":"相似的“转不动”，可能是不同故障",
+    "subtitle":"先定位证据，不随意重复付款或泄露恢复材料。",
+    "columns":["看到什么","先查哪一层","不能直接推断"],
+    "rows":[["余额有，发不出","费用资产、权限、网络与账户","代币存在就有手续费能力"],["pending / 超时","原交易、nonce、包含及有效期","肯定没付，可以再付一次"],["执行失败但收费","receipt、资源和实际资产效果","扣费就代表付款成功"],["链上到账平台没记","确认、客户标识与平台扫描","链协议和平台账是同一步"],["错链 / 陌生资产","目标控制条件、资产身份与可信入口","一律能找回，或必须点链接激活"]],
+    "note":"这里只提供识别框架，不是对真实钱包资金处置的授权。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 32. 十个常见问题：先识别故障在哪一层"}]
+  },
+  {
+    "id":"primer-project-check","topic":"blockchain","kind":"flow",
+    "title":"看项目，按这条顺序找证据",
+    "subtitle":"阅读检查顺序，不是产品上线流程或风险评分算法。",
+    "nodes":[["真实问题","谁需要，为什么用它"],["资产与权益","记录什么，谁欠什么"],["控制与数据","谁能改，数据从哪来"],["成本与收入","谁付钱，补贴是否混入"],["退出与异常","正常出口，失败恢复"],["证据与未知","版本、日期、范围和限制"]],
+    "note":"看不清时保留未知；另一个项目成功，不给这个项目作担保。",
+    "placements":[{"file":"wiki/topics/blockchain/beginner-guide.md","after":"## 33. 怎样判断“值得上链”，怎样看一个项目是否靠谱"}]
+  }
+]
