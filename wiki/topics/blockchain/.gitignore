@@ -1,0 +1,4 @@
+# Original attachment and verbatim extraction stay local.
+source/
+__pycache__/
+*.pyc

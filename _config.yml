@@ -48,3 +48,4 @@ exclude:
   - .jekyll-cache
   - .jekyll-metadata
   - "**/__pycache__"
+  - wiki/topics/blockchain/source
