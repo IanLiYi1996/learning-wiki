@@ -1,0 +1,29 @@
+<nav class="sidebar-navigation" aria-label="知识库目录">
+  <div class="nav-section">
+    <p class="nav-heading">知识库</p>
+    {% for item in site.data.navigation.sections %}
+    <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
+      {% include icon.html name=item.icon %}<span>{{ item.label }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="nav-section">
+    <p class="nav-heading">技术专题</p>
+    {% for topic in site.data.navigation.topics %}
+    {% assign topic_page = site.pages | where: "url", topic.url | first %}
+    {% if topic_page %}
+    <details class="nav-topic" data-topic="{{ topic.url | relative_url }}"{% if page.url contains topic.url %} open{% endif %}>
+      <summary><span>{{ topic.label }}</span>{% include icon.html name="chevron-right" %}</summary>
+      <div class="chapter-links">
+        {% for item in topic.items %}
+        {% assign target_page = site.pages | where: "url", item.url | first %}
+        {% if target_page %}
+        <a class="nav-leaf" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </details>
+    {% endif %}
+    {% endfor %}
+  </div>
+</nav>

@@ -1,14 +1,125 @@
----
-layout: default
----
-<nav class="wiki-navigation" aria-label="主要导航">
-  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>首页</a>
-  <a href="{{ '/wiki/topics/rendering/' | relative_url }}"{% if page.url contains '/wiki/topics/rendering/' %} aria-current="page"{% endif %}>Shader 与渲染</a>
-  <a href="{{ '/wiki/topics/physical-ai/' | relative_url }}"{% if page.url contains '/wiki/topics/physical-ai/' %} aria-current="page"{% endif %}>Physical AI</a>
-  <a href="{{ '/wiki/topics/big-data/' | relative_url }}"{% if page.url contains '/wiki/topics/big-data/' %} aria-current="page"{% endif %}>大数据</a>
-  <a href="{{ '/wiki/resources/' | relative_url }}"{% if page.url contains '/wiki/resources/' %} aria-current="page"{% endif %}>资源</a>
-  <a href="https://github.com/{{ site.repository }}" rel="noopener">GitHub</a>
-</nav>
-<main id="wiki-content">
-  {{ content }}
-</main>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% seo %}
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/book-open.svg' | relative_url }}">
+    <script>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('wiki-theme') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (_) {}
+    </script>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.github.build_revision }}">
+    {% include head-custom.html %}
+    <script defer src="{{ '/assets/js/wiki-core.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
+    <script defer src="{{ '/assets/js/wiki.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
+  </head>
+  {% assign current_topic = nil %}
+  {% for topic in site.data.navigation.topics %}
+  {% if page.url contains topic.url %}{% assign current_topic = topic %}{% endif %}
+  {% endfor %}
+  <body{% if page.url == '/' %} class="is-home"{% endif %} data-baseurl="{{ site.baseurl | escape }}" data-index-version="{{ site.github.build_revision }}">
+    <a class="skip-link" href="#wiki-content">跳到正文</a>
+    <header class="site-header">
+      <a class="site-brand" href="{{ '/' | relative_url }}">
+        {% include icon.html name="book-open" %}<span>Learning Wiki</span>
+      </a>
+      <div class="header-main">
+        <button class="icon-button mobile-menu-button" type="button" data-open-navigation aria-label="打开目录" title="打开目录">
+          {% include icon.html name="menu" %}
+        </button>
+        <nav class="breadcrumbs" aria-label="当前位置">
+          <a href="{{ '/' | relative_url }}">知识库</a>
+          {% include icon.html name="chevron-right" %}
+          {% if current_topic %}
+          <a href="{{ current_topic.url | relative_url }}">{{ current_topic.label }}</a>
+          {% else %}
+          <span>{{ page.title | default: '首页' | escape }}</span>
+          {% endif %}
+        </nav>
+        <div class="header-actions">
+          <button class="search-trigger" type="button" data-open-search aria-label="搜索笔记">
+            {% include icon.html name="search" %}<span>搜索笔记</span>
+          </button>
+          <button class="icon-button theme-toggle" type="button" data-toggle-theme aria-label="切换深色模式" title="切换深色模式">
+            {% include icon.html name="moon" class="theme-moon" %}
+            {% include icon.html name="sun" class="theme-sun" %}
+          </button>
+        </div>
+      </div>
+      <div class="reading-progress" aria-hidden="true"></div>
+    </header>
+    <aside class="site-sidebar" aria-label="专题导航">
+      {% include sidebar.html %}
+      <a class="sidebar-repository" href="https://github.com/{{ site.repository }}" target="_blank" rel="noopener">
+        {% include icon.html name="external-link" %}<span>GitHub 仓库</span>{% include icon.html name="arrow-up-right" %}
+      </a>
+    </aside>
+    <div class="page-grid">
+      <main id="wiki-content" tabindex="-1">
+        {% if page.url == '/' %}
+        <div class="home-content">
+          <p class="page-eyebrow">学习与研究</p>
+          <h1>Learning Wiki</h1>
+          <p class="home-description">{{ site.description }}</p>
+          <section class="topic-catalogue" aria-labelledby="topics-heading">
+            <div class="section-heading"><h2 id="topics-heading">技术专题</h2><span>持续整理</span></div>
+            {% assign topic_number = 0 %}
+            {% for topic in site.data.navigation.topics %}
+            {% assign topic_page = site.pages | where: "url", topic.url | first %}
+            {% if topic_page %}
+            {% assign topic_number = topic_number | plus: 1 %}
+            <a class="topic-row" href="{{ topic.url | relative_url }}">
+              <span class="topic-number">0{{ topic_number }}</span>
+              <div class="topic-text"><h3>{{ topic.title }}</h3><p>{{ topic.description }}</p><span class="topic-meta">{{ topic.meta }}</span></div>
+              {% include icon.html name="arrow-up-right" %}
+            </a>
+            {% endif %}
+            {% endfor %}
+          </section>
+          <section class="library-links" aria-labelledby="library-heading">
+            <div class="section-heading"><h2 id="library-heading">学习资料</h2></div>
+            <a href="{{ '/wiki/resources/' | relative_url }}">{% include icon.html name="bookmark" %}<span>书籍、课程与论文</span>{% include icon.html name="arrow-right" %}</a>
+            <a href="{{ '/wiki/projects/' | relative_url }}">{% include icon.html name="flask-conical" %}<span>项目与实践记录</span>{% include icon.html name="arrow-right" %}</a>
+            <a href="{{ '/templates/learning-note.html' | relative_url }}">{% include icon.html name="file-text" %}<span>学习笔记模板</span>{% include icon.html name="arrow-right" %}</a>
+          </section>
+        </div>
+        {% else %}
+        <div class="article-meta">
+          <span class="page-eyebrow">{{ current_topic.label | default: '学习笔记' }}</span>
+          <span class="reading-time" data-reading-time></span>
+        </div>
+        <details class="mobile-toc" data-mobile-toc hidden><summary>本页目录{% include icon.html name="chevron-right" %}</summary><nav aria-label="本页目录"></nav></details>
+        <article class="article-content markdown-body">
+          {{ content }}
+        </article>
+        <nav class="chapter-pagination" aria-label="前后章节" data-chapter-pagination hidden></nav>
+        <footer class="article-footer">
+          <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.path }}" target="_blank" rel="noopener">{% include icon.html name="file-text" %}查看源文件</a>
+          <button type="button" data-back-top>{% include icon.html name="arrow-up" %}返回顶部</button>
+        </footer>
+        {% endif %}
+      </main>
+      <aside class="page-toc" data-toc-panel aria-label="本页目录">
+        <p class="toc-title">本页目录</p>
+        <nav data-toc></nav>
+      </aside>
+    </div>
+    <dialog class="search-dialog" id="wiki-search" aria-labelledby="search-label">
+      <div class="search-heading">
+        <label id="search-label" for="search-input">搜索笔记</label>
+        <button class="icon-button" type="button" data-close-search aria-label="关闭搜索" title="关闭搜索">{% include icon.html name="x" %}</button>
+      </div>
+      <div class="search-input-wrap">{% include icon.html name="search" %}<input id="search-input" type="search" placeholder="输入技术、概念或标题" autocomplete="off" spellcheck="false"></div>
+      <p class="search-status" data-search-status role="status"></p>
+      <ul class="search-results" data-search-results></ul>
+      <button class="search-retry" type="button" data-retry-search hidden>重试加载</button>
+    </dialog>
+    <dialog class="navigation-dialog" id="wiki-navigation" aria-label="知识库目录">
+      <div class="navigation-heading"><span>目录</span><button class="icon-button" type="button" data-close-navigation aria-label="关闭目录" title="关闭目录">{% include icon.html name="x" %}</button></div>
+      <div data-navigation-content></div>
+    </dialog>
+  </body>
+</html>

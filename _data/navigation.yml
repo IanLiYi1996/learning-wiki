@@ -1,0 +1,106 @@
+sections:
+  - label: 首页
+    url: /
+    icon: house
+  - label: 主题索引
+    url: /wiki/topics/
+    icon: library
+  - label: 学习资源
+    url: /wiki/resources/
+    icon: bookmark
+  - label: 项目学习
+    url: /wiki/projects/
+    icon: flask-conical
+  - label: 收件箱
+    url: /wiki/inbox/
+    icon: inbox
+
+topics:
+  - label: Shader 与渲染
+    title: Shader 与 Web 渲染
+    url: /wiki/topics/rendering/
+    description: 从 GPU 管线与坐标变换，逐步深入 WebGL、Three.js 和现代着色系统。
+    meta: GPU · WebGL · Three.js · WebGPU
+    items:
+      - label: 专题导读
+        url: /wiki/topics/rendering/
+      - label: 01 GPU 管线与 Shader
+        url: /wiki/topics/rendering/01-gpu-pipeline-and-shaders.html
+      - label: 02 坐标、投影与采样
+        url: /wiki/topics/rendering/02-coordinates-and-sampling.html
+      - label: 03 WebGL 2 资源模型
+        url: /wiki/topics/rendering/03-webgl2-api-and-resource-model.html
+      - label: 04 Three.js 与框架
+        url: /wiki/topics/rendering/04-threejs-and-frameworks.html
+      - label: 05 光照、PBR 与颜色
+        url: /wiki/topics/rendering/05-lighting-color-and-postprocessing.html
+      - label: 06 性能与调试
+        url: /wiki/topics/rendering/06-performance-and-debugging.html
+      - label: 07 WebGPU、WGSL 与 TSL
+        url: /wiki/topics/rendering/07-webgpu-wgsl-and-tsl.html
+      - label: 学习路线与实验
+        url: /wiki/topics/rendering/learning-roadmap.html
+      - label: 来源与版本
+        url: /wiki/topics/rendering/sources-and-versions.html
+  - label: Physical AI
+    title: Physical AI
+    url: /wiki/topics/physical-ai/
+    description: 对照业界产品与底层原理，梳理机器人系统、数字孪生和学习实践。
+    meta: 机器人 · 仿真 · 模型 · 工程交付
+    items:
+      - label: 专题导读
+        url: /wiki/topics/physical-ai/
+      - label: 业界产品与端到端方案
+        url: /wiki/topics/physical-ai/industry/
+      - label: 底层原理与实现
+        url: /wiki/topics/physical-ai/advanced/
+      - label: 概念地图
+        url: /wiki/topics/physical-ai/concept-map.html
+      - label: 学习路线与自测
+        url: /wiki/topics/physical-ai/learning-roadmap.html
+      - label: GTC Berlin 2026
+        url: /wiki/topics/physical-ai/conferences/gtc-berlin-2026/
+  - label: 大数据与 Palantir
+    title: 大数据技术与 Palantir
+    url: /wiki/topics/big-data/
+    description: 沿数据生命周期整理技术职责，深入本体、FDE 与产品交付模式。
+    meta: 数据平台 · Ontology · FDE · 组织模式
+    items:
+      - label: 技术分层与导读
+        url: /wiki/topics/big-data/
+      - label: 学习路线
+        url: /wiki/topics/big-data/learning-roadmap.html
+      - label: 技术版图研究
+        url: /wiki/topics/big-data/technology-landscape-research.html
+      - label: Palantir Ontology
+        url: /wiki/topics/big-data/palantir-ontology.html
+      - label: FDE 与 AI FDE
+        url: /wiki/topics/big-data/palantir-fde.html
+      - label: 工作模式与组织分层
+        url: /wiki/topics/big-data/palantir-operating-model.html
+  - label: 区块链与钱包
+    title: 区块链原理与钱包工程
+    url: /wiki/topics/blockchain/
+    description: 从共识、状态与协议出发，研究钱包账务、密钥管理与工程安全。
+    meta: 共识 · 钱包 · 密钥 · 安全
+    items:
+      - label: 专题导读
+        url: /wiki/topics/blockchain/
+      - label: 01 系统模型与信任边界
+        url: /wiki/topics/blockchain/chapters/01-system-model.html
+      - label: 02 Bitcoin 与支付通道
+        url: /wiki/topics/blockchain/chapters/02-bitcoin.html
+      - label: 03 Ethereum 状态与执行
+        url: /wiki/topics/blockchain/chapters/03-ethereum.html
+      - label: 04 稳定币与跨链
+        url: /wiki/topics/blockchain/chapters/04-ecosystem.html
+      - label: 05 钱包工程与账务
+        url: /wiki/topics/blockchain/chapters/05-wallet-engineering.html
+      - label: 06 密钥与账户安全
+        url: /wiki/topics/blockchain/chapters/06-security.html
+      - label: 07 AWS 基础设施
+        url: /wiki/topics/blockchain/chapters/07-aws.html
+      - label: 完整升级教程
+        url: /wiki/topics/blockchain/upgrades/
+      - label: 学习路线与自测
+        url: /wiki/topics/blockchain/learning-roadmap.html

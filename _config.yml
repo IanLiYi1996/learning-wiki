@@ -21,6 +21,7 @@ defaults:
 
 include:
   - README.md
+  - sources.md
 
 readme_index:
   enabled: true
@@ -48,4 +49,6 @@ exclude:
   - .jekyll-cache
   - .jekyll-metadata
   - "**/__pycache__"
+  - scripts
+  - tests
   - wiki/topics/blockchain/source

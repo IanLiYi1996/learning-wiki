@@ -1,0 +1,21 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+{% assign first_record = true %}[
+{% assign documents = site.pages | sort: "url" %}
+{% for doc in documents %}
+{% if doc.url contains '/wiki/' or doc.url contains '/templates/' %}
+{% unless doc.url contains 'README.html' %}
+{% if first_record == false %},{% endif %}
+{
+  "title": {{ doc.title | default: doc.name | jsonify }},
+  "url": {{ doc.url | relative_url | jsonify }},
+  "text": {{ doc.content | markdownify | strip_html | normalize_whitespace | jsonify }}
+}
+{% assign first_record = false %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+]
