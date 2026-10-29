@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<nav class="wiki-navigation" aria-label="主要导航">
+  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>首页</a>
+  <a href="{{ '/wiki/topics/rendering/' | relative_url }}"{% if page.url contains '/wiki/topics/rendering/' %} aria-current="page"{% endif %}>Shader 与渲染</a>
+  <a href="{{ '/wiki/topics/physical-ai/' | relative_url }}"{% if page.url contains '/wiki/topics/physical-ai/' %} aria-current="page"{% endif %}>Physical AI</a>
+  <a href="{{ '/wiki/topics/big-data/' | relative_url }}"{% if page.url contains '/wiki/topics/big-data/' %} aria-current="page"{% endif %}>大数据</a>
+  <a href="{{ '/wiki/resources/' | relative_url }}"{% if page.url contains '/wiki/resources/' %} aria-current="page"{% endif %}>资源</a>
+  <a href="https://github.com/{{ site.repository }}" rel="noopener">GitHub</a>
+</nav>
+<main id="wiki-content">
+  {{ content }}
+</main>

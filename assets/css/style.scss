@@ -1,0 +1,76 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+  color: #1f2328;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC",
+    "Microsoft YaHei", sans-serif;
+}
+
+.markdown-body {
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 24px;
+}
+
+.markdown-body h3 {
+  font-size: 20px;
+}
+
+.wiki-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin: 20px 0 28px;
+  padding: 12px 0;
+  border-top: 1px solid #d0d7de;
+  border-bottom: 1px solid #d0d7de;
+}
+
+.wiki-navigation a {
+  color: #57606a;
+  text-decoration: none;
+}
+
+.wiki-navigation a[aria-current="page"],
+.wiki-navigation a:hover {
+  color: #0969da;
+}
+
+.wiki-navigation a[aria-current="page"] {
+  font-weight: 600;
+}
+
+.markdown-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.markdown-body pre,
+mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+@media (max-width: 600px) {
+  .markdown-body h1 {
+    font-size: 26px;
+  }
+
+  .wiki-navigation {
+    gap: 8px 16px;
+  }
+}

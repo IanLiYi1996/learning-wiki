@@ -1,0 +1,50 @@
+title: Learning Wiki
+description: 学习笔记、技术研究与实践记录
+lang: zh-CN
+url: https://ianliyi1996.github.io
+baseurl: /learning-wiki
+repository: IanLiYi1996/learning-wiki
+theme: jekyll-theme-primer
+
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: wiki
+
+include:
+  - README.md
+
+readme_index:
+  enabled: true
+  remove_originals: false
+
+optional_front_matter:
+  remove_originals: false
+
+relative_links:
+  enabled: true
+  collections: true
+
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - PAGES.md
+  - vendor
+  - node_modules
+  - .bundle
+  - .jekyll-cache
+  - .jekyll-metadata
+  - "**/__pycache__"

@@ -1,6 +1,8 @@
 # Learning Wiki
 
-用于持续记录、整理和复盘个人学习内容的私有知识库。
+用于持续记录、整理和复盘个人学习内容的公开知识库。
+
+[网页阅读](https://ianliyi1996.github.io/learning-wiki/) · [GitHub 仓库](https://github.com/IanLiYi1996/learning-wiki)
 
 ## 导航
 

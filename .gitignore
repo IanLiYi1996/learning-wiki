@@ -3,3 +3,8 @@
 .vscode/
 *.swp
 *.tmp
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/bundle/
