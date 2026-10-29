@@ -138,6 +138,10 @@ C17 暂不使用，避免为没有独立来源的内容强行补号。
 
 ## 研究记录与检查
 
+- [入门篇近处来源](beginner-guide.md)：基础对象、教学算例及安全边界，各节使用原始规范/开发指南，不依赖取得原始 PPT。
+- [行业现状近处来源](industry-status-2026-10-29.md)：日期、状态和证据等级分开，新增材料不强行重复全局编号。
+- [稳定币、支付、RWA 与制度核验](notes/beginner-industry-source-audit.md)：12 条专门来源，保留公告、观察期、访问及法律适用边界。
+- [入门协议与来源漂移复核](notes/beginner-protocol-source-audit.md)：难度/奖励源码、Glamsterdam Hoodi 延期与指南路径更新。
 - [升级教程与新增一手来源](upgrades/README.md)：6 篇正文采用近处官方链接，各自记录版本、状态与证据边界；不将其中的局部编号当作本表全局编号。
 - [Bitcoin 核验](notes/bitcoin-source-audit.md)：14 个细主题，固定源码与规范提交，8 项待执行验收。
 - [Ethereum 核验](notes/ethereum-source-audit.md)：状态、AA、7702、代币与签名。

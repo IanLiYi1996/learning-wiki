@@ -83,11 +83,15 @@ topics:
   - label: 区块链与钱包
     title: 区块链原理与钱包工程
     url: /wiki/topics/blockchain/
-    description: 从共识、状态与协议出发，研究钱包账务、密钥管理与工程安全。
-    meta: 共识 · 钱包 · 密钥 · 安全
+    description: 从零基础扫盲与行业现状出发，深入协议、钱包账务、密钥管理与工程安全。
+    meta: 扫盲 · 行业 · 协议 · 钱包
     items:
       - label: 专题导读
         url: /wiki/topics/blockchain/
+      - label: 零基础：系统性扫盲
+        url: /wiki/topics/blockchain/beginner-guide.html
+      - label: 行业现状 · 2026-10-29
+        url: /wiki/topics/blockchain/industry-status-2026-10-29.html
       - label: 01 系统模型与信任边界
         url: /wiki/topics/blockchain/chapters/01-system-model.html
       - label: 02 Bitcoin 与支付通道

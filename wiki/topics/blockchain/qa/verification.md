@@ -84,3 +84,36 @@ python -m unittest discover -s scripts/tests -v
 - 从Git暂存区导出不含附件目录的副本，重新运行17个教学测试、11个发布检查测试及公开笔记检查，全部通过。
 - 暂存区发布门检查未发现PPT、截图或原始提取数据；本地附件未删除。
 - 本地Jekyll依赖不齐，`bundle check`未通过；本次验证Git发布与笔记，不声称网页构建或远端Pages部署已验收。
+
+## 系统性扫盲与行业篇追加验证（2026-10-29）
+
+本次新增 [零基础教程](../beginner-guide.md)和 [行业现状](../industry-status-2026-10-29.md)，另有两份来源审计；不只是汇编 Bitcoin 问答。教程包含 22 个主题、20 道自测和零资金练习，行业篇按 12 节区分规范、上线声明、计划、延期与未测量事项。
+
+内容复核：
+
+- 难度、nBits、超额奖励和目标方向追到维护者源码；新版本发布与固定教学基线分开。
+- 新增合约、NFT/DAO、DeFi、借贷清算、份额、稳定币、数据可用性及跨链，示例均明确为假设。
+- Glamsterdam Hoodi 以 2026-10-22 后续延期公告为准，不从过了原排期反推上线。
+- 支付、基金和制度的来源保留各自日期、适用范围及访问限制；未制造同期规模、收益或性能排名。
+- 独立只读复核四份新文档，未发现需修正的事实或发布问题；不声称运行过对应产品。
+
+本次重新执行结果：
+
+- 离线教学程序 17 个测试通过，发布检查 11 个测试通过。
+- 现有网页基础逻辑 11 个测试、配图 12 个测试、Ruby 阅读页 7 个测试，以及构建后的完整阅读页 6 个测试通过。
+- 公开专题仍为 7 章工程基础、6 篇升级教程，新增后有 31 个公开 Markdown 文件，84 条全局编号记录保持不变。
+- `check_topic.py` 与可选 `--check-local-source` 均通过，附件 60 页/2 张图片及 SHA-256 未变化；公开克隆仍不依赖它们。
+- `git diff --check` 通过。
+
+本地网页构建与额外检查：
+
+```bash
+BUNDLE_FROZEN=true bundle exec jekyll build --destination /tmp/blockchain-literacy-site.TCZ4Ez
+PHYSICAL_READER_SITE=/tmp/blockchain-literacy-site.TCZ4Ez python -m unittest discover -s tests -p test_physical_reader.py -v
+```
+
+本次 `bundle check` 已通过；历史“依赖不齐”的记录保留为前一次结果，不当当前失败。构建使用新建临时输出目录和冻结依赖，未提交现有无关的 `Gemfile.lock`。
+
+通过构建后的 HTML/搜索索引检查：22 个入门主题、20 行自测答案和 12 个行业章节完整；标题锚点不重复；两篇进入侧栏和搜索；123 个页面本地链接/图片目标存在。原始 PPT、`source/` 目录及其搜索记录未被构建发布。
+
+本地构建成功不等于远端 GitHub Pages 已部署成功。本次仍未执行真实链上、钱包、支付或 AWS 实验；原始附件继续保留本地，不上传、不删除。
