@@ -12,6 +12,7 @@
 
 ## 已整理的专题
 
+- [Shader 与 Web 渲染](wiki/topics/rendering/README.md)：GPU 管线、WebGL、Three.js、PBR、性能调试与 WebGPU/TSL
 - [Physical AI](wiki/topics/physical-ai/README.md)：业界产品与端到端方案、底层原理、学习路线、离线练习及 GTC 资料
 - [大数据技术](wiki/topics/big-data/README.md)：技术分层、学习路线与 Palantir 研究
 
