@@ -143,6 +143,9 @@ C17 暂不使用，避免为没有独立来源的内容强行补号。
 - [应用与网络补课](notes/plain-language-applications-source-audit.md)：12 条核心一手来源，名称/身份、内容/保存、DePIN、预言机与许可网络。
 - [图解来源与重建](images/primer-illustrations.md)：30 张本地原创图，没有互联网热链或原始附件截图。
 - [行业现状近处来源](industry-status-2026-10-29.md)：日期、状态和证据等级分开，新增材料不强行重复全局编号。
+- [2026-10-30 币安安全事件解读](binance-security-incident-2026-10-30.md)：白话正文采用近处链接，技术根因与运营状态转述分开。
+- [币安事件一手证据与核验边界](notes/binance-incident-source-audit-2026-10-30.md)：公告、7702 规范、冻结与借贷响应；保留时点、访问限制和未验签范围，S1–S13 是文件局部编号。
+- [2019 / 2022 历史事件消歧](notes/binance-incident-disambiguation-2026-10-30.md)：热钱包提现与跨链证明验证缺陷的不同根因，不把旧案当作当天证据。
 - [稳定币、支付、RWA 与制度核验](notes/beginner-industry-source-audit.md)：12 条专门来源，保留公告、观察期、访问及法律适用边界。
 - [入门协议与来源漂移复核](notes/beginner-protocol-source-audit.md)：难度/奖励源码、Glamsterdam Hoodi 延期与指南路径更新。
 - [升级教程与新增一手来源](upgrades/README.md)：6 篇正文采用近处官方链接，各自记录版本、状态与证据边界；不将其中的局部编号当作本表全局编号。
