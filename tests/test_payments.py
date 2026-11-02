@@ -21,13 +21,31 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 TOPIC = ROOT / "wiki/topics/payments"
 SITE = Path(os.environ.get("PAYMENTS_SITE", ROOT / "_site")).resolve()
-FILES = ("README.md", "payment-industry-101.md", "glossary.md",
-         "learning-roadmap.md", "sources.md")
+CORE_FILES = ("README.md", "payment-industry-101.md", "glossary.md",
+              "learning-roadmap.md", "sources.md")
+CHAPTERS = (
+    "13-card-products-and-operations",
+    "14-in-person-and-offline-payments",
+    "15-recurring-payments",
+    "16-merchant-lifecycle",
+    "17-treasury-and-liquidity",
+    "18-messages-and-payment-security",
+    "19-ledgers-and-reliable-payment-engineering",
+    "20-china-and-regulatory-maps",
+    "21-cash-mobile-money-and-local-methods",
+    "22-cbdc-tokenised-deposits-and-stablecoins",
+)
+EXTENSION_FILES = tuple(f"chapters/{name}.md" for name in CHAPTERS)
+FILES = CORE_FILES + EXTENSION_FILES
 ROUTES = {name: "wiki/topics/payments/" +
           ("index.html" if name == "README.md" else name.replace(".md", ".html"))
           for name in FILES}
 LESSONS = [f"lesson-{number:02d}" for number in range(1, 13)]
-MANIFEST = ROOT / "scripts/figures/payments.json"
+EXTENSION_LESSONS = [f"lesson-{number}" for number in range(13, 23)]
+MANIFESTS = tuple(ROOT / f"scripts/figures/{name}.json" for name in (
+    "payments", "payments-foundations", "payments-operations",
+    "payments-engineering-regions", "payments-digital-money",
+))
 LINK = re.compile(r'(!?)\[[^\]\n]*\]\(\s*(?:<([^>]+)>|([^\s)]+))[^)]*\)')
 ILLUSTRATION = re.compile(
     r"<!-- illustration: ([a-z0-9-]+) -->\n(.*?)<!-- /illustration: \1 -->",
@@ -172,7 +190,8 @@ class PaymentsChecks(unittest.TestCase):
         return {name: (TOPIC / name).read_text(encoding="utf-8") for name in FILES}
 
     def figures(self):
-        return json.loads(MANIFEST.read_text(encoding="utf-8"))
+        return [figure for manifest in MANIFESTS
+                for figure in json.loads(manifest.read_text(encoding="utf-8"))]
 
     def require_figures(self):
         if not any((TOPIC / "images").glob("payment-*")):
@@ -218,7 +237,7 @@ class PaymentsSourceTests(PaymentsChecks):
             with self.subTest(location=value[:12]), self.assertRaises(AssertionError):
                 self.assert_public(value, "fixture.html")
 
-    def test_five_public_documents_and_no_unpublished_attachments(self):
+    def test_fifteen_public_documents_and_no_unpublished_attachments(self):
         self.assertEqual({path.relative_to(TOPIC).as_posix()
                           for path in TOPIC.rglob("*.md")}, set(FILES))
         allowed = set(FILES) | {
@@ -246,6 +265,48 @@ class PaymentsSourceTests(PaymentsChecks):
         self.assertIn("故障恢复能证明不丢账、不重账", book)
         self.assertIn("最后，把领域压缩成八句话", book)
 
+    def test_ten_substantive_extension_lessons_with_sources_and_self_tests(self):
+        expected_terms = (
+            ("借记", "信用", "预付", "三方", "四方", "换卡"),
+            ("EMV", "NFC", "SoftPOS", "L1", "L2", "L3", "离线"),
+            ("CIT", "MIT", "SCA", "重试", "取消"),
+            ("KYB", "MCC", "准备金", "退出"),
+            ("流动性", "预注资", "FX", "净额"),
+            ("8583", "20022", "HSM", "PIN", "密钥"),
+            ("可用", "冻结", "并发", "Outbox", "Inbox", "恢复"),
+            ("银联", "网联", "备付金", "CIPS", "美国", "新加坡"),
+            ("现金", "Mobile Money", "e-float", "ATM", "支票"),
+            ("CBDC", "代币化存款", "稳定币", "赎回", "最终性"),
+        )
+        for number, name, terms in zip(range(13, 23), EXTENSION_FILES, expected_terms):
+            text = self.documents()[name]
+            with self.subTest(lesson=number):
+                self.assertRegex(text, rf"(?m)^# {number} .+$")
+                self.assertIn(f"lesson-{number}", Page(text).ids)
+                self.assertEqual(Page(text).ids.count(f"lesson-{number}"), 1)
+                self.assertIn("public-sources", Page(text).ids)
+                body, bibliography = text.split('<a id="public-sources"></a>', 1)
+                plain_body = ILLUSTRATION.sub("", LINK.sub("", body))
+                self.assertGreater(len(plain_body), 1800, "Extension is only a stub")
+                self.assertGreaterEqual(len(re.findall(r"(?m)^## ", text)), 7)
+                self.assertIn("自测", body)
+                self.assertIn("参考答案", body)
+                self.assertRegex(body, r"(?m)^1\. ")
+                self.assertRegex(body, r"(?m)^2\. ")
+                self.assertRegex(body, r"(?m)^3\. ")
+                self.assertIn("边界", text)
+                for term in terms:
+                    self.assertIn(term, body)
+                urls = {target for _, target in markdown_links(bibliography)
+                        if urlsplit(target).scheme in {"http", "https"}}
+                self.assertGreaterEqual(len(urls), 5, "Missing primary evidence")
+                if "读取日均为 2026-11-02" not in bibliography and \
+                        "读取日为 2026-11-02" not in bibliography:
+                    self.assertGreaterEqual(bibliography.count("2026-11-02"), len(urls))
+                self.assertGreaterEqual(len(
+                    [target for _, target in markdown_links(body)
+                     if urlsplit(target).scheme in {"http", "https"}]), 4)
+
     def test_all_local_markdown_links_and_explicit_fragments_resolve(self):
         for name, text in self.documents().items():
             ids = Page(text).ids
@@ -272,6 +333,12 @@ class PaymentsSourceTests(PaymentsChecks):
         links = [target for _, target in markdown_links(docs["README.md"])]
         self.assertTrue({f"payment-industry-101.md#{lesson}" for lesson in LESSONS}
                         .issubset(links))
+        self.assertTrue(set(EXTENSION_FILES).issubset(links))
+        self.assertIn("22 课", docs["README.md"])
+        self.assertIn("32 张", docs["README.md"])
+        self.assertIn("第二周", docs["learning-roadmap.md"])
+        for name in EXTENSION_FILES:
+            self.assertIn(f"{name}#public-sources", docs["sources.md"])
         sources = docs["sources.md"]
         ids = Page(sources).ids
         self.assertGreaterEqual(len(ids), 30)
@@ -286,21 +353,28 @@ class PaymentsSourceTests(PaymentsChecks):
             with self.subTest(source=entry[1]):
                 self.assertRegex(sources[entry.end():end], r"\]\(https://")
 
-    def test_fourteen_manifest_figures_have_unique_local_heading_placements(self):
+    def test_thirty_two_manifest_figures_have_unique_local_heading_placements(self):
         figures = self.figures()
-        self.assertEqual(len(figures), 14)
-        self.assertEqual(len({figure["id"] for figure in figures}), 14)
-        self.assertEqual(sum(len(figure["placements"]) for figure in figures), 14)
+        self.assertEqual(len(figures), 32)
+        self.assertEqual(len({figure["id"] for figure in figures}), 32)
+        self.assertEqual(sum(len(figure["placements"]) for figure in figures), 32)
+        counts = Counter(Path(placement["file"]).relative_to(TOPIC.relative_to(ROOT)).as_posix()
+                         for figure in figures for placement in figure["placements"])
+        self.assertEqual(counts["payment-industry-101.md"], 14)
+        self.assertEqual([counts[name] for name in EXTENSION_FILES],
+                         [2, 2, 1, 2, 2, 2, 2, 2, 1, 2])
         for figure in figures:
             with self.subTest(figure=figure["id"]):
                 self.assertRegex(figure["id"], r"^payment-[a-z0-9-]+$")
                 self.assertEqual(figure["topic"], "payments")
                 for placement in figure["placements"]:
-                    self.assertEqual(placement["file"],
-                                     "wiki/topics/payments/payment-industry-101.md")
+                    name = Path(placement["file"]).relative_to(
+                        TOPIC.relative_to(ROOT)).as_posix()
+                    self.assertIn(name, ("payment-industry-101.md", *EXTENSION_FILES))
                     text = (ROOT / placement["file"]).read_text(encoding="utf-8")
                     self.assertEqual(text.splitlines().count(placement["after"]), 1)
-                    self.assertTrue(placement["after"].startswith("### "))
+                    self.assertTrue(placement["after"].startswith(
+                        "## " if name in EXTENSION_FILES else "### "))
 
     def test_assets_and_body_placements_match_the_renderer_and_manifest(self):
         self.require_figures()
@@ -312,8 +386,9 @@ class PaymentsSourceTests(PaymentsChecks):
             "payments_figures", ROOT / "scripts/render_figures.py")
         renderer = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(renderer)
-        expected_markers = []
-        book = self.documents()["payment-industry-101.md"]
+        expected_markers = {name: [] for name in FILES}
+        expected_images = {name: [] for name in FILES}
+        docs = self.documents()
         for figure in figures:
             with self.subTest(figure=figure["id"]):
                 svg = TOPIC / "images" / (figure["id"] + ".svg")
@@ -321,26 +396,33 @@ class PaymentsSourceTests(PaymentsChecks):
                 self.assertEqual(svg.read_text(encoding="utf-8"),
                                  renderer.RENDERERS[figure["kind"]](figure))
                 for placement in figure["placements"]:
+                    name = Path(placement["file"]).relative_to(
+                        TOPIC.relative_to(ROOT)).as_posix()
+                    book = docs[name]
+                    image_path = os.path.relpath(
+                        svg.with_suffix(".png"), (TOPIC / name).parent)
                     suffix = hashlib.sha256(placement["after"].encode("utf-8")).hexdigest()[:10]
                     marker = figure["id"] + "-" + suffix
-                    expected_markers.append(marker)
+                    expected_markers[name].append(marker)
+                    expected_images[name].append(image_path)
                     blocks = [body for identity, body in ILLUSTRATION.findall(book)
                               if identity == marker]
                     self.assertEqual(len(blocks), 1, "Missing or duplicate illustration")
-                    self.assertIn(f'](images/{figure["id"]}.png)', blocks[0])
+                    self.assertIn(f']({image_path})', blocks[0])
                     self.assertIn(figure["title"], blocks[0])
                     self.assertIn(f"*图：{figure['title']}。", blocks[0])
                     self.assertRegex(book, re.escape(placement["after"]) +
                                      r"\n\s*<!-- illustration: " + re.escape(marker) + " -->")
-        self.assertEqual(Counter(identity for identity, _ in ILLUSTRATION.findall(book)),
-                         Counter(expected_markers))
-        images = [target for image, target in markdown_links(book) if image]
-        self.assertEqual(Counter(images),
-                         Counter(f"images/{figure['id']}.png" for figure in figures))
+        for name, book in docs.items():
+            with self.subTest(document=name):
+                self.assertEqual(Counter(identity for identity, _ in ILLUSTRATION.findall(book)),
+                                 Counter(expected_markers[name]))
+                images = [target for image, target in markdown_links(book) if image]
+                self.assertEqual(Counter(images), Counter(expected_images[name]))
 
     def test_public_source_files_do_not_leak_private_provenance(self):
         shared = [ROOT / "README.md", ROOT / "wiki/topics/README.md",
-                  ROOT / "_data/navigation.yml", ROOT / "_includes/sidebar.html", MANIFEST]
+                  ROOT / "_data/navigation.yml", ROOT / "_includes/sidebar.html", *MANIFESTS]
         for path in shared + [path for path in TOPIC.rglob("*") if path.is_file()]:
             label = path.relative_to(ROOT).as_posix()
             self.assert_public(label, "published filename")
@@ -403,7 +485,7 @@ class PaymentsSiteTests(PaymentsChecks):
                           f"Broken built anchor: {target}")
         return file
 
-    def test_all_five_pages_render_the_actual_body_without_javascript(self):
+    def test_all_fifteen_pages_render_the_actual_body_without_javascript(self):
         for name, source in self.documents().items():
             with self.subTest(document=name):
                 page = self.read_page(ROUTES[name])
@@ -436,26 +518,28 @@ class PaymentsSiteTests(PaymentsChecks):
             if name in {"payment-industry-101.md", "learning-roadmap.md"}:
                 self.assertTrue(source_links, "Missing built source citations")
 
-    def test_fourteen_built_png_svg_pairs_and_their_heading_placements(self):
-        relative = ROUTES["payment-industry-101.md"]
-        page = self.read_page(relative)
-        self.assertEqual(len(page.images), 14)
-        self.assertTrue(any(urlsplit(src).path.endswith("/assets/js/wiki-figures.js")
-                            for src in page.scripts), "Missing SVG/modal enhancement")
+    def test_thirty_two_built_png_svg_pairs_and_their_heading_placements(self):
         placed = {}
-        current_heading = None
-        for kind, value in page.events:
-            if kind == "heading":
-                current_heading = value[1]
-            elif kind == "image":
-                self.assertTrue(value.get("alt"), "Missing image description")
-                target = value.get("src", "")
-                self.assertFalse(urlsplit(target).scheme or urlsplit(target).netloc,
-                                 "Payments illustrations must be local")
-                png = self.local_target(relative, target)
-                self.assertEqual(png.suffix, ".png")
-                self.assertNotIn(png.stem, placed, "Duplicate built figure")
-                placed[png.stem] = current_heading
+        for name, relative in ROUTES.items():
+            page = self.read_page(relative)
+            expected_count = sum(placement["file"] == "wiki/topics/payments/" + name
+                                 for figure in self.figures() for placement in figure["placements"])
+            self.assertEqual(len(page.images), expected_count)
+            self.assertTrue(any(urlsplit(src).path.endswith("/assets/js/wiki-figures.js")
+                                for src in page.scripts), "Missing SVG/modal enhancement")
+            current_heading = None
+            for kind, value in page.events:
+                if kind == "heading":
+                    current_heading = value[1]
+                elif kind == "image":
+                    self.assertTrue(value.get("alt"), "Missing image description")
+                    target = value.get("src", "")
+                    self.assertFalse(urlsplit(target).scheme or urlsplit(target).netloc,
+                                     "Payments illustrations must be local")
+                    png = self.local_target(relative, target)
+                    self.assertEqual(png.suffix, ".png")
+                    self.assertNotIn(png.stem, placed, "Duplicate built figure")
+                    placed[png.stem] = (name, current_heading)
         self.assertEqual(set(placed), {figure["id"] for figure in self.figures()})
         for figure in self.figures():
             with self.subTest(figure=figure["id"]):
@@ -464,7 +548,10 @@ class PaymentsSiteTests(PaymentsChecks):
                 for suffix in ("png", "svg"):
                     self.assertEqual(png.with_suffix("." + suffix).read_bytes(),
                                      (TOPIC / "images" / (figure["id"] + "." + suffix)).read_bytes())
-                self.assertEqual(placed[figure["id"]], figure["placements"][0]["after"][4:])
+                placement = figure["placements"][0]
+                name = Path(placement["file"]).relative_to(TOPIC.relative_to(ROOT)).as_posix()
+                self.assertEqual(placed[figure["id"]],
+                                 (name, placement["after"].lstrip("# ")))
 
     def test_home_index_sidebar_and_search_have_working_payments_entries(self):
         reader = self.read_page(ROUTES["payment-industry-101.md"])

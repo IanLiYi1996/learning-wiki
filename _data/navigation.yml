@@ -20,11 +20,11 @@ topics:
     title: 支付行业 101
     url: /wiki/topics/payments/
     description: 从一杯咖啡出发，理解支付角色、资金流、商业模式、跨境、风控和账本工程。
-    meta: 12 课 · 14 张图 · 行业 · 工程
+    meta: 22 课 · 32 张图 · 行业 · 工程
     items:
       - label: 专题导读
         url: /wiki/topics/payments/
-      - label: 完整图文读本
+      - label: 主干图文读本（01–12）
         url: /wiki/topics/payments/payment-industry-101.html
       - label: 01 支付地图
         url: /wiki/topics/payments/payment-industry-101.html#lesson-01
@@ -50,6 +50,26 @@ topics:
         url: /wiki/topics/payments/payment-industry-101.html#lesson-11
       - label: 12 完整平台案例
         url: /wiki/topics/payments/payment-industry-101.html#lesson-12
+      - label: 13 卡产品与账户运营
+        url: /wiki/topics/payments/chapters/13-card-products-and-operations.html
+      - label: 14 线下与离线支付
+        url: /wiki/topics/payments/chapters/14-in-person-and-offline-payments.html
+      - label: 15 订阅与周期性付款
+        url: /wiki/topics/payments/chapters/15-recurring-payments.html
+      - label: 16 商户生命周期
+        url: /wiki/topics/payments/chapters/16-merchant-lifecycle.html
+      - label: 17 资金与流动性
+        url: /wiki/topics/payments/chapters/17-treasury-and-liquidity.html
+      - label: 18 报文与支付安全
+        url: /wiki/topics/payments/chapters/18-messages-and-payment-security.html
+      - label: 19 可靠账本工程
+        url: /wiki/topics/payments/chapters/19-ledgers-and-reliable-payment-engineering.html
+      - label: 20 中国与监管地图
+        url: /wiki/topics/payments/chapters/20-china-and-regulatory-maps.html
+      - label: 21 现金与移动货币
+        url: /wiki/topics/payments/chapters/21-cash-mobile-money-and-local-methods.html
+      - label: 22 数字货币与存款
+        url: /wiki/topics/payments/chapters/22-cbdc-tokenised-deposits-and-stablecoins.html
       - label: 术语速查
         url: /wiki/topics/payments/glossary.html
       - label: 学习路线与自测

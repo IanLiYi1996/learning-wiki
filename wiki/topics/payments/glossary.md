@@ -96,4 +96,63 @@
 | Stablecoin | 稳定价值目标的数字资产安排 | 目标不等于无风险保证 |
 | Agent Mandate | 用户给予代理的受约束委托 | 不等于发卡方支付授权 |
 
+## 补全章节：卡、终端与订阅
+
+以下释义对照[13 卡产品](chapters/13-card-products-and-operations.md)、[14 线下支付](chapters/14-in-person-and-offline-payments.md)、[15 订阅](chapters/15-recurring-payments.md)及章末来源。
+
+| 名词 | 白话解释 | 最容易混淆 |
+| --- | --- | --- |
+| Debit／Credit／Prepaid | 使用银行账户资金／授信／预先加载资金的卡机制 | 外形、虚拟卡号不能判断资金来源 |
+| Statement Balance | 某账期的账单余额 | 不等于此刻当前余额 |
+| Minimum Payment | 当期最低付款要求 | 付了不保证免息，也不代表还清 |
+| Three-party／Four-party | 三方／四方卡体系的角色安排 | 不直接等于受理范围的开放／闭环 |
+| EMV | 芯片与相关支付技术、规范和互通机制 | 不是一个清算网络 |
+| NFC | 近场无线通信方式 | 能通信不代表已获支付批准 |
+| SoftPOS | 在通用设备上实现相应非接触受理的方案 | 手机应用不自动满足支付认证 |
+| L1／L2／L3 | 物理接口／处理内核／端到端集成测试层次 | 某一层通过不替代其余层 |
+| Offline Authorization | 无实时联机发卡授权时的离线批准机制 | 不等于缓存后再送的联机交易 |
+| Store-and-forward | 先存交易，再联网转发处理 | 缓存成功不保证后来授权成功 |
+| CIT／MIT | 持卡人发起／商户依授权关系发起的交易 | MIT 不等于任意免认证扣款 |
+| Mandate／Consent | 对付款关系、范围及条件的授权／同意 | 不能只用“存了卡号”证明 |
+| SCA | 特定制度下的强客户认证要求 | 认证、豁免与范围外须分别判断 |
+| Account Updater | 参与方交换卡账户凭证更新的服务 | 换卡不等于订阅合同取消 |
+
+## 补全章节：运营、资金、密码与工程
+
+对照[16 商户](chapters/16-merchant-lifecycle.md)、[17 资金](chapters/17-treasury-and-liquidity.md)、[18 安全](chapters/18-messages-and-payment-security.md)、[19 工程](chapters/19-ledgers-and-reliable-payment-engineering.md)及章末来源。
+
+| 名词 | 白话解释 | 最容易混淆 |
+| --- | --- | --- |
+| Underwriting | 接入前评估业务、风险及承担方式 | 身份核验成功不等于风险可接受 |
+| MCC | Merchant Category Code，商户业务类别代码 | 不是可随意挑选的优惠标签 |
+| Rolling Reserve | 按约定比例留存并按窗口释放的准备金机制 | 不等于支付公司收入 |
+| Netting | 相互义务按安排轧成净额 | 少动现金不等于没有信用或时点风险 |
+| FX Exposure | 汇率变化可能造成损益的敞口 | 不等于已经收到的换汇价差 |
+| ISO 8583 | 卡交易报文相关标准 | 网络实现仍有各自规则与字段 |
+| ISO 20022 | 金融业务建模与报文标准体系 | 不只是换成 XML，也不代表全局到账语义 |
+| HSM | 在受控边界内进行密钥管理和密码操作的硬件安全模块 | 放进 HSM 不自动使全部系统合规 |
+| PIN Block | 按规范组织并保护 PIN 的数据块 | 不应把明文 PIN 当普通业务日志 |
+| Key Ceremony | 密钥生成、装载等关键操作的受控过程 | 不是一次保存密码的动作 |
+| Available／Held | 可使用／已占用但尚未完成的余额权益 | 冻结不等于银行资金已转走 |
+| Outbox／Inbox | 本地提交后的待发送事件／消费端接收防重记录 | 不自动提供跨系统全局事务 |
+| Compensating Entry | 用新分录纠正旧经济效果 | 不等于删除原账 |
+| RPO／RTO | 可容忍的数据恢复缺口／恢复服务时间目标 | 写了指标不代表演练已证明 |
+
+## 补全章节：地区、现金与数字货币
+
+对照[20 中国与监管](chapters/20-china-and-regulatory-maps.md)、[21 本地方法](chapters/21-cash-mobile-money-and-local-methods.md)、[22 数字货币](chapters/22-cbdc-tokenised-deposits-and-stablecoins.md)及章末来源。法律用语须回到相应辖区，不能据此认定某家公司有资格。
+
+| 名词 | 白话解释 | 最容易混淆 |
+| --- | --- | --- |
+| 客户备付金 | 支付机构为客户支付业务收取的待付资金 | 不等于自有资金或银行存款产品 |
+| 网联／银联 | 中国支付清算链路中的不同机构与业务安排 | 不是所有手机支付都走同一路径 |
+| MSB Registration | 美国特定货币服务业务的联邦登记 | 不自动替代州级许可 |
+| Cash-in／Cash-out | 现金换成账户电子价值／电子价值换回现金 | 代理的现金与电子余额需分别充足 |
+| E-float | 移动货币代理用于交易的电子价值余额 | 现金多不保证电子余额够 |
+| Local Payment Method | 特定市场常用的支付方式 | 是场景集合，不是统一的一条 Rail |
+| CBDC | 中央银行发行的数字货币形式 | 不等于商业银行存款或所有加密资产 |
+| Retail／Wholesale CBDC | 面向一般公众／特定金融参与者的央行数字货币设计 | 试点不等于已全面可用 |
+| Tokenised Deposit | 银行存款权益的代币化表达 | 不是发行主体自动变成央行 |
+| Redemption | 依条款将某种价值兑回指定资产的过程 | 链上转账成功不保证银行赎回完成 |
+
 不必背完。遇到新公司时，优先圈出：**谁、账户、网络、责任、收入、风险、证据**。

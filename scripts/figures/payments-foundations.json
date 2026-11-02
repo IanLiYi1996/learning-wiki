@@ -1,0 +1,107 @@
+[
+  {
+    "id": "payment-ext-card-funding",
+    "topic": "payments",
+    "kind": "compare",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/13-card-products-and-operations.md",
+        "after": "## 一、先问资金来源，再问卡长什么样"
+      }
+    ],
+    "title": "三种卡：资金从哪里来",
+    "subtitle": "比较典型资金模式；卡面网络品牌不能代替卡种判断。",
+    "columns": ["问题", "借记卡", "信用卡", "预付卡"],
+    "rows": [
+      ["典型资金来源", "银行账户已有资金", "发卡方授信", "预先加载的资金"],
+      ["消费看什么", "账户可用资金", "可用额度与授权", "预付余额与占用"],
+      ["之后要还款吗", "通常无需；透支另看", "需按账单偿还", "通常无需；信用安排另看"],
+      ["主要运营问题", "余额、冻结与争议", "账单、还款和利息", "充值、费用与余额"]
+    ],
+    "note": "产品机制示意，不是全球法律分类；透支、费用与保护范围需查具体条款。"
+  },
+  {
+    "id": "payment-ext-card-account-lifecycle",
+    "topic": "payments",
+    "kind": "flow",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/13-card-products-and-operations.md",
+        "after": "## 五、账户生命周期：挂失、换卡与Token更新"
+      }
+    ],
+    "title": "账户运营：控制旧凭证，核对合法付款关系",
+    "subtitle": "以挂失换卡为例；账户、卡号和Token是不同对象。",
+    "nodes": [
+      ["开户与激活", "确定资金模式与条款"],
+      ["日常使用", "消费、账单与余额"],
+      ["异常报告", "核验遗失或未经授权"],
+      ["控制旧凭证", "按风险停用相关凭证"],
+      ["换卡与更新", "核对账户更新和Token"],
+      ["核验与后续", "持续运营或申请销户"]
+    ],
+    "note": "教学流程；到期换卡可跳过异常报告。更新凭证不代表恢复已撤销的扣款同意。"
+  },
+  {
+    "id": "payment-ext-terminal-certification",
+    "topic": "payments",
+    "kind": "layers",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/14-in-person-and-offline-payments.md",
+        "after": "## 二、L1、L2、L3：三层测试回答不同问题"
+      }
+    ],
+    "title": "终端三层测试：通信、处理逻辑与端到端集成",
+    "subtitle": "按测试责任分层，不表示三家公司或三个独立服务器。",
+    "layers": [
+      ["L1 通信接口", "机械、电气、射频及数据交换：能否按要求通信"],
+      ["L2 交易内核", "EMV应用处理逻辑：能否按规范处理接触／非接触交易"],
+      ["L3 集成验证", "完整终端与商户／收单系统：按支付系统要求端到端测试"]
+    ],
+    "note": "EMV互操作测试不替代PCI安全要求；组件通过测试不等于所有集成已获准。"
+  },
+  {
+    "id": "payment-ext-offline-modes",
+    "topic": "payments",
+    "kind": "compare",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/14-in-person-and-offline-payments.md",
+        "after": "## 四、离线授权与存储后提交是两种模式"
+      }
+    ],
+    "title": "离线EMV授权，不是存储后再求授权",
+    "subtitle": "都可能暂存记录；关键差别在断网时谁作决定。",
+    "columns": ["问题", "EMV离线授权", "存储后提交"],
+    "rows": [
+      ["断网时的决定", "卡片按发卡方预配置规则批准", "终端／SDK先行受理"],
+      ["是否实时询问发卡方", "没有在线服务器授权", "尚未获得在线发卡授权"],
+      ["恢复网络后", "上传记录并继续清算处理", "补交在线授权及后续处理"],
+      ["商品交付后的风险", "仍需核对规则与责任", "补交可能被拒，商户可能收不到钱"]
+    ],
+    "note": "依据公开产品文档拆解机制；支持能力与责任依卡种、地区、网络和合同而异。"
+  },
+  {
+    "id": "payment-ext-recurring-recovery",
+    "topic": "payments",
+    "kind": "flow",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/15-recurring-payments.md",
+        "after": "## 五、续费失败恢复：分类、修复，再安全重试"
+      }
+    ],
+    "title": "续费失败：先确认原因，再恢复付款",
+    "subtitle": "箭头仅表示满足继续条件的路径；不是所有失败都应自动重试。",
+    "nodes": [
+      ["记录失败", "关联账单与支付尝试"],
+      ["核实当前状态", "未知结果先查原支付"],
+      ["分类与止步", "硬拒未修复／撤销同意则停"],
+      ["恢复前置条件", "更新凭证、认证或等待"],
+      ["有界安全重试", "检查未付、有效同意及去重"],
+      ["同步并退出", "成功记账／耗尽按政策处理"]
+    ],
+    "note": "需认证时让用户回来；已付、取消续费或撤销同意时停止。次数及时间窗按适用规则。"
+  }
+]

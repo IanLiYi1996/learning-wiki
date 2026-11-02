@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="494" viewBox="0 0 1040 494" role="img" aria-labelledby="title desc">
+<title id="title">离线EMV授权，不是存储后再求授权</title>
+<desc id="desc">都可能暂存记录；关键差别在断网时谁作决定。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="494" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">离线EMV授权，不是存储后再求授权</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">都可能暂存记录；关键差别在断网时谁作决定。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">问题</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">EMV离线授权</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">存储后提交</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">断网时的决定</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卡片按发卡方预配置规则批准</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">终端／SDK先行受理</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">是否实时询问发卡方</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">没有在线服务器授权</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">尚未获得在线发卡授权</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">恢复网络后</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">上传记录并继续清算处理</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">补交在线授权及后续处理</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">商品交付后的风险</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">仍需核对规则与责任</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">补交可能被拒，商户可能收不到钱</text>
+<line x1="40" y1="430" x2="1000" y2="430" stroke="#e0e7e2"/>
+<text x="40" y="454" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">依据公开产品文档拆解机制；支持能力与责任依卡种、地区、网络和合同而异。</text>
+</g>
+</svg>

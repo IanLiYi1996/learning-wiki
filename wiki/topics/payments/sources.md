@@ -4,6 +4,23 @@
 
 正文的短标签可跳到这里。历史机制资料不冒充 2026 年全部规则快照；产品文档不代表各地区都可用；国际标准不自动等于本地法律。
 
+## 13–22 补全章节的来源索引
+
+下面链接进入各章的完整引用表；表中记录读取日、司法辖区或产品边界。正文就近引用同一批一手资料，避免读完后还不知道哪个说法由哪个来源支持。原有 01–12 的短标签保持不变。
+
+| 章节 | 重点证据 |
+| --- | --- |
+| [13 卡产品与账户运营](chapters/13-card-products-and-operations.md#public-sources) | CFPB、卡网络更新服务、EMVCo、欧盟卡体系定义 |
+| [14 线下与离线支付](chapters/14-in-person-and-offline-payments.md#public-sources) | EMVCo、PCI SSC、受理方离线规则 |
+| [15 订阅与周期性付款](chapters/15-recurring-payments.md#public-sources) | 欧盟认证要求、卡网络及提供方续费和取消机制 |
+| [16 商户生命周期](chapters/16-merchant-lifecycle.md#public-sources) | 网络商户分类、支付方接入与准备金规则 |
+| [17 资金与流动性](chapters/17-treasury-and-liquidity.md#public-sources) | CPMI／央行、结算和 FX 风险资料 |
+| [18 报文与支付安全](chapters/18-messages-and-payment-security.md#public-sources) | ISO、Swift、EMVCo、PCI SSC、AWS |
+| [19 账本与可靠工程](chapters/19-ledgers-and-reliable-payment-engineering.md#public-sources) | 账本、数据库和事务消息的一手技术文档 |
+| [20 中国与监管地图](chapters/20-china-and-regulatory-maps.md#public-sources) | 中国政府／央行／基础设施及美、英、欧、新监管 |
+| [21 现金与移动货币](chapters/21-cash-mobile-money-and-local-methods.md#public-sources) | GSMA、移动货币方案、现金与本地支付运营资料 |
+| [22 CBDC、存款与稳定币](chapters/22-cbdc-tokenised-deposits-and-stablecoins.md#public-sources) | BIS、央行、银行与发行人的权利和赎回说明 |
+
 ## 基础、银行卡与商业模式
 
 <a id="cpmi"></a>
