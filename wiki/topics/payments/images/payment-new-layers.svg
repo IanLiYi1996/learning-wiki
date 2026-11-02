@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">AI 代理与稳定币，改变的是哪一层</title>
+<desc id="desc">新的体验或 Rail，不会自动消除资金与风险责任。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">AI 代理与稳定币，改变的是哪一层</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">新的体验或 Rail，不会自动消除资金与风险责任。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">用户与代理权</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">买什么、限额、用途、时段、审批与撤销</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">发现与交易</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">报价 · 购物车 · 订单 · 签名／证据</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">支付凭证</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">受约束 Token／账户权限／链上签名</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">执行 Rail</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">卡 · 银行账户 · 钱包 · 稳定币转移</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">最终责任</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">结算／赎回 · 资金保护 · 对账 · 争议</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">代理识别不等于支付授权；链上确认不等于法币银行到账。</text>
+</g>
+</svg>

@@ -31,6 +31,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 区块链零基础图组在 `blockchain-primer.json`，覆盖白话读本的控制/记录、UTXO、PoW、订单簿、AMM、清算、跨链等问题。新增 `scene` 类型显式指定元素与箭头，检查边界及穿框；用 `--id-prefix primer-` 只重建该组，不改其他专题及 Physical AI 清单。详细假设见 [配图说明](../../wiki/topics/blockchain/images/primer-illustrations.md)。
 
+支付行业图组在 `payments.json`，覆盖三条流、银行卡生命周期、角色边界、费用、钱包、账户与跨境支付、风险和工程。用 `--id-prefix payment-` 只重建这 14 张图；费用与架构均为教学示例，不代表公司生产数据或部署。发布范围只含公开一手资料的扩展读本，不含内部会议附件或录屏。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。

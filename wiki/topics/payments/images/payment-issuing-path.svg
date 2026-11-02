@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">虚拟卡：把企业业务规则接到卡产品</title>
+<desc id="desc">没有塑料卡片，不代表没有发卡责任。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">虚拟卡：把企业业务规则接到卡产品</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">没有塑料卡片，不代表没有发卡责任。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">企业流程</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">账单／采购 → 审批 → 用途、金额、时间限制</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">产品与处理</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">发卡平台／Program Manager · 卡管理与授权逻辑</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">持牌责任</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">Issuer／BIN Sponsor · 资金模式与网络义务</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">实际消费</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">持卡端 → 商户收单 → 卡网络 → 发卡授权</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">回到财务</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">清算／结算记录 → 发票与消费匹配 → 企业对账</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">按职责分组，不表示每层都是不同公司；虚拟卡不是支付牌照。</text>
+</g>
+</svg>
