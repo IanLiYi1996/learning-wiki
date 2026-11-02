@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">格式在不同层共存，业务含义要贯穿全程</title>
+<desc id="desc">教学责任分层，不是某公司的实际部署或通用字段映射。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">格式在不同层共存，业务含义要贯穿全程</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">教学责任分层，不是某公司的实际部署或通用字段映射。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">商户入口</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">API表达订单意图；认证和业务授权单独控制</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">内部模型</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">金额、币种、单位、交易引用及阶段保持明确</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">通道适配</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">按网络、版本和契约映射；缺失语义不能静默丢弃</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">网络报文</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">卡交换可用ISO 8583；其他链路可用ISO 20022消息</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">状态账务</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">保存原始状态与映射版本；接收不等于授权或结算</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">ISO标准不替代结算安排；多格式并存不意味着字段可以直接互换。</text>
+</g>
+</svg>

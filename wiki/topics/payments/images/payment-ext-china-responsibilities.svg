@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">中国支付：入口、机构、清算与客户资金分开</title>
+<desc id="desc">按职责拆解的学习地图，不代表每笔交易的唯一技术或资金路径。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">中国支付：入口、机构、清算与客户资金分开</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">按职责拆解的学习地图，不代表每笔交易的唯一技术或资金路径。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">入口／意图</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">银行卡 · 扫码 · 钱包余额 · 账户转账</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">服务主体</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">商户与收单侧 · 银行 · 非银行支付机构</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">网络／清算</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">银联 · 非银行网络支付清算安排 · 银行间基础设施</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">客户资金</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">银行账户 · 客户备付金 · 特定业务待结算资金</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">运营结果</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">商户应收 → 出款 → 银行流水与对账</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">图标不确定后台路径；具体业务、主体、许可及账户安排需要逐项查证。</text>
+</g>
+</svg>

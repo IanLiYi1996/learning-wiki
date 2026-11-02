@@ -1,0 +1,130 @@
+[
+  {
+    "id": "payment-ext-merchant-lifecycle",
+    "topic": "payments",
+    "kind": "flow",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/16-merchant-lifecycle.md",
+        "after": "## 从获客到 KYB：先知道为谁收钱"
+      }
+    ],
+    "title": "商户关系不是开户时的一次审批",
+    "subtitle": "课堂生命周期；身份、履约和资金责任需要分别核验。",
+    "nodes": [
+      ["获客", "真实业务与交易预期"],
+      ["企业核验", "主体、控制与受益人"],
+      ["承保", "履约、额度与责任"],
+      ["持续运营", "变化、退款与拒付"],
+      ["风险处置", "复核、限制与留存"],
+      ["有序退出", "停止新增并清理旧账"]
+    ],
+    "note": "教学顺序，不是统一网络流程；退出不消灭历史交易责任。"
+  },
+  {
+    "id": "payment-ext-merchant-reserve",
+    "topic": "payments",
+    "kind": "compare",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/16-merchant-lifecycle.md",
+        "after": "## 滚动准备金：预售敞口的金额例子"
+      }
+    ],
+    "title": "预售100万元，留存20万元仍有剩余敞口",
+    "subtitle": "教学假设：留存20%、持有180天；释放前发生退款或拒付，忽略费用及追偿。",
+    "columns": ["项目", "本批初始安排", "损失情景：需退30万", "损失情景：需退100万"],
+    "rows": [
+      ["预售收款", "100万元", "100万元", "100万元"],
+      ["准备金", "20万元", "可覆盖20万元", "可覆盖20万元"],
+      ["已出款", "80万元", "假设商户无法回款", "假设商户无法回款"],
+      ["剩余缺口", "尚未发生退款或拒付", "30−20＝10万元", "100−20＝80万元"]
+    ],
+    "note": "情景敞口不等于预计损失；两种情景不叠加；留存准备金不等于客户资金隔离。"
+  },
+  {
+    "id": "payment-ext-treasury-positions",
+    "topic": "payments",
+    "kind": "flow",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/17-treasury-and-liquidity.md",
+        "after": "## 资金头寸：按币种、银行和时间拆开"
+      }
+    ],
+    "title": "资金头寸到调度：币种、银行、时点缺一不可",
+    "subtitle": "课堂假设：12点需付USD90万，A行已有65万、预计流入15万。",
+    "nodes": [
+      ["确认头寸", "A行USD65万已可用"],
+      ["分开预测", "11点预计入账15万"],
+      ["核算缺口", "基准80万，缺10万"],
+      ["核实来源", "B行20万最早16点到"],
+      ["审批调拨", "需另有及时可用来源"],
+      ["到账更新", "确认可用后更新计划"]
+    ],
+    "note": "B行迟到资金不能填午间缺口；C行EUR100万尚无可执行换汇安排；均为假设。"
+  },
+  {
+    "id": "payment-ext-liquidity-stress",
+    "topic": "payments",
+    "kind": "compare",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/17-treasury-and-liquidity.md",
+        "after": "## 压力测试：算缺多少、何时缺、谁来处理"
+      }
+    ],
+    "title": "相同账户，压力会改变午间资金缺口",
+    "subtitle": "课堂假设；金额为USD万元，全部按12点前可用资金计算。",
+    "columns": ["情景", "12点前可用", "12点应付", "缺口"],
+    "rows": [
+      ["基准", "65＋15＝80", "90", "10"],
+      ["流入延迟", "65", "90", "25"],
+      ["付款增加", "80", "110", "30"],
+      ["组合压力", "65", "110", "45"]
+    ],
+    "note": "情景不重复叠加缺口；B行20万元最早16点到；银行或FMI监管要求不直接外推PSP。"
+  },
+  {
+    "id": "payment-ext-message-layers",
+    "topic": "payments",
+    "kind": "layers",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/18-messages-and-payment-security.md",
+        "after": "## 报文分层：ISO 8583 与 ISO 20022 不是二选一"
+      }
+    ],
+    "title": "格式在不同层共存，业务含义要贯穿全程",
+    "subtitle": "教学责任分层，不是某公司的实际部署或通用字段映射。",
+    "layers": [
+      ["商户入口", "API表达订单意图；认证和业务授权单独控制"],
+      ["内部模型", "金额、币种、单位、交易引用及阶段保持明确"],
+      ["通道适配", "按网络、版本和契约映射；缺失语义不能静默丢弃"],
+      ["网络报文", "卡交换可用ISO 8583；其他链路可用ISO 20022消息"],
+      ["状态账务", "保存原始状态与映射版本；接收不等于授权或结算"]
+    ],
+    "note": "ISO标准不替代结算安排；多格式并存不意味着字段可以直接互换。"
+  },
+  {
+    "id": "payment-ext-cryptographic-duties",
+    "topic": "payments",
+    "kind": "layers",
+    "placements": [
+      {
+        "file": "wiki/topics/payments/chapters/18-messages-and-payment-security.md",
+        "after": "## 双人控制与权限分隔：不能只画两个小人"
+      }
+    ],
+    "title": "密码功能、密钥管理和业务授权分别有人负责",
+    "subtitle": "纯课堂设计：仅使用虚构代号，不含真实卡数据、PIN、密钥或生产接口。",
+    "layers": [
+      ["业务审批", "确认付款或退款的对象、金额、用途与审批条件"],
+      ["运算调用", "仅请求允许的密码任务；不得越权修改密钥用途"],
+      ["密钥管理", "创建、用途、轮换、启停与销毁；敏感动作独立授权"],
+      ["设备责任", "HSM保护密钥与执行运算；托管也需明确责任边界"],
+      ["只读审计", "核对身份、授权、动作和时间；不记录真实秘密"]
+    ],
+    "note": "双人控制不等于单次双签或知识分割；HSM与Token均不能自动赋予业务付款权限。"
+  }
+]

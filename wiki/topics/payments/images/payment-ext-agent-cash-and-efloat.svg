@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="630" viewBox="0 0 1040 630" role="img" aria-labelledby="title desc">
+<title id="title">代理入金与出金：两种库存反向变化</title>
+<desc id="desc">教学假设：每笔 100 KSh，忽略费用；加减号表示余额变化。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="630" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">代理入金与出金：两种库存反向变化</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">教学假设：每笔 100 KSh，忽略费用；加减号表示余额变化。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">变化项目</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Cash-in：客户存入现金</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Cash-out：客户取出现金</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">客户现金</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">−100 KSh</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">＋100 KSh</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">客户钱包</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">＋100 KSh</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">−100 KSh</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">代理现金</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">＋100 KSh</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">−100 KSh</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">代理 e-float</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">−100 KSh</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">＋100 KSh</text>
+<rect x="40" y="452" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="481" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">代理先备什么</text>
+<rect x="220" y="452" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="481" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">足够的电子库存</text>
+<rect x="610.0" y="452" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="481" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">足够的现金库存</text>
+<rect x="40" y="520" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="549" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">关键边界</text>
+<rect x="220" y="520" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="549" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">现金很多，也可能缺 e-float</text>
+<rect x="610.0" y="520" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="549" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">电子库存很多，也可能缺现金</text>
+<line x1="40" y1="566" x2="1000" y2="566" stroke="#e0e7e2"/>
+<text x="40" y="590" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">既有现金与电子价值交换；不表示代理创造货币，也不画银行信托资金的搬运路径。</text>
+</g>
+</svg>

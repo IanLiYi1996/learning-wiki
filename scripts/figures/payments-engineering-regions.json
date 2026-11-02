@@ -1,0 +1,59 @@
+[
+  {
+    "id":"payment-ext-ledger-states","topic":"payments","kind":"compare",
+    "title":"100 元权益：预留、捕获、出款是不同事件",
+    "subtitle":"闭环钱包教学例；不含费用与税，不是外部银行卡的统一会计模型。",
+    "columns":["事件","用户可用／预留","商户应付","银行资产"],
+    "rows":[
+      ["起点","100／0","0","100"],
+      ["预留 40","60／40","0","100"],
+      ["捕获 40","60／0","40","100"],
+      ["出款 40","60／0","0","60"]
+    ],
+    "note":"每步核对权益、债务与资产；取消尚未捕获的预留，会把 40 恢复为可用。",
+    "placements":[{"file":"wiki/topics/payments/chapters/19-ledgers-and-reliable-payment-engineering.md","after":"## 2. 一个能检查借贷的闭环余额例子"}]
+  },
+  {
+    "id":"payment-ext-outbox-inbox","topic":"payments","kind":"flow",
+    "title":"记录、发布、消费：每一段都要能续跑与防重",
+    "subtitle":"教学事件链；Outbox 不保证消息只送达一次。",
+    "nodes":[
+      ["业务变更","校验意图与账户"],
+      ["账本＋Outbox","同一个本地事务"],
+      ["发布器","读取未完成事件"],
+      ["投递／重试","允许重复送达"],
+      ["消费者＋Inbox","业务效果与去重同事务"],
+      ["对账与恢复","权威证据关闭异常"]
+    ],
+    "note":"本地事务不能自动撤销外部付款；重放事件不能重新发起已执行出款。",
+    "placements":[{"file":"wiki/topics/payments/chapters/19-ledgers-and-reliable-payment-engineering.md","after":"## 5. Outbox 与 Inbox：不要赌两次写入一起成功"}]
+  },
+  {
+    "id":"payment-ext-china-responsibilities","topic":"payments","kind":"layers",
+    "title":"中国支付：入口、机构、清算与客户资金分开",
+    "subtitle":"按职责拆解的学习地图，不代表每笔交易的唯一技术或资金路径。",
+    "layers":[
+      ["入口／意图","银行卡 · 扫码 · 钱包余额 · 账户转账"],
+      ["服务主体","商户与收单侧 · 银行 · 非银行支付机构"],
+      ["网络／清算","银联 · 非银行网络支付清算安排 · 银行间基础设施"],
+      ["客户资金","银行账户 · 客户备付金 · 特定业务待结算资金"],
+      ["运营结果","商户应收 → 出款 → 银行流水与对账"]
+    ],
+    "note":"图标不确定后台路径；具体业务、主体、许可及账户安排需要逐项查证。",
+    "placements":[{"file":"wiki/topics/payments/chapters/20-china-and-regulatory-maps.md","after":"## 1. 中国支付的五组主体，不是五个必经服务器"}]
+  },
+  {
+    "id":"payment-ext-regulatory-questions","topic":"payments","kind":"layers",
+    "title":"进入一个市场，至少分别查五个问题",
+    "subtitle":"这是检查框架，不是全球许可判定或法律意见。",
+    "layers":[
+      ["主体与许可","谁提供什么服务？准入和豁免适用于谁？"],
+      ["客户资金","钱属于谁？存放、使用、保护与退出怎样安排？"],
+      ["交易与风险","身份、AML、制裁、诈骗控制怎样执行？"],
+      ["消费者权利","错误、未经授权、退款、争议和投诉怎样处理？"],
+      ["数据与运营","谁得到哪些资料？跨境、审计与连续性怎样满足？"]
+    ],
+    "note":"公布、生效、过渡期和实际适用不等价；不同国家的相似名称不保证同一权利。",
+    "placements":[{"file":"wiki/topics/payments/chapters/20-china-and-regulatory-maps.md","after":"## 5. 地区矩阵：许可、客户资金与消费者权利分开"}]
+  }
+]

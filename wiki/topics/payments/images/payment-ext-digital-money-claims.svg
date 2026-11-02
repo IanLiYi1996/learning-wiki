@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="650" viewBox="0 0 1040 650" role="img" aria-labelledby="title desc">
+<title id="title">三类数字货币：记录相似，权利不同</title>
+<desc id="desc">稳定币仅指本章讨论的发行人资产支持型；不是全球统一法律分类。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="650" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">三类数字货币：记录相似，权利不同</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">稳定币仅指本章讨论的发行人资产支持型；不是全球统一法律分类。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">核验问题</text>
+<rect x="220" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">CBDC</text>
+<rect x="480.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="493.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">代币化银行存款</text>
+<rect x="740.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="753.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">私人稳定币</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">主要债务人</text>
+<rect x="220" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">中央银行</text>
+<rect x="480.0" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">发行存款的商业银行</text>
+<rect x="740.0" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">发行安排中的私人主体</text>
+<rect x="40" y="248" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">使用者与用途</text>
+<rect x="220" y="248" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">零售：公众支付</text>
+<text x="233" y="302" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">批发：机构结算</text>
+<rect x="480.0" y="248" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">符合银行与平台规则的客户</text>
+<rect x="740.0" y="248" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">可转移持有；直兑资格另核验</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">转换／赎回</text>
+<rect x="220" y="326" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按央行具体制度</text>
+<rect x="480.0" y="326" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按银行合同与存款规则</text>
+<rect x="740.0" y="326" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按发行人条款与适用法律</text>
+<rect x="40" y="394" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">支付后权利</text>
+<rect x="220" y="394" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">持有央行货币</text>
+<rect x="480.0" y="394" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">BIS 模型：对收款人本行的请</text>
+<text x="493.0" y="448" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">求权</text>
+<rect x="740.0" y="394" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">可能继续承担同一发行人风险</text>
+<rect x="40" y="472" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="501" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">最终性边界</text>
+<rect x="220" y="472" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="501" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">看制度与结算规则</text>
+<rect x="480.0" y="472" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="501" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">银行间结算安排也要核验</text>
+<rect x="740.0" y="472" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="501" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">链上确认不等于法币到账</text>
+<rect x="40" y="540" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="569" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">不能直接推定</text>
+<rect x="220" y="540" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="569" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">一定运行在公共链</text>
+<rect x="480.0" y="540" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="569" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">名字有存款就必有保险</text>
+<rect x="740.0" y="540" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="569" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">持币就能无条件直接赎回</text>
+<line x1="40" y1="586" x2="1000" y2="586" stroke="#e0e7e2"/>
+<text x="40" y="610" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">对照责任与核验点，不是安全排名；具体权利以该产品、地区与时期的文件为准。</text>
+</g>
+</svg>
