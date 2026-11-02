@@ -16,6 +16,46 @@ sections:
     icon: inbox
 
 topics:
+  - label: 支付行业 101
+    title: 支付行业 101
+    url: /wiki/topics/payments/
+    description: 从一杯咖啡出发，理解支付角色、资金流、商业模式、跨境、风控和账本工程。
+    meta: 12 课 · 14 张图 · 行业 · 工程
+    items:
+      - label: 专题导读
+        url: /wiki/topics/payments/
+      - label: 完整图文读本
+        url: /wiki/topics/payments/payment-industry-101.html
+      - label: 01 支付地图
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-01
+      - label: 02 银行卡的一生
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-02
+      - label: 03 商户受理生态
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-03
+      - label: 04 费用与商业模式
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-04
+      - label: 05 钱包与发卡
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-05
+      - label: 06 账户与实时支付
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-06
+      - label: 07 跨境与企业支付
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-07
+      - label: 08 风险与合规
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-08
+      - label: 09 账本与支付工程
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-09
+      - label: 10 研究一家支付公司
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-10
+      - label: 11 稳定币与代理
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-11
+      - label: 12 完整平台案例
+        url: /wiki/topics/payments/payment-industry-101.html#lesson-12
+      - label: 术语速查
+        url: /wiki/topics/payments/glossary.html
+      - label: 学习路线与自测
+        url: /wiki/topics/payments/learning-roadmap.html
+      - label: 来源与核验边界
+        url: /wiki/topics/payments/sources.html
   - label: Shader 与渲染
     title: Shader 与 Web 渲染
     url: /wiki/topics/rendering/

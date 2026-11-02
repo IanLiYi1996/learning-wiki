@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="546" viewBox="0 0 1040 546" role="img" aria-labelledby="title desc">
+<title id="title">一次支付，三条不同的线</title>
+<desc id="desc">手机显示成功，不说明每条线都已完成。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="546" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">一次支付，三条不同的线</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">手机显示成功，不说明每条线都已完成。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">信息流</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">支付请求 → 认证／授权 → 状态通知</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">资金流</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">金融／结算账户 → 相关资金划拨 → 商户出款</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">账务流</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">订单、支付记录、费用、商户应收 → 对账</text>
+<line x1="40" y1="482" x2="1000" y2="482" stroke="#e0e7e2"/>
+<text x="40" y="506" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">概念拆解，不是实际资金路径；三条流的完成时间可能不同。</text>
+</g>
+</svg>

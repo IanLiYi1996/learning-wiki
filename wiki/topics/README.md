@@ -4,6 +4,7 @@
 
 ## 主题索引
 
+- [支付行业 101](payments/README.md)：12 课图文读本、术语速查与自测，串起产品、资金、风险和工程
 - [区块链原理、生态与钱包工程](blockchain/README.md)：34 课白话图解与行业现状，从共识与状态到钱包、密钥和云基础设施，含完整新版机制
 - [Shader 与 Web 渲染](rendering/README.md)：从图形基础到 WebGL、Three.js 和 WebGPU
 - [大数据技术](big-data/README.md)

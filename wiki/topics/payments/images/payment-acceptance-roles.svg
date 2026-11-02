@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="630" viewBox="0 0 1040 630" role="img" aria-labelledby="title desc">
+<title id="title">商户受理：先辨认职责，再看品牌</title>
+<desc id="desc">技术接入、资金责任与卖方身份是不同问题。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="630" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">商户受理：先辨认职责，再看品牌</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">技术接入、资金责任与卖方身份是不同问题。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">角色</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">解决的问题</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">不能默认</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Acquirer</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">收单关系、网络与结算责任</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不等于前端网关</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Processor</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">交易报文与处理</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不必持有客户资金</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Gateway</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">安全接入与请求传输</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不等于收单机构</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">PSP</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">整合支付与运营服务</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不保证各地自营</text>
+<rect x="40" y="452" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="481" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">PayFac</text>
+<rect x="220" y="452" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="481" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">收单合作下管理子商户</text>
+<rect x="610.0" y="452" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="481" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不等于所有平台</text>
+<rect x="40" y="520" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="549" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">MoR</text>
+<rect x="220" y="520" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="549" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">面向买家的销售交易责任</text>
+<rect x="610.0" y="520" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="549" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不由分账 API 决定</text>
+<line x1="40" y1="566" x2="1000" y2="566" stroke="#e0e7e2"/>
+<text x="40" y="590" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">同一主体可以兼任；职责需按网络规则、法律关系与合同核验。</text>
+</g>
+</svg>
