@@ -60,3 +60,33 @@ test('reading-time estimates never show zero', () => {
   assert.equal(core.readingMinutes(''), 1);
   assert.equal(core.readingMinutes('文'.repeat(800)), 2);
 });
+test('chapter neighbors stay in the selected subgroup, not adjacent categories', () => {
+  const links = ['data', 'agents', 'rewards'].map(name => ({
+    href: `${origin}/learning-wiki/training/${name}.html`, hash: '',
+  }));
+  const root = { href: `${origin}/learning-wiki/`, hash: '' };
+  assert.deepEqual(core.chapterNeighbors(links, links[1].href, root),
+    { previous: links[0], next: links[2] });
+  assert.deepEqual(core.chapterNeighbors(links, links[0].href, root),
+    { previous: root, next: links[1] });
+  assert.deepEqual(core.chapterNeighbors(links, links[2].href, root),
+    { previous: links[1], next: null });
+});
+test('a one-page subgroup retains a path back to the topic guide', () => {
+  const chapter = { href: `${origin}/learning-wiki/research.html`, hash: '' };
+  const root = { href: `${origin}/learning-wiki/`, hash: '' };
+  assert.deepEqual(core.chapterNeighbors([chapter], chapter.href, root),
+    { previous: root, next: null });
+  assert.equal(core.chapterNeighbors([chapter], root.href, root), null);
+});
+test('fragment leaves and README aliases do not create duplicate chapters', () => {
+  const root = { href: `${origin}/learning-wiki/`, hash: '' };
+  const alias = { href: `${origin}/learning-wiki/README.html`, hash: '' };
+  const chapter = { href: `${origin}/learning-wiki/book.html`, hash: '' };
+  const fragment = { href: chapter.href + '#one', hash: '#one' };
+  const invalid = { href: 'http://[', hash: '' };
+  assert.deepEqual(core.chapterNeighbors([root, alias, fragment, invalid, chapter], chapter.href),
+    { previous: root, next: null });
+  assert.deepEqual(core.chapterNeighbors([root], alias.href, root),
+    { previous: null, next: null });
+});

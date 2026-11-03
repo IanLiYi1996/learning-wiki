@@ -14,7 +14,7 @@
 
 ## 已整理的专题
 
-- [深度学习专题解读](wiki/topics/deep-learning/README.md)：权重空间编程 10 节，以及扩散后训练与推理工程 6 章；22 张机制图，一手来源核验、标准库实验与自测
+- [深度学习专题解读](wiki/topics/deep-learning/README.md)：按 LLM 训练、视觉生成、推理硬件、自动研究、权重编辑五个方向细分；新增 Rufus-Air 八阶段配方，保留原读本与实验
 - [支付行业 101](wiki/topics/payments/README.md)：22 课、32 张中文机制图，含 12 课主干与 10 课领域补全；从卡、钱包与跨境，扩展到订阅、终端、商户运营、流动性、安全、中国支付和数字货币
 - [区块链原理、生态与钱包工程](wiki/topics/blockchain/README.md)：34 课白话图解、30 张原创图、行业现状、PPT 60 页主题梳理、7 章工程基础及 6 篇完整升级教程；新增 [2026-10-30 币安安全事件解读](wiki/topics/blockchain/binance-security-incident-2026-10-30.md)
 - [Shader 与 Web 渲染](wiki/topics/rendering/README.md)：GPU 管线、WebGL、Three.js、PBR、性能调试与 WebGPU/TSL

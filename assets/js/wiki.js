@@ -23,8 +23,9 @@
   document.querySelectorAll('.sidebar-navigation a').forEach(link => {
     if (!link.hash && core.canonicalPath(link.href) === currentPath) {
       link.setAttribute('aria-current', 'page');
-      const topic = link.closest('details');
-      if (topic) topic.open = true;
+      for (let ancestor = link.parentElement; ancestor; ancestor = ancestor.parentElement) {
+        if (ancestor.tagName === 'DETAILS') ancestor.open = true;
+      }
     }
   });
   const themeButton = document.querySelector('[data-toggle-theme]');
@@ -159,18 +160,24 @@
     if (window.MathJax && window.MathJax.startup) window.MathJax.startup.promise.then(scheduleProgress);
     const activeTopic = document.querySelector('.site-sidebar .nav-topic[open]');
     if (activeTopic) {
-      const links = Array.from(activeTopic.querySelectorAll('.nav-leaf')).filter(link => !link.hash);
-      const index = links.findIndex(link => core.canonicalPath(link.href) === currentPath);
+      const allLinks = Array.from(activeTopic.querySelectorAll('.nav-leaf'));
+      const currentLink = allLinks.find(link => !link.hash &&
+        core.canonicalPath(link.href) === currentPath);
+      const group = currentLink?.closest('.nav-subtopic');
+      const links = group ? Array.from(group.querySelectorAll('.nav-leaf')) : allLinks;
+      const rootLink = group ? allLinks.find(link => !link.hash &&
+        core.canonicalPath(link.href) === core.canonicalPath(activeTopic.dataset.topic)) : null;
+      const neighbors = core.chapterNeighbors(links, location.href, rootLink);
       const pagination = document.querySelector('[data-chapter-pagination]');
-      if (index >= 0 && links.length > 1) {
+      if (neighbors && (neighbors.previous || neighbors.next)) {
         [-1, 1].forEach(direction => {
-          const target = links[index + direction];
+          const target = direction < 0 ? neighbors.previous : neighbors.next;
           if (!target) { pagination.append(document.createElement('span')); return; }
           const a = document.createElement('a');
           a.href = target.href;
           const text = document.createElement('span');
           const label = document.createElement('small');
-          label.textContent = direction < 0 ? '上一篇' : '下一篇';
+          label.textContent = target === rootLink ? '返回专题' : direction < 0 ? '上一篇' : '下一篇';
           text.append(label, document.createTextNode(target.textContent));
           if (direction < 0) a.append(icon('arrow-left'), text);
           else a.append(text, icon('arrow-right'));

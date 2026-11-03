@@ -1,0 +1,117 @@
+[
+  {
+    "id":"ruf-stage-handoff","topic":"deep-learning","kind":"flow",
+    "title":"Rufus-Air 八阶段接力：继承产物，也继承验证责任",
+    "subtitle":"作者采用的顺序；不是完整排列消融证明的最优顺序。",
+    "nodes":[
+      ["SFT","示范、格式与监督位置"],
+      ["Reasoning RL","结果验证与可学习性"],
+      ["Coding RL","竞赛代码与固定测试"],
+      ["IF RL","必须逐条满足的约束"],
+      ["General Agent","工具编排与终局状态"],
+      ["Coding Agent","持久工作区与执行测试"],
+      ["Search Agent","搜索证据、预算与长轨迹"],
+      ["RLHF","新回答接受开放质量评分"]
+    ],
+    "note":"蓝箭头表示 checkpoint 接力；目标变了，旧能力、数据合同和 optimizer 状态都须重新检查。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/README.md","after":"## 2. 八阶段接力：每一棒都有不同输入与验收"}]
+  },
+  {
+    "id":"ruf-supervision-ledger","topic":"deep-learning","kind":"layers",
+    "title":"样本数、上下文 token、监督 token：三本不同账",
+    "subtitle":"原创训练信号分层；具体数据规模仍需查对应阶段和生产模板。",
+    "layers":[
+      ["样本账","来源与条数：短回答、长推理、工具轨迹并不等价"],
+      ["上下文账","system／user／tool 等信息仍参与后续条件预测"],
+      ["监督账","由实际 loss mask 决定；不能仅看角色名称或总长度"],
+      ["消费账","抽样、重复、packing、更新次数决定实际优化权重"]
+    ],
+    "note":"loss mask=0 不是 attention mask，也不等于把观察从输入删除。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/data-sft-and-rlvr.md","after":"## SFT 监督账本：上下文可见不等于每个 token 都计损失"}]
+  },
+  {
+    "id":"ruf-agent-contracts","topic":"deep-learning","kind":"compare",
+    "title":"三个 Agent：行动成功与任务成功分开",
+    "subtitle":"按照本文任务与反馈机制归类，不作通用奖励可靠性排名。",
+    "columns":["阶段","环境与行动","终局核验"],
+    "rows":[
+      ["General Agent","操作 MCP 工具与场景状态","数据库状态满足任务；调用成功还不够"],
+      ["Coding Agent","持久沙箱里查看／修改／执行","测试验收；基础设施中止另分类"],
+      ["Search Agent","搜索、网页与上下文管理","参考答案评分与任务预算；调用不等于证据有效"]
+    ],
+    "note":"Coding RL 生成竞赛程序，不自动等于交互式 Coding Agent；环境合同与奖励合同分别检查。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/agentic-environments.md","after":"## 2. 环境合同和奖励合同必须分开"}]
+  },
+  {
+    "id":"ruf-token-fidelity","topic":"deep-learning","kind":"layers",
+    "title":"文字用于阅读，采样 token 用于训练",
+    "subtitle":"简化协议地图；真实 API 字段与专家回放还要核验指定版本。",
+    "layers":[
+      ["采样记录","原始 token IDs、旧概率、权重版本与专家路由"],
+      ["环境追加","行动与观察分开；保留实际每轮输入，不修写旧动作"],
+      ["训练载荷","位置对齐的 action／loss mask，工具观察不冒充模型动作"],
+      ["参数更新","读取真实轨迹；新策略概率允许变化，不等于重新分词旧文本"]
+    ],
+    "note":"格式修复、摘要与模板重套不能替换原采样动作；零占位也不代表环境文本概率为 1。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/agentic-environments.md","after":"## 3. Token-in/token-out：训练对象不是聊天截图"}]
+  },
+  {
+    "id":"ruf-reward-paths","topic":"deep-learning","kind":"compare",
+    "title":"偏好数据出现了，仍要看谁被更新",
+    "subtitle":"背景机制对照；Rufus-Air 的最终阶段属于第三行。",
+    "columns":["路径","实际反馈来源","更新对象"],
+    "rows":[
+      ["训练奖励模型","偏好对的分数差","评分器参数"],
+      ["离线 DPO","固定胜负对与 reference 比值","回答策略参数"],
+      ["在线 RLHF","策略新 rollout 接受奖励模型评分","回答策略参数"]
+    ],
+    "note":"本例最终 HH-RLHF 只提供 prompts；原 chosen／rejected 不直接成为该阶段的 DPO 目标。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/reward-and-stability.md","after":"## 2. 偏好模型、DPO 与最终 RLHF：谁被更新"}]
+  },
+  {
+    "id":"ruf-runtime-loop","topic":"deep-learning","kind":"flow",
+    "title":"RL 工程闭环：计算、环境、反馈与状态一起交接",
+    "subtitle":"依据公开组件职责的教学闭环；不是 Rufus 专用部署拓扑。",
+    "nodes":[
+      ["提示与策略版本","数据合同、预算与当前权重"],
+      ["Rollout 采样","SGLang 产生动作和概率"],
+      ["环境与工具","沙箱／观察；保留状态"],
+      ["验证器／RM","反馈与类型化终止原因"],
+      ["训练载荷","Data Buffer；对齐 token 和 mask"],
+      ["Trainer 更新","Megatron；保存状态与新权重"]
+    ],
+    "loop":"新权重用于后续采样",
+    "note":"蓝箭头为教学依赖顺序，紫色为权重反馈；GPU 空等也可能是工具或验证器瓶颈。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/infrastructure-and-evaluation.md","after":"## 1. 训练、采样、环境与反馈，是四种工作"}]
+  },
+  {
+    "id":"ruf-batch-ledger","topic":"deep-learning","kind":"compare",
+    "title":"4096 回答和两个更新，仍不是 8192 次独立生成",
+    "subtitle":"左列为论文 Reasoning RL 计数口径，右列为原创中止样本例。",
+    "columns":["账本字段","256 题 × 16 候选","100 题 × 4 候选"],
+    "rows":[
+      ["生成回答数","4096","400"],
+      ["中止数","本图不另设中止","假设 20"],
+      ["有效回答数","未计中止前为 4096","380"],
+      ["optimizer updates","2；不是新采样数","假设 2；不是新采样数"],
+      ["仍未知","每步消费、minibatch、累积","每题剩余组大小与实际消费"]
+    ],
+    "note":"P×G 数的是生成；SFT sequence batch、token 量、重复更新须分别记账。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/infrastructure-and-evaluation.md","after":"## 2. Batch 单位：收集次数不等于更新次数"}]
+  },
+  {
+    "id":"ruf-mask-contract","topic":"deep-learning","kind":"compare",
+    "title":"更小 NLL 可能来自改变监督对象",
+    "subtitle":"四个假想前向 logprob；不是采样时环境观察的真实策略概率。",
+    "columns":["位置","logprob","监督动作 toy","误监督全部"],
+    "rows":[
+      ["上下文","−0.1","mask=0","mask=1"],
+      ["模型动作","−2","mask=1","mask=1"],
+      ["工具观察","−0.2","mask=0","mask=1"],
+      ["模型动作","−3","mask=1","mask=1"],
+      ["平均 NLL","由上述数字算出","2.5","1.325"]
+    ],
+    "note":"数值降低不证明模型改善；真实 mask 必须按模板和阶段检查，不能仅按消息角色硬套。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/rufus-air/lab.md","after":"## C. Loss mask：低 loss 可能只是算错了对象"}]
+  }
+]

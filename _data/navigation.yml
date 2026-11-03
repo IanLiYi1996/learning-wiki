@@ -19,55 +19,101 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 权重空间编程，以及扩散 DPO、RL、奖励、自动研究、GPU 与视频推理；从机制到证据和本地练习。
-    meta: 2 组专题 · 22 张图 · 标准库实验
+    description: 按 LLM 训练、视觉生成、推理硬件、自动研究、权重编辑五条路线学习；保留原读本地址。
+    meta: 5 个细分方向 · 3 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
-      - label: 权重空间编程：图文解读
-        url: /wiki/topics/deep-learning/weight-space-programming.html
-      - label: 01 架构、权重与语义
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-01
-      - label: 02 方法与历史位置
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-02
-      - label: 03 手写 15 参数网络
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-03
-      - label: 04 QK 与 OV 计算
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-04
-      - label: 05 八个实验的权限
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-05
-      - label: 06 修补与能力
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-06
-      - label: 07 几何与坐标对齐
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-07
-      - label: 08 因果与复现证据
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-08
-      - label: 09 Harness 与回滚
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-09
-      - label: 10 学习与判断
-        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-10
-      - label: 本地实验与自测
-        url: /wiki/topics/deep-learning/weight-space-programming-lab.html
-      - label: 术语速查
-        url: /wiki/topics/deep-learning/glossary.html
-      - label: 一手来源与实验边界
-        url: /wiki/topics/deep-learning/weight-space-programming-sources.html
+      - label: LLM 训练配方导读
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/
+      - label: Rufus-Air：八阶段配方
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/
+      - label: 01 数据、SFT 与 RLVR
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/data-sft-and-rlvr.html
+      - label: 02 Agentic RL 与环境
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/agentic-environments.html
+      - label: 03 奖励、RLHF 与稳定性
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/reward-and-stability.html
+      - label: 04 基础设施与评测
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/infrastructure-and-evaluation.html
+      - label: 配方标准库实验与检查表
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/lab.html
+      - label: 一手来源与复现边界
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/rufus-air/sources.html
       - label: 扩散后训练与推理工程 101
+        group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/
       - label: 01 DPO 与偏好数据
+        group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/01-dpo-and-preference-pairs.html
       - label: 02 RL 与去噪轨迹
+        group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/02-rl-through-denoising.html
       - label: 03 奖励与多目标
+        group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/03-rewards-judges-and-advantages.html
-      - label: 04 Autoresearch 与评估器
-        url: /wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.html
-      - label: 05 GPU 与 Roofline
-        url: /wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.html
-      - label: 06 实时视频估算
-        url: /wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.html
       - label: 扩散标准库实验与练习
+        group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/lab.html
+      - label: GPU、内存与 Roofline
+        group: 推理与硬件
+        url: /wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.html
+      - label: 实时视频成本估算
+        group: 推理与硬件
+        url: /wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.html
+      - label: Autoresearch 与评估器
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.html
+      - label: 权重空间编程：图文解读
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html
+      - label: 01 架构、权重与语义
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-01
+      - label: 02 方法与历史位置
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-02
+      - label: 03 手写 15 参数网络
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-03
+      - label: 04 QK 与 OV 计算
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-04
+      - label: 05 八个实验的权限
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-05
+      - label: 06 修补与能力
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-06
+      - label: 07 几何与坐标对齐
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-07
+      - label: 08 因果与复现证据
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-08
+      - label: 09 Harness 与回滚
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-09
+      - label: 10 学习与判断
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-10
+      - label: 本地实验与自测
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming-lab.html
+      - label: 术语速查
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/glossary.html
+      - label: 一手来源与实验边界
+        group: 权重编辑与解释
+        url: /wiki/topics/deep-learning/weight-space-programming-sources.html
   - label: 支付行业 101
     title: 支付行业 101
     url: /wiki/topics/payments/

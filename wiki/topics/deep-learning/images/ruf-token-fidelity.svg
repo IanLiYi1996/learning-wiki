@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">文字用于阅读，采样 token 用于训练</title>
+<desc id="desc">简化协议地图；真实 API 字段与专家回放还要核验指定版本。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">文字用于阅读，采样 token 用于训练</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">简化协议地图；真实 API 字段与专家回放还要核验指定版本。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">采样记录</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">原始 token IDs、旧概率、权重版本与专家路由</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">环境追加</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">行动与观察分开；保留实际每轮输入，不修写旧动作</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">训练载荷</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">位置对齐的 action／loss mask，工具观察不冒充模型动作</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">参数更新</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">读取真实轨迹；新策略概率允许变化，不等于重新分词旧文本</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">格式修复、摘要与模板重套不能替换原采样动作；零占位也不代表环境文本概率为 1。</text>
+</g>
+</svg>
