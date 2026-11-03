@@ -16,6 +16,42 @@ sections:
     icon: inbox
 
 topics:
+  - label: 深度学习专题
+    title: 深度学习专题解读
+    url: /wiki/topics/deep-learning/
+    description: 从权重空间编程出发，把研究主张拆成数学机制、实验权限、复现证据与本地练习。
+    meta: 权重空间 · 10 节 · 9 张图 · 本地实验
+    items:
+      - label: 专题导读
+        url: /wiki/topics/deep-learning/
+      - label: 权重空间编程：图文解读
+        url: /wiki/topics/deep-learning/weight-space-programming.html
+      - label: 01 架构、权重与语义
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-01
+      - label: 02 方法与历史位置
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-02
+      - label: 03 手写 15 参数网络
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-03
+      - label: 04 QK 与 OV 计算
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-04
+      - label: 05 八个实验的权限
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-05
+      - label: 06 修补与能力
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-06
+      - label: 07 几何与坐标对齐
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-07
+      - label: 08 因果与复现证据
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-08
+      - label: 09 Harness 与回滚
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-09
+      - label: 10 学习与判断
+        url: /wiki/topics/deep-learning/weight-space-programming.html#wsp-10
+      - label: 本地实验与自测
+        url: /wiki/topics/deep-learning/weight-space-programming-lab.html
+      - label: 术语速查
+        url: /wiki/topics/deep-learning/glossary.html
+      - label: 一手来源与实验边界
+        url: /wiki/topics/deep-learning/weight-space-programming-sources.html
   - label: 支付行业 101
     title: 支付行业 101
     url: /wiki/topics/payments/

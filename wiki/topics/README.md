@@ -4,6 +4,7 @@
 
 ## 主题索引
 
+- [深度学习专题解读](deep-learning/README.md)：权重空间编程的数学机制、原始实验与复现边界，配有本地练习和自测
 - [支付行业 101](payments/README.md)：22 课、32 张机制图，12 课主干加 10 课领域补全，串起产品、资金、运营、风险和工程
 - [区块链原理、生态与钱包工程](blockchain/README.md)：34 课白话图解与行业现状，从共识与状态到钱包、密钥和云基础设施，含完整新版机制
 - [Shader 与 Web 渲染](rendering/README.md)：从图形基础到 WebGL、Three.js 和 WebGPU
