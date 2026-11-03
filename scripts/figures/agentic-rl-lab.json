@@ -1,0 +1,137 @@
+[
+  {
+    "id":"arl-learning-map","topic":"deep-learning","kind":"flow",
+    "title":"Agentic RL 学习地图：先找信号，再读实现",
+    "subtitle":"本 Wiki 的概念学习顺序；不是六阶段训练配方。",
+    "nodes":[
+      ["优化目标","奖励、优势、概率比与归约"],
+      ["工具与环境","行动、观察、状态与预算"],
+      ["在线蒸馏","学生采样与 teacher 反馈"],
+      ["长程信用","trajectory／turn／macro-step"],
+      ["模态与裁判","图片、领域工具与质量评分"],
+      ["复现与评测","固定题集、协议、成本与边界"]
+    ],
+    "note":"箭头表示阅读依赖；六章将上游 16 个入口归类，不把所有实验都叫多轮 Agentic RL。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/README.md","after":"## 1. 先看学习地图：六类问题，不是算法名字串"}]
+  },
+  {
+    "id":"arl-local-remote","topic":"deep-learning","kind":"layers",
+    "title":"本地轻量，不等于远端无成本",
+    "subtitle":"根据固定依赖与客户端职责拆分；不是服务部署或报价。",
+    "layers":[
+      ["本地编排","数据、prompt、环境、奖励与 Datum／custom loss"],
+      ["远程模型","PyTRIO 采样、模型前向／反向、LoRA 参数更新"],
+      ["其他服务","搜索、teacher、judge 的请求与 token 消耗另计"],
+      ["验证责任","脚本可读不等于服务内核已核验；SDK／服务版本也要固定"]
+    ],
+    "note":"CPU 依赖只是本地路径；API 费用、模型权重状态、日志隐私与工具隔离仍然要检查。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/README.md","after":"## 3. 为什么“本地不用 GPU”不等于没有计算成本"}]
+  },
+  {
+    "id":"arl-signed-clipping","topic":"deep-learning","kind":"compare",
+    "title":"PPO 是否停学，要同时看 ratio 与优势符号",
+    "subtitle":"原创标量导数；边界 [0.8,1.2]、ratio=1.4；不代表真实网络更新幅度。",
+    "columns":["目标","A=+1","A=−1"],
+    "rows":[
+      ["IS","loss=−1.4；梯度=−1.4","loss=+1.4；梯度=+1.4"],
+      ["PPO","选择 1.2；这一项梯度为 0","选择 −1.4；梯度仍为 +1.4"],
+      ["CISPO","固定权重 1.2；梯度=−1.2","固定权重 1.2；梯度=+1.2"]
+    ],
+    "note":"CISPO 停的是 clipped weight 的梯度；PPO 裁剪 surrogate，不硬性保证实际 KL 或参数位移。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/policy-objectives.md","after":"## 2. 三种 loss：裁剪对象和梯度路径不同"}]
+  },
+  {
+    "id":"arl-objective-scales","topic":"deep-learning","kind":"compare",
+    "title":"组优势、裁剪尺度与 loss 分母：三处不同选择",
+    "subtitle":"比较 Lab 的特定实现，不能跨脚本补齐未出现的原论文组件。",
+    "columns":["实现","ratio／裁剪","归约与采样"],
+    "rows":[
+      ["GRPO demo","token；内置 IS 或 PPO","mean-only 优势；远端归约另核验"],
+      ["DAPO preset","token；边界 [0.8,1.28]","token mean；原始正确性筛选，有限补采"],
+      ["GSPO","序列几何平均；整条裁剪","sequence mean；退化零目标保留原分母"]
+    ],
+    "note":"同名 GRPO 的标准差约定也会变；曲线对照还须固定模型、数据、总生成 token 和独立评测。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/policy-objectives.md","after":"## 4. GSPO：几何平均是序列尺度，不是全序列概率乘积"}]
+  },
+  {
+    "id":"arl-action-observation","topic":"deep-learning","kind":"flow",
+    "title":"工具观察接回上下文，但不冒充模型行动",
+    "subtitle":"原创片段级协议示意；真实实现仍需逐 token 对齐。",
+    "nodes":[
+      ["模型生成查询","动作 token；记录采样旧概率"],
+      ["工具执行","解析协议、权限、超时与预算"],
+      ["观察接回","保留证据；这一段无策略优势"],
+      ["模型生成答案","受观察影响；记录动作 token"],
+      ["终局评分","Search／代码／环境的规则不同"],
+      ["Datum 与更新","对齐旧 token、概率、优势与目标"]
+    ],
+    "note":"mask=0 不等于 attention=0；ReTool 新进程也不等于文件／网络隔离。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/tools-and-environments.md","after":"## 3. 观察 mask：保留证据，不冒充动作"}]
+  },
+  {
+    "id":"arl-distillation-contract","topic":"deep-learning","kind":"layers",
+    "title":"在线蒸馏：学生写答案，teacher 沿原轨迹评分",
+    "subtitle":"OPD／OPSD 的教学合同；不同 teacher 冻结与刷新规则须逐脚本核验。",
+    "layers":[
+      ["学生条件","任务 prompt → 学生真实采样 token 与旧概率"],
+      ["教师条件","同一前缀；可以另有参考解答／Skill，仅供训练评分"],
+      ["反馈信号","teacher logprob − student sampling logprob；不是偏好对"],
+      ["学生更新","使用学生 prompt 与原 token；不把开卷信息混入部署输入"]
+    ],
+    "note":"old、reference、teacher 是三个角色；sampled-token 概率差不等于精确完整序列 KL 梯度。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/on-policy-distillation.md","after":"## 2. 四个目录，四种 teacher 合同"}]
+  },
+  {
+    "id":"arl-credit-scales","topic":"deep-learning","kind":"compare",
+    "title":"信用分配：结果方向、轮级强弱与未来估值",
+    "subtitle":"比较本仓库 ALFWorld 实现；不是三种方法的质量排名。",
+    "columns":["方法","信号怎样形成","失效边界"],
+    "rows":[
+      ["ALFWorld 基线","终局奖励；同轨迹动作共享优势","成功绕路也可能同奖；同组同分退化"],
+      ["AgentOPSD","Skill teacher 调整轮级强弱","默认最终倍率 0.9–1.1；不能翻转终局方向"],
+      ["TEMPO","段回报＋终点估值；macro-step 分支比较","critic 偏差经 bootstrap 传播；恢复合同另核验"]
+    ],
+    "note":"turn 的概率证据不是因果贡献；macro-step 新采样也不证明旧前缀严格 on-policy。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/credit-assignment.md","after":"## 2. AgentOPSD：结果定方向，teacher 调强弱"}]
+  },
+  {
+    "id":"arl-modalities-judges","topic":"deep-learning","kind":"compare",
+    "title":"视觉条件、SFT 与相对裁判，不要统称同一种 RL",
+    "subtitle":"按固定客户端的实际学习信号分类；不使用作者曲线作独立验证。",
+    "columns":["实验","学习信号","不能直接推出"],
+    "rows":[
+      ["Vision GRPO","图文考卷＋选择题正确性","不是多轮工具 agent"],
+      ["Spec-o3","光谱工具轨迹 SFT → GRPO","不是自动发现新星的部署验收"],
+      ["PyTRIO-Jev","判断位置 masked SFT＋概率校准","不是已验证的在线奖励 RL"],
+      ["Tournament","比赛胜场＋格式奖励","相对第一名不等于事实正确或绝对合格"]
+    ],
+    "note":"上下文零 mask 仍会改变下一步行为；裁判位置、格式和调用预算是测量的一部分。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/multimodal-and-judges.md","after":"## 5. 先固定预算，再比较"}]
+  },
+  {
+    "id":"arl-evaluation-ledger","topic":"deep-learning","kind":"layers",
+    "title":"同一个 evaluator，不足以固定同一个测量",
+    "subtitle":"从源码中的具体差异推导的评测检查层次。",
+    "layers":[
+      ["题目身份","数据 revision、最终 ID、split、筛选与漏题核对"],
+      ["交互协议","工具后端、观察提示、候选动作、搜索时间窗口"],
+      ["评分口径","答案抽取窗口、等价判定、Average@N／Pass@N 与分母"],
+      ["预算与失败","生成／上下文／工具上限；重试、中止与执行后漏计"]
+    ],
+    "note":"模型、judge、harness 和预算一起构成成绩合同；summary 有字段不等于实际请求使用了它。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/evaluation-and-reproduction.md","after":"## 2. 同一个 evaluator，也可能有两套判卷器"}]
+  },
+  {
+    "id":"arl-denominator-toy","topic":"deep-learning","kind":"compare",
+    "title":"预测没变，报告的 loss 也能变",
+    "subtitle":"原创数字；不是模型成绩、训练曲线或真实梯度实测。",
+    "columns":["同一批数据","归约 A","归约 B"],
+    "rows":[
+      ["loss：[2] 与 [0,0,0]","sample mean = 1","token mean = 0.5"],
+      ["8 条；3 条非零 objective","原始分母：−1/8 = −0.125","活跃分母：−1/3 ≈ −0.3333"],
+      ["发生了什么","改变训练权重或指标定义","没有新采样，也没有权重改善"]
+    ],
+    "note":"比较 loss 前先固定 mask、sequence／token 分母与零目标处理；真实能力要看独立验收。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/agentic-rl-lab/lab.md","after":"## C. 同一批预测，换分母就能换 loss"}]
+  }
+]

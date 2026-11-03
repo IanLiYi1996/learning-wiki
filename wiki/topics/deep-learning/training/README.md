@@ -2,7 +2,7 @@
 
 研究日期：2026-11-03。[深度学习五方向目录](../README.md#category-training)。
 
-这一分组讨论“怎样让参数更新可解释、可验证、可复现”。先分清预训练、SFT、偏好优化、可验证奖励 RL 和 Agentic RL，再看数据、环境、计算与评测怎样共同构成 recipe。本次从 [Rufus-Air 八阶段配方](rufus-air/README.md)进入，不是完整预训练教科书。
+这一分组讨论“怎样让参数更新可解释、可验证、可复现”。先分清预训练、SFT、偏好优化、可验证奖励 RL 和 Agentic RL，再看数据、环境、计算与评测怎样共同构成 recipe。可从 [Rufus-Air 八阶段配方](rufus-air/README.md)看整条流水线，从 [Agentic-RL Lab](agentic-rl-lab/README.md)看算法到源码；这里不是完整预训练教科书。
 
 ## 当前读本与细分入口
 
@@ -15,6 +15,19 @@
 | 怎样读 batch、资源和模型成绩？ | [04 基础设施与评测](rufus-air/infrastructure-and-evaluation.md) | 单位、真实成本、同协议比较与归因 |
 | 不用大 GPU 可以验证什么？ | [标准库实验与检查表](rufus-air/lab.md) | 计数、mask、token 合同、失败分类和测量合同 |
 | 什么已公开、什么仍需补齐？ | [来源与复现边界](rufus-air/sources.md) | 固定论文／组件版本，区别上游能力与专用适配 |
+
+## Agentic-RL Lab：六类问题拆到代码
+
+| 细分方向 | 入口 | 不应混淆的对象 |
+| --- | --- | --- |
+| 优化目标 | [GRPO／DAPO／GSPO](agentic-rl-lab/policy-objectives.md) | 奖励、优势、概率比、裁剪、归约 |
+| 工具与环境 | [Search-R1／ReTool／ALFWorld](agentic-rl-lab/tools-and-environments.md) | 动作与观察；工具成功与任务成功 |
+| 在线蒸馏 | [OPD／OPSD](agentic-rl-lab/on-policy-distillation.md) | student 采样、teacher 评分、训练特权与 DPO |
+| 长程信用分配 | [AgentOPSD／TEMPO](agentic-rl-lab/credit-assignment.md) | 终局方向、turn 重分配、macro-step bootstrap |
+| 多模态与评分器 | [视觉／Spec-o3／Jev／Tournament](agentic-rl-lab/multimodal-and-judges.md) | 图像条件、SFT、RL、校准与相对排序 |
+| 评测复现 | [代码合同与检查表](agentic-rl-lab/evaluation-and-reproduction.md) | 题目身份、harness、预算、失败和真实成本 |
+
+[导读与 16 个上游入口映射](agentic-rl-lab/README.md) · [标准库实验](agentic-rl-lab/lab.md) · [固定来源与核验范围](agentic-rl-lab/sources.md)。新增读本不移动 Rufus-Air 页面，也不声称小规模示例已经复现大型 MoE recipe。
 
 ## 一份训练合同至少有六部分
 

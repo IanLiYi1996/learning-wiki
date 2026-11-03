@@ -1,4 +1,4 @@
-// Read-only QA for all eight training pages; named agent-browser session only.
+// Read-only QA for the original eight recipe pages; named session only.
 (async () => {
   // A URL navigation can finish before deferred wiki enhancement scripts.
   if (document.readyState === 'loading') {
@@ -52,8 +52,8 @@
   });
   const study = records.filter(record => new URL(record.url, location.origin).pathname
     .startsWith(`${base}/wiki/topics/deep-learning/training/`));
-  if (study.length !== 8 || new Set(study.map(record => record.url)).size !== 8) {
-    throw new Error('Expected eight searchable training pages');
+  if (study.length !== 17 || new Set(study.map(record => record.url)).size !== 17) {
+    throw new Error('Expected seventeen searchable training pages');
   }
   if (study.find(record => new URL(record.url, location.origin).pathname === route)?.title !== title) {
     throw new Error('Incorrect search title');

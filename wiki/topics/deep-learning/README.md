@@ -8,7 +8,7 @@
 
 | 想回答的问题 | 入口 | 当前细分内容 |
 | --- | --- | --- |
-| 如何把 base LLM 训练成能推理、用工具的模型？ | [LLM 训练配方](training/README.md) | Rufus-Air：SFT、RLVR、Agentic RL、RLHF、基础设施 |
+| 如何把 base LLM 训练成能推理、用工具的模型？ | [LLM 训练配方](training/README.md) | Rufus-Air 流水线；Agentic-RL Lab 算法、环境、蒸馏与评测 |
 | 如何让图像／视频更符合偏好和任务？ | [扩散与视觉生成](diffusion/README.md) | DPO、去噪链上的 RL、视觉奖励和组合优势 |
 | 如何判断推理成本与“实时”是否可信？ | [GPU 与内存](diffusion/05-gpu-and-memory-roofline.md) | CUDA 层次、Roofline、视频 token、吞吐与时延 |
 | 如何让代理自动试验，而不被假指标带跑？ | [自动研究与评测](diffusion/04-autoresearch-and-oracles.md) | 实验契约、oracle、正确性准入、持出集 |
@@ -19,7 +19,8 @@
 ```text
 深度学习专题
 ├─ LLM 训练与后训练
-│  └─ Rufus-Air：总览 → 数据／SFT／RLVR → Agent → 奖励 → 工程／评测 → 实验
+│  ├─ Rufus-Air：总览 → 数据／SFT／RLVR → Agent → 奖励 → 工程／评测 → 实验
+│  └─ Agentic-RL Lab：目标 → 工具环境 → 蒸馏 → 信用分配 → 多模态／裁判 → 复现
 ├─ 扩散与视觉生成：偏好对 → 去噪轨迹 → 奖励设计
 ├─ 推理与硬件：GPU／内存 → 视频成本
 ├─ 自动研究与评测：候选程序 → oracle → 保留或回滚
@@ -33,6 +34,8 @@
 [Rufus-Air 图文解读](training/rufus-air/README.md)从一份八阶段配方入手，先分清预训练、SFT、带可验证奖励的 RL、Agentic RL 和最终 RLHF。细分四章，另有标准库实验与来源／复现检查表。
 
 配方不是一组能跨模型照抄的学习率：数据版本、输出格式、loss mask、真实采样 token、环境、停止条件都属于输入。相关概念与具体作者报告分别标注。
+
+[Agentic-RL Lab 六章解读](training/agentic-rl-lab/README.md)把 Datawhale 仓库的 16 个入口映射到六类学习问题：优化目标、工具环境、在线蒸馏、长程信用分配、多模态与评分器、评测复现。10 张原创图和标准库实验帮助把公式对应到实际源码；同时说明远程训练成本、代码执行隔离与测量合同。
 
 <a id="category-diffusion"></a>
 
@@ -87,6 +90,8 @@
 ## 建议阅读路线
 
 **想读训练 recipe**：先读 [Rufus-Air 总览](training/rufus-air/README.md)，按四章顺序阅读；用实验页核对 batch 单位和 mask，而不是立即启动大模型训练。
+
+**想读 Agentic RL 代码**：先读 [Lab 导读](training/agentic-rl-lab/README.md)与[优化目标](training/agentic-rl-lab/policy-objectives.md)，再走工具／环境和蒸馏路线。用[免费标准库验算](training/agentic-rl-lab/lab.md)检查学习信号；上游远程模型实验须另行确认预算与安全，不因本地 CPU 可运行就自动启动。
 
 想学图像／视频生成的后训练与工程，先走[扩散专题的阅读路线](diffusion/README.md)。它独立于下面的权重空间编程路线，无需先读完 WSP。
 
