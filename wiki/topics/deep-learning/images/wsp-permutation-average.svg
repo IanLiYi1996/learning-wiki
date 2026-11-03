@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="494" viewBox="0 0 1040 494" role="img" aria-labelledby="title desc">
+<title id="title">函数相同，也不能保证权重盲平均正确</title>
+<desc id="desc">原创一维 ReLU 反例；只交换两个隐藏单元，偏置全部为零。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="494" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">函数相同，也不能保证权重盲平均正确</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创一维 ReLU 反例；只交换两个隐藏单元，偏置全部为零。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">核对项</text>
+<rect x="220" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">原网络</text>
+<rect x="480.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="493.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">隐藏单元重排后</text>
+<rect x="740.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="753.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">参数逐项平均</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">第一层两行</text>
+<rect x="220" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[+1;-1]</text>
+<rect x="480.0" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[-1;+1]</text>
+<rect x="740.0" y="180" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[0;0]</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">输出层两列</text>
+<rect x="220" y="248" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[1,0]</text>
+<rect x="480.0" y="248" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[0,1]</text>
+<rect x="740.0" y="248" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">[0.5,0.5]</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">计算的函数</text>
+<rect x="220" y="316" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">ReLU(x)</text>
+<rect x="480.0" y="316" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">ReLU(x)</text>
+<rect x="740.0" y="316" width="260.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">恒为 0</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">输入 x=1</text>
+<rect x="220" y="384" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">输出 1</text>
+<rect x="480.0" y="384" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">输出 1</text>
+<rect x="740.0" y="384" width="260.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">输出 0</text>
+<line x1="40" y1="430" x2="1000" y2="430" stroke="#e0e7e2"/>
+<text x="40" y="454" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">需同时重排相邻层连接；这否定的是任意平均保证，不是否定所有模型合并方法。</text>
+</g>
+</svg>

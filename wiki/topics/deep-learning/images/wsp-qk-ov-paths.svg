@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="572" viewBox="0 0 1040 572" role="img" aria-labelledby="title desc">
+<title id="title">一个注意力头：看哪里，与搬什么分开</title>
+<desc id="desc">简化计算示意；略去位置编码、归一化、多头及其他模块。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="572" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">一个注意力头：看哪里，与搬什么分开</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">简化计算示意；略去位置编码、归一化、多头及其他模块。</text>
+<path d="M 274,262 L 338,262 L 338,194 L 414,194" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="315.0" y="215.0" width="46" height="25" fill="#fff"/>
+<text x="338.0" y="233.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">匹配</text>
+<path d="M 664,194 L 714,194 L 714,250 L 774,250" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="701.65" y="209.0" width="24.7" height="25" fill="#fff"/>
+<text x="714.0" y="227.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">α</text>
+<path d="M 274,314 L 338,314 L 338,388 L 414,388" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="315.0" y="338.0" width="46" height="25" fill="#fff"/>
+<text x="338.0" y="356.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">内容</text>
+<path d="M 664,388 L 714,388 L 714,326 L 774,326" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="691.0" y="344.0" width="46" height="25" fill="#fff"/>
+<text x="714.0" y="362.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">写入</text>
+<rect x="64" y="234" width="210" height="112" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="169.0" y="283.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">位置表示</text>
+<text x="169.0" y="318.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">当前位置 rt 与来源 rs</text>
+<rect x="414" y="140" width="250" height="108" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="539.0" y="187.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">QK 匹配</text>
+<text x="539.0" y="222.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">WQᵀWK → 分数 → 注意力 α</text>
+<rect x="414" y="334" width="250" height="108" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="539.0" y="381.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">OV 内容</text>
+<text x="539.0" y="416.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">WOWV：读来的表示怎样写出</text>
+<rect x="774" y="234" width="210" height="112" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="879.0" y="283.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">组合输出</text>
+<text x="879.0" y="318.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">按 α 加权搬运内容</text>
+<line x1="40" y1="508" x2="1000" y2="508" stroke="#e0e7e2"/>
+<text x="40" y="532" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">蓝色箭头表示计算依赖；静态矩阵乘积不等于任意真实输入上的完整注意力。</text>
+</g>
+</svg>

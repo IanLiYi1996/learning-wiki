@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">读一串权重之前，先恢复计算契约</title>
+<desc id="desc">教学分层；数字、连接、坐标语义与运行结果是不同对象。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">读一串权重之前，先恢复计算契约</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">教学分层；数字、连接、坐标语义与运行结果是不同对象。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">架构</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">层次连接、激活函数、归一化与位置编码</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">参数布局</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">张量名称、形状、行列约定与数值精度</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">输入输出</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">某一维是什么？某个打分怎样变成动作或词？</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">运行证据</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">激活、输出和评测来自具体输入；不能冒充静态权重</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">本课使用列向量 y=Wx+b；看到了前向信息，不等于使用了梯度。</text>
+</g>
+</svg>

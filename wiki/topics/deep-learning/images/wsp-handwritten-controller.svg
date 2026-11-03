@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="360" viewBox="0 0 1040 360" role="img" aria-labelledby="title desc">
+<title id="title">从一行控制规则，到 15 个参数的小网络</title>
+<desc id="desc">原创教学：只比较位置 p 与目标 t；无速度、惯性、噪声或真实环境。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="360" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">从一行控制规则，到 15 个参数的小网络</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创教学：只比较位置 p 与目标 t；无速度、惯性、噪声或真实环境。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">输入 x=(p,t)</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">先指定两个坐标的含义</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">ReLU 两路</text>
+<text x="520.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">hR=max(0,t-p)，hL=max(0,</text>
+<text x="520.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">p-t)</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">左／停／右</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">打分 [-d,0,+d]，d=t-p</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="296" x2="1000" y2="296" stroke="#e0e7e2"/>
+<text x="40" y="320" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">取最大打分，平局优先停；W1／b1／W2／b2 共 4+2+6+3=15 个参数。</text>
+</g>
+</svg>

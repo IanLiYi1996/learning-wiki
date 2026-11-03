@@ -1,0 +1,136 @@
+[
+  {
+    "id": "wsp-computation-contract", "topic": "deep-learning", "kind": "layers",
+    "title": "读一串权重之前，先恢复计算契约",
+    "subtitle": "教学分层；数字、连接、坐标语义与运行结果是不同对象。",
+    "layers": [
+      ["架构", "层次连接、激活函数、归一化与位置编码"],
+      ["参数布局", "张量名称、形状、行列约定与数值精度"],
+      ["输入输出", "某一维是什么？某个打分怎样变成动作或词？"],
+      ["运行证据", "激活、输出和评测来自具体输入；不能冒充静态权重"]
+    ],
+    "note": "本课使用列向量 y=Wx+b；看到了前向信息，不等于使用了梯度。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 01 先分清：架构、权重和输入含义"}]
+  },
+  {
+    "id": "wsp-method-map", "topic": "deep-learning", "kind": "compare",
+    "title": "都可能得到新权重，但机制并不相同",
+    "subtitle": "对照本课讨论的方法，不是新旧方法的性能排名。",
+    "columns": ["方法", "谁提出参数变化", "首要核验点"],
+    "rows": [
+      ["普通训练", "损失与优化器", "数据、目标和优化过程"],
+      ["Hypernetwork", "专门训练的生成网络", "生成器怎样训练、迁移到哪些任务"],
+      ["Tracr", "受约束程序的编译器", "支持语言、语义与架构限制"],
+      ["ROME", "专门定位与编辑方法", "目标有效性、泛化与非目标保持"],
+      ["本文 WSP", "通用 LLM 对计算进行推理", "可见信息、工具、反馈与独立评测"]
+    ],
+    "note": "直接写权重并非首次出现；禁止目标网络训练，也不意味着编程者没有预训练。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 02 新意在推理主体，不在“第一次有人写权重”"}]
+  },
+  {
+    "id": "wsp-handwritten-controller", "topic": "deep-learning", "kind": "flow",
+    "title": "从一行控制规则，到 15 个参数的小网络",
+    "subtitle": "原创教学：只比较位置 p 与目标 t；无速度、惯性、噪声或真实环境。",
+    "nodes": [
+      ["输入 x=(p,t)", "先指定两个坐标的含义"],
+      ["ReLU 两路", "hR=max(0,t-p)，hL=max(0,p-t)"],
+      ["左／停／右", "打分 [-d,0,+d]，d=t-p"]
+    ],
+    "note": "取最大打分，平局优先停；W1／b1／W2／b2 共 4+2+6+3=15 个参数。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 03 手算：15 个参数怎样变成一个控制程序"},
+      {"file": "wiki/topics/deep-learning/weight-space-programming-lab.md", "after": "## 实验 A：把简单程序写进 15 个参数"}
+    ]
+  },
+  {
+    "id": "wsp-qk-ov-paths", "topic": "deep-learning", "kind": "scene", "height": 572,
+    "title": "一个注意力头：看哪里，与搬什么分开",
+    "subtitle": "简化计算示意；略去位置编码、归一化、多头及其他模块。",
+    "nodes": [
+      {"id":"residuals","x":64,"y":234,"w":210,"h":112,"label":"位置表示","detail":"当前位置 rt 与来源 rs","color":0},
+      {"id":"qk","x":414,"y":140,"w":250,"h":108,"label":"QK 匹配","detail":"WQᵀWK → 分数 → 注意力 α","color":1},
+      {"id":"ov","x":414,"y":334,"w":250,"h":108,"label":"OV 内容","detail":"WOWV：读来的表示怎样写出","color":2},
+      {"id":"output","x":774,"y":234,"w":210,"h":112,"label":"组合输出","detail":"按 α 加权搬运内容","color":3}
+    ],
+    "edges": [
+      {"points":[[274,262],[338,262],[338,194],[414,194]],"label":"匹配","label_segment":1},
+      {"points":[[664,194],[714,194],[714,250],[774,250]],"label":"α","label_segment":1},
+      {"points":[[274,314],[338,314],[338,388],[414,388]],"label":"内容","label_segment":1},
+      {"points":[[664,388],[714,388],[714,326],[774,326]],"label":"写入","label_segment":1}
+    ],
+    "note": "蓝色箭头表示计算依赖；静态矩阵乘积不等于任意真实输入上的完整注意力。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 04 读权重：不要只盯某一个大数字"}]
+  },
+  {
+    "id": "wsp-observation-budgets", "topic": "deep-learning", "kind": "layers",
+    "title": "无梯度、无前向、无反馈：三个不同限制",
+    "subtitle": "原文实验权限的学习分类；详细协议仍需查对应实验与日志。",
+    "layers": [
+      ["权重文本", "实验 1–2：不允许运行，但提供相应架构与输入语义"],
+      ["静态分析", "实验 3：可用 Python 分析参数，不允许输入前向"],
+      ["运行观测", "实验 7：纯权重未成功，放宽到注意力观测后成功"],
+      ["验证反馈", "实验 6／8：工具写参数，前向服务也可提供中间激活"]
+    ],
+    "note": "层次表示可见证据的差异，不是总计算量排名；前向调用数不等于题目数量。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 05 八个实验：先读权限，再读输赢"}]
+  },
+  {
+    "id": "wsp-repair-vs-capability", "topic": "deep-learning", "kind": "compare",
+    "title": "修复推理循环，不等于获得任意新能力",
+    "subtitle": "作者报告的案例及本课的阅读判断；不是本 Wiki 独立重跑。",
+    "columns": ["问题", "有明显循环的 Qwen 案例", "较少循环的 Gemma 对照"],
+    "rows": [
+      ["作者观察", "长度截断／循环是主要障碍", "常见算术与代数错误"],
+      ["修补结果", "报告数学与指令跟随改善", "未建立相当改善"],
+      ["可保留解释", "可能释放被障碍遮住的能力", "局部修补不能保证补出缺失能力"],
+      ["仍需核验", "匹配解码、长度、反馈及聚合条件", "多次尝试、噪声、基线与统计边界"]
+    ],
+    "note": "参数比例小不等于功能影响小；成功案例和失败对照都应保留。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 06 Qwen 案例：消除障碍，不一定是增加能力"}]
+  },
+  {
+    "id": "wsp-partial-projection", "topic": "deep-learning", "kind": "compare",
+    "title": "投影选中列，不会自动清除其他列",
+    "subtitle": "原创数字例：u=(1,0)，W 的每列表示输入对输出的贡献。",
+    "columns": ["核对项", "原矩阵", "只处理第一列", "处理全部两列"],
+    "rows": [
+      ["第一行", "[2,3]", "[0,3]", "[0,0]"],
+      ["第二行", "[4,5]", "[4,5]", "[4,5]"],
+      ["第一列沿 u", "2", "0", "0"],
+      ["第二列沿 u", "3", "3", "0"],
+      ["能推出什么", "存在该方向贡献", "选中列已处理；整体仍有贡献", "这个矩阵各列均垂直于 u"]
+    ],
+    "note": "本例是几何，不是定位语言模型行为方向或复现 Qwen 补丁的代码。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "### 一条方向可以影响许多输出"}]
+  },
+  {
+    "id": "wsp-permutation-average", "topic": "deep-learning", "kind": "compare",
+    "title": "函数相同，也不能保证权重盲平均正确",
+    "subtitle": "原创一维 ReLU 反例；只交换两个隐藏单元，偏置全部为零。",
+    "columns": ["核对项", "原网络", "隐藏单元重排后", "参数逐项平均"],
+    "rows": [
+      ["第一层两行", "[+1;-1]", "[-1;+1]", "[0;0]"],
+      ["输出层两列", "[1,0]", "[0,1]", "[0.5,0.5]"],
+      ["计算的函数", "ReLU(x)", "ReLU(x)", "恒为 0"],
+      ["输入 x=1", "输出 1", "输出 1", "输出 0"]
+    ],
+    "note": "需同时重排相邻层连接；这否定的是任意平均保证，不是否定所有模型合并方法。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "### 神经元重排之后，功能可以不变"}]
+  },
+  {
+    "id": "wsp-validation-loop", "topic": "deep-learning", "kind": "flow",
+    "title": "编辑、验证与回滚：让权重推理可检查",
+    "subtitle": "教学 Harness；原文各实验的工具与反馈权限并不相同。",
+    "nodes": [
+      ["明确规格", "架构、语义、权限与目标"],
+      ["保留快照", "原权重与版本可追溯"],
+      ["提出补丁", "记录张量、原因和差异"],
+      ["许可内验证", "只用批准的数据与预算"],
+      ["检查副作用", "非目标行为与替代基线"],
+      ["保留或回滚", "最终测试隔离并记录成本"]
+    ],
+    "loop": "允许反馈时才修订",
+    "note": "仅在允许反馈时迭代；零反馈实验提交后再评分，最终测试不能反复用于调参。",
+    "placements": [{"file": "wiki/topics/deep-learning/weight-space-programming.md", "after": "## 09 一个可检验的 Harness 应该约束什么"}]
+  }
+]

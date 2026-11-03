@@ -33,6 +33,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 支付主干图组在 `payments.json`（14 图）；领域补全分在 `payments-foundations.json`、`payments-operations.json`、`payments-engineering-regions.json`、`payments-digital-money.json`（18 图）。用 `--id-prefix payment-` 重建支付专题全部 32 图，或用 `--id-prefix payment-ext-` 只重建 13–22 课的补全图。内容覆盖产品、终端、订阅、商户运营、资金、密码与账本、中国体系、现金与数字货币；费用与架构均为教学示例，不代表公司生产数据或部署。发布范围只含公开一手资料的扩展读本，不含内部会议附件或录屏。
 
+深度学习图组在 `deep-learning.json`，当前围绕权重空间编程，包括计算契约、方法对照、手写控制器、QK／OV、实验权限、修补与能力、投影、置换平均和验证回滚。用 `--id-prefix wsp-` 单独重建；图中数字例为可测试的原创教学，不冒充原文真实模型评测。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。
