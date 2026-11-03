@@ -23,12 +23,18 @@ DIFFUSION_FILES = tuple("diffusion/" + name for name in (
     "README.md", "01-dpo-and-preference-pairs.md", "02-rl-through-denoising.md",
     "03-rewards-judges-and-advantages.md", "04-autoresearch-and-oracles.md",
     "05-gpu-and-memory-roofline.md", "06-realtime-video-estimates.md", "lab.md"))
+TRAINING_FILES = ("training/README.md",) + tuple("training/rufus-air/" + name for name in (
+    "README.md", "data-sft-and-rlvr.md", "agentic-environments.md",
+    "reward-and-stability.md", "infrastructure-and-evaluation.md", "lab.md", "sources.md"))
 ROUTES = {name: "wiki/topics/deep-learning/" +
           ("index.html" if name == "README.md" else name.replace(".md", ".html"))
           for name in FILES}
 DIFFUSION_ROUTES = {name: "wiki/topics/deep-learning/" +
                     ("diffusion/index.html" if name.endswith("README.md") else
                      name.replace(".md", ".html")) for name in DIFFUSION_FILES}
+TRAINING_ROUTES = {name: "wiki/topics/deep-learning/" +
+                   name.replace("README.md", "index.html").replace(".md", ".html")
+                   for name in TRAINING_FILES}
 LESSONS = [f"wsp-{number:02d}" for number in range(1, 11)]
 SOURCE_IDS = {"blog", "logs", "experiments", "qwen", "qwen-results",
               "checkpoint-release", "gemma", "transformer-circuits", "tracr",
@@ -57,6 +63,17 @@ DIFFUSION_VERSIONS = {
     "f1ad765bc9a330e6cf387f95e9c1e5a6c4bb2d02": "github.com/Qwen-Applications/GD2PO",
     "8b33abd84f360473f05e5a750aef36e974340cce": "github.com/verl-project/verl",
 }
+TRAINING_VERSIONS = {
+    "74e23eb6f830fef4a9e96a92f6f6262214cbb9a8":
+        "huggingface.co/datasets/nvidia/Nemotron-Post-Training-Dataset-v1",
+    "0df3cf37f2abefb380370cfb02eabea2a35ae782":
+        "huggingface.co/datasets/Agent-Ark/Toucan-1.5M",
+    "ba3d3aaff23b3f4cac7a14672b4f6e293d97c98b": "github.com/huggingface/Math-Verify",
+    "49b07130b3fcd12f2d064bba7c43869543a0e7e7": "github.com/open-thought/reasoning-gym",
+    "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24": "github.com/LiveCodeBench/LiveCodeBench",
+    "24c91001cf99ba642be791e099d358f4dfe955f5": "github.com/sgl-project/sglang",
+    "540ea919e45b8b929198abce008a103be9cfc779": "github.com/THUDM/slime",
+}
 
 
 def documents():
@@ -69,6 +86,10 @@ def figures():
 
 def diffusion_figures():
     return json.loads((ROOT / "scripts/figures/diffusion.json").read_text(encoding="utf-8"))
+
+
+def training_figures():
+    return json.loads((ROOT / "scripts/figures/training-recipes.json").read_text(encoding="utf-8"))
 
 
 def readable_samples(source):
@@ -89,18 +110,18 @@ class DeepLearningChecks(PaymentsChecks):
     def assert_public_study(self, text, label):
         for version in PUBLIC_VERSIONS:
             text = text.replace(version, "")
-        for version, repository in DIFFUSION_VERSIONS.items():
+        for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS}.items():
             # Exempt only the exact revision in its verified repository URL.
             # Keep the rest of the path visible to all other privacy checks.
-            text = re.sub("(" + re.escape("https://" + repository + "/blob/") + ")" +
-                          re.escape(version) + r"(?=/)", r"\1public-revision", text)
+            text = re.sub("(" + re.escape("https://" + repository) + r"/(?:blob|tree)/)" +
+                          re.escape(version) + r'(?=/|[)\s"<>]|$)', r"\1public-revision", text)
         self.assert_public(text, label)
 
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES + DIFFUSION_FILES) | {f"images/{figure['id']}.{suffix}"
-                               for figure in figures() + diffusion_figures()
+        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES) | {f"images/{figure['id']}.{suffix}"
+                               for figure in figures() + diffusion_figures() + training_figures()
                                for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
                           for path in TOPIC.rglob("*") if path.is_file()}, allowed)
@@ -109,7 +130,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
             self.assertIn(repository, sources)
             self.assertIn(version, sources)
         for path in [ROOT / "scripts/figures/deep-learning.json",
-                     ROOT / "scripts/figures/diffusion.json", *TOPIC.rglob("*")]:
+                     ROOT / "scripts/figures/diffusion.json",
+                     ROOT / "scripts/figures/training-recipes.json", *TOPIC.rglob("*")]:
             if path.is_file() and path.suffix != ".png":
                 self.assert_public_study(path.read_text(encoding="utf-8"), path.name)
         for value in ("f" * 40, "https://private.sharepoint.com/document",
@@ -213,6 +235,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      for lesson in LESSONS}
         expected |= {"/" + relative.replace("index.html", "")
                      for relative in DIFFUSION_ROUTES.values()}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in TRAINING_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -256,7 +280,8 @@ class DeepLearningSiteTests(DeepLearningChecks):
             base + "/wiki/topics/deep-learning/")]
         self.assertEqual(Counter(item["url"] for item in records),
                          Counter(base + "/" + route.replace("index.html", "")
-                                 for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values()]))
+                                 for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values(),
+                                               *TRAINING_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -304,10 +329,13 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        all_files = FILES + DIFFUSION_FILES
+        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES
         allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
-            "index.html", "README.html", "diffusion/index.html", "diffusion/README.html"
-        } | {f"images/{figure['id']}.{suffix}" for figure in figures() + diffusion_figures()
+            "index.html", "README.html", "diffusion/index.html", "diffusion/README.html",
+            "training/index.html", "training/README.html",
+            "training/rufus-air/index.html", "training/rufus-air/README.html"
+        } | {f"images/{figure['id']}.{suffix}"
+             for figure in figures() + diffusion_figures() + training_figures()
              for suffix in ("svg", "png")}
         for path in (SITE / "wiki/topics/deep-learning").rglob("*"):
             if path.is_file():

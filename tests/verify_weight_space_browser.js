@@ -44,7 +44,7 @@
   const topic = `${base}/wiki/topics/deep-learning/`;
   const study = records.filter(record => {
     const route = new URL(record.url, location.origin).pathname;
-    return route.startsWith(topic) && !route.startsWith(`${topic}diffusion/`);
+    return route.startsWith(topic) && !route.slice(topic.length).includes('/');
   });
   if (study.length !== 5 || new Set(study.map(record => record.url)).size !== 5) {
     throw new Error('Expected five searchable topic pages');

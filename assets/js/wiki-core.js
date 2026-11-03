@@ -55,5 +55,23 @@
     const words = (String(text).replace(/[\u3400-\u9fff]/g, ' ').match(/[a-zA-Z0-9]+/g) || []).length;
     return Math.max(1, Math.ceil(han / 400 + words / 180));
   }
-  return { normalizeText, canonicalPath, prepareDocuments, searchDocuments, excerpt, readingMinutes };
+  function chapterNeighbors(links, current, rootLink) {
+    const chapters = [], seen = new Set();
+    for (const link of links) {
+      if (link.hash) continue;
+      let path;
+      try { path = canonicalPath(link.href); } catch (_) { continue; }
+      if (!seen.has(path)) { chapters.push({ link, path }); seen.add(path); }
+    }
+    const path = canonicalPath(current);
+    const index = chapters.findIndex(chapter => chapter.path === path);
+    if (index < 0) return null;
+    let previous = index > 0 ? chapters[index - 1].link : null;
+    if (!previous && rootLink && !rootLink.hash && canonicalPath(rootLink.href) !== path) {
+      previous = rootLink;
+    }
+    return { previous, next: chapters[index + 1]?.link || null };
+  }
+  return { normalizeText, canonicalPath, prepareDocuments, searchDocuments, excerpt, readingMinutes,
+    chapterNeighbors };
 });

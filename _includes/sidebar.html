@@ -15,11 +15,28 @@
     <details class="nav-topic" data-topic="{{ topic.url | relative_url }}"{% if page.url contains topic.url %} open{% endif %}>
       <summary><span>{{ topic.label }}</span>{% include icon.html name="chevron-right" %}</summary>
       <div class="chapter-links">
-        {% for item in topic.items %}
+        {% assign subtopics = topic.items | group_by: "group" %}
+        {% for subtopic in subtopics %}
+        {% if subtopic.name != "" %}
+        {% assign subtopic_active = false %}
+        {% for item in subtopic.items %}
+        {% assign target_url = item.url | split: '#' | first %}
+        {% if page.url == target_url %}{% assign subtopic_active = true %}{% endif %}
+        {% endfor %}
+        <details class="nav-subtopic" data-subtopic="{{ subtopic.name | escape }}"{% if subtopic_active %} open{% endif %}>
+          <summary><span>{{ subtopic.name }}</span>{% include icon.html name="chevron-right" %}</summary>
+          <div class="subtopic-links">
+        {% endif %}
+        {% for item in subtopic.items %}
         {% assign target_url = item.url | split: '#' | first %}
         {% assign target_page = site.pages | where: "url", target_url | first %}
         {% if target_page %}
         <a class="nav-leaf" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if subtopic.name != "" %}
+          </div>
+        </details>
         {% endif %}
         {% endfor %}
       </div>

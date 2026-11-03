@@ -37,6 +37,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 扩散与推理工程图组在 `diffusion.json`（13 图），覆盖后训练地图、DPO 四项误差、奖励微调路线、SDE 密度、评估证据、奖励标准化、自动研究、正确性验收、CUDA 层次、Roofline、视频延迟、token 与计算成本。用 `--id-prefix dif-` 单独重建，资源仍位于 `deep-learning/images/`，分章用 `../images/` 引用。小数组和假想硬件是原创教学例，不冒称性能复现。
 
+训练配方图组在 `training-recipes.json`（8 图），包括 Rufus-Air 阶段接力、监督账本、Agent 合同、token 保真、奖励路径、运行闭环、batch 与 mask。用 `--id-prefix ruf-` 独立重建，资源位于 `deep-learning/images/`，配方分章以 `../../images/` 引用。流程为机制重画，数组为原创教学，不复制论文曲线或声称重跑模型。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。

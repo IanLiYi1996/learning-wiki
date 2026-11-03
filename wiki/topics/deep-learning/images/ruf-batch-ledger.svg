@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="572" viewBox="0 0 1040 572" role="img" aria-labelledby="title desc">
+<title id="title">4096 回答和两个更新，仍不是 8192 次独立生成</title>
+<desc id="desc">左列为论文 Reasoning RL 计数口径，右列为原创中止样本例。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="572" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">4096 回答和两个更新，仍不是 8192 次独立生成</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">左列为论文 Reasoning RL 计数口径，右列为原创中止样本例。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">账本字段</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">256 题 × 16 候选</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">100 题 × 4 候选</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">生成回答数</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">4096</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">400</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">中止数</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">本图不另设中止</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">假设 20</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">有效回答数</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">未计中止前为 4096</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">380</text>
+<rect x="40" y="384" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">optimizer</text>
+<text x="53" y="438" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">updates</text>
+<rect x="220" y="384" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">2；不是新采样数</text>
+<rect x="610.0" y="384" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">假设 2；不是新采样数</text>
+<rect x="40" y="462" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="491" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">仍未知</text>
+<rect x="220" y="462" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="491" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">每步消费、minibatch、累积</text>
+<rect x="610.0" y="462" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="491" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">每题剩余组大小与实际消费</text>
+<line x1="40" y1="508" x2="1000" y2="508" stroke="#e0e7e2"/>
+<text x="40" y="532" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">P×G 数的是生成；SFT sequence batch、token 量、重复更新须分别记账。</text>
+</g>
+</svg>

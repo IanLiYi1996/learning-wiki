@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="426" viewBox="0 0 1040 426" role="img" aria-labelledby="title desc">
+<title id="title">三个 Agent：行动成功与任务成功分开</title>
+<desc id="desc">按照本文任务与反馈机制归类，不作通用奖励可靠性排名。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="426" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">三个 Agent：行动成功与任务成功分开</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">按照本文任务与反馈机制归类，不作通用奖励可靠性排名。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">阶段</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">环境与行动</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">终局核验</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">General Agent</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">操作 MCP 工具与场景状态</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">数据库状态满足任务；调用成功还不够</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Coding Agent</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">持久沙箱里查看／修改／执行</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">测试验收；基础设施中止另分类</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Search Agent</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">搜索、网页与上下文管理</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">参考答案评分与任务预算；调用不等于证据有效</text>
+<line x1="40" y1="362" x2="1000" y2="362" stroke="#e0e7e2"/>
+<text x="40" y="386" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">Coding RL 生成竞赛程序，不自动等于交互式 Coding Agent；环境合同与奖励合同分别检查。</text>
+</g>
+</svg>

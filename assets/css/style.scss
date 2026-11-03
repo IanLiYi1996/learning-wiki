@@ -110,6 +110,18 @@ html[data-theme="dark"] .theme-moon { display: none; }
 .nav-topic[open] > summary > .icon { transform: rotate(90deg); }
 .chapter-links { padding: 2px 0 8px 20px; }
 .nav-leaf { padding: 8px 10px; font-size: 13px; }
+.nav-subtopic { margin: 4px 0; }
+.nav-subtopic > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  min-height: 44px; padding: 8px 6px; color: var(--text); font-size: 13px;
+  font-weight: 600; list-style: none; overflow-wrap: anywhere;
+}
+.nav-subtopic > summary::-webkit-details-marker { display: none; }
+.nav-subtopic > summary:hover { color: var(--accent); }
+.nav-subtopic > summary > .icon { width: 14px; height: 14px; flex-shrink: 0; transition: transform 140ms ease; }
+.nav-subtopic[open] > summary > .icon { transform: rotate(90deg); }
+.subtopic-links { border-left: 1px solid var(--border); padding-left: 6px; }
+.subtopic-links .nav-leaf { font-size: 12px; }
 .sidebar-repository {
   display: flex; align-items: center; gap: 10px; margin-top: 20px; padding: 12px;
   border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); text-decoration: none;
