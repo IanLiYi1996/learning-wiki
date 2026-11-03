@@ -433,7 +433,7 @@ def asset_manifest(figures):
     root = ROOT / "wiki/topics/physical-ai"
     assets = []
     for figure in figures:
-        if figure["topic"] != "physical-ai":
+        if figure["topic"] != "physical-ai" or figure.get("archive_assets", True) is False:
             continue
         for suffix in ("svg", "png"):
             path = figure_path(figure, suffix)

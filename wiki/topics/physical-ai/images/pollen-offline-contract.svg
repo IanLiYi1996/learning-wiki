@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="504" viewBox="0 0 1040 504" role="img" aria-labelledby="title desc">
+<title id="title">先拒绝语义错误，再谈动作效果</title>
+<desc id="desc">原创标准库检查；不是机器人控制器、安全策略或真实硬件实验。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="504" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">先拒绝语义错误，再谈动作效果</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创标准库检查；不是机器人控制器、安全策略或真实硬件实验。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">相似表象</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">实际差别</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">教学验算</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">深度数值都是 500</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">mm 与 m</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">相机点 [0.1,0,0.5] vs [100,0,500]</text>
+<rect x="40" y="248" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">四元数都是 [1,0,</text>
+<text x="53" y="302" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">0,0]</text>
+<rect x="220" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">wxyz 与 xyzw</text>
+<rect x="610.0" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">单位旋转 vs 非单位旋转</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">动作数组都是 2 维</text>
+<rect x="220" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">输出轴与电机轴</text>
+<rect x="610.0" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">合同不符，拒绝此包</text>
+<rect x="40" y="394" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">有最近的图像</text>
+<rect x="220" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">已可用还是来自未来</text>
+<rect x="610.0" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">决策 1.06 选 1.03，不选 1.10</text>
+<line x1="40" y1="440" x2="1000" y2="440" stroke="#e0e7e2"/>
+<text x="40" y="464" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">拒绝数据包不会自动停止真实机器人；后备动作、能源与失效恢复要在具体系统中设计。</text>
+</g>
+</svg>

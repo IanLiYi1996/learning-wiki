@@ -39,6 +39,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 训练配方图组在 `training-recipes.json`（8 图），包括 Rufus-Air 阶段接力、监督账本、Agent 合同、token 保真、奖励路径、运行闭环、batch 与 mask。用 `--id-prefix ruf-` 独立重建，资源位于 `deep-learning/images/`，配方分章以 `../../images/` 引用。流程为机制重画，数组为原创教学，不复制论文曲线或声称重跑模型。
 
+Pollen Robotics 图组在 `pollen-robotics.json`（10 图），覆盖本体／SDK、遥操作、感知／仿真、数据／策略、Microduck RL 与执行器。用 `--id-prefix pollen-` 独立重建，资源位于 `physical-ai/images/`。该组设置 `archive_assets: false`，新增图由独立清单与测试验证，不写入 2026-10-29 的旧归档图件校验表；默认未设此字段的旧图仍维持原归档行为。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。

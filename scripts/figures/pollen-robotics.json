@@ -1,0 +1,141 @@
+[
+  {
+    "id":"pollen-ecosystem-map","topic":"physical-ai","archive_assets":false,"kind":"flow",
+    "title":"Pollen 学习地图：六条接口链，不是一套可互换系统",
+    "subtitle":"本 Wiki 的阅读顺序；原型、代际、硬件和数据合同分别核验。",
+    "nodes":[
+      ["本体与 SDK","目标、状态、服务和控制器"],
+      ["遥操作与日志","人的动作、视频、时钟与反馈"],
+      ["感知与仿真","尺度、坐标、模型与可达性"],
+      ["数据与策略","重建、表示、训练与执行适配"],
+      ["Microduck RL","仿真学习与实机 runtime"],
+      ["手与执行器","机构、标定、耦合与反馈"]
+    ],
+    "note":"箭头表示阅读依赖；Reachy 2、Mini、Microduck 和 OpenArm-Gripette 不共享同一动作空间。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/README.md","after":"## 1. 六条学习链：先问项目承担什么职责"}]
+  },
+  {
+    "id":"pollen-layer-contracts","topic":"physical-ai","archive_assets":false,"kind":"layers",
+    "title":"模型说要做什么，控制器解释怎样作用于身体",
+    "subtitle":"任务意图、请求、控制目标和实际结果是不同对象。",
+    "layers":[
+      ["模型／意图","语言、视觉、任务规划或策略数组；还不是电机反馈"],
+      ["SDK／服务","类型、单位、坐标、目标队列与通信；请求成功不等于到位"],
+      ["控制／执行","机构映射、时钟、限制和执行器动态；保留真实反馈"],
+      ["独立验收","动作完成、任务成功、故障恢复与人员／环境风险另检查"]
+    ],
+    "note":"这是一张教学责任地图，不是任一产品的真实部署拓扑或安全认证。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/README.md","after":"## 3. 为什么“模型、SDK、控制器”要分开"}]
+  },
+  {
+    "id":"pollen-sdk-generations","topic":"physical-ai","archive_assets":false,"kind":"compare",
+    "title":"相近名称，不保证相同单位、服务或等待语义",
+    "subtitle":"仅比较所读快照的关键接口，不作完整迁移表。",
+    "columns":["对象","客户端与后端","目标与反馈边界"],
+    "rows":[
+      ["Reachy 2","Python → gRPC → SDK server／ROS 控制","公开关节常用度；goto 结束也可能取消／中止"],
+      ["Reachy Mini","Python → WebSocket → daemon／backend","天线与 body_yaw 用弧度；Python goto_target 等任务"],
+      ["旧 Reachy","旧 SDK 与旧遥操作接口","不能只改包名、机器名就认定兼容"]
+    ],
+    "note":"设定 Hz 不是实测时延；取消、断开或解除力矩都不能直接等同为硬件急停。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/robots-and-sdk.md","after":"## 一条命令到底经过谁"}]
+  },
+  {
+    "id":"pollen-teleop-ledger","topic":"physical-ai","archive_assets":false,"kind":"layers",
+    "title":"遥操作留下日志，还要确认日志能教什么",
+    "subtitle":"按照当前 HDF5、Rerun 和遥操作接口的实际边界组织。",
+    "layers":[
+      ["人的闭环","相机曝光／显示、人的反应、手柄采样、命令与执行各有时钟"],
+      ["记录字段","HDF5 action 取参考目标；qpos 的底盘列实际为速度"],
+      ["缺失证据","采样索引和 MP4 fps 不能恢复曝光、抖动、目标应用时刻"],
+      ["学习导出","固定标签层、列顺序、因果对齐、episode 切分和归一化"]
+    ],
+    "note":"Rerun 可帮助诊断，但当前示例没有完整的目标动作／任务终止标签；回放脚本可能发命令。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/teleoperation-and-logging.md","after":"## HDF5 的 action 究竟是什么"}]
+  },
+  {
+    "id":"pollen-pixel-to-action","topic":"physical-ai","archive_assets":false,"kind":"flow",
+    "title":"从像素到运动，中间有尺度、坐标和可达性",
+    "subtitle":"原创简化感知链；当前位置工具没有估计物体完整朝向。",
+    "nodes":[
+      ["检测与 mask","像素区域与语义；不是抓取成功率"],
+      ["有效米制深度","明确单位、标定和缺失；拒绝相对深度冒充米"],
+      ["相机坐标点","内参反投影；深度／RGB 须对齐"],
+      ["世界／机器人目标","方向明确的外参；姿态时钟须一致"],
+      ["IK 与路径","可达、速度与关节约束；另查碰撞"],
+      ["执行与任务反馈","命令完成、接触与任务分别验收"]
+    ],
+    "note":"4×4 shape 不证明朝向已知；零加速度也不等于速度归零或机器人停止。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/perception-and-simulation.md","after":"## 2. 反投影：shape 正确不等于物理含义正确"}]
+  },
+  {
+    "id":"pollen-simulation-paths","topic":"physical-ai","archive_assets":false,"kind":"compare",
+    "title":"同叫 MuJoCo，也可能走不同接口和物理模型",
+    "subtitle":"本次静态核验范围；没有运行仿真或测试组合兼容性。",
+    "columns":["路径","承担的工作","仍须检查"],
+    "rows":[
+      ["Reachy fake SDK","RPyC 暴露对象；本包客户端","原型功能、权限、真实动态与深度尺度"],
+      ["Reachy WebSocket bridge","JSON 状态／控制／相机；core 接入","API 和传输与前者不同；另核权限与模型"],
+      ["Microduck 训练","mjlab／MuJoCo Warp、BAM、随机化","动作与观测合同、课程、导出、真实覆盖"],
+      ["画面中会动","viewer／可视化／运动学","不自动证明物理接触、稳定控制或真机安全"]
+    ],
+    "note":"共享引擎名不构成 sim-to-real 等价；同形动作数组也不能跳过机构、时钟与执行器适配。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/perception-and-simulation.md","after":"## 4. 两条 MuJoCo 路径，不是同一个 server"}]
+  },
+  {
+    "id":"pollen-grabette-handoff","topic":"physical-ai","archive_assets":false,"kind":"flow",
+    "title":"Grabette 录到的是示范；执行器还需要另一份合同",
+    "subtitle":"按照选定采集、重建与策略适配的职责重画，不代表已完成实机复现。",
+    "nodes":[
+      ["原始采集","视频、深度、夹爪角、时钟与标定"],
+      ["轨迹重建","SLAM、重力对齐、丢跟踪标记"],
+      ["训练样本","绝对状态 → 局部 delta／chunk-relative"],
+      ["监督策略","Diffusion／π0.5；统计和处理器随模型保存"],
+      ["机器人适配","参考系、IK、夹爪解码、动作队列"],
+      ["独立验收","仿真与真机任务、干预、故障和恢复"]
+    ],
+    "note":"hold 的旋转是单位旋转，不是六个零；不发新动作也不等于停止追赶已有目标。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/data-and-policy-learning.md","after":"## 策略适配不是换一个模型名称"}]
+  },
+  {
+    "id":"pollen-microduck-contract","topic":"physical-ai","archive_assets":false,"kind":"layers",
+    "title":"Microduck 的 61→14，是形状与语义共同的合同",
+    "subtitle":"固定行走任务与前馈部署示例；非所有任务共用的通用 schema。",
+    "layers":[
+      ["身体观测","角速度、重力、14 轴相对 HOME 的位置／速度、上一原始动作"],
+      ["任务条件","速度、颈头与身体偏移；字段存在不等于能力已训练"],
+      ["策略推理","归一化＋actor；观测／关节顺序、记忆生命周期与模型版本"],
+      ["执行目标","HOME＋尺度×动作；runtime 滤波／增益与训练配置另对照"]
+    ],
+    "note":"5 ms 物理步×4 是 50 Hz 策略更新；ONNX 图、校验和奖励都不是实机安全验收。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/microduck-and-rl.md","after":"## 观测、历史与动作合同"}]
+  },
+  {
+    "id":"pollen-actuator-coordinate","topic":"physical-ai","archive_assets":false,"kind":"compare",
+    "title":"输出轴、原始电机和末端接触，不能混成同一数组",
+    "subtitle":"Orbita2D 原创数字例，比例为 1；不是实物标定或可下发命令。",
+    "columns":["输入对象","模型映射","另一侧对象"],
+    "rows":[
+      ["ring／center [0.5,0.5]","耦合逆运动学","A／B [1,0]"],
+      ["A／B [1,1]","耦合正运动学","ring／center [1,0]"],
+      ["原始电机限力矩","传动、姿态、接触继续影响结果","不等于末端接触力安全证明"],
+      ["手势／夹爪 close","标定、反馈、滑移与任务验收","不等于闭环抓取成功"]
+    ],
+    "note":"同维度只表示容器相似；单位、轴顺序、零位、机构版本和反馈定义仍然必需。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/hands-and-actuators.md","after":"## 4. Orbita2D：输出轴不是两台电机的别名"}]
+  },
+  {
+    "id":"pollen-offline-contract","topic":"physical-ai","archive_assets":false,"kind":"compare",
+    "title":"先拒绝语义错误，再谈动作效果",
+    "subtitle":"原创标准库检查；不是机器人控制器、安全策略或真实硬件实验。",
+    "columns":["相似表象","实际差别","教学验算"],
+    "rows":[
+      ["深度数值都是 500","mm 与 m","相机点 [0.1,0,0.5] vs [100,0,500]"],
+      ["四元数都是 [1,0,0,0]","wxyz 与 xyzw","单位旋转 vs 非单位旋转"],
+      ["动作数组都是 2 维","输出轴与电机轴","合同不符，拒绝此包"],
+      ["有最近的图像","已可用还是来自未来","决策 1.06 选 1.03，不选 1.10"]
+    ],
+    "note":"拒绝数据包不会自动停止真实机器人；后备动作、能源与失效恢复要在具体系统中设计。",
+    "placements":[{"file":"wiki/topics/physical-ai/pollen-robotics/lab.md","after":"## F. 动作合同检查，不冒充急停"}]
+  }
+]

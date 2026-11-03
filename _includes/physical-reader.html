@@ -1,6 +1,9 @@
 <section class="physical-reader" data-physical-reader>
   <h1>{{ page.title | default: 'Physical AI' | escape }}</h1>
   <p class="reader-intro">完整正文就在本页。选择一本继续阅读，无需打开附件或跳转到资料说明页。各册保留原研究日期与证据边界。</p>
+  {% if page.physical_ai_reader == 'all' %}
+  <p data-physical-supplement>2026-11-03 新增：<a href="{{ '/wiki/topics/physical-ai/pollen-robotics/' | relative_url }}">Pollen Robotics 开源生态图文读本</a>。从本体、遥操作、感知与仿真，读到数据、策略、强化学习和执行器；四份旧归档保持原日期。</p>
+  {% endif %}
   <nav class="reader-switcher" aria-label="选择 Physical AI 读本">
     {% for book in site.data.physical_ai_books.books %}
     {% if page.physical_ai_reader == 'all' or page.physical_ai_reader == book.key %}

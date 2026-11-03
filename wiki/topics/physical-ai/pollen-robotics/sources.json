@@ -1,0 +1,38 @@
+{
+  "research_date": "2026-11-03",
+  "scope": "Selected public Pollen Robotics source snapshots; static inspection, not hardware or training reproduction.",
+  "snapshots": [
+    {"repository":"reachy2-sdk","branch":"develop","url":"https://github.com/pollen-robotics/reachy2-sdk/tree/eb42d1f08cf32244443dc46930ff2e17cf5852da","role":"Python task and state client"},
+    {"repository":"reachy2_core","branch":"develop","url":"https://github.com/pollen-robotics/reachy2_core/tree/b7000c1255f322826f4d0ad1f1e54d424e55c051","role":"Robot workspace and launch integration"},
+    {"repository":"reachy2_sdk_server","branch":"develop","url":"https://github.com/pollen-robotics/reachy2_sdk_server/tree/2bb56b676f235a8d6774474cf053ef4bd8585476","role":"SDK server and ROS handoff"},
+    {"repository":"reachy2-sdk-api","branch":"develop","url":"https://github.com/pollen-robotics/reachy2-sdk-api/tree/6a7cbdd463200fef3a20c2742255ee5089d89561","role":"gRPC protocol definitions"},
+    {"repository":"ReachyTeleoperation","branch":"develop","url":"https://github.com/pollen-robotics/ReachyTeleoperation/tree/9934da67628c0b41398d0a2fd33316494ada39db","role":"Historical-generation teleoperation"},
+    {"repository":"Reachy2Teleoperation","branch":"develop","url":"https://github.com/pollen-robotics/Reachy2Teleoperation/tree/1612347e3b1b06a612f5dd79c333090c1d0bd335","role":"Reachy 2 teleoperation"},
+    {"repository":"reachy_mini","branch":"main","url":"https://github.com/pollen-robotics/reachy_mini/tree/e26c6c30e723d80b1ecdaa3ace80f7e84f4d15f2","role":"Mini SDK, daemon, applications and simulation"},
+    {"repository":"reachy2_hdf5_recorder","branch":"main","url":"https://github.com/pollen-robotics/reachy2_hdf5_recorder/tree/feead2b81acdc92ab632f9dc53badf7a450ba19e","role":"Recording pipeline"},
+    {"repository":"reachy2-sdk-rerun","branch":"develop","url":"https://github.com/pollen-robotics/reachy2-sdk-rerun/tree/538b296209cc91d114b8e923c43df9912f5d0559","role":"Inspection and visualization"},
+    {"repository":"grabette","branch":"develop","url":"https://github.com/pollen-robotics/grabette/tree/e82d31b772c99efbf35f16e8634844ab22e73c1b","role":"Handheld recording rig"},
+    {"repository":"grabette-policy","branch":"develop","url":"https://github.com/pollen-robotics/grabette-policy/tree/c0e997b15b7b50a485577fa6d059875cfc62e849","role":"Action representation, training integrations and robot adapter"},
+    {"repository":"grabette-slam","branch":"develop","url":"https://github.com/pollen-robotics/grabette-slam/tree/39116d865065a7b8db946f6845ecf6c07042df5f","role":"Reconstruction and export"},
+    {"repository":"microduck","branch":"main","url":"https://github.com/pollen-robotics/microduck/tree/997808c1d71056d31bd6f05fc5fde848c849d2bc","role":"Robot runtime and policy deployment"},
+    {"repository":"microduck_rl","branch":"develop","url":"https://github.com/pollen-robotics/microduck_rl/tree/bae39f5900b318f7e87fc485c30a31213cfa14eb","role":"mjlab training environments and PPO"},
+    {"repository":"pollen-vision","branch":"develop","url":"https://github.com/pollen-robotics/pollen-vision/tree/2d7cfab7c0c1090741e43ba5e3aab5acefb110f7","role":"Perception models and camera wrappers"},
+    {"repository":"reachy2_mujoco","branch":"main","url":"https://github.com/pollen-robotics/reachy2_mujoco/tree/f6d8284e812d3b96b557e2e844d55bd09d6e3ee6","role":"Prototype fake SDK using RPyC"},
+    {"repository":"reachy2_mujoco_server","branch":"main","url":"https://github.com/pollen-robotics/reachy2_mujoco_server/tree/a304471a9685d6a30e45f8bdb552d8db0c91ac32","role":"WebSocket simulation bridge"},
+    {"repository":"reachy2_qpik","branch":"develop","url":"https://github.com/pollen-robotics/reachy2_qpik/tree/149948db13b108b9f4a940a5bb94f50422eadd27","role":"QP kinematics and controller"},
+    {"repository":"AmazingHand","branch":"main","url":"https://github.com/pollen-robotics/AmazingHand/tree/3e8241074df3436a3044ced4881e3bb2133aa725","role":"Initial hand and examples"},
+    {"repository":"AmazingHand","branch":"Amazing-Hand-Enhanced","url":"https://github.com/pollen-robotics/AmazingHand/tree/31bfc548270a306829c7a3acdad19f643f53f618","role":"Enhanced hardware variant, separate snapshot"},
+    {"repository":"PincOpen","branch":"main","url":"https://github.com/pollen-robotics/PincOpen/tree/1b5a3dc83cb4eae042d535bda3765b9e12a9b8a7","role":"Parallel-finger gripper"},
+    {"repository":"orbita3d_control","branch":"develop","url":"https://github.com/pollen-robotics/orbita3d_control/tree/9e547d616af8487c52c5aff68792a74fbc023d79","role":"3D actuator kinematics and control"},
+    {"repository":"orbita2d_control","branch":"develop","url":"https://github.com/pollen-robotics/orbita2d_control/tree/dc54f7ee24b54407d584ebee15bdb35894c206d0","role":"2D actuator kinematics and control"}
+  ],
+  "upstream_dependencies": [
+    {"repository":"mujocolab/mjlab","url":"https://github.com/mujocolab/mjlab/tree/19d6c06c17572dafcb31ad5110a902006b58d944","role":"Selected velocity environment, observation manager and action definitions"},
+    {"repository":"Rhoban/bam","url":"https://github.com/Rhoban/bam/blob/62bd8ce12154340be97e06f7f41a0ca8f116d967/bam/mjlab.py","role":"Selected mjlab actuator adapter; not a complete dependency audit"}
+  ],
+  "metadata_only": [
+    {"repository":"act-plus-plus","url":"https://github.com/pollen-robotics/act-plus-plus","fork":true,"parent":"MarkFzp/act-plus-plus","code_audited":false},
+    {"repository":"octo","url":"https://github.com/pollen-robotics/octo","fork":true,"parent":"octo-models/octo","code_audited":false},
+    {"repository":"MobileSAM","url":"https://github.com/pollen-robotics/MobileSAM","fork":true,"parent":"ChaoningZhang/MobileSAM","code_audited":false}
+  ]
+}

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="529" viewBox="0 0 1040 529" role="img" aria-labelledby="title desc">
+<title id="title">同叫 MuJoCo，也可能走不同接口和物理模型</title>
+<desc id="desc">本次静态核验范围；没有运行仿真或测试组合兼容性。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="529" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">同叫 MuJoCo，也可能走不同接口和物理模型</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">本次静态核验范围；没有运行仿真或测试组合兼容性。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">路径</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">承担的工作</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">仍须检查</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Reachy fake SDK</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">RPyC 暴露对象；本包客户端</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">原型功能、权限、真实动态与深度尺度</text>
+<rect x="40" y="248" width="180" height="103" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Reachy</text>
+<text x="53" y="302" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">WebSocket</text>
+<text x="53" y="327" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">bridge</text>
+<rect x="220" y="248" width="390.0" height="103" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">JSON 状态／控制／相机；core 接入</text>
+<rect x="610.0" y="248" width="390.0" height="103" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">API 和传输与前者不同；另核权限与模型</text>
+<rect x="40" y="351" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="380" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Microduck 训练</text>
+<rect x="220" y="351" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="380" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">mjlab／MuJoCo Warp、BAM、随机化</text>
+<rect x="610.0" y="351" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="380" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">动作与观测合同、课程、导出、真实覆盖</text>
+<rect x="40" y="419" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="448" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">画面中会动</text>
+<rect x="220" y="419" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="448" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">viewer／可视化／运动学</text>
+<rect x="610.0" y="419" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="448" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不自动证明物理接触、稳定控制或真机安全</text>
+<line x1="40" y1="465" x2="1000" y2="465" stroke="#e0e7e2"/>
+<text x="40" y="489" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">共享引擎名不构成 sim-to-real 等价；同形动作数组也不能跳过机构、时钟与执行器适配。</text>
+</g>
+</svg>
