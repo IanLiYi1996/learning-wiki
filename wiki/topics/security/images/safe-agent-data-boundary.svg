@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">文档、检索与工具返回是数据，不是新权限</title>
+<desc id="desc">虚构订单助手；信息流不表示授权从材料传给模型。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">文档、检索与工具返回是数据，不是新权限</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">虚构订单助手；信息流不表示授权从材料传给模型。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">受控应用指令</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">由可信配置定义任务与既有边界，不采纳材料自报授权</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">不可信资料</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">文档、RAG、工具返回、记忆；租户与来源由可信管道维护</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">模型候选输出</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">摘要、引用或动作提案；格式正确、护栏通过仍不授予权限</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">外部执行控制</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">验证身份、对象、schema、范围与必要审批；拒绝越权</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">检索过滤、内容防护、IAM、沙箱、审计各管不同边界，不能互相包办。</text>
+</g>
+</svg>

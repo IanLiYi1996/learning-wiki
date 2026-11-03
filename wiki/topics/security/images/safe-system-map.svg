@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">安全体系：对象、路径、控制、证据与负责人</title>
+<desc id="desc">原创读本结构，连接十章；不是云产品内部部署图。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">安全体系：对象、路径、控制、证据与负责人</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创读本结构，连接十章；不是云产品内部部署图。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">业务与治理</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">先确定资产、损失、责任与风险接受；不从工具数量开始</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">访问与数据</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">身份、对象授权、网络路径、密钥、数据副本与生命周期</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">交付与运行</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">代码、依赖、构建、制品、部署、节点和监测覆盖</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">行动与恢复</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">Agent 执行、事件处置、业务恢复和持续复查分别验收</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">一项检查通过不替代其他边界；所有图、案例和实验均为教学，不是实际安全结果。</text>
+</g>
+</svg>
