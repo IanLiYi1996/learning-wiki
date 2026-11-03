@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="360" viewBox="0 0 1040 360" role="img" aria-labelledby="title desc">
+<title id="title">像素到 token：取整协议会改变成本</title>
+<desc id="desc">1280×720、16 帧；空间压缩 16、patch 2、时间压缩 4 的教学例。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="360" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">像素到 token：取整协议会改变成本</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">1280×720、16 帧；空间压缩 16、patch 2、时间压缩 4 的教学例。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">原脚本 floor</text>
+<text x="184.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">40 × 22 × 4 = 3520</text>
+<text x="184.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">tokens</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">空间 padding</text>
+<text x="520.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">40 × 23 × 4 = 3680</text>
+<text x="520.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">tokens</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="169.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">再做时间覆盖</text>
+<text x="856.0" y="204.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">40 × 23 × 5 = 4600</text>
+<text x="856.0" y="227.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">tokens</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="296" x2="1000" y2="296" stroke="#e0e7e2"/>
+<text x="40" y="320" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">箭头表示依次改变取整假设，不是模型运行阶段；真实 VAE 的尺寸／帧数约束必须另查。</text>
+</g>
+</svg>

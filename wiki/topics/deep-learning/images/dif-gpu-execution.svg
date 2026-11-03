@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">CUDA 的逻辑层次，不等于物理核心数量</title>
+<desc id="desc">NVIDIA CUDA 模型；不同厂商与硬件代际要分别核对。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">CUDA 的逻辑层次，不等于物理核心数量</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">NVIDIA CUDA 模型；不同厂商与硬件代际要分别核对。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">Grid</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">一次 kernel 启动的 block 集合</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">Block</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">线程协作单位；共享内存与同步边界</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">Warp</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">32 个逻辑线程的执行组；分歧影响活跃 lane</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">SM</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">硬件多处理器：调度 warp，受资源与就绪状态限制</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">大量线程不保证全部同时执行；高驻留率也不保证都能发射指令或获得峰值吞吐。</text>
+</g>
+</svg>

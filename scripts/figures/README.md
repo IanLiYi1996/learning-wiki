@@ -35,6 +35,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 深度学习图组在 `deep-learning.json`，当前围绕权重空间编程，包括计算契约、方法对照、手写控制器、QK／OV、实验权限、修补与能力、投影、置换平均和验证回滚。用 `--id-prefix wsp-` 单独重建；图中数字例为可测试的原创教学，不冒充原文真实模型评测。
 
+扩散与推理工程图组在 `diffusion.json`（13 图），覆盖后训练地图、DPO 四项误差、奖励微调路线、SDE 密度、评估证据、奖励标准化、自动研究、正确性验收、CUDA 层次、Roofline、视频延迟、token 与计算成本。用 `--id-prefix dif-` 单独重建，资源仍位于 `deep-learning/images/`，分章用 `../images/` 引用。小数组和假想硬件是原创教学例，不冒称性能复现。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。
