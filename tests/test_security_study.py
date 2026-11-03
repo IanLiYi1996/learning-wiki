@@ -147,7 +147,7 @@ class SecuritySourceTests(PaymentsChecks):
             self.assertIn(service, NATIVE.read_text())
         self.assertFalse(NATIVE.with_suffix(".png").exists())
         expected = {row["id"] + "." + ext for row in figures for ext in ("svg", "png")} | {NATIVE.name}
-        self.assertEqual({path.name for path in (TOPIC / "images").iterdir()}, expected)
+        self.assertEqual({path.name for path in (TOPIC / "images").glob("sec-*")}, expected)
 
     def test_compare_clearance_is_opt_in_and_rejects_invalid_gap(self):
         from test_figures import FIGURES
@@ -201,8 +201,10 @@ class SecurityBuildTests(PaymentsChecks):
     def test_exact_search_routes_titles_prose_and_navigation(self):
         records = json.loads((SITE / "search.json").read_text())
         self.base = Page((SITE / ROUTES["README.md"]).read_text()).base
+        # Keep the original ten routes exact as sibling security readers grow.
         selected = [row for row in records if urlsplit(row["url"]).path.startswith(
-            self.base + "/wiki/topics/security/")]
+            self.base + "/wiki/topics/security/aws-continuum/") or
+            urlsplit(row["url"]).path == self.base + "/wiki/topics/security/"]
         routes = list(ROUTES.values()) + ["wiki/topics/security/index.html"]
         self.assertEqual(Counter(row["url"] for row in selected),
                          Counter(self.base + "/" + route.replace("index.html", "") for route in routes))
@@ -250,7 +252,9 @@ class SecurityBuildTests(PaymentsChecks):
         security = navigation.split("  - label: 云与应用安全\n", 1)[1].split(
             "  - label: 深度学习专题\n", 1)[0]
         self.assertNotIn("group:", security)
-        self.assertEqual(set(re.findall(r"url: (/wiki/topics/security/\S*)", security)),
+        original_routes = {url for url in re.findall(r"url: (/wiki/topics/security/\S*)", security)
+                           if not url.startswith("/wiki/topics/security/security-101/")}
+        self.assertEqual(original_routes,
                          {"/wiki/topics/security/"} |
                          {"/" + route.replace("index.html", "") for route in ROUTES.values()})
 

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">镜像、进程、节点、控制面分别承担风险</title>
+<desc id="desc">一般工作负载责任地图；不同计算模式的隔离与支持另核验。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">镜像、进程、节点、控制面分别承担风险</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">一般工作负载责任地图；不同计算模式的隔离与支持另核验。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">交付镜像</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">摘要、来源、扫描与部署引用；无 finding 不是逻辑安全</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">容器／Pod</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">身份、挂载、capabilities、实际约束；audit 不等于阻断</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">节点与共享资源</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">内核、metadata、驱动和管理权限；角色不是硬隔离</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">控制与运行证据</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">Kubernetes API、云权限、支持资产、代理健康及负向验证</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">namespace、专属 IAM role、托管控制面不能单独证明租户隔离或运行检测覆盖。</text>
+</g>
+</svg>

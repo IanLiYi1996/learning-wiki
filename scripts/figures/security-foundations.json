@@ -1,0 +1,135 @@
+[
+  {
+    "id":"safe-system-map","topic":"security","kind":"layers",
+    "title":"安全体系：对象、路径、控制、证据与负责人",
+    "subtitle":"原创读本结构，连接十章；不是云产品内部部署图。",
+    "layers":[["业务与治理","先确定资产、损失、责任与风险接受；不从工具数量开始"],["访问与数据","身份、对象授权、网络路径、密钥、数据副本与生命周期"],["交付与运行","代码、依赖、构建、制品、部署、节点和监测覆盖"],["行动与恢复","Agent 执行、事件处置、业务恢复和持续复查分别验收"]],
+    "note":"一项检查通过不替代其他边界；所有图、案例和实验均为教学，不是实际安全结果。",
+    "placements":[{"file":"wiki/topics/security/security-101/README.md","after":"## 1. 先有体系，再看产品"}]
+  },
+  {
+    "id":"safe-governance-functions","topic":"security","kind":"flow",
+    "title":"六类风险结果共同工作，不是一条瀑布",
+    "subtitle":"基于 CSF 2.0 的白话提问；箭头仅表示本页阅读顺序。",
+    "nodes":[["治理","谁决定策略、责任与风险接受"],["识别","资产、身份、数据与依赖是谁的"],["保护","哪些访问与变更应被限制"],["检测","路径是否采集，异常谁收到"],["响应","谁分析、批准行动与保存证据"],["恢复","怎样验证业务、时间与残余风险"]],
+    "note":"六类活动关联、持续或随事件启动；框架不规定唯一实现，也不提供安全认证。",
+    "placements":[{"file":"wiki/topics/security/security-101/01-risk-and-governance.md","after":"## 2. 六类工作，不是一条瀑布"}]
+  },
+  {
+    "id":"safe-identity-permissions","topic":"security","kind":"layers",
+    "title":"身份、会话、策略与业务动作是不同的判断",
+    "subtitle":"概念责任图，不是可部署 IAM 策略或通用权限求值器。",
+    "layers":[["身份与恢复","人员、工作负载、身份源、MFA、会话与紧急通道"],["承担与授权","角色信任、动作资源、可信属性与实际 Allow／Deny"],["组织与例外","SCP、RCP、权限边界、资源策略的适用范围分别核验"],["业务验收","对应租户、对象、功能、状态；允许与拒绝证据一起看"]],
+    "note":"SCP 不授予权限、不覆盖所有主体；OAuth 授权与 OIDC 身份不能混用。",
+    "placements":[{"file":"wiki/topics/security/security-101/02-identity-and-organization.md","after":"## 1. 身份链与授权链"}]
+  },
+  {
+    "id":"safe-network-controls","topic":"security","kind":"compare","footer_gap":64,
+    "title":"可达、加密、入口保护与业务授权分别检查",
+    "subtitle":"虚构订单请求的分层；不是一份云网络部署拓扑。",
+    "columns":["层次","回答什么","不能推出什么"],
+    "rows":[["路由／SG／NACL","路径、允许连接与往返规则","应用拥有订单权限"],["NAT／私有端点","出口地址转换／指定服务 API","完整出口白名单／目标主机通路"],["TLS／mTLS","链路保护、证书与身份验证","后端一定加密或业务已授权"],["WAF／逐对象策略","受保护入口／具体动作许可","内部绕行无风险、内网天然可信"]],
+    "note":"零信任不是取消网络控制；共享服务、DNS、metadata 与出口都是需要核验的路径。",
+    "placements":[{"file":"wiki/topics/security/security-101/03-network-and-zero-trust.md","after":"## 1. 画路径，不只画边界"}]
+  },
+  {
+    "id":"safe-data-copies","topic":"security","kind":"layers",
+    "title":"数据不只在主库：副本和权限沿流程扩散",
+    "subtitle":"虚构订单的治理清单；列出位置不代表推荐复制。",
+    "layers":[["业务输入","字段、目的、分类、责任、保留；先减少不必要收集"],["主库与授权","读取、写入、租户、密钥与解密权限；加密不包办"],["派生副本","导出、日志、遥测、截图、缓存、索引和推理上下文"],["历史与删除","备份、版本、到期、例外；恢复后还需处理删除记录"]],
+    "note":"每份副本都问谁可读、为什么保存、怎样删除与验证；主库回执不是全链路删除证明。",
+    "placements":[{"file":"wiki/topics/security/security-101/04-data-keys-and-privacy.md","after":"## 1. 沿着数据流找副本"}]
+  },
+  {
+    "id":"safe-api-authority","topic":"security","kind":"layers",
+    "title":"合法身份还要通过功能、对象与属性授权",
+    "subtitle":"虚构订单 API；归属与租户必须来自可信服务端上下文。",
+    "layers":[["身份与租户","验证会话／令牌；客户端自报 tenant 不是可信归属"],["功能层","能退款、取消或查看吗？角色不能只靠界面隐藏"],["对象层","能访问这一笔订单吗？同租户不等于同所有者"],["属性与状态","允许哪些字段和状态转换？并发、幂等与额度还需验证"]],
+    "note":"输入校验、输出编码、参数化与业务授权各管一层；拒绝还需证明无泄漏和副作用。",
+    "placements":[{"file":"wiki/topics/security/security-101/05-app-and-api-security.md","after":"## 1. 三层授权，不能只检查登录"}]
+  },
+  {
+    "id":"safe-delivery-chain","topic":"security","kind":"flow",
+    "title":"交付链：每次换手都问谁能替换、下游如何验证",
+    "subtitle":"原创机制流程，不声称一份提交评审直接证明生产制品正确。",
+    "nodes":[["需求与设计","安全条件、边界与反例"],["源码与依赖","提交、锁定与工作流"],["构建平台","输入、身份与隔离"],["制品证据","摘要、组成、签名与来源"],["审批与部署","批准对象和消费对象对齐"],["运行与响应","实际版本、监测与回滚"]],
+    "note":"fork 内容、短期令牌与流水线状态都不能自动获得发布权；缺失检查不能冒充通过。",
+    "placements":[{"file":"wiki/topics/security/security-101/06-devsecops-and-supply-chain.md","after":"## 1. 从源代码到部署，哪里换了一次手"}]
+  },
+  {
+    "id":"safe-artifact-evidence","topic":"security","kind":"compare","footer_gap":64,
+    "title":"SBOM、签名、来源证明和批准各证明一部分",
+    "subtitle":"按选定 SSDF／SLSA 基线理解证据，原始对象必须绑定相同摘要。",
+    "columns":["证据","能帮助判断","仍需独立检查"],
+    "rows":[["SBOM","组成、版本与影响分析","清单完整性、未知漏洞、运行逻辑"],["签名","签名者、对象与完整性","身份被信任、构建获准、源码善意"],["来源证明","构建者、输入、过程与输出","平台信任、预期输入、依赖完整性"],["发布批准","某人批准特定对象与条件","当前权限、实际部署版本、回滚"]],
+    "note":"证据存在不等于可信；签名有效但身份、输入或摘要不符，也应按策略拒绝。",
+    "placements":[{"file":"wiki/topics/security/security-101/06-devsecops-and-supply-chain.md","after":"## 3. SBOM、签名与来源证明各证明什么"}]
+  },
+  {
+    "id":"safe-workload-boundaries","topic":"security","kind":"layers",
+    "title":"镜像、进程、节点、控制面分别承担风险",
+    "subtitle":"一般工作负载责任地图；不同计算模式的隔离与支持另核验。",
+    "layers":[["交付镜像","摘要、来源、扫描与部署引用；无 finding 不是逻辑安全"],["容器／Pod","身份、挂载、capabilities、实际约束；audit 不等于阻断"],["节点与共享资源","内核、metadata、驱动和管理权限；角色不是硬隔离"],["控制与运行证据","Kubernetes API、云权限、支持资产、代理健康及负向验证"]],
+    "note":"namespace、专属 IAM role、托管控制面不能单独证明租户隔离或运行检测覆盖。",
+    "placements":[{"file":"wiki/topics/security/security-101/07-workload-and-container-security.md","after":"## 1. 四层对象，不要只盯镜像"}]
+  },
+  {
+    "id":"safe-detection-coverage","topic":"security","kind":"flow",
+    "title":"检测链断了一段，面板就不能代表实际覆盖",
+    "subtitle":"箭头是证据与责任交接；不描绘任何服务的内部实现。",
+    "nodes":[["资产与范围","完整分母、owner 与 eligible"],["采集与健康","投递、身份、时间与缺口"],["分析与验证","规则、正反例和置信度"],["通知与值守","收到、确认、超时升级"],["批准与处置","对象、影响、证据与回滚"],["复查与改进","是否有效、未覆盖与期限"]],
+    "note":"告警数量不是覆盖率；Event history、runtime agent 与业务日志的范围不能互换。",
+    "placements":[{"file":"wiki/topics/security/security-101/08-detection-and-incident-response.md","after":"## 1. 从信号到事件，不是从红灯到删机器"}]
+  },
+  {
+    "id":"safe-incident-handoff","topic":"security","kind":"compare","footer_gap":64,
+    "title":"处置之前先知道谁能批准、怎样保存证据",
+    "subtitle":"原创纸面手册，不是已执行响应；阶段可能交叉并返回分析。",
+    "columns":["阶段","决策","证据与失败边界"],
+    "rows":[["分析","事件成立吗，影响范围是什么","原始来源、假设与反证；不把告警当入侵事实"],["遏制","怎样减少继续损害","有权审批、精确目标、业务影响、停止与回滚"],["根除","原因和未授权路径处理了吗","配置、凭据、版本与未完成项；重启不等于根除"],["恢复／复盘","业务正确且威胁没有回来吗","验证、时间、观察、owner 与改善期限"]],
+    "note":"隔离、删除和撤销凭据可能改变生产与易失证据；自动化不是通用正确处置。",
+    "placements":[{"file":"wiki/topics/security/security-101/08-detection-and-incident-response.md","after":"## 4. 处置要有审批、证据与回滚"}]
+  },
+  {
+    "id":"safe-agent-data-boundary","topic":"security","kind":"layers",
+    "title":"文档、检索与工具返回是数据，不是新权限",
+    "subtitle":"虚构订单助手；信息流不表示授权从材料传给模型。",
+    "layers":[["受控应用指令","由可信配置定义任务与既有边界，不采纳材料自报授权"],["不可信资料","文档、RAG、工具返回、记忆；租户与来源由可信管道维护"],["模型候选输出","摘要、引用或动作提案；格式正确、护栏通过仍不授予权限"],["外部执行控制","验证身份、对象、schema、范围与必要审批；拒绝越权"]],
+    "note":"检索过滤、内容防护、IAM、沙箱、审计各管不同边界，不能互相包办。",
+    "placements":[{"file":"wiki/topics/security/security-101/09-ai-and-agent-security.md","after":"## 1. 把不可信内容留在数据层"}]
+  },
+  {
+    "id":"safe-agent-action-review","topic":"security","kind":"flow",
+    "title":"工具执行门：模型提议，外部控制决定",
+    "subtitle":"原创控制顺序；不表示已经运行 Agent 或存在这套内建审批。",
+    "nodes":[["候选动作","材料和模型不能扩大授权"],["工具与参数","白名单、schema、范围"],["当前对象权限","可信租户、动作与身份"],["按策略审批","必要时绑定对象、版本与参数"],["执行前复核","权限、版本、期限；变化重审"],["受限执行留痕","结果、停止、回滚与审计"]],
+    "note":"任一必要检查失败就拒绝；只读也要授权，精确审批还需防检查后替换与重放。",
+    "placements":[{"file":"wiki/topics/security/security-101/09-ai-and-agent-security.md","after":"## 3. 工具执行前，再检查一次"}]
+  },
+  {
+    "id":"safe-recovery-clock","topic":"security","kind":"compare","footer_gap":64,
+    "title":"恢复点、业务恢复时间与目标分别记录",
+    "subtitle":"原创分钟例，不是服务 SLA、实际备份或客户演练。",
+    "columns":["对象","虚构时刻／目标","教学观察"],
+    "rows":[["可用恢复点","t＝90；最新但未验证的副本不选","先证明数据可用，再谈恢复窗口"],["业务中断","t＝120；RPO 目标 15 分钟","窗口 120－90＝30，未满足假定目标"],["业务验证完成","t＝190；RTO 目标 60 分钟","延迟 190－120＝70，未满足假定目标"],["Restore Completed","只是资源恢复作业状态","不自动证明业务正确或端到端目标已达"]],
+    "note":"复制、不可变保留与跨区各有边界；有备份不等于可信、可恢复、恢复得及时。",
+    "placements":[{"file":"wiki/topics/security/security-101/10-resilience-and-recovery.md","after":"## 1. RPO、RTO 是目标，不是备份按钮的属性"}]
+  },
+  {
+    "id":"safe-learning-contract","topic":"security","kind":"flow",
+    "title":"学到 L200：能说明机制，也能说明不能下结论",
+    "subtitle":"本 Wiki 的学习顺序，不是官方认证或真实执行许可。",
+    "nodes":[["说清风险","业务损失、资产与前提"],["画出边界","身份、路径、数据副本"],["对齐交付","源码、制品、部署与证据"],["演练决策","授权、事件、审批和恢复"],["写验收卡","正反例、失败、owner"],["接受追问","残余风险、未知与复查"]],
+    "note":"只会列产品名字不是完成学习；通过自测也不代表获得账户、扫描或处置授权。",
+    "placements":[{"file":"wiki/topics/security/security-101/learning-roadmap.md","after":"## 1. 先把十章串成一个案例"}]
+  },
+  {
+    "id":"safe-offline-contracts","topic":"security","kind":"compare","footer_gap":64,
+    "title":"四个离线小合同：先区分输入假设和真实证据",
+    "subtitle":"原创标准库验算，不是 IAM、密码学审批、检测或恢复系统。",
+    "columns":["虚构问题","教学结果","仍未证明"],
+    "rows":[["相同 owner、不同 tenant","拒绝读取","元数据来源、真实授权和实际接口行为"],["动作摘要匹配／版本改变","待审核／重新审批","批准者身份、签名、权限、原子性和防重放"],["恢复点 90、事故 120、验证 190","数据窗口 30、恢复延迟 70","备份可信度、业务数据与真实恢复能力"],["eligible 4、采集 3、验证 2","验证比例 0.5，空分母为未知","资产清单完整性与真实检测效果"]],
+    "note":"MATCH_FOR_REVIEW 不是执行许可；hash 匹配不是签名，零对象不是 100% 覆盖。",
+    "placements":[{"file":"wiki/topics/security/security-101/lab.md","after":"## 1. 练的是证据合同，不是安全产品"}]
+  }
+]

@@ -36,8 +36,11 @@
   const topic = document.querySelector(`.nav-topic[data-topic="${base}/wiki/topics/security/"]`);
   if (!topic?.open || topic.querySelector('.nav-subtopic')) throw new Error('Topic navigation');
   const records = await fetch(`${base}/search.json`).then(response => response.json());
-  const selected = records.filter(row => new URL(row.url, location.origin).pathname.startsWith(
-    `${base}/wiki/topics/security/`));
+  const selected = records.filter(row => {
+    const path = new URL(row.url, location.origin).pathname;
+    return path.startsWith(`${base}/wiki/topics/security/aws-continuum/`) ||
+      path === `${base}/wiki/topics/security/`;
+  });
   if (selected.length !== 10 || new Set(selected.map(row => row.url)).size !== 10) {
     throw new Error('Search routes');
   }
