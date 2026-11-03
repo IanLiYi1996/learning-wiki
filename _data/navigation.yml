@@ -231,7 +231,7 @@ topics:
     title: Physical AI
     url: /wiki/topics/physical-ai/
     description: 对照业界产品与底层原理，梳理机器人系统、数字孪生和学习实践。
-    meta: 机器人 · 仿真 · 模型 · 工程交付
+    meta: 归档读本 · Pollen 开源生态 · 离线实验
     items:
       - label: 完整阅读
         url: /wiki/topics/physical-ai/
@@ -247,6 +247,24 @@ topics:
         url: /wiki/topics/physical-ai/learning-roadmap.html
       - label: 构建与归档说明
         url: /wiki/topics/physical-ai/concept-map.html
+      - label: Pollen Robotics：生态学习地图
+        url: /wiki/topics/physical-ai/pollen-robotics/
+      - label: Pollen 01 本体与 SDK
+        url: /wiki/topics/physical-ai/pollen-robotics/robots-and-sdk.html
+      - label: Pollen 02 遥操作与日志
+        url: /wiki/topics/physical-ai/pollen-robotics/teleoperation-and-logging.html
+      - label: Pollen 03 感知与仿真
+        url: /wiki/topics/physical-ai/pollen-robotics/perception-and-simulation.html
+      - label: Pollen 04 数据与策略学习
+        url: /wiki/topics/physical-ai/pollen-robotics/data-and-policy-learning.html
+      - label: Pollen 05 Microduck 与 RL
+        url: /wiki/topics/physical-ai/pollen-robotics/microduck-and-rl.html
+      - label: Pollen 06 手与执行器
+        url: /wiki/topics/physical-ai/pollen-robotics/hands-and-actuators.html
+      - label: Pollen 标准库合同实验
+        url: /wiki/topics/physical-ai/pollen-robotics/lab.html
+      - label: Pollen 来源与复现等级
+        url: /wiki/topics/physical-ai/pollen-robotics/sources.html
   - label: 大数据与 Palantir
     title: 大数据技术与 Palantir
     url: /wiki/topics/big-data/

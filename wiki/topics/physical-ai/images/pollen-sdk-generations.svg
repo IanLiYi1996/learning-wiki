@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="436" viewBox="0 0 1040 436" role="img" aria-labelledby="title desc">
+<title id="title">相近名称，不保证相同单位、服务或等待语义</title>
+<desc id="desc">仅比较所读快照的关键接口，不作完整迁移表。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="436" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">相近名称，不保证相同单位、服务或等待语义</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">仅比较所读快照的关键接口，不作完整迁移表。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">对象</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">客户端与后端</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">目标与反馈边界</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Reachy 2</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">Python → gRPC → SDK server／ROS 控制</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">公开关节常用度；goto 结束也可能取消／中止</text>
+<rect x="40" y="248" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Reachy Mini</text>
+<rect x="220" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">Python → WebSocket → daemon／backend</text>
+<rect x="610.0" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">天线与 body_yaw 用弧度；Python</text>
+<text x="623.0" y="302" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">goto_target 等任务</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">旧 Reachy</text>
+<rect x="220" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">旧 SDK 与旧遥操作接口</text>
+<rect x="610.0" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不能只改包名、机器名就认定兼容</text>
+<line x1="40" y1="372" x2="1000" y2="372" stroke="#e0e7e2"/>
+<text x="40" y="396" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">设定 Hz 不是实测时延；取消、断开或解除力矩都不能直接等同为硬件急停。</text>
+</g>
+</svg>

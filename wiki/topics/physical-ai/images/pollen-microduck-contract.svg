@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">Microduck 的 61→14，是形状与语义共同的合同</title>
+<desc id="desc">固定行走任务与前馈部署示例；非所有任务共用的通用 schema。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">Microduck 的 61→14，是形状与语义共同的合同</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">固定行走任务与前馈部署示例；非所有任务共用的通用 schema。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">身体观测</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">角速度、重力、14 轴相对 HOME 的位置／速度、上一原始动作</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">任务条件</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">速度、颈头与身体偏移；字段存在不等于能力已训练</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">策略推理</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">归一化＋actor；观测／关节顺序、记忆生命周期与模型版本</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">执行目标</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">HOME＋尺度×动作；runtime 滤波／增益与训练配置另对照</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">5 ms 物理步×4 是 50 Hz 策略更新；ONNX 图、校验和奖励都不是实机安全验收。</text>
+</g>
+</svg>

@@ -18,7 +18,7 @@
 - [支付行业 101](wiki/topics/payments/README.md)：22 课、32 张中文机制图，含 12 课主干与 10 课领域补全；从卡、钱包与跨境，扩展到订阅、终端、商户运营、流动性、安全、中国支付和数字货币
 - [区块链原理、生态与钱包工程](wiki/topics/blockchain/README.md)：34 课白话图解、30 张原创图、行业现状、PPT 60 页主题梳理、7 章工程基础及 6 篇完整升级教程；新增 [2026-10-30 币安安全事件解读](wiki/topics/blockchain/binance-security-incident-2026-10-30.md)
 - [Shader 与 Web 渲染](wiki/topics/rendering/README.md)：GPU 管线、WebGL、Three.js、PBR、性能调试与 WebGPU/TSL
-- [Physical AI](wiki/topics/physical-ai/README.md)：业界产品与端到端方案、底层原理、学习路线、离线练习及 GTC 资料
+- [Physical AI](wiki/topics/physical-ai/README.md)：业界产品、底层原理与 GTC 归档；新增 Pollen Robotics 六章图文源码解读，连接 SDK、遥操作、数据、仿真、学习与执行器
 - [大数据技术](wiki/topics/big-data/README.md)：技术分层、学习路线与 Palantir 研究
 
 ## 使用方式

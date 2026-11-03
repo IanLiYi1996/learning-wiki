@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">模型说要做什么，控制器解释怎样作用于身体</title>
+<desc id="desc">任务意图、请求、控制目标和实际结果是不同对象。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">模型说要做什么，控制器解释怎样作用于身体</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">任务意图、请求、控制目标和实际结果是不同对象。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">模型／意图</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">语言、视觉、任务规划或策略数组；还不是电机反馈</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">SDK／服务</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">类型、单位、坐标、目标队列与通信；请求成功不等于到位</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">控制／执行</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">机构映射、时钟、限制和执行器动态；保留真实反馈</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">独立验收</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">动作完成、任务成功、故障恢复与人员／环境风险另检查</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">这是一张教学责任地图，不是任一产品的真实部署拓扑或安全认证。</text>
+</g>
+</svg>
