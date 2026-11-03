@@ -20,7 +20,7 @@ topics:
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
     description: 按 LLM 训练、视觉生成、推理硬件、自动研究、权重编辑五条路线学习；保留原读本地址。
-    meta: 5 个细分方向 · 3 套读本 · 标准库实验
+    meta: 5 个细分方向 · 4 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -48,6 +48,33 @@ topics:
       - label: 一手来源与复现边界
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/rufus-air/sources.html
+      - label: Agentic-RL Lab：源码学习地图
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/
+      - label: Lab 01 GRPO、DAPO 与 GSPO
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/policy-objectives.html
+      - label: Lab 02 工具、环境与安全
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/tools-and-environments.html
+      - label: Lab 03 OPD 与 OPSD 蒸馏
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/on-policy-distillation.html
+      - label: Lab 04 长程信用分配
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/credit-assignment.html
+      - label: Lab 05 多模态与裁判
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/multimodal-and-judges.html
+      - label: Lab 06 评测与复现合同
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/evaluation-and-reproduction.html
+      - label: Agentic-RL 标准库验算
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/lab.html
+      - label: Lab 源码快照与未执行项
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/agentic-rl-lab/sources.html
       - label: 扩散后训练与推理工程 101
         group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/

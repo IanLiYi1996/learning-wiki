@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">同一个 evaluator，不足以固定同一个测量</title>
+<desc id="desc">从源码中的具体差异推导的评测检查层次。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">同一个 evaluator，不足以固定同一个测量</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">从源码中的具体差异推导的评测检查层次。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">题目身份</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">数据 revision、最终 ID、split、筛选与漏题核对</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">交互协议</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">工具后端、观察提示、候选动作、搜索时间窗口</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">评分口径</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">答案抽取窗口、等价判定、Average@N／Pass@N 与分母</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">预算与失败</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">生成／上下文／工具上限；重试、中止与执行后漏计</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">模型、judge、harness 和预算一起构成成绩合同；summary 有字段不等于实际请求使用了它。</text>
+</g>
+</svg>

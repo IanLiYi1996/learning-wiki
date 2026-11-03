@@ -26,6 +26,10 @@ DIFFUSION_FILES = tuple("diffusion/" + name for name in (
 TRAINING_FILES = ("training/README.md",) + tuple("training/rufus-air/" + name for name in (
     "README.md", "data-sft-and-rlvr.md", "agentic-environments.md",
     "reward-and-stability.md", "infrastructure-and-evaluation.md", "lab.md", "sources.md"))
+AGENTIC_FILES = tuple("training/agentic-rl-lab/" + name for name in (
+    "README.md", "policy-objectives.md", "tools-and-environments.md",
+    "on-policy-distillation.md", "credit-assignment.md", "multimodal-and-judges.md",
+    "evaluation-and-reproduction.md", "lab.md", "sources.md"))
 ROUTES = {name: "wiki/topics/deep-learning/" +
           ("index.html" if name == "README.md" else name.replace(".md", ".html"))
           for name in FILES}
@@ -35,6 +39,9 @@ DIFFUSION_ROUTES = {name: "wiki/topics/deep-learning/" +
 TRAINING_ROUTES = {name: "wiki/topics/deep-learning/" +
                    name.replace("README.md", "index.html").replace(".md", ".html")
                    for name in TRAINING_FILES}
+AGENTIC_ROUTES = {name: "wiki/topics/deep-learning/" +
+                  name.replace("README.md", "index.html").replace(".md", ".html")
+                  for name in AGENTIC_FILES}
 LESSONS = [f"wsp-{number:02d}" for number in range(1, 11)]
 SOURCE_IDS = {"blog", "logs", "experiments", "qwen", "qwen-results",
               "checkpoint-release", "gemma", "transformer-circuits", "tracr",
@@ -74,6 +81,9 @@ TRAINING_VERSIONS = {
     "24c91001cf99ba642be791e099d358f4dfe955f5": "github.com/sgl-project/sglang",
     "540ea919e45b8b929198abce008a103be9cfc779": "github.com/THUDM/slime",
 }
+AGENTIC_VERSIONS = {
+    "8493321013c02eef6cf79ca2594811f53c6fdac1": "github.com/datawhalechina/agentic-rl-lab",
+}
 
 
 def documents():
@@ -90,6 +100,10 @@ def diffusion_figures():
 
 def training_figures():
     return json.loads((ROOT / "scripts/figures/training-recipes.json").read_text(encoding="utf-8"))
+
+
+def agentic_figures():
+    return json.loads((ROOT / "scripts/figures/agentic-rl-lab.json").read_text(encoding="utf-8"))
 
 
 def readable_samples(source):
@@ -110,7 +124,8 @@ class DeepLearningChecks(PaymentsChecks):
     def assert_public_study(self, text, label):
         for version in PUBLIC_VERSIONS:
             text = text.replace(version, "")
-        for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS}.items():
+        for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS,
+                                    **AGENTIC_VERSIONS}.items():
             # Exempt only the exact revision in its verified repository URL.
             # Keep the rest of the path visible to all other privacy checks.
             text = re.sub("(" + re.escape("https://" + repository) + r"/(?:blob|tree)/)" +
@@ -120,8 +135,8 @@ class DeepLearningChecks(PaymentsChecks):
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES) | {f"images/{figure['id']}.{suffix}"
-                               for figure in figures() + diffusion_figures() + training_figures()
+        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES) | {f"images/{figure['id']}.{suffix}"
+                               for figure in figures() + diffusion_figures() + training_figures() + agentic_figures()
                                for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
                           for path in TOPIC.rglob("*") if path.is_file()}, allowed)
@@ -131,7 +146,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
             self.assertIn(version, sources)
         for path in [ROOT / "scripts/figures/deep-learning.json",
                      ROOT / "scripts/figures/diffusion.json",
-                     ROOT / "scripts/figures/training-recipes.json", *TOPIC.rglob("*")]:
+                     ROOT / "scripts/figures/training-recipes.json",
+                     ROOT / "scripts/figures/agentic-rl-lab.json", *TOPIC.rglob("*")]:
             if path.is_file() and path.suffix != ".png":
                 self.assert_public_study(path.read_text(encoding="utf-8"), path.name)
         for value in ("f" * 40, "https://private.sharepoint.com/document",
@@ -237,6 +253,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      for relative in DIFFUSION_ROUTES.values()}
         expected |= {"/" + relative.replace("index.html", "")
                      for relative in TRAINING_ROUTES.values()}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in AGENTIC_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -281,7 +299,7 @@ class DeepLearningSiteTests(DeepLearningChecks):
         self.assertEqual(Counter(item["url"] for item in records),
                          Counter(base + "/" + route.replace("index.html", "")
                                  for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values(),
-                                               *TRAINING_ROUTES.values()]))
+                                               *TRAINING_ROUTES.values(), *AGENTIC_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -329,13 +347,14 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES
+        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES
         allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
             "index.html", "README.html", "diffusion/index.html", "diffusion/README.html",
             "training/index.html", "training/README.html",
-            "training/rufus-air/index.html", "training/rufus-air/README.html"
+            "training/rufus-air/index.html", "training/rufus-air/README.html",
+            "training/agentic-rl-lab/index.html", "training/agentic-rl-lab/README.html"
         } | {f"images/{figure['id']}.{suffix}"
-             for figure in figures() + diffusion_figures() + training_figures()
+             for figure in figures() + diffusion_figures() + training_figures() + agentic_figures()
              for suffix in ("svg", "png")}
         for path in (SITE / "wiki/topics/deep-learning").rglob("*"):
             if path.is_file():
