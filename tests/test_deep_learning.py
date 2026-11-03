@@ -19,9 +19,16 @@ TOPIC = ROOT / "wiki/topics/deep-learning"
 SITE = Path(os.environ.get("DEEP_LEARNING_SITE", ROOT / "_site")).resolve()
 FILES = ("README.md", "weight-space-programming.md", "weight-space-programming-lab.md",
          "glossary.md", "weight-space-programming-sources.md")
+DIFFUSION_FILES = tuple("diffusion/" + name for name in (
+    "README.md", "01-dpo-and-preference-pairs.md", "02-rl-through-denoising.md",
+    "03-rewards-judges-and-advantages.md", "04-autoresearch-and-oracles.md",
+    "05-gpu-and-memory-roofline.md", "06-realtime-video-estimates.md", "lab.md"))
 ROUTES = {name: "wiki/topics/deep-learning/" +
           ("index.html" if name == "README.md" else name.replace(".md", ".html"))
           for name in FILES}
+DIFFUSION_ROUTES = {name: "wiki/topics/deep-learning/" +
+                    ("diffusion/index.html" if name.endswith("README.md") else
+                     name.replace(".md", ".html")) for name in DIFFUSION_FILES}
 LESSONS = [f"wsp-{number:02d}" for number in range(1, 11)]
 SOURCE_IDS = {"blog", "logs", "experiments", "qwen", "qwen-results",
               "checkpoint-release", "gemma", "transformer-circuits", "tracr",
@@ -34,6 +41,22 @@ PUBLIC_VERSIONS = {
         "huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
     "ac82b4e820549b854eebf28ce6dedaf9fdfa17b3": "huggingface.co/google/gemma-3-270m-it",
 }
+# Exact code snapshots inspected during the new study. These public hashes are
+# permitted only when paired with their specific source repository in prose.
+DIFFUSION_VERSIONS = {
+    "f8b8c0f49dc92a430bae41585f9d467d3618fe2f": "github.com/eric-mitchell/direct-preference-optimization",
+    "9bc5f3d5f0f3aa09f384238b73196826e24508eb": "github.com/SalesforceAIResearch/DiffusionDPO",
+    "1249c845e4502ceca3efcb49d2135d533a449b20": "github.com/YangYongJin/FiFA-Official-Repo",
+    "879042cf5707f8b90daa98d147d7deac2317c5da": "github.com/yifan123/flow_grpo",
+    "cbb14f84b8312b620390dfcbe2fab69c1383b104": "github.com/NVlabs/DiffusionNFT",
+    "f386d1190a9918a20705837a963380c1a21d9960": "github.com/xiefan-guo/shortft",
+    "78f8051059b34fef8e0032ccb40561c23a2ddbbb": "github.com/THUDM/ImageReward",
+    "335e4c2c3452df52e32fe3c583d9458235e7d9e1": "github.com/linzhiqiu/t2v_metrics",
+    "511960d61a777b2008cd486a85a090ba96792a32": "github.com/THUDM/VisionReward",
+    "4ad86b4fbfc5db594f3a2750ff9c39fdc8ee6115": "github.com/NVlabs/GDPO",
+    "f1ad765bc9a330e6cf387f95e9c1e5a6c4bb2d02": "github.com/Qwen-Applications/GD2PO",
+    "8b33abd84f360473f05e5a750aef36e974340cce": "github.com/verl-project/verl",
+}
 
 
 def documents():
@@ -42,6 +65,10 @@ def documents():
 
 def figures():
     return json.loads((ROOT / "scripts/figures/deep-learning.json").read_text(encoding="utf-8"))
+
+
+def diffusion_figures():
+    return json.loads((ROOT / "scripts/figures/diffusion.json").read_text(encoding="utf-8"))
 
 
 def readable_samples(source):
@@ -62,20 +89,27 @@ class DeepLearningChecks(PaymentsChecks):
     def assert_public_study(self, text, label):
         for version in PUBLIC_VERSIONS:
             text = text.replace(version, "")
+        for version, repository in DIFFUSION_VERSIONS.items():
+            # Exempt only the exact revision in its verified repository URL.
+            # Keep the rest of the path visible to all other privacy checks.
+            text = re.sub("(" + re.escape("https://" + repository + "/blob/") + ")" +
+                          re.escape(version) + r"(?=/)", r"\1public-revision", text)
         self.assert_public(text, label)
 
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES) | {f"images/{figure['id']}.{suffix}"
-                               for figure in figures() for suffix in ("svg", "png")}
+        allowed = set(FILES + DIFFUSION_FILES) | {f"images/{figure['id']}.{suffix}"
+                               for figure in figures() + diffusion_figures()
+                               for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
                           for path in TOPIC.rglob("*") if path.is_file()}, allowed)
         sources = documents()["weight-space-programming-sources.md"]
         for version, repository in PUBLIC_VERSIONS.items():
             self.assertIn(repository, sources)
             self.assertIn(version, sources)
-        for path in [ROOT / "scripts/figures/deep-learning.json", *TOPIC.rglob("*")]:
+        for path in [ROOT / "scripts/figures/deep-learning.json",
+                     ROOT / "scripts/figures/diffusion.json", *TOPIC.rglob("*")]:
             if path.is_file() and path.suffix != ".png":
                 self.assert_public_study(path.read_text(encoding="utf-8"), path.name)
         for value in ("f" * 40, "https://private.sharepoint.com/document",
@@ -140,7 +174,7 @@ class DeepLearningSourceTests(DeepLearningChecks):
         markers = {name: [] for name in FILES}
         images = {name: [] for name in FILES}
         for suffix in ("svg", "png"):
-            self.assertEqual({path.stem for path in (TOPIC / "images").glob(f"*.{suffix}")},
+            self.assertEqual({path.stem for path in (TOPIC / "images").glob(f"wsp-*.{suffix}")},
                              {figure["id"] for figure in manifest})
         for figure in manifest:
             self.assertEqual(figure["topic"], "deep-learning")
@@ -177,6 +211,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
         expected = {"/" + relative.replace("index.html", "") for relative in ROUTES.values()}
         expected |= {"/wiki/topics/deep-learning/weight-space-programming.html#" + lesson
                      for lesson in LESSONS}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in DIFFUSION_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -220,7 +256,7 @@ class DeepLearningSiteTests(DeepLearningChecks):
             base + "/wiki/topics/deep-learning/")]
         self.assertEqual(Counter(item["url"] for item in records),
                          Counter(base + "/" + route.replace("index.html", "")
-                                 for route in ROUTES.values()))
+                                 for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -268,9 +304,11 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        allowed = set(FILES) | {name.replace(".md", ".html") for name in FILES} | {
-            "index.html", "README.html"
-        } | {f"images/{figure['id']}.{suffix}" for figure in figures() for suffix in ("svg", "png")}
+        all_files = FILES + DIFFUSION_FILES
+        allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
+            "index.html", "README.html", "diffusion/index.html", "diffusion/README.html"
+        } | {f"images/{figure['id']}.{suffix}" for figure in figures() + diffusion_figures()
+             for suffix in ("svg", "png")}
         for path in (SITE / "wiki/topics/deep-learning").rglob("*"):
             if path.is_file():
                 self.assertIn(path.relative_to(SITE / "wiki/topics/deep-learning").as_posix(), allowed)

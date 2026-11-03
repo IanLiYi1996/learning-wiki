@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="670" viewBox="0 0 1040 670" role="img" aria-labelledby="title desc">
+<title id="title">同一个生成目标，两类更新方法，共同接受验证</title>
+<desc id="desc">本专题概念地图；外层自动研究与硬件资源并非另一种模型损失。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="670" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">同一个生成目标，两类更新方法，共同接受验证</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">本专题概念地图；外层自动研究与硬件资源并非另一种模型损失。</text>
+<path d="M 250,278 L 310,278 L 310,184 L 370,184" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 250,328 L 310,328 L 310,420 L 370,420" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 620,184 L 698,184 L 698,278 L 770,278" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 620,420 L 698,420 L 698,328 L 770,328" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="40" y="250" width="210" height="104" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="145.0" y="295.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">任务与偏好</text>
+<text x="145.0" y="330.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">例如：数量、空间与画质</text>
+<rect x="370" y="130" width="250" height="108" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="495.0" y="177.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">偏好对 → DPO</text>
+<text x="495.0" y="212.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">胜负数据；相对 reference</text>
+<rect x="370" y="366" width="250" height="108" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="495.0" y="413.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">生成与评分 → 奖励微调</text>
+<text x="495.0" y="448.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">可微反传／策略／NFT</text>
+<rect x="770" y="250" width="230" height="104" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="885.0" y="295.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">独立验证</text>
+<text x="885.0" y="330.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">质量、多样性与非目标保持</text>
+<rect x="150" y="500" width="740" height="60" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="538.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">外层：自动研究闭环　　约束：GPU／内存／视频延迟</text>
+<line x1="40" y1="606" x2="1000" y2="606" stroke="#e0e7e2"/>
+<text x="40" y="630" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">评分器、数据与预算会影响两条训练路线；任何训练分数都不能自行证明真实任务成功。</text>
+</g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">四项误差：先对 reference，再比较胜负</title>
+<desc id="desc">噪声预测的简化记号；时间权重、MSE 归一化须与实际实现一起核验。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">四项误差：先对 reference，再比较胜负</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">噪声预测的简化记号；时间权重、MSE 归一化须与实际实现一起核验。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">同一比较条件</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">同一提示词、胜者／败者；共享时间 t 与噪声 ε</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">四项去噪误差</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">当前模型：Eθw、Eθl；冻结基线：Erefw、Erefl</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">两项相对变化</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">δw = Eθw − Erefw；δl = Eθl − Erefl</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">负尺度与损失</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">z = −b(δw − δl)，b&gt;0；最小化 −log σ(z)</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">教学反例</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">基线 (1,1) → 当前 (1.2,1.5)：z=0.3，但胜者也变差</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">更小误差对应更高概率的方向，因此有负号；相对损失下降不是绝对质量保证。</text>
+</g>
+</svg>

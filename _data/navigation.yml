@@ -19,8 +19,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 从权重空间编程出发，把研究主张拆成数学机制、实验权限、复现证据与本地练习。
-    meta: 权重空间 · 10 节 · 9 张图 · 本地实验
+    description: 权重空间编程，以及扩散 DPO、RL、奖励、自动研究、GPU 与视频推理；从机制到证据和本地练习。
+    meta: 2 组专题 · 22 张图 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -52,6 +52,22 @@ topics:
         url: /wiki/topics/deep-learning/glossary.html
       - label: 一手来源与实验边界
         url: /wiki/topics/deep-learning/weight-space-programming-sources.html
+      - label: 扩散后训练与推理工程 101
+        url: /wiki/topics/deep-learning/diffusion/
+      - label: 01 DPO 与偏好数据
+        url: /wiki/topics/deep-learning/diffusion/01-dpo-and-preference-pairs.html
+      - label: 02 RL 与去噪轨迹
+        url: /wiki/topics/deep-learning/diffusion/02-rl-through-denoising.html
+      - label: 03 奖励与多目标
+        url: /wiki/topics/deep-learning/diffusion/03-rewards-judges-and-advantages.html
+      - label: 04 Autoresearch 与评估器
+        url: /wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.html
+      - label: 05 GPU 与 Roofline
+        url: /wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.html
+      - label: 06 实时视频估算
+        url: /wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.html
+      - label: 扩散标准库实验与练习
+        url: /wiki/topics/deep-learning/diffusion/lab.html
   - label: 支付行业 101
     title: 支付行业 101
     url: /wiki/topics/payments/

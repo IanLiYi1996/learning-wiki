@@ -1,0 +1,186 @@
+[
+  {
+    "id": "dif-system-map", "topic": "deep-learning", "kind": "scene", "height": 670,
+    "title": "同一个生成目标，两类更新方法，共同接受验证",
+    "subtitle": "本专题概念地图；外层自动研究与硬件资源并非另一种模型损失。",
+    "nodes": [
+      {"id":"goal","x":40,"y":250,"w":210,"h":104,"label":"任务与偏好","detail":"例如：数量、空间与画质","color":0},
+      {"id":"dpo","x":370,"y":130,"w":250,"h":108,"label":"偏好对 → DPO","detail":"胜负数据；相对 reference","color":1},
+      {"id":"rl","x":370,"y":366,"w":250,"h":108,"label":"生成与评分 → 奖励微调","detail":"可微反传／策略／NFT","color":2},
+      {"id":"verify","x":770,"y":250,"w":230,"h":104,"label":"独立验证","detail":"质量、多样性与非目标保持","color":3},
+      {"id":"context","x":150,"y":500,"w":740,"h":60,"label":"外层：自动研究闭环　　约束：GPU／内存／视频延迟","color":0}
+    ],
+    "edges": [
+      {"points":[[250,278],[310,278],[310,184],[370,184]]},
+      {"points":[[250,328],[310,328],[310,420],[370,420]]},
+      {"points":[[620,184],[698,184],[698,278],[770,278]]},
+      {"points":[[620,420],[698,420],[698,328],[770,328]]}
+    ],
+    "note":"评分器、数据与预算会影响两条训练路线；任何训练分数都不能自行证明真实任务成功。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/README.md","after":"## 一张图看懂本专题"}]
+  },
+  {
+    "id": "dif-dpo-four-errors", "topic": "deep-learning", "kind": "layers",
+    "title": "四项误差：先对 reference，再比较胜负",
+    "subtitle": "噪声预测的简化记号；时间权重、MSE 归一化须与实际实现一起核验。",
+    "layers": [
+      ["同一比较条件", "同一提示词、胜者／败者；共享时间 t 与噪声 ε"],
+      ["四项去噪误差", "当前模型：Eθw、Eθl；冻结基线：Erefw、Erefl"],
+      ["两项相对变化", "δw = Eθw − Erefw；δl = Eθl − Erefl"],
+      ["负尺度与损失", "z = −b(δw − δl)，b>0；最小化 −log σ(z)"],
+      ["教学反例", "基线 (1,1) → 当前 (1.2,1.5)：z=0.3，但胜者也变差"]
+    ],
+    "note":"更小误差对应更高概率的方向，因此有负号；相对损失下降不是绝对质量保证。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/01-dpo-and-preference-pairs.md","after":"## 04 四项误差：相对改善不等于质量改善"}]
+  },
+  {
+    "id":"dif-rl-routes", "topic":"deep-learning", "kind":"compare",
+    "title":"奖励微调的三条路线：更新信号来自哪里",
+    "subtitle":"机制对照，不是硬件成本或模型质量排行榜。",
+    "columns":["路线","怎样得到参数方向","关键边界"],
+    "rows":[
+      ["Pathwise","奖励导数沿可微生成路径反传","截断省反向成本，但一般有偏"],
+      ["Flow-GRPO","末端优势 × 单步 logprob 导数","需要合法随机步骤策略；old≠ref"],
+      ["DiffusionNFT","重加噪，正负分支前向匹配","不用轨迹 likelihood，仍需生成与评分"]
+    ],
+    "note":"都可接收奖励，但估计器、采样要求、存储与稳定性并不相同。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/02-rl-through-denoising.md","after":"## 01 从噪声到末端奖励：先看清优化对象"}]
+  },
+  {
+    "id":"dif-rl-sde", "topic":"deep-learning", "kind":"flow",
+    "title":"Flow-GRPO 的步骤密度，来自具体 SDE 构造",
+    "subtitle":"先固定状态；初始种子随机不能替代单步随机策略。",
+    "nodes":[
+      ["ODE 确定下一步","给定 xt 后，条件分布为点质量"],
+      ["修正漂移＋随机项","合法 SDE；非零 σ²h 给出高斯转移"],
+      ["新旧步骤密度","分母对应行为策略；分子对应目标策略"]
+    ],
+    "note":"边缘等价有理想连续时间前提；任意 ODE 随手加噪不保证等价，端点也须特殊处理。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/02-rl-through-denoising.md","after":"## 04 ODE 转 SDE：高斯 logprob 必须有合法出处"}]
+  },
+  {
+    "id":"dif-reward-evidence", "topic":"deep-learning", "kind":"flow",
+    "title":"从任务到奖励：每一次转换都可能丢掉信息",
+    "subtitle":"原创评估流程；工具输出和模型置信度都不直接等于真值。",
+    "nodes":[
+      ["任务协议","明确对象、关系、质量与失败例"],
+      ["标注与清单","人类偏好／二元问题／空间声明"],
+      ["模型与工具","VLM、检测、深度等返回测量"],
+      ["分通道分数","记录尺度、模板和失败状态"],
+      ["独立校验","难负例、校准、人工抽检"],
+      ["训练反馈","记录漏洞，避免只追总分"]
+    ],
+    "note":"重复使用同一有偏裁判不是独立证据；可解释评分方便审计，但不会消除 reward hacking。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/03-rewards-judges-and-advantages.md","after":"## 3. 大模型和工具：证据链也有误差"}]
+  },
+  {
+    "id":"dif-reward-composition", "topic":"deep-learning", "kind":"compare",
+    "title":"标准化顺序决定保留什么信息",
+    "subtitle":"第 4 节原创两组、两通道例；sample std，ε 趋近零。",
+    "columns":["方法","甲组：仅数量可区分","乙组：两个通道同向"],
+    "rows":[
+      ["原始数量／位置","(0,1) ／ (0,0)","(0,1) ／ (0,1)"],
+      ["求和再按组标准化","优势 ±0.7071","优势 ±0.7071"],
+      ["分通道标准化再求和","b = ±0.7071","b = ±1.4142"],
+      ["共同 batch 标准化","GDPO 优势 ±0.5477","GDPO 优势 ±1.0954"]
+    ],
+    "note":"最后一行共用 batch sample std √(5/3)；不是再按每组归一化，也不是恢复全部奖励向量。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/03-rewards-judges-and-advantages.md","after":"## 4. GRPO 与 GDPO：标准化的顺序会改变信号"}]
+  },
+  {
+    "id":"dif-autoresearch-cycle", "topic":"deep-learning", "kind":"flow",
+    "title":"自动研究：提案与验收是不同职责",
+    "subtitle":"原创 Harness 示意；候选可以是代码、配置，也可以启动内层训练。",
+    "nodes":[
+      ["固定实验契约","数据、权限、单次与总预算"],
+      ["提出候选","改允许的文件；记录假设"],
+      ["运行并记录","种子、状态、资源、耗时"],
+      ["正确性准入","形状、有限值、数值与任务约束"],
+      ["比较独立指标","确认收益不只是测量波动"],
+      ["保留或回滚","预算内继续；最终测试隔离"]
+    ],
+    "loop":"下一轮只在预算与权限内",
+    "note":"oracle 是有盲区的验收程序，不是全知裁判；代理不能靠修改测试来获得成功。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.md","after":"## 1. 它自动化的是搜索闭环，不一定是权重更新"}]
+  },
+  {
+    "id":"dif-oracle-gates", "topic":"deep-learning", "kind":"layers",
+    "title":"先判结果有效，再比较速度",
+    "subtitle":"原创验收分层；不是完整 GPU 算子数值认证。",
+    "layers":[
+      ["第一关：结构","输出数量、形状、类型与要求一致"],
+      ["第二关：数值","所有输出有限；显式拒绝 NaN 与 Inf"],
+      ["第三关：语义","参考容差、任务正确性、非目标保持"],
+      ["第四关：收益","匹配环境下测量速度与成本；收益须超出噪声"]
+    ],
+    "note":"结果不正确，即使快 100 倍也没有资格进入提速排行榜。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.md","after":"## 3. 先通过正确性，再谈速度"}]
+  },
+  {
+    "id":"dif-gpu-execution", "topic":"deep-learning", "kind":"layers",
+    "title":"CUDA 的逻辑层次，不等于物理核心数量",
+    "subtitle":"NVIDIA CUDA 模型；不同厂商与硬件代际要分别核对。",
+    "layers":[
+      ["Grid","一次 kernel 启动的 block 集合"],
+      ["Block","线程协作单位；共享内存与同步边界"],
+      ["Warp","32 个逻辑线程的执行组；分歧影响活跃 lane"],
+      ["SM","硬件多处理器：调度 warp，受资源与就绪状态限制"]
+    ],
+    "note":"大量线程不保证全部同时执行；高驻留率也不保证都能发射指令或获得峰值吞吐。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.md","after":"## 2. Thread、Block、Warp、SM 不是四种“核心”"}]
+  },
+  {
+    "id":"dif-gpu-roofline", "topic":"deep-learning", "kind":"compare",
+    "title":"同样 10 TFLOPs，搬运量改变瓶颈",
+    "subtitle":"原创假想硬件：100 TFLOP/s、1 TB/s；只展示理想时间下界。",
+    "columns":["检查项","任务 A：1 TB 流量","任务 B：0.01 TB 流量"],
+    "rows":[
+      ["计算时间下界","0.1 秒","0.1 秒"],
+      ["搬运时间下界","1 秒","0.01 秒"],
+      ["两者最大值","1 秒：带宽限制","0.1 秒：计算限制"],
+      ["峰值计算翻倍","仍为 1 秒","下界为 0.05 秒"],
+      ["流量减半","下界为 0.5 秒","仍为 0.1 秒"]
+    ],
+    "note":"t ≥ max(F/P, B/W)；不含启动、串行、通信开销。B 是内存流量，不是仅指模型大小。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.md","after":"## 5. Roofline：算得快，还是搬得快"}]
+  },
+  {
+    "id":"dif-video-latencies", "topic":"deep-learning", "kind":"compare",
+    "title":"吞吐达标，首帧与交互仍可能很慢",
+    "subtitle":"实时体验的三个不同问题；示意不代表任何模型实测。",
+    "columns":["指标","测量起止点","能回答什么"],
+    "rows":[
+      ["首帧／首块延迟","请求进入 → 首个可播放输出","用户最初要等待多久"],
+      ["稳态吞吐","稳定输出期间的帧数／时间","生成速度能否跟上播放"],
+      ["交互响应延迟","提示变化 → 受影响的可见帧","控制是否及时生效"]
+    ],
+    "note":"平均生成速度足够，不自动证明低首帧延迟；排队、编码、VAE、传输和显示也要计入。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.md","after":"## 1. “实时”至少有三个不同指标"}]
+  },
+  {
+    "id":"dif-video-tokens", "topic":"deep-learning", "kind":"flow",
+    "title":"像素到 token：取整协议会改变成本",
+    "subtitle":"1280×720、16 帧；空间压缩 16、patch 2、时间压缩 4 的教学例。",
+    "nodes":[
+      ["原脚本 floor","40 × 22 × 4 = 3520 tokens"],
+      ["空间 padding","40 × 23 × 4 = 3680 tokens"],
+      ["再做时间覆盖","40 × 23 × 5 = 4600 tokens"]
+    ],
+    "note":"箭头表示依次改变取整假设，不是模型运行阶段；真实 VAE 的尺寸／帧数约束必须另查。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.md","after":"## 2. 先数 latent token，别把像素当作 Transformer 序列"}]
+  },
+  {
+    "id":"dif-video-cost", "topic":"deep-learning", "kind":"layers",
+    "title":"视频成本：二次项只是总账的一部分",
+    "subtitle":"每次乘加计两 FLOPs；简化两映射 FFN，略去若干算子与 VAE。",
+    "layers":[
+      ["线性投影","Q／K／V／输出：约 8Nd²，不因连接稀疏自动减少"],
+      ["注意力连接","密集约 4N²d；理想 q 倍稀疏只将此项除以 q"],
+      ["FFN 与条件","约 4Nddff；text cross-attention 另计"],
+      ["重复计算","再乘层数、去噪调用数、实际 CFG 分支数"],
+      ["运行约束","算术下界之外：内存容量、带宽、内核、通信与首帧等待"]
+    ],
+    "note":"减少 FLOPs 不等于端到端同比例提速；质量、精度与输入协议不可省略。",
+    "placements":[{"file":"wiki/topics/deep-learning/diffusion/06-realtime-video-estimates.md","after":"## 3. 每一层究竟算了什么"}]
+  }
+]

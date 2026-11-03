@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="778" viewBox="0 0 1040 778" role="img" aria-labelledby="title desc">
+<title id="title">视频成本：二次项只是总账的一部分</title>
+<desc id="desc">每次乘加计两 FLOPs；简化两映射 FFN，略去若干算子与 VAE。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="778" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">视频成本：二次项只是总账的一部分</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">每次乘加计两 FLOPs；简化两映射 FFN，略去若干算子与 VAE。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">线性投影</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">Q／K／V／输出：约 8Nd²，不因连接稀疏自动减少</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">注意力连接</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">密集约 4N²d；理想 q 倍稀疏只将此项除以 q</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">FFN 与条件</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">约 4Nddff；text cross-attention 另计</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">重复计算</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">再乘层数、去噪调用数、实际 CFG 分支数</text>
+<rect x="56" y="589" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="625" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">运行约束</text>
+<text x="292" y="621" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">算术下界之外：内存容量、带宽、内核、通信与首帧等待</text>
+<line x1="40" y1="714" x2="1000" y2="714" stroke="#e0e7e2"/>
+<text x="40" y="738" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">减少 FLOPs 不等于端到端同比例提速；质量、精度与输入协议不可省略。</text>
+</g>
+</svg>
