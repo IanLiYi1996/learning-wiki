@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="623" viewBox="0 0 1040 623" role="img" aria-labelledby="title desc">
+<title id="title">四类能力：用不同证据回答不同问题</title>
+<desc id="desc">2026-11-03 核验：代码漏洞以 10-22 GA 公告更新，保留概览旧标签差异。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="623" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">四类能力：用不同证据回答不同问题</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">2026-11-03 核验：代码漏洞以 10-22 GA 公告更新，保留概览旧标签差异。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">能力／状态</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">输入与判断</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">不能直接推出</text>
+<rect x="40" y="180" width="180" height="103" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Code</text>
+<text x="53" y="234" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">vulnerabilities</text>
+<text x="53" y="259" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">／GA</text>
+<rect x="220" y="180" width="390.0" height="103" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">代码＋云上下文；Issues 与 Proof</text>
+<rect x="610.0" y="180" width="390.0" height="103" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">所有地区可用、已经自动部署</text>
+<rect x="40" y="283" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="312" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Pentest／按量提</text>
+<text x="53" y="337" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">供</text>
+<rect x="220" y="283" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="312" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">运行目标、身份、范围；可利用性</text>
+<rect x="610.0" y="283" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="312" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">全应用或所有端点安全</text>
+<rect x="40" y="361" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="390" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Code scanning／</text>
+<text x="53" y="415" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Preview</text>
+<rect x="220" y="361" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="390" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">代码与安全要求；可选模拟验证</text>
+<rect x="610.0" y="361" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="390" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">真实部署均复现</text>
+<rect x="40" y="439" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="468" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Threat modeling</text>
+<text x="53" y="493" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">／Preview</text>
+<rect x="220" y="439" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="468" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">设计／代码、边界；STRIDE 威胁</text>
+<rect x="610.0" y="439" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="468" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">攻击已经发生或得到验证</text>
+<line x1="40" y1="559" x2="1000" y2="559" stroke="#e0e7e2"/>
+<text x="40" y="583" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">CI/CD continuous pentest 另为 public preview；旧 overview 的 gated preview 不当成最新 GA 状态。</text>
+</g>
+</svg>

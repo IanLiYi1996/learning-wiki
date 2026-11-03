@@ -14,6 +14,7 @@
 
 ## 已整理的专题
 
+- [云与应用安全 / AWS Continuum L200](wiki/topics/security/README.md)：9 页、10 张图，讲清能力状态、权限与跨区数据、验证修复、成本以及四种客户方案，附无网络桌面实验
 - [深度学习专题解读](wiki/topics/deep-learning/README.md)：按 LLM 训练、视觉生成、推理硬件、自动研究、权重编辑五个方向细分；Rufus-Air 八阶段配方与 Agentic-RL Lab 六章源码解读，保留原读本与实验
 - [支付行业 101](wiki/topics/payments/README.md)：22 课、32 张中文机制图，含 12 课主干与 10 课领域补全；从卡、钱包与跨境，扩展到订阅、终端、商户运营、流动性、安全、中国支付和数字货币
 - [区块链原理、生态与钱包工程](wiki/topics/blockchain/README.md)：34 课白话图解、30 张原创图、行业现状、PPT 60 页主题梳理、7 章工程基础及 6 篇完整升级教程；新增 [2026-10-30 币安安全事件解读](wiki/topics/blockchain/binance-security-incident-2026-10-30.md)

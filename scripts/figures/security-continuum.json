@@ -1,0 +1,78 @@
+[
+  {
+    "id":"sec-study-map","topic":"security","kind":"flow",
+    "title":"安全闭环：结果要进入业务、变更和证据交接",
+    "subtitle":"原创学习路线，不是 Continuum 内建状态机或无人审批流程。",
+    "nodes":[["基础与资产","先明确什么值得保护"],["能力与范围","选设计、代码或运行证据"],["权限与数据","身份、网络与处理路线"],["发现与分诊","核实证据和业务影响"],["修复与复测","审核、部署、验证、回归"],["客户验收","记录残余风险和负责人"]],
+    "note":"生成报告或 PR 不是闭环；真实测试、部署和客户推荐都需另行授权。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/README.md","after":"## 1. 先抓住主线"}]
+  },
+  {
+    "id":"sec-risk-layers","topic":"security","kind":"layers",
+    "title":"资产、可达路径、弱点与业务风险不是同一个量",
+    "subtitle":"虚构订单服务的概念拆解；不是实际漏洞或风险测量。",
+    "layers":[["保护对象与入口","订单数据是资产；公网接口是可接触路径"],["威胁与弱点","越权读订单是威胁情境；缺归属检查是漏洞"],["业务风险","结合发生可能性、影响、重要性与控制，不只看 CVSS"],["控制与证据","实施权限检查；保存范围、版本、结果与整改记录"]],
+    "note":"云配置检查、运行异常检测、代码评审和攻击验证的证据不能互换。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/security-foundations.md","after":"## 七个词，不是一件事"}]
+  },
+  {
+    "id":"sec-capability-status","topic":"security","kind":"compare","footer_gap":64,
+    "title":"四类能力：用不同证据回答不同问题",
+    "subtitle":"2026-11-03 核验：代码漏洞以 10-22 GA 公告更新，保留概览旧标签差异。",
+    "columns":["能力／状态","输入与判断","不能直接推出"],
+    "rows":[["Code vulnerabilities／GA","代码＋云上下文；Issues 与 Proof","所有地区可用、已经自动部署"],["Pentest／按量提供","运行目标、身份、范围；可利用性","全应用或所有端点安全"],["Code scanning／Preview","代码与安全要求；可选模拟验证","真实部署均复现"],["Threat modeling／Preview","设计／代码、边界；STRIDE 威胁","攻击已经发生或得到验证"]],
+    "note":"CI/CD continuous pentest 另为 public preview；旧 overview 的 gated preview 不当成最新 GA 状态。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/continuum-l200.md","after":"## 四类能力，不是一种扫描"}]
+  },
+  {
+    "id":"sec-cost-units","topic":"security","kind":"compare","footer_gap":64,
+    "title":"计费口径、容量配额与项目成本分开",
+    "subtitle":"原创数字例，只做两项服务费算术；费率为 2026-11-03 读取值。",
+    "columns":["对象","量的含义","教学判断"],
+    "rows":[["普通 pentest","各任务主动工作秒累计","900＋900 秒＝0.5 task-hour＝$25"],["Code vulnerabilities","保护 LOC 月费＋实际 CIU","150 万 LOC＋18 CIU＝$480"],["预览与配额","能力级收费例外与容量","不是全部项目免费或支出封顶"],["完整项目","托管、日志、网络、人工与整改","另估算；不套官网每漏洞 CIU 假设"]],
+    "note":"示例不扣试用、折扣与税，不含关联资源；等待时长不是累计任务时长。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/continuum-l200.md","after":"## 成本单位：不拿等待时间乘单价"}]
+  },
+  {
+    "id":"sec-authority-boundaries","topic":"security","kind":"layers",
+    "title":"能调用、能读取、能登录与获准测试是四件事",
+    "subtitle":"教学责任边界；两套产品资源模型与权限规则分别核验。",
+    "layers":[["管理面主体","谁能配置环境／Space、分配用户与启动任务"],["服务读取资源","角色可访问哪些代码、secret、S3、VPC、日志和密钥"],["目标应用身份","专用测试用户登录后的业务权限，不通向生产"],["业务与法律授权","所有权、第三方许可、网络范围、停止与变更审批"]],
+    "note":"DNS 证明不替代完整授权；CMK、存储 Region 和推理处理地点也不能混为一谈。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/permissions-and-data.md","after":"## 1. 先分产品，再分权限"}]
+  },
+  {
+    "id":"sec-remediation-evidence","topic":"security","kind":"flow",
+    "title":"修复闭环：在交接点确认对象和证据",
+    "subtitle":"原创客户治理流程，不声称产品自动完成所有步骤。",
+    "nodes":[["发现／威胁","保存来源、版本与前提"],["人工分诊","证据、覆盖与业务影响"],["候选补丁","生成／交付并非已修复"],["审核与部署","客户批准、回归、回滚"],["选定复测","该次未复现，不是全覆盖"],["关闭或接受","残余风险、有效期、owner"]],
+    "note":"Completed、空列表、Delivered 和 Resolved 各自含义不同；提前停止还须核验清理。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/validation-and-remediation.md","after":"## 4. 修复 PR 是提案，不是部署许可"}]
+  },
+  {
+    "id":"sec-customer-packages","topic":"security","kind":"compare","footer_gap":64,
+    "title":"四个候选交付包：从客户决策倒推证据",
+    "subtitle":"原创服务设计，不是 AWS 官方套餐、固定报价或结果保证。",
+    "columns":["客户痛点","候选包","核心交付／验收"],
+    "rows":[["上线缺安全证据","A 上线前评估","范围、威胁、验证、残余风险"],["安全要求不一致","B DevSecOps 评审","需求—代码—证据映射和基线"],["修复积压无复测","C 持续验证整改","授权、审批、版本与复测台账"],["发现分散责任不清","D 姿态与发现运营","覆盖矩阵、路由、owner 与响应审批"]],
+    "note":"授权、数据许可、停止能力不齐即 no-go；preview 不可用保留明确非等价替代。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/customer-solutions.md","after":"## 2. 四类候选包"}]
+  },
+  {
+    "id":"sec-learning-evidence","topic":"security","kind":"flow",
+    "title":"L200 学习：从解释到可被追问的方案",
+    "subtitle":"本 Wiki 的学习目标，不是官方课程、认证或实际执行许可。",
+    "nodes":[["分清概念","一个案例解释资产与风险"],["比较能力","输入、结果、状态与限制"],["守住边界","身份、范围、数据和费用"],["演练交接","发现、审批、版本与复测"],["写方案卡","交付、验收、替代与 no-go"],["接受追问","说明不知道和未验证的项"]],
+    "note":"问对问题不是授权；无网络桌面练习也不代表通过真实安全评估。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/learning-roadmap.md","after":"## 一条分四段的学习路线"}]
+  },
+  {
+    "id":"sec-tabletop-gate","topic":"security","kind":"compare","footer_gap":64,
+    "title":"绿色之前：未测、失败和完整证据要分流",
+    "subtitle":"原创保守纸面模型；不复制 AWS 门禁，也不执行发布。",
+    "columns":["虚构记录","教学输出","含义"],
+    "rows":[["未授权／版本错／认证未验","BLOCK","不应进入签核"],["失败／不完整／scope conflict","BLOCK","任务未完成或目标不符"],["scoped out／覆盖缺／待审项","MANUAL_REVIEW","人工审范围或证据缺口"],["必要记录均齐全","RELEASE_REVIEW","待人审核，不是安全证明"]],
+    "note":"官方基础设施错误默认 fail-open；教学故意更保守，不能拿这份代码替换真实控制。",
+    "placements":[{"file":"wiki/topics/security/aws-continuum/lab.md","after":"## A. 一张绿色面板能说明什么"}]
+  }
+]

@@ -41,6 +41,10 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 Pollen Robotics 图组在 `pollen-robotics.json`（10 图），覆盖本体／SDK、遥操作、感知／仿真、数据／策略、Microduck RL 与执行器。用 `--id-prefix pollen-` 独立重建，资源位于 `physical-ai/images/`。该组设置 `archive_assets: false`，新增图由独立清单与测试验证，不写入 2026-10-29 的旧归档图件校验表；默认未设此字段的旧图仍维持原归档行为。
 
+安全图组在 `security-continuum.json`（9 张概念图），用 `--id-prefix sec-` 独立重建，资源位于 `security/images/`。另有一张使用官方 AWS 图标的客户侧逻辑治理 SVG，不走本通用图组、不生成 PNG；SVG 内嵌 draw.io 可编辑模型。它不是 Continuum 内部部署或内建自动集成，图中服务组合是可另行设计的参考。GA、preview 与计费说明须和正文来源台账同步更新。
+
+新安全对照图显式设置 `footer_gap: 64`，为表格与脚注留出间距。此选项默认零，保持旧清单、图片与 Physical AI 归档字节不变；新图有独立的几何间距测试。
+
 ## Physical AI 原件与图文版
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。

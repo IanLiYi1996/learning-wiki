@@ -23,7 +23,7 @@ class FigureTests(unittest.TestCase):
         self.assertGreaterEqual(result["notes"], 67)
         self.assertGreaterEqual(result["figures"], 83)
         self.assertEqual(set(f["topic"] for f in figures),
-                         {"rendering", "blockchain", "physical-ai", "big-data", "payments", "deep-learning"})
+                         {"rendering", "blockchain", "physical-ai", "big-data", "payments", "deep-learning", "security"})
 
     def test_all_diagrams_are_valid_self_contained_svg(self):
         for figure in FIGURES.load_figures():

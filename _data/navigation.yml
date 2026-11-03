@@ -16,6 +16,32 @@ sections:
     icon: inbox
 
 topics:
+  - label: 云与应用安全
+    title: 云与应用安全 / AWS Continuum
+    url: /wiki/topics/security/
+    description: 从安全基础到 Continuum L200；讲清权限、数据、验证修复、成本与客户方案。
+    meta: 9 页读本 · 10 张图 · 无网络练习
+    items:
+      - label: 安全主题导读
+        url: /wiki/topics/security/
+      - label: AWS Continuum L200
+        url: /wiki/topics/security/aws-continuum/
+      - label: 01 安全基础与职责
+        url: /wiki/topics/security/aws-continuum/security-foundations.html
+      - label: 02 能力、状态与成本
+        url: /wiki/topics/security/aws-continuum/continuum-l200.html
+      - label: 03 权限与数据边界
+        url: /wiki/topics/security/aws-continuum/permissions-and-data.html
+      - label: 04 验证与修复闭环
+        url: /wiki/topics/security/aws-continuum/validation-and-remediation.html
+      - label: 05 客户方案与 PoC
+        url: /wiki/topics/security/aws-continuum/customer-solutions.html
+      - label: 06 L200 学习与问题卡
+        url: /wiki/topics/security/aws-continuum/learning-roadmap.html
+      - label: 桌面实验与费用验算
+        url: /wiki/topics/security/aws-continuum/lab.html
+      - label: 来源与核验边界
+        url: /wiki/topics/security/aws-continuum/sources.html
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/

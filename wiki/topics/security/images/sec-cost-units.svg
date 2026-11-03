@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="568" viewBox="0 0 1040 568" role="img" aria-labelledby="title desc">
+<title id="title">计费口径、容量配额与项目成本分开</title>
+<desc id="desc">原创数字例，只做两项服务费算术；费率为 2026-11-03 读取值。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="568" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">计费口径、容量配额与项目成本分开</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创数字例，只做两项服务费算术；费率为 2026-11-03 读取值。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">对象</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">量的含义</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">教学判断</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">普通 pentest</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">各任务主动工作秒累计</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">900＋900 秒＝0.5 task-hour＝$25</text>
+<rect x="40" y="248" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Code</text>
+<text x="53" y="302" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">vulnerabilities</text>
+<rect x="220" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">保护 LOC 月费＋实际 CIU</text>
+<rect x="610.0" y="248" width="390.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">150 万 LOC＋18 CIU＝$480</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">预览与配额</text>
+<rect x="220" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">能力级收费例外与容量</text>
+<rect x="610.0" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">不是全部项目免费或支出封顶</text>
+<rect x="40" y="394" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">完整项目</text>
+<rect x="220" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">托管、日志、网络、人工与整改</text>
+<rect x="610.0" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">另估算；不套官网每漏洞 CIU 假设</text>
+<line x1="40" y1="504" x2="1000" y2="504" stroke="#e0e7e2"/>
+<text x="40" y="528" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">示例不扣试用、折扣与税，不含关联资源；等待时长不是累计任务时长。</text>
+</g>
+</svg>
