@@ -181,7 +181,12 @@ def render_compare(figure):
                         in zip(row, widths)) * 25)
         for row in rows
     ]
-    c = Canvas(figure["title"], figure["subtitle"], 222 + sum(row_heights))
+    # Opt-in clearance for new tables; keep legacy archive renders byte-identical.
+    footer_gap = figure.get("footer_gap", 0)
+    if isinstance(footer_gap, bool) or not isinstance(footer_gap, (int, float)) \
+            or not math.isfinite(footer_gap) or footer_gap < 0:
+        raise ValueError("Comparison footer_gap must be finite and nonnegative")
+    c = Canvas(figure["title"], figure["subtitle"], 222 + sum(row_heights) + footer_gap)
     y = 126
     for index, row in enumerate([columns] + rows):
         h = 54 if index == 0 else row_heights[index-1]

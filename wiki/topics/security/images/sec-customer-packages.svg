@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="558" viewBox="0 0 1040 558" role="img" aria-labelledby="title desc">
+<title id="title">四个候选交付包：从客户决策倒推证据</title>
+<desc id="desc">原创服务设计，不是 AWS 官方套餐、固定报价或结果保证。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="558" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">四个候选交付包：从客户决策倒推证据</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创服务设计，不是 AWS 官方套餐、固定报价或结果保证。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">客户痛点</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">候选包</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">核心交付／验收</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">上线缺安全证据</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">A 上线前评估</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">范围、威胁、验证、残余风险</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">安全要求不一致</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">B DevSecOps 评审</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">需求—代码—证据映射和基线</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">修复积压无复测</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">C 持续验证整改</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">授权、审批、版本与复测台账</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">发现分散责任不清</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">D 姿态与发现运营</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">覆盖矩阵、路由、owner 与响应审批</text>
+<line x1="40" y1="494" x2="1000" y2="494" stroke="#e0e7e2"/>
+<text x="40" y="518" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">授权、数据许可、停止能力不齐即 no-go；preview 不可用保留明确非等价替代。</text>
+</g>
+</svg>

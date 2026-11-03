@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+<title id="title">安全闭环：结果要进入业务、变更和证据交接</title>
+<desc id="desc">原创学习路线，不是 Continuum 内建状态机或无人审批流程。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="540" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">安全闭环：结果要进入业务、变更和证据交接</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创学习路线，不是 Continuum 内建状态机或无人审批流程。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">基础与资产</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">先明确什么值得保护</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">能力与范围</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">选设计、代码或运行证据</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">权限与数据</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">身份、网络与处理路线</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">发现与分诊</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">核实证据和业务影响</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">修复与复测</text>
+<text x="520.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">审核、部署、验证、回归</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">客户验收</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">记录残余风险和负责人</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="476" x2="1000" y2="476" stroke="#e0e7e2"/>
+<text x="40" y="500" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">生成报告或 PR 不是闭环；真实测试、部署和客户推荐都需另行授权。</text>
+</g>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "research_date": "2026-11-03",
+  "source_type": "public_primary_mutable_pages_not_pinned_snapshots",
+  "account_accessed": false,
+  "assessments_executed": false,
+  "sources": [
+    {"id":"ga","url":"https://aws.amazon.com/blogs/aws/aws-continuum-for-code-vulnerabilities-is-now-generally-available/","event_date":"2026-10-22","scope":"Code vulnerabilities GA; two Regions; human approval before fixes ship"},
+    {"id":"launch","url":"https://aws.amazon.com/about-aws/whats-new/2026/06/aws-continuum/","event_date":"2026-06-17","scope":"Historical gated preview baseline, not current status"},
+    {"id":"overview","url":"https://aws.amazon.com/continuum/","scope":"Product boundary; stale gated preview badge; scanning and threat modeling preview"},
+    {"id":"features","url":"https://aws.amazon.com/continuum/features/","scope":"Code context graph; validation; patches; pentest purpose"},
+    {"id":"pricing","url":"https://aws.amazon.com/continuum/pricing/","scope":"LOC and CIU; task-hours; trial; three revalidations"},
+    {"id":"billing","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/pricing.html","scope":"Task time not wall time; preview exceptions; quotas not spending caps"},
+    {"id":"quotas","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/quotas.html","scope":"Per account per Region per month; PR reviews not arbitrary scans"},
+    {"id":"trigger","url":"https://docs.aws.amazon.com/continuum/latest/userguide/cv-triggering-scan.html","scope":"First scan at creation despite Manual only; queued manual scan cannot be cancelled"},
+    {"id":"issues","url":"https://docs.aws.amazon.com/continuum/latest/userguide/cv-viewing-issues.html","scope":"Proof types vary; only loaded issues counted; patch not closure"},
+    {"id":"data","url":"https://docs.aws.amazon.com/continuum/latest/userguide/data-protection.html","scope":"Does not cover Security Agent pentest; content usage; regional processing"},
+    {"id":"agent-data","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/data-protection.html","scope":"Storage and inference geography differ; cross-Region cannot opt out"},
+    {"id":"best","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/security-best-practices.html","scope":"Nonproduction; credentials; per-feature inference exceptions; SCP caveat"},
+    {"id":"hierarchy","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/understand-lifecycle.html","scope":"Tenant-level shared settings and Agent Space resources"},
+    {"id":"cicd","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/cicd-pentest.html","scope":"Public preview; post-deployment; fail-open; baseline; OIDC; cleanup"},
+    {"id":"pentest","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/perform-penetration-test.html","scope":"Scope; credential preflight exception; task limit; best-effort cleanup"},
+    {"id":"revalidate","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/revalidate-findings.html","scope":"Selected finding only; separate job; original finding unchanged"},
+    {"id":"code","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/perform-code-review-scan.html","scope":"Full code scan; optional simulated validation; source and delivery boundaries"},
+    {"id":"threat","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/perform-threat-model.html","scope":"Scope docs; source context; STRIDE; outputs and assumptions"},
+    {"id":"requirements","url":"https://docs.aws.amazon.com/securityagent/latest/userguide/security-requirements.html","scope":"Packs and requirements do not assess compliance or guarantee audit"},
+    {"id":"responsibility","url":"https://aws.amazon.com/compliance/shared-responsibility-model/","scope":"Cloud versus in-cloud responsibility"},
+    {"id":"risk","url":"https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-30r1.pdf","scope":"Threat, vulnerability, likelihood and impact"},
+    {"id":"incident","url":"https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf","scope":"Asset and incident-response responsibility"},
+    {"id":"stride","url":"https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html","scope":"Threat modeling and STRIDE"},
+    {"id":"cvss","url":"https://www.first.org/cvss/v4.0/user-guide","scope":"Severity is not standalone business risk"},
+    {"id":"icons","url":"https://aws.amazon.com/architecture/icons/","scope":"Official icon artwork for customer-side logical reference only"}
+  ],
+  "discrepancies": [
+    {"id":"ga-vs-overview","resolution":"Use dated 2026-10-22 GA announcement; retain stale overview badge as discrepancy"},
+    {"id":"source-providers","resolution":"Per-capability current verification; no universal provider list"},
+    {"id":"region-tables","resolution":"Availability and inference destination are different dimensions"},
+    {"id":"faq-vs-cicd","resolution":"Detailed CI/CD and schedule documents override old FAQ statements"},
+    {"id":"data-scope","resolution":"Keep Continuum and frontier-agent data statements scoped separately"}
+  ],
+  "original_teaching": ["concept diagrams","customer-side governance SVG","four candidate solution packages","L200 learning assessment","fictional evidence and fee lab"],
+  "not_executed": ["AWS login or account API","environment or Agent Space creation","IAM or secrets changes","preview application","code or target scan","pentest or exploit","deployment or response","customer messaging","paid operations"]
+}
