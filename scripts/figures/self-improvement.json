@@ -1,0 +1,123 @@
+[
+  {
+    "id": "rsi-objects",
+    "topic": "deep-learning",
+    "kind": "compare",
+    "title": "答案、系统与改进器：三种不同的变化",
+    "subtitle": "原创阅读分层，不是学界统一的 RSI 等级。",
+    "columns": ["修改对象", "保留了什么", "需要单独测试什么"],
+    "rows": [
+      ["当前答案", "一次回答或推理轨迹", "这次是否答对；后续任务未必继承"],
+      ["任务系统", "工具、代码、记忆或参数", "未见任务上的能力与旧能力保持"],
+      ["改进方法", "提案、选择或学习策略", "同起点、同预算下的后续有效增益"]
+    ],
+    "footer_gap": 64,
+    "note": "任务分数提高，不自动证明更会改进；长期持续性与资源代价仍须另测。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/README.md", "after": "## 先看三个问题"},
+      {"file": "wiki/topics/deep-learning/self-improvement/concepts-and-foundations.md", "after": "## RSI 研究的究竟是哪一种“变强”"}
+    ]
+  },
+  {
+    "id": "rsi-cycle",
+    "topic": "deep-learning",
+    "kind": "flow",
+    "title": "一次可审计的修改：提案、执行、检查、选择",
+    "subtitle": "通用教学流程；各系统的固定项与可变项仍需对照原文。",
+    "nodes": [
+      ["父版本与历史", "代码、状态和失败记录"],
+      ["提出候选", "在许可范围里生成修改"],
+      ["执行候选", "记录超时、错误与资源"],
+      ["评价与审计", "正确性、任务和副作用"],
+      ["选择或回退", "保留完整比较与失败"],
+      ["保存新状态", "进入档案或下一轮"]
+    ],
+    "loop": "下一轮提案",
+    "note": "重复循环不等于改进器增强；基础模型、评价器与外层规则可能仍固定。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/agent-evolution.md", "after": "## 怎样读懂一个自改进循环"},
+      {"file": "wiki/topics/deep-learning/self-improvement/algorithms-and-infrastructure.md", "after": "### FunSearch：LLM 负责提案，程序负责检验"},
+      {"file": "wiki/topics/deep-learning/self-improvement/industry-and-autoresearch.md", "after": "### autoresearch：把自动实验压缩成几个可检查的部件"}
+    ]
+  },
+  {
+    "id": "rsi-adaptation",
+    "topic": "deep-learning",
+    "kind": "flow",
+    "title": "适应模型与学习适应材料：把内外层分开",
+    "subtitle": "以 SEAL 式循环作直觉说明，不是完整训练图或独立复现。",
+    "nodes": [
+      ["自我编辑策略", "产生材料或适应配置"],
+      ["学习材料", "检查来源和正确性"],
+      ["内层适应", "更新目标模型参数"],
+      ["下游评价", "测更新后的任务表现"],
+      ["外层策略学习", "反馈用于材料生成策略"],
+      ["保存与继续", "保留版本和完整成本"]
+    ],
+    "loop": "下一次材料生成",
+    "note": "新任务收益须和遗忘一起看；生成、训练及评价的成本都计入。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/learning-and-weights.md", "after": "## 让模型学习怎样准备自己的学习材料"}
+    ]
+  },
+  {
+    "id": "rsi-science-feedback",
+    "topic": "deep-learning",
+    "kind": "flow",
+    "title": "科学研究反馈：新数据改变假说，未必改变改进器",
+    "subtitle": "原创职责示意；不能理解成所有系统都自动执行每一步。",
+    "nodes": [
+      ["当前研究状态", "人指定问题与数据范围"],
+      ["文献和分析", "提出有证据的候选"],
+      ["人审查候选", "选择可执行实验"],
+      ["人和实验室", "协议、培养与测量"],
+      ["数据分析", "查代码与解释是否有效"],
+      ["更新假说", "保留证据、安排下一轮"]
+    ],
+    "loop": "研究状态反馈",
+    "note": "人的验证责任仍在；体外候选不等于疗效，研究产物不等于元算法升级。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/ai-scientists.md", "after": "### 自动研究比程序搜索多了哪些环节"}
+    ]
+  },
+  {
+    "id": "rsi-evaluation-contract",
+    "topic": "deep-learning",
+    "kind": "compare",
+    "title": "反馈可见范围：探索、选择和最终审计分开",
+    "subtitle": "原创实验合同；不声称原论文都已经满足这些隔离条件。",
+    "columns": ["阶段", "信息可见范围", "用途与限制"],
+    "rows": [
+      ["探索任务", "允许提案器看到失败反馈", "用于改动；不能再称未见测试"],
+      ["候选选择", "指定验证信号参与筛选", "选择版本，不替代最终审计"],
+      ["最终测试", "不参与修改、诊断与选择", "评价泛化；反馈回流须另披露"],
+      ["资源与约束", "所有失败、预算和权限变更", "排除更多尝试与评分污染"]
+    ],
+    "footer_gap": 64,
+    "note": "稳定评价不保证无误；正确性、旧能力和成本要同时记录。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/evaluation-and-safety.md", "after": "## 如何判断论文里的进步是不是真的"},
+      {"file": "wiki/topics/deep-learning/self-improvement/research-roadmap.md", "after": "## 可以怎样做一项有辨识度的研究"},
+      {"file": "wiki/topics/deep-learning/self-improvement/lab.md", "after": "## C. 更快和自称高分，都不能绕过正确性"}
+    ]
+  },
+  {
+    "id": "rsi-four-way",
+    "topic": "deep-learning",
+    "kind": "compare",
+    "title": "比较改进策略，先锁定同一个起点",
+    "subtitle": "原创整数任务；策略由人指定，不是 Hyperagents 或模型实验成绩。",
+    "columns": ["起点", "forward", "two_sided"],
+    "rows": [
+      ["0", "最终均分 8；增益 2", "最终均分 10；增益 4"],
+      ["2", "最终均分 7；增益 1", "最终均分 9；增益 3"],
+      ["评价预算", "每目标四个候选", "每目标四个候选"]
+    ],
+    "footer_gap": 64,
+    "note": "同一行对照方法；初始评分统一提供；没有学习、真实模型或独立留出任务。",
+    "placements": [
+      {"file": "wiki/topics/deep-learning/self-improvement/research-roadmap.md", "after": "### 用交叉组合拆开 task agent 与 meta agent"},
+      {"file": "wiki/topics/deep-learning/self-improvement/lab.md", "after": "## B. 起点和改进器必须拆开比较"}
+    ]
+  }
+]
