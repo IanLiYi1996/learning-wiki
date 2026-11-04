@@ -101,6 +101,12 @@
 | [09 工程实现](weight-space-programming.md#wsp-09) | 如何把权限、评测、成本和回滚放进 Harness？ |
 | [10 学习与判断](weight-space-programming.md#wsp-10) | 哪些结论可以带走，哪些暂时不能？ |
 
+## 综合研究案例：OpenMOSS
+
+[OpenMOSS 研究路线与技术机制](openmoss/README.md)保留 11 条研究方向、14 篇技术深解，跨越语音、视觉、生成、具身、Agent、后训练、安全和可解释性。它作为综合案例独立组织，不替代上面的六类基础读本。
+
+先看[按问题选择的学习路线](openmoss/learning-roadmap.md)，再读对应方法与源码。原资料核查于 2026-10-17，2026-11-04 整理入 Wiki；没有将迁移日期当作团队全部新成果的核验日期。[来源与版本](openmoss/sources.md)。
+
 ## 建议阅读路线
 
 **想辨认自改进证据**：从 [RSI 导读](self-improvement/README.md)进入 [DGM／Hyperagents／AIDE²](self-improvement/agent-evolution.md)，再做[预算和四格对照](self-improvement/lab.md)。想看行业先读科学家与工业研发两章，不把这些工作全称为严格 RSI。

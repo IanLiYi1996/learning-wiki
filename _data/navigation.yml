@@ -273,6 +273,46 @@ topics:
       - label: 一手来源与实验边界
         group: 权重编辑与解释
         url: /wiki/topics/deep-learning/weight-space-programming-sources.html
+  - label: OpenMOSS 综合研究
+    title: OpenMOSS 研究路线与技术机制
+    url: /wiki/topics/deep-learning/openmoss/
+    description: 从项目和论文理解多模态表示、实时互动、具身行动、Agent 与模型训练。
+    meta: 11 条研究方向 · 14 篇深解 · 原核查 2026-10-17
+    items:
+      - label: 专题总览与研究方向
+        url: /wiki/topics/deep-learning/openmoss/
+      - label: 学习路线与先修知识
+        url: /wiki/topics/deep-learning/openmoss/learning-roadmap.html
+      - label: 基础模型：MOSS 与 AnyGPT
+        url: /wiki/topics/deep-learning/openmoss/09-foundation-and-omni-models.html
+      - label: 语音表示、生成与交互
+        url: /wiki/topics/deep-learning/openmoss/01-audio-representation-and-generation.html
+      - label: 音频理解、转写与音乐
+        url: /wiki/topics/deep-learning/openmoss/10-audio-understanding-and-transcription.html
+      - label: 视觉、视频与实时互动
+        url: /wiki/topics/deep-learning/openmoss/02-streaming-video-time-and-cache.html
+      - label: 视听生成：OmniVAE 与 MOVA
+        url: /wiki/topics/deep-learning/openmoss/03-audiovisual-latents-and-joint-denoising.html
+      - label: 图像生成：文字与布局
+        url: /wiki/topics/deep-learning/openmoss/04-image-layout-supervision-and-specification.html
+      - label: 机器人策略与全身控制
+        url: /wiki/topics/deep-learning/openmoss/11-robotics-policy-and-control.html
+      - label: 世界建模、规划与执行
+        url: /wiki/topics/deep-learning/openmoss/05-world-action-and-embodied-agent.html
+      - label: 工具使用、记忆与实际工作
+        url: /wiki/topics/deep-learning/openmoss/06-agent-memory-and-executable-evaluation.html
+      - label: 长上下文、位置与检索
+        url: /wiki/topics/deep-learning/openmoss/07-long-context-and-diffusion-optimization.html
+      - label: 扩散语言生成与缓存
+        url: /wiki/topics/deep-learning/openmoss/13-diffusion-language-models.html
+      - label: 后训练与强化学习
+        url: /wiki/topics/deep-learning/openmoss/14-post-training-and-rl.html
+      - label: 诚实回答与长输入安全
+        url: /wiki/topics/deep-learning/openmoss/12-honesty-and-long-context-safety.html
+      - label: 机制可解释性
+        url: /wiki/topics/deep-learning/openmoss/08-mechanistic-interpretability.html
+      - label: 来源、版本与核验边界
+        url: /wiki/topics/deep-learning/openmoss/sources.html
   - label: 支付行业 101
     title: 支付行业 101
     url: /wiki/topics/payments/

@@ -12,7 +12,7 @@
     {% for topic in site.data.navigation.topics %}
     {% assign topic_page = site.pages | where: "url", topic.url | first %}
     {% if topic_page %}
-    <details class="nav-topic" data-topic="{{ topic.url | relative_url }}"{% if page.url contains topic.url %} open{% endif %}>
+    <details class="nav-topic" data-topic="{{ topic.url | relative_url }}"{% if current_topic.url == topic.url %} open{% endif %}>
       <summary><span>{{ topic.label }}</span>{% include icon.html name="chevron-right" %}</summary>
       <div class="chapter-links">
         {% assign subtopics = topic.items | group_by: "group" %}

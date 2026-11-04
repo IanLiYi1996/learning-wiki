@@ -17,6 +17,8 @@ physical_ai_reader: all
 
 2026-11-03：[Pollen Robotics 图文读本](pollen-robotics/README.md)，按本体与 SDK、遥操作与日志、感知与仿真、Grabette 数据与策略、Microduck RL、手与执行器六章展开，附标准库合同实验与固定源码清单。把既有原理对应到具体代码，不连接硬件，也不把演示包装成真机验收。
 
+2026-11-04：[OpenMOSS 综合研究](../deep-learning/openmoss/README.md)整理入 Wiki，原资料核查于 2026-10-17。具身方向可先读[RoboOmni／FRoM-W1 的策略与控制](../deep-learning/openmoss/11-robotics-policy-and-control.md)，再读[D2PO／WAP／EasyWAM／ETA 的建模、规划与执行](../deep-learning/openmoss/05-world-action-and-embodied-agent.md)；正文保留在同一专题，不在这里复制另一套。
+
 ## 从哪里开始
 
 <!-- illustration: physical-feedback-a9ffd76dc9 -->

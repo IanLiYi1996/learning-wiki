@@ -217,6 +217,11 @@ html[data-theme="dark"] .highlight .s, html[data-theme="dark"] .highlight .s1, h
 html[data-theme="dark"] .highlight .m, html[data-theme="dark"] .highlight .mi, html[data-theme="dark"] .highlight .mf { color: #edd099; }
 html[data-theme="dark"] .highlight .nb, html[data-theme="dark"] .highlight .nc, html[data-theme="dark"] .highlight .nf { color: #93cbdc; }
 mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 8px 0; }
+// Tagged MathJax equations set an inline min-width; contain it in the scroll area.
+mjx-container[display="true"][width="full"] { min-width: 0 !important; }
+body.openmoss-study mjx-container:not([display="true"]) {
+  display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle;
+}
 
 .page-toc { position: sticky; top: 100px; max-height: calc(100vh - 132px); overflow-y: auto; padding-left: 16px; border-left: 1px solid var(--border); scrollbar-width: thin; }
 .toc-title { margin: 0 0 14px; color: var(--text); font-size: 12px; font-weight: 600; }

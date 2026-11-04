@@ -1,0 +1,594 @@
+{
+  "research_date": "2026-10-17",
+  "wiki_adapted_date": "2026-11-04",
+  "scope": "14 technical deep dives; original primary-source review retained, not refreshed",
+  "model_experiments_rerun": false,
+  "snapshots": [
+    {
+      "url": "https://github.com/OpenMOSS/ABC-Bench/tree/265af02a78fd8bc6b84d75b4001e23983fa41db9",
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/AnyGPT/tree/fc3bcc4e9dd76edec8a63300b7ae163a9ecec3d4",
+      "chapters": [
+        "09-foundation-and-omni-models.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/BandPO/tree/0de49cd919b4ddf3e161fbdf69abcf0527c79ac2",
+      "chapters": [
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/CoLLiE/tree/3826b3ed90da384d70fbe4afde8f91c7b2847a2b",
+      "chapters": [
+        "09-foundation-and-omni-models.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/ContextWeave/tree/339783f8648902d2ac086ac696ec9cb276ddef44",
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/DiRL/tree/a9e28f708f06f4fc0d98b23d57fa152e9ad99447",
+      "chapters": [
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/EasyWAM/tree/dd5b06153abd1c04eff99a3933dc09baf0906fa2",
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/Embodied-Planner-R1/tree/50cb93cfc02725a1864edc39c0a2170ab233ba61",
+      "chapters": [
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/FRoM-W1/tree/457d84d44e638c1070473dd48cedde19752cad09",
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/HalluQA/tree/7e5c67398d7fee013c37ec1d6afafa76f9836180",
+      "chapters": [
+        "12-honesty-and-long-context-safety.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/Llamascopium/tree/544b2f93290a60cc5dbafb535565592b79a05141",
+      "chapters": [
+        "08-mechanistic-interpretability.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/LongLLaDA/tree/7244e09915972ed3d8e92c713889a53e82147caf",
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/LongSafety/tree/5f3fd585738a438c1effc5b3466657d47afe9dc6",
+      "chapters": [
+        "12-honesty-and-long-context-safety.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Audio-Tokenizer/tree/8c50ac4c5d7287d2ed6ea20a08c90ca439887d23",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Audio/tree/66326e6e0db34f036c86a76ba005efa4830c69dd",
+      "chapters": [
+        "01-audio-representation-and-generation.md",
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Image/tree/c1355e6b1986dfe8fba3c0455783a05899212342",
+      "chapters": [
+        "04-image-layout-supervision-and-specification.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Music/tree/ad107c7ddaa06de168a0dfbc18d3e1e6a40c0e5e",
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Speech/tree/3a1001ae37b731ae49a98311139fb54c49230fd9",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-TTS/tree/934d6826b084c46a0d033402174d5f8ac4ed2519",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Transcribe-Diarize/tree/e3bdd93f8ad58418e04659818efd5fd87a0bc486",
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-VL/tree/a3feb74da1a5184bfc10be59b58a33874231f51e",
+      "chapters": [
+        "02-streaming-video-time-and-cache.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS-Video-Preview/tree/e3837691f47af7f9d183e10bf43d2f2522db157c",
+      "chapters": [
+        "02-streaming-video-time-and-cache.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOSS/tree/24bc88737d83fa5561bf3c284b2895b8ac41bff6",
+      "chapters": [
+        "09-foundation-and-omni-models.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/MOVA/tree/1591b2557b42030a3421442c998dd6f5602ed9bd",
+      "chapters": [
+        "03-audiovisual-latents-and-joint-denoising.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/OmniVAE/tree/2749b39c24659e775fcc22bdcf3b3913313adeea",
+      "chapters": [
+        "03-audiovisual-latents-and-joint-denoising.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/OpenETA/tree/b02260228e8c90fbc954e4eeb4ce4175249da9ba",
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/ReAttention/tree/a62514f169d821fadf962e51aad24c4e5a1643db",
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/RoboOmni/tree/935b3d7fa5d1fcd55d6ab32ba8d4fa1285961895",
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/SWE-bench-Science/tree/08cea5a2ff7f56252de8658a75a4144c18a6c946",
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/Say-I-Dont-Know/tree/a4768458638fa78a9a43252d319514db425dcaf3",
+      "chapters": [
+        "12-honesty-and-long-context-safety.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/Sparse-dLLM/tree/3fd8986bee4ddd68e70ee8041da3a8c9de44f405",
+      "chapters": [
+        "13-diffusion-language-models.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/TTSD-eval/tree/dea13b98529dc16dcfb5fe45779ad63ac9238337",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/UnifiedToolHub/tree/8235954cd3219b6f6facbdf8a7bf65e740c0a5ad",
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/VLABench/tree/cf588fe60c0c7282174fe979f5913170cfe69017",
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "url": "https://github.com/OpenMOSS/rope_pp/tree/91ba3357c49beb22e132ed096557baee503f3486",
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md"
+      ]
+    },
+    {
+      "url": "https://github.com/sii-research/OpenMOSS/tree/14d3cf31265a5d3de9dea89a1d0857ea3d976579",
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "url": "https://github.com/sii-research/World-Aware-Planning/tree/103ad7612655609983caa4610ab74a5f81d8da5f",
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "url": "https://github.com/sinwang20/D2PO/tree/5474c30d13dbe7c4f796375c4c033648d0dcb4b1",
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "url": "https://github.com/wx9songs/MOSS-Music-Data-Pipeline/tree/58ee296c4be830514773fb93b9b5a1f503c11cd2",
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Audio-8B-Instruct/tree/d4dc5a6d8cd79b43dcd82884c75e303b1ecd016d",
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Transcribe-Diarize/tree/704aa4a9c304e8520be88901e0d1960158ef5b15",
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-VL-Realtime/tree/d1f71a588deaf2b9b9cea7c6fff66cb10847cc86",
+      "chapters": [
+        "02-streaming-video-time-and-cache.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/fnlp/MOSS-Speech-Codec/tree/eeec733e4e1dea7da444d332d8e1621ef257414c",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "url": "https://huggingface.co/fnlp/MOSS-Speech/tree/cff025bb41d8459d59abac0b5e44aba7f659ec9e",
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    }
+  ],
+  "papers": [
+    {
+      "arxiv_id": "2308.16692",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2310.03368",
+      "versions": [
+        "v4"
+      ],
+      "chapters": [
+        "12-honesty-and-long-context-safety.md"
+      ]
+    },
+    {
+      "arxiv_id": "2312.00407",
+      "versions": [],
+      "chapters": [
+        "09-foundation-and-omni-models.md"
+      ]
+    },
+    {
+      "arxiv_id": "2407.14435",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "08-mechanistic-interpretability.md"
+      ]
+    },
+    {
+      "arxiv_id": "2407.15176",
+      "versions": [
+        "v3"
+      ],
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md"
+      ]
+    },
+    {
+      "arxiv_id": "2410.20526",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "08-mechanistic-interpretability.md"
+      ]
+    },
+    {
+      "arxiv_id": "2411.06899",
+      "versions": [],
+      "chapters": [
+        "12-honesty-and-long-context-safety.md"
+      ]
+    },
+    {
+      "arxiv_id": "2412.18194",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "arxiv_id": "2501.09747",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "arxiv_id": "2503.10480",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "arxiv_id": "2506.14429",
+      "versions": [
+        "v3"
+      ],
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md",
+        "13-diffusion-language-models.md"
+      ]
+    },
+    {
+      "arxiv_id": "2506.21230",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "arxiv_id": "2506.23127",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "arxiv_id": "2508.02558",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "13-diffusion-language-models.md"
+      ]
+    },
+    {
+      "arxiv_id": "2508.16929",
+      "versions": [
+        "v4"
+      ],
+      "chapters": [
+        "08-mechanistic-interpretability.md"
+      ]
+    },
+    {
+      "arxiv_id": "2510.23763",
+      "versions": [
+        "v3"
+      ],
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "arxiv_id": "2512.07525",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "07-long-context-and-diffusion-optimization.md"
+      ]
+    },
+    {
+      "arxiv_id": "2512.22234",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "13-diffusion-language-models.md",
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "arxiv_id": "2601.01554",
+      "versions": [
+        "v7"
+      ],
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "arxiv_id": "2601.11077",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2601.12799",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "11-robotics-policy-and-control.md"
+      ]
+    },
+    {
+      "arxiv_id": "2601.13836",
+      "versions": [],
+      "chapters": [
+        "02-streaming-video-time-and-cache.md"
+      ]
+    },
+    {
+      "arxiv_id": "2602.08794",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "03-audiovisual-latents-and-joint-denoising.md"
+      ]
+    },
+    {
+      "arxiv_id": "2602.10934",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2603.04918",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "14-post-training-and-rl.md"
+      ]
+    },
+    {
+      "arxiv_id": "2603.18090",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2603.19739",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "01-audio-representation-and-generation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2605.12090",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "arxiv_id": "2606.01802",
+      "versions": [
+        "v3"
+      ],
+      "chapters": [
+        "10-audio-understanding-and-transcription.md"
+      ]
+    },
+    {
+      "arxiv_id": "2606.07639",
+      "versions": [],
+      "chapters": [
+        "02-streaming-video-time-and-cache.md"
+      ]
+    },
+    {
+      "arxiv_id": "2607.23855",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "03-audiovisual-latents-and-joint-denoising.md"
+      ]
+    },
+    {
+      "arxiv_id": "2607.29626",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2608.03924",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "05-world-action-and-embodied-agent.md"
+      ]
+    },
+    {
+      "arxiv_id": "2608.04830",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    },
+    {
+      "arxiv_id": "2608.15045",
+      "versions": [
+        "v1"
+      ],
+      "chapters": [
+        "02-streaming-video-time-and-cache.md",
+        "09-foundation-and-omni-models.md"
+      ]
+    },
+    {
+      "arxiv_id": "2608.19799",
+      "versions": [
+        "v2"
+      ],
+      "chapters": [
+        "06-agent-memory-and-executable-evaluation.md"
+      ]
+    }
+  ]
+}
