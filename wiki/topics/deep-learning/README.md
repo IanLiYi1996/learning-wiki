@@ -1,8 +1,8 @@
 # 深度学习专题解读：从论文主张到可检验的机制
 
-研究日期：2026-11-03。这里按“问题 → 数学直觉 → 实验证据 → 实现 → 边界”解读具体研究，不把单篇文章包装成整个深度学习领域的定论。
+研究日期：2026-11-04。这里按“问题 → 数学直觉 → 实验证据 → 实现 → 边界”解读具体研究，不把单篇文章包装成整个深度学习领域的定论。
 
-目录现拆为五个可折叠方向。学习对象不同，验证方式也不同：训练模型看数据、目标和轨迹，编辑权重看计算契约和副作用，推理优化看 FLOPs、IO 与实际延迟。分组是本 Wiki 的阅读组织，不是论文宣称的领域分类；原有文章地址不变。
+目录现拆为六个可折叠方向，新增视觉表征与多模态。学习对象不同，验证方式也不同：训练模型看数据、目标和轨迹，视觉表示看接口与检索空间，编辑权重看计算契约和副作用，推理优化看 FLOPs、IO 与实际延迟。分组是本 Wiki 的阅读组织，不是论文宣称的领域分类；原有文章地址不变。
 
 ## 从这里开始：先选一个问题
 
@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | 如何把 base LLM 训练成能推理、用工具的模型？ | [LLM 训练配方](training/README.md) | Rufus-Air 流水线；Agentic-RL Lab 算法、环境、蒸馏与评测 |
 | 如何让图像／视频更符合偏好和任务？ | [扩散与视觉生成](diffusion/README.md) | DPO、去噪链上的 RL、视觉奖励和组合优势 |
+| 如何直接表达像素，或学习统一多模态向量？ | [视觉表征与多模态](vision/README.md) | PixelBench／PRT；EmbeddingGemma 2 架构、训练与检索 |
 | 如何判断推理成本与“实时”是否可信？ | [GPU 与内存](diffusion/05-gpu-and-memory-roofline.md) | CUDA 层次、Roofline、视频 token、吞吐与时延 |
 | 如何让代理自动试验，而不被假指标带跑？ | [自动研究与评测](diffusion/04-autoresearch-and-oracles.md) | 实验契约、oracle、正确性准入、持出集 |
 | 不走普通训练，能否直接读写权重？ | [权重编辑与解释](weight-space-programming.md) | WSP、QK／OV、权重几何、实验权限和回滚 |
@@ -22,6 +23,7 @@
 │  ├─ Rufus-Air：总览 → 数据／SFT／RLVR → Agent → 奖励 → 工程／评测 → 实验
 │  └─ Agentic-RL Lab：目标 → 工具环境 → 蒸馏 → 信用分配 → 多模态／裁判 → 复现
 ├─ 扩散与视觉生成：偏好对 → 去噪轨迹 → 奖励设计
+├─ 视觉表征与多模态：文本像素／PRT；共享骨干／统一向量／检索
 ├─ 推理与硬件：GPU／内存 → 视频成本
 ├─ 自动研究与评测：候选程序 → oracle → 保留或回滚
 └─ 权重编辑与解释：WSP → 数学机制 → 权限／证据 → 本地实验
@@ -45,9 +47,17 @@
 
 [扩散标准库实验](diffusion/lab.md)保留原位置，跨越奖励、硬件和视频三类教学问题，旁边的来源表也不移动。
 
+<a id="category-vision"></a>
+
+## 3. 视觉表征与多模态
+
+[视觉表征导读](vision/README.md)把可见的像素表示、可检索的语义向量与生成分布分开。[PixelBench 八页专题](vision/pixelbench/README.md)解释文本调色板／网格、三类任务、检索指标、分辨率失败、两份 PRT 配方与证据边界；[原创离线实验](vision/pixelbench/lab.md)验算分母、相对聚合和官方单位。
+
+[EmbeddingGemma 2 五页专题](vision/embeddinggemma-2/README.md)解释共享双向骨干、模态编码器、渐进蒸馏与对比目标、可截断向量和量化／索引迁移。它输出表示，不是图片或生成答案。两套读本由本 Wiki 的阅读路线连接，不混写模型、训练起点和 benchmark。
+
 <a id="category-inference"></a>
 
-## 3. 推理与硬件
+## 4. 推理与硬件
 
 先读[GPU、内存与 Roofline](diffusion/05-gpu-and-memory-roofline.md)，再读[实时视频估算](diffusion/06-realtime-video-estimates.md)。重点是计算吞吐、内存流量、容量与时延的不同含义，不用峰值参数替代指定 workload 的实测。
 
@@ -55,7 +65,7 @@
 
 <a id="category-research"></a>
 
-## 4. 自动研究与评测
+## 5. 自动研究与评测
 
 [Autoresearch 与 oracle](diffusion/04-autoresearch-and-oracles.md)讨论搜索程序／配置的外层闭环。[训练配方的评测章](training/rufus-air/infrastructure-and-evaluation.md)讨论模型成绩的测量契约。这里并列的是研究方法，不把自动程序搜索误称为另一种模型损失。
 
@@ -63,7 +73,7 @@
 
 <a id="category-weights"></a>
 
-## 5. 权重编辑与解释
+## 6. 权重编辑与解释
 
 本专题最早的读本是 **Weight-Space Programming／权重空间编程**。研究者报告一组让通用大模型读取、修改或构造其他网络权重的实验；我们把权限、失败案例和展望分开。[原文与核验记录](weight-space-programming-sources.md#blog)
 
@@ -94,6 +104,8 @@
 **想读 Agentic RL 代码**：先读 [Lab 导读](training/agentic-rl-lab/README.md)与[优化目标](training/agentic-rl-lab/policy-objectives.md)，再走工具／环境和蒸馏路线。用[免费标准库验算](training/agentic-rl-lab/lab.md)检查学习信号；上游远程模型实验须另行确认预算与安全，不因本地 CPU 可运行就自动启动。
 
 想学图像／视频生成的后训练与工程，先走[扩散专题的阅读路线](diffusion/README.md)。它独立于下面的权重空间编程路线，无需先读完 WSP。
+
+**想学视觉表示**：先读 [PixelBench](vision/pixelbench/README.md)理解“显式输出什么”和评分器的作用，再读 [EmbeddingGemma 2](vision/embeddinggemma-2/README.md)理解“怎样学习评分／检索用的表示空间”。两套源码／配方阅读不等于真实模型复现。
 
 **30 分钟直觉路线**：01 → 03 → 05 → 06 → 10。把“无梯度”和“无反馈”先分开，再理解局部修复。
 

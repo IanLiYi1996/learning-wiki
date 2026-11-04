@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="568" viewBox="0 0 1040 568" role="img" aria-labelledby="title desc">
+<title id="title">数据、初始化和更新预算必须连在一起读</title>
+<desc id="desc">配方对照，不是等成本实验；FV 与 OV 不能混写。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="568" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">数据、初始化和更新预算必须连在一起读</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">配方对照，不是等成本实验；FV 与 OV 不能混写。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">实验臂</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">普通＋像素监督</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">更新／解释</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Molmo2 baseline</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">500k OV＋0 PRT</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">1,190；Pretrain step32000</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Molmo2 main</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">500k OV＋2k 结构轨迹</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">1,198；四配对 seed</text>
+<rect x="40" y="316" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Qwen FV／</text>
+<text x="53" y="370" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">additive</text>
+<rect x="220" y="316" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">64k FV／64k FV＋3k Pixel</text>
+<rect x="610.0" y="316" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">1,000／1,047；Instruct 起步</text>
+<rect x="40" y="394" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">Qwen fixed</text>
+<rect x="220" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">61k FV＋3k Pixel＝64k</text>
+<rect x="610.0" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">1,000；仍未证明 token／FLOPs 相等</text>
+<line x1="40" y1="504" x2="1000" y2="504" stroke="#e0e7e2"/>
+<text x="40" y="528" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">Molmo2 16 benchmarks，Qwen 13；平均收益、逐项结果和官方单位分别记录。</text>
+</g>
+</svg>

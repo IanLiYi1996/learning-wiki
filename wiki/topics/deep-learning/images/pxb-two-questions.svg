@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">PixelBench：能力测量与辅助训练是两组实验</title>
+<desc id="desc">基于公开研究重画；不是模型自画、自评、自改进的自动闭环。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">PixelBench：能力测量与辅助训练是两组实验</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">基于公开研究重画；不是模型自画、自评、自改进的自动闭环。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">文本输出接口</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">现有词表 → 调色板＋索引网格 → 确定性 RGB 查表</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">三类能力测量</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">标签到像素、自然图像到像素、文本网格十选一</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">PRT 辅助监督</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">输入图像 → 监督目标 token；Molmo2／Qwen 两份配方</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">独立验收</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">生成识别性、格式可靠性、下游理解、预算与混杂分别看</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">无学习式输出 decoder，不代表 I2P 无视觉输入 encoder；相关不等于因果。</text>
+</g>
+</svg>

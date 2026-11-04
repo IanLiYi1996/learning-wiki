@@ -73,8 +73,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 按 LLM 训练、视觉生成、推理硬件、自动研究、权重编辑五条路线学习；保留原读本地址。
-    meta: 5 个细分方向 · 4 套读本 · 标准库实验
+    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 PixelBench 和 EmbeddingGemma 2。
+    meta: 6 个细分方向 · 6 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -144,6 +144,48 @@ topics:
       - label: 扩散标准库实验与练习
         group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/lab.html
+      - label: 视觉表征与多模态导读
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/
+      - label: PixelBench：文本像素与 PRT
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/
+      - label: 像素 01 表示与三类任务
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/representation-and-tasks.html
+      - label: 像素 02 指标与失败分母
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/metrics-and-results.html
+      - label: 像素 03 分辨率与失败
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/resolution-and-failure-modes.html
+      - label: 像素 04 两份 PRT 配方
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/prt-training.html
+      - label: 像素 05 证据与混杂
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/evidence-and-limitations.html
+      - label: 像素离线实验与自测
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/lab.html
+      - label: 像素来源与复现边界
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/pixelbench/sources.html
+      - label: EmbeddingGemma 2：统一向量
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/embeddinggemma-2/
+      - label: 向量 01 共享骨干与架构
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/embeddinggemma-2/architecture.html
+      - label: 向量 02 渐进训练与目标
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/embeddinggemma-2/training-recipe.html
+      - label: 向量 03 评测、量化与索引
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/embeddinggemma-2/evaluation-and-deployment.html
+      - label: 向量来源与未执行项
+        group: 视觉表征与多模态
+        url: /wiki/topics/deep-learning/vision/embeddinggemma-2/sources.html
       - label: GPU、内存与 Roofline
         group: 推理与硬件
         url: /wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.html

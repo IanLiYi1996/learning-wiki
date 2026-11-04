@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620" role="img" aria-labelledby="title desc">
+<title id="title">调色板与网格共同确定 RGB，没有模型替它补画</title>
+<desc id="desc">原创 4×4 白／黑教学例；不是正式 benchmark 图像。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="620" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">调色板与网格共同确定 RGB，没有模型替它补画</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创 4×4 白／黑教学例；不是正式 benchmark 图像。</text>
+<path d="M 376,205 L 520,205 L 520,280 L 640,280" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="425.0" y="192.0" width="46" height="25" fill="#fff"/>
+<text x="448.0" y="210.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">色表</text>
+<path d="M 376,435 L 560,435 L 560,355 L 640,355" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="445.0" y="422.0" width="46" height="25" fill="#fff"/>
+<text x="468.0" y="440.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">位置</text>
+<rect x="56" y="140" width="320" height="130" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="216.0" y="186.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">调色板 P</text>
+<text x="216.0" y="221.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">0＝白色 #FFFFFF</text>
+<text x="216.0" y="244.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">1＝黑色 #000000</text>
+<rect x="56" y="350" width="320" height="170" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="216.0" y="405.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">索引网格 G</text>
+<text x="216.0" y="440.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">0000 ／ 0110</text>
+<text x="216.0" y="463.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">0110 ／ 0000</text>
+<text x="216.0" y="486.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">恰好四行、四列</text>
+<rect x="640" y="230" width="320" height="170" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="800.0" y="285.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">逐点查表</text>
+<text x="800.0" y="320.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">I[r,c]＝P[G[r,c]]</text>
+<text x="800.0" y="343.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">白底，中间 2×2 黑块</text>
+<text x="800.0" y="366.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">没有学习式输出解码器</text>
+<line x1="40" y1="556" x2="1000" y2="556" stroke="#e0e7e2"/>
+<text x="40" y="580" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">先验证尺寸和索引；不填充、不截断、不自动修复；合法不等于语义正确。</text>
+</g>
+</svg>

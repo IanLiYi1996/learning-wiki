@@ -1,0 +1,131 @@
+[
+  {
+    "id":"rep-output-contracts","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"同是视觉任务，输出对象与验收并不相同",
+    "subtitle":"原创阅读地图；表示、检索与生成不共享一套默认分数。",
+    "columns":["方向","产生什么","先检查什么"],
+    "rows":[["PixelBench","调色板＋逐位置索引网格","合法、RGB、语义、失败分母"],["EmbeddingGemma 2","输入对应的固定长度语义向量","任务前缀、空间版本、检索排名"],["扩散生成后训练","去噪轨迹得到的图像／视频","偏好、质量、采样预算与时延"]],
+    "note":"输出图像、学习表示、优化生成分布是三类问题；配图不是实验结果。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/README.md","after":"## 1. 先分清输出是什么"}]
+  },
+  {
+    "id":"pxb-two-questions","topic":"deep-learning","kind":"layers",
+    "title":"PixelBench：能力测量与辅助训练是两组实验",
+    "subtitle":"基于公开研究重画；不是模型自画、自评、自改进的自动闭环。",
+    "layers":[["文本输出接口","现有词表 → 调色板＋索引网格 → 确定性 RGB 查表"],["三类能力测量","标签到像素、自然图像到像素、文本网格十选一"],["PRT 辅助监督","输入图像 → 监督目标 token；Molmo2／Qwen 两份配方"],["独立验收","生成识别性、格式可靠性、下游理解、预算与混杂分别看"]],
+    "note":"无学习式输出 decoder，不代表 I2P 无视觉输入 encoder；相关不等于因果。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/README.md","after":"## 1. 先抓住两个问题"}]
+  },
+  {
+    "id":"pxb-palette-lookup","topic":"deep-learning","kind":"scene","height":620,
+    "title":"调色板与网格共同确定 RGB，没有模型替它补画",
+    "subtitle":"原创 4×4 白／黑教学例；不是正式 benchmark 图像。",
+    "nodes":[
+      {"id":"palette","x":56,"y":140,"w":320,"h":130,"label":"调色板 P","detail":"0＝白色 #FFFFFF\n1＝黑色 #000000","color":0},
+      {"id":"grid","x":56,"y":350,"w":320,"h":170,"label":"索引网格 G","detail":"0000 ／ 0110\n0110 ／ 0000\n恰好四行、四列","color":1},
+      {"id":"rgb","x":640,"y":230,"w":320,"h":170,"label":"逐点查表","detail":"I[r,c]＝P[G[r,c]]\n白底，中间 2×2 黑块\n没有学习式输出解码器","color":2}
+    ],
+    "edges":[
+      {"points":[[376,205],[520,205],[520,280],[640,280]],"label":"色表","label_segment":0},
+      {"points":[[376,435],[560,435],[560,355],[640,355]],"label":"位置","label_segment":0}
+    ],
+    "note":"先验证尺寸和索引；不填充、不截断、不自动修复；合法不等于语义正确。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/representation-and-tasks.md","after":"## 1. 从文字到像素，只查一张表"}]
+  },
+  {
+    "id":"pxb-task-boundaries","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"三类任务，把输入通道隔开",
+    "subtitle":"机制重画；300／600 指任务实例数，不是模型数量。",
+    "columns":["任务","输入与输出","评测设计"],
+    "rows":[["T2P","英文对象标签 → palette／grid","100 概念 × 3 尺寸；无参考图"],["I2P","自然图像 → palette／grid","100 源图 × 3 尺寸；不给类别"],["像素理解","文本网格＋十选项 → 选项","两个网格来源 × 100 × 3＝600"]],
+    "note":"I2P 仍用视觉输入路径；理解任务不提供渲染图像，十选一机会为 10%。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/representation-and-tasks.md","after":"## 3. 三种任务不要混成一种"}]
+  },
+  {
+    "id":"pxb-score-contracts","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"语义分、失败分母与相对刻度各管一层",
+    "subtitle":"指标关系图；不复刻排行榜，也不把相似度写成像素准确率。",
+    "columns":["量","测量对象","边界"],
+    "rows":[["Top-1／余弦／裁判","识别目标、表征相近、指定判断","不是 RGB 恒等；评分器有偏差"],["所有预期项平均","含无效／缺失的整体成绩","失败记零，不能只挑成功输出"],["valid-only MRR","仅有效输出的检索排名","无有效项为 null；另报覆盖率"],["I2P Aggregated","比较集合内逐列 min–max 后均值","换参照集合就可能换分数"]],
+    "note":"报告原始指标、分母、比较方法、版本与预算，才能判断改善是什么意思。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/metrics-and-results.md","after":"## 1. 四类量，回答不同的问题"}]
+  },
+  {
+    "id":"pxb-resolution-cost","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"边长翻倍，位置数翻四倍；画布不保证细节",
+    "subtitle":"原创算术与失败机制对读；位置数不是真实 tokenizer token 数。",
+    "columns":["画布","位置／相对 16²","需要另外观察"],
+    "rows":[["16×16","256 ／ 1×","接口合法、主体与局部结构"],["32×32","1,024 ／ 4×","是否真的增加有效细节"],["64×64","4,096 ／ 16×","大色块、重复模式、主体缺失"],["128×128","16,384 ／ 64×","仅教学规模例；预算、时延另计"]],
+    "note":"质量退化可能涉及预算、序列化、分布与能力；单张样本不能定位原因。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/resolution-and-failure-modes.md","after":"## 1. 分辨率增长是平方，不是线性"}]
+  },
+  {
+    "id":"pxb-molmo-trajectory","topic":"deep-learning","kind":"flow",
+    "title":"Molmo2 轨迹：先定网格，再解释，最后混合监督",
+    "subtitle":"根据公开配方重画；本文未执行任何数据构造或训练。",
+    "nodes":[["图像池与筛选","排除精确评测图、布局和比例"],["确定性网格","16²／32² PIA；相似度筛选"],["教师解释","caption／palette；grid 不改"],["目标轨迹","CAPTION／PALETTE／GRID\n网格 a–h 字母"],["普通监督混合","500k OV＋2k PRT\n不是总量 2k"],["全模块指令训练","原生 Pretrain step32000\n配对 seed 与下游验收"]],
+    "note":"这是监督 token loss；筛选分数不是 PPO／GRPO reward，也不自动授予执行权限。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/prt-training.md","after":"## 2. Molmo2：先构造结构化轨迹"}]
+  },
+  {
+    "id":"pxb-prt-controls","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"数据、初始化和更新预算必须连在一起读",
+    "subtitle":"配方对照，不是等成本实验；FV 与 OV 不能混写。",
+    "columns":["实验臂","普通＋像素监督","更新／解释"],
+    "rows":[["Molmo2 baseline","500k OV＋0 PRT","1,190；Pretrain step32000"],["Molmo2 main","500k OV＋2k 结构轨迹","1,198；四配对 seed"],["Qwen FV／additive","64k FV／64k FV＋3k Pixel","1,000／1,047；Instruct 起步"],["Qwen fixed","61k FV＋3k Pixel＝64k","1,000；仍未证明 token／FLOPs 相等"]],
+    "note":"Molmo2 16 benchmarks，Qwen 13；平均收益、逐项结果和官方单位分别记录。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/prt-training.md","after":"## 4. 两份配方和对照，要分开读"}]
+  },
+  {
+    "id":"pxb-evidence-ladder","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"现象、相关与训练干预，支持不同层次的判断",
+    "subtitle":"原创证据分层；不是形式化因果证明。",
+    "columns":["证据","支持的问题","尚不能回答"],
+    "rows":[["接口测量","这个模型能否合法生成、识别网格","开放世界能力、生产单次成功率"],["跨模型相关","生成与理解在少量模型中一起变化","谁导致谁；规模与训练背景混杂"],["训练配方对照","附加这种监督是否有收益信号","网格独有贡献、等计算、普遍收益"],["未来细粒度消融","同图、caption-only、打乱网格、预算匹配","尚未执行；不能标成已验证"]],
+    "note":"四 seed 与小模型集合提供有限证据；研究版本、反例与未执行项一起保留。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/evidence-and-limitations.md","after":"## 2. 三种证据，不能相互替代"}]
+  },
+  {
+    "id":"pxb-lab-contracts","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"离线验算：能算对数字，也要说对对象",
+    "subtitle":"所有数组都是原创教学例；无模型调用、无 GPU、无下载。",
+    "columns":["验算","结果","不能误读成"],
+    "rows":[["[1,.5,None,None]","所有预期项 .375；valid-only .75","相同分母下模型成绩翻倍"],["加入更强比较方法","B 原始 .4 不变；50 → 25","模型实际退步"],["九个 1／一个 0","官方单位权重 .9；benchmark 等权 .5","一项计算错误"],["同 RGB 的两个色号","混用索引仍是单色","索引多就一定有图像结构"]],
+    "note":"测试只验证标准库函数和反例，不等于独立复现 PixelBench 或评测 harness。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/pixelbench/lab.md","after":"## 1. 三张合同，分别验算"}]
+  },
+  {
+    "id":"eg2-study-map","topic":"deep-learning","kind":"layers",
+    "title":"EmbeddingGemma 2：把多模态输入压成统一向量",
+    "subtitle":"机制重画；embedding 不是生成答案、像素或业务授权。",
+    "layers":[["可选入口","文本 token、图像／视频 vision soft tokens、音频 soft tokens"],["共享处理","271M 双向骨干；输入投影、逐层补充与序列交互"],["统一输出","mean pooling → projection → L2；768 维与训练过的截断维度"],["实际验收","任务前缀、检索指标、模态预算、空间版本和数据权限"]],
+    "note":"选择模态编码器可减少加载参数；这不保证固定峰值内存、时延或通用任务最优。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/embeddinggemma-2/README.md","after":"## 1. 这篇解决什么问题"}]
+  },
+  {
+    "id":"eg2-shared-space","topic":"deep-learning","kind":"flow",
+    "title":"不同输入，共享骨干，最后才得到可比较的向量",
+    "subtitle":"箭头表示概念数据变换；不是独立单模态向量的简单平均。",
+    "nodes":[["文本／图／音／视频","可组合的模态片段"],["token 与适配","视觉／音频 soft tokens\n投影到共同宽度"],["共享双向骨干","联合处理输入序列\nprojection-only PLE"],["mean pooling","沿序列轴汇总"],["投影与 L2","768 维单位向量\nMRL 截断后再归一化"],["任务检索","query／document 前缀\n比较、排序、验收"]],
+    "note":"模块化 encoder 与共享语义空间是两回事；向量相近不等于对象同一或用户获权。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/embeddinggemma-2/architecture.md","after":"## 1. 多种入口，一个共享空间"}]
+  },
+  {
+    "id":"eg2-recipe-stages","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"训练的两种渐进：先扩模态，再切目标",
+    "subtitle":"根据论文配方重画；训练 token 量与输出向量维度不是同一量。",
+    "columns":["阶段","模态与目标","注意"],
+    "rows":[["文本 pre-finetuning","300B tokens；蒸馏＋小权重对比","先铺共享表示，不是 caption 生成"],["多模态 pre-finetuning","2T tokens；加入图／音／视频，蒸馏","vision 可训练；audio encoder 冻结"],["多模态 finetuning","600B tokens；contrastive＋GOR＋MRL","适配排名、分散程度与前缀维度"],["合并／量化分支","同一训练轨迹权重平均；单独 QAT","不是任意模型平均或全部模块一律 4-bit"]],
+    "note":"匹配样本、token、更新和计算是不同控制；消融检查点与最终模型也不同。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/embeddinggemma-2/training-recipe.md","after":"## 1. 模态和目标分别渐进"}]
+  },
+  {
+    "id":"eg2-evaluation-contracts","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"质量与效率都必须带上任务、预算和实现",
+    "subtitle":"原创阅读检查图；不复制排行榜，不宣称所有任务第一。",
+    "columns":["要看什么","必须保留的条件","不能越界推出"],
+    "rows":[["检索质量","suite、mean(task/type)、MRR@10 等","排名分是普通准确率"],["视觉输入预算","图 token、视频采样、帧数与尺寸","token 更多就一直更好"],["量化与端侧","checkpoint、harness、硬件、精度","手机一次测量等于普适内存／时延"],["索引迁移","模型、维度、前缀、归一化、权限","新旧向量可直接混索引"]],
+    "note":"向量用于检索；答案生成、相关性判断和业务授权仍要各自验收。",
+    "placements":[{"file":"wiki/topics/deep-learning/vision/embeddinggemma-2/evaluation-and-deployment.md","after":"## 1. 分数必须连同口径阅读"}]
+  }
+]
