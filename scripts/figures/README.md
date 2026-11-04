@@ -55,6 +55,8 @@ RSI／自我改进图组在 `self-improvement.json`（6 图、12 处插入），
 
 ## Physical AI 原件与图文版
 
+Agent sandbox 图组在 `agent-sandbox.json`（4 图、8 处插入），使用 `--id-prefix agbox-` 独立重建，资源位于 `agent-sandbox/images/`。覆盖四种边界、三条执行路径、生命周期和选型准入；不表示厂商内部架构、性能排行或安全验收。可用 `uv run --no-project --with cairosvg --with pillow python scripts/render_figures.py --embed --id-prefix agbox-` 重建；三个标准库教学练习不依赖图件环境。
+
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。
 原 PDF、Word 与独立 HTML 导出版保留原字节，不冒称已经重建。
 `archive-manifest.json` 保留图文 Markdown 的当前校验和及归档原件校验和；配图资源在新增修订清单中校验。

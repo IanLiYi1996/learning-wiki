@@ -22,6 +22,7 @@
 
 ## 与其他专题连接
 
+- [Agent Sandbox、容器与 microVM](../agent-sandbox/README.md)：从 Linux、应用内核和虚拟硬件边界，深入任务生命周期、出口、凭证、平台选型与生产验收；执行隔离不替代业务授权。
 - [支付行业的风险与合规](../payments/payment-industry-101.md#lesson-08)：资金、身份、欺诈和系统安全有交集，但不是同一学科。
 - [Agentic RL 的工具与环境](../deep-learning/training/agentic-rl-lab/tools-and-environments.md)：工具权限、未可信输入和代理副作用，应与安全证据一起理解。
 - [Physical AI 的系统与执行边界](../physical-ai/pollen-robotics/README.md)：软件检查通过不代表物理系统安全；执行与恢复需要另行验收。

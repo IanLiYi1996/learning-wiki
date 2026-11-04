@@ -1,0 +1,80 @@
+[
+  {
+    "id": "agbox-boundaries",
+    "topic": "agent-sandbox",
+    "kind": "layers",
+    "title": "执行不逃逸，还需要网络、身份与数据边界",
+    "subtitle": "原创职责分解；sandbox 是受约束环境，microVM 是执行机制之一。",
+    "layers": [
+      ["执行边界", "程序、系统接口、设备、宿主与邻居；runtime 决定主要路径"],
+      ["网络边界", "DNS、地址、协议、重定向与代理；批准域名不是批准所有操作"],
+      ["身份边界", "任务、租户、用户、资源与动作；业务服务端再次授权"],
+      ["数据与状态", "镜像、快照、浏览器、产物、日志和保留；终止计算不是全部删除"]
+    ],
+    "note": "四层要分别验收；本图不是产品内部架构或真实安全测试结果。",
+    "placements": [
+      {"file": "wiki/topics/agent-sandbox/README.md", "after": "## 先建立一张分层地图"},
+      {"file": "wiki/topics/agent-sandbox/01-system-model-and-threats.md", "after": "## 四条需要分别验收的边界"}
+    ]
+  },
+  {
+    "id": "agbox-execution-paths",
+    "topic": "agent-sandbox",
+    "kind": "compare",
+    "footer_gap": 64,
+    "title": "同一个系统操作，经过三类不同边界",
+    "subtitle": "机制对照，不是安全或性能排行；接口、配置与信任组件都需要核验。",
+    "columns": ["问题", "原生容器", "gVisor", "VM／microVM"],
+    "rows": [
+      ["应用主要面对", "宿主 Linux ABI", "Sentry 实现的 Linux 接口", "guest kernel"],
+      ["接触宿主的路径", "允许的系统调用", "受约束的 Sentry／I/O 组件", "虚拟设备、VMM 与后端"],
+      ["主要适配点", "权限与宿主配置", "ABI 子集、platform、I/O 模式", "guest、设备、镜像与恢复"],
+      ["仍需独立完成", "网络、身份、预算、清理", "网络、身份、预算、清理", "网络、身份、预算、清理"]
+    ],
+    "note": "采用 KVM 也不自动使 gVisor 变成普通 Linux guest；原创教学图，资料核验 2026-11-04。",
+    "placements": [
+      {"file": "wiki/topics/agent-sandbox/02-linux-and-containers.md", "after": "## 从一次文件读取理解容器"},
+      {"file": "wiki/topics/agent-sandbox/03-gvisor.md", "after": "## 同一个 read，三条不同路径"},
+      {"file": "wiki/topics/agent-sandbox/04-microvm-and-kata.md", "after": "## 先分清 KVM、VMM 和 guest"}
+    ]
+  },
+  {
+    "id": "agbox-lifecycle",
+    "topic": "agent-sandbox",
+    "kind": "flow",
+    "title": "会话生命周期：每一步都有不同的授权状态",
+    "subtitle": "原创主路径示意；暂停、失败和取消另有分支，不表示某平台的固定状态机。",
+    "nodes": [
+      ["Requested", "认证、租户、配额与模板"],
+      ["Provisioning", "创建或恢复；不提前获权"],
+      ["Ready", "核对策略、身份与健康"],
+      ["Running", "逐次授权、预算与取消"],
+      ["Exporting", "验证产物与接收主体"],
+      ["Terminated", "停止能力、回收与保留"]
+    ],
+    "note": "恢复要重新建立唯一性与任务绑定；快照不是业务事务提交。",
+    "placements": [
+      {"file": "wiki/topics/agent-sandbox/06-lifecycle-and-orchestration.md", "after": "## 一个可讨论的状态机"}
+    ]
+  },
+  {
+    "id": "agbox-selection-gates",
+    "topic": "agent-sandbox",
+    "kind": "flow",
+    "title": "先准入，再比较：速度不能补偿硬约束失败",
+    "subtitle": "原创研究合同；未知不当成通过，教学实验不等于生产验收。",
+    "nodes": [
+      ["明确任务与攻击者", "代码、数据、租户、宿主"],
+      ["检查硬门槛", "runtime、网络、身份、清理"],
+      ["验证真实工作负载", "依赖、文件、进程与设备"],
+      ["测试拒绝与恢复", "跨租户、撤销、旧句柄"],
+      ["测端到端与成本", "成功率、尾延迟、成本分母"],
+      ["记录决策与未知", "版本、证据、责任与复验"]
+    ],
+    "note": "真实配置、授权环境和测试证据另行取得；本专题不创建云资源。",
+    "placements": [
+      {"file": "wiki/topics/agent-sandbox/08-selection-and-architectures.md", "after": "## 硬约束门槛与软指标分开"},
+      {"file": "wiki/topics/agent-sandbox/10-production-and-benchmarks.md", "after": "## 安全配置证据与负向测试一起保留"}
+    ]
+  }
+]
