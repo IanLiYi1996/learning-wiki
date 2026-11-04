@@ -73,8 +73,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；含 RSI、PixelBench 和 EmbeddingGemma 2。
-    meta: 6 个细分方向 · 7 套读本 · 标准库实验
+    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 Unified Training 的共同似然与数据调度。
+    meta: 6 个细分方向 · 8 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -129,6 +129,33 @@ topics:
       - label: Lab 源码快照与未执行项
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/agentic-rl-lab/sources.html
+      - label: Unified Training：同一种训练规则
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/
+      - label: 统一 01 似然与目标分布
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/likelihood-and-targets.html
+      - label: 统一 02 MaxRL 与有限采样
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/maxrl-and-finite-sampling.html
+      - label: 统一 03 token 权重与分母
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/weighted-loss-and-masks.html
+      - label: 统一 04 异步与实现合同
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/asynchronous-system.html
+      - label: 统一 05 数据混合与调度
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/mixing-and-schedules.html
+      - label: 统一 06 证据、预算与局限
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/evidence-and-limits.html
+      - label: 统一标准库实验与自测
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/lab.html
+      - label: 统一来源与版本边界
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/sources.html
       - label: 扩散后训练与推理工程 101
         group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/

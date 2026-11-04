@@ -155,7 +155,8 @@ class AgenticSiteTests(dl.DeepLearningChecks):
             self.assertEqual([group["name"] for group in grouped.groups if group["open"]], [GROUPS[0]])
             self.assertEqual(Counter(grouped.groups[0]["links"]),
                              Counter(base + "/" + rel.replace("index.html", "")
-                                     for rel in [*dl.TRAINING_ROUTES.values(), *dl.AGENTIC_ROUTES.values()]))
+                                     for rel in [*dl.TRAINING_ROUTES.values(), *dl.AGENTIC_ROUTES.values(),
+                                                 *dl.UNIFIED_ROUTES.values()]))
 
     def test_built_assets_headings_and_local_fallbacks(self):
         actual = {}

@@ -14,6 +14,7 @@
 
 ## 已整理的专题
 
+- [Unified Training／统一训练 101](wiki/topics/deep-learning/training/unified-training/README.md)：九页、十张原创图，从成功条件分布与 MaxRL 到 token 分母、异步系统、混合调度和计算预算；附标准库验算与一手证据边界
 - [云与应用安全体系 / AWS Continuum L200](wiki/topics/security/README.md)：新增十章体系读本，串起治理、身份、网络、数据、应用、供应链、容器、响应、Agent 与恢复；两套读本共 26 张图，含客户方案、学习路线与无网络练习
 - [深度学习专题解读](wiki/topics/deep-learning/README.md)：按六个方向细分，新增视觉表征与多模态；[PixelBench](wiki/topics/deep-learning/vision/pixelbench/README.md) 的文本像素与 PRT、[EmbeddingGemma 2](wiki/topics/deep-learning/vision/embeddinggemma-2/README.md) 的统一向量与训练配方，保留训练、扩散、硬件和权重读本
 - [AI 自我改进与自动科研](wiki/topics/deep-learning/self-improvement/README.md)：八章解释答案、系统和改进器的不同变化，连接算法发现、科学家智能体与工业研发；六张机制图、49 组来源和三个免费离线练习

@@ -52,8 +52,8 @@
   });
   const study = records.filter(record => new URL(record.url, location.origin).pathname
     .startsWith(`${base}/wiki/topics/deep-learning/training/`));
-  if (study.length !== 17 || new Set(study.map(record => record.url)).size !== 17) {
-    throw new Error('Expected seventeen searchable training pages');
+  if (study.length !== 26 || new Set(study.map(record => record.url)).size !== 26) {
+    throw new Error('Expected twenty-six searchable training pages');
   }
   if (study.find(record => new URL(record.url, location.origin).pathname === route)?.title !== title) {
     throw new Error('Incorrect search title');
