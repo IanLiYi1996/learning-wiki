@@ -19,10 +19,15 @@
     <script defer src="{{ '/assets/js/wiki-figures.js' | relative_url }}?v={{ site.github.build_revision }}"></script>
   </head>
   {% assign current_topic = nil %}
+  {% assign current_topic_length = 0 %}
   {% for topic in site.data.navigation.topics %}
-  {% if page.url contains topic.url %}{% assign current_topic = topic %}{% endif %}
+  {% assign topic_length = topic.url | size %}
+  {% if page.url contains topic.url and topic_length > current_topic_length %}
+  {% assign current_topic = topic %}
+  {% assign current_topic_length = topic_length %}
+  {% endif %}
   {% endfor %}
-  <body{% if page.url == '/' %} class="is-home"{% endif %} data-baseurl="{{ site.baseurl | escape }}" data-index-version="{{ site.github.build_revision }}">
+  <body{% if page.url == '/' %} class="is-home"{% elsif current_topic.url == '/wiki/topics/deep-learning/openmoss/' %} class="openmoss-study"{% endif %} data-baseurl="{{ site.baseurl | escape }}" data-index-version="{{ site.github.build_revision }}">
     <a class="skip-link" href="#wiki-content">跳到正文</a>
     <header class="site-header">
       <a class="site-brand" href="{{ '/' | relative_url }}">
