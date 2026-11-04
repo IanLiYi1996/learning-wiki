@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">EmbeddingGemma 2：把多模态输入压成统一向量</title>
+<desc id="desc">机制重画；embedding 不是生成答案、像素或业务授权。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">EmbeddingGemma 2：把多模态输入压成统一向量</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">机制重画；embedding 不是生成答案、像素或业务授权。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">可选入口</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">文本 token、图像／视频 vision soft tokens、音频 soft tokens</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">共享处理</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">271M 双向骨干；输入投影、逐层补充与序列交互</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">统一输出</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">mean pooling → projection → L2；768 维与训练过的截断维度</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">实际验收</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">任务前缀、检索指标、模态预算、空间版本和数据权限</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">选择模态编码器可减少加载参数；这不保证固定峰值内存、时延或通用任务最优。</text>
+</g>
+</svg>
