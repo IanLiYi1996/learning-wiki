@@ -12,7 +12,7 @@
 | 如何让图像／视频更符合偏好和任务？ | [扩散与视觉生成](diffusion/README.md) | DPO、去噪链上的 RL、视觉奖励和组合优势 |
 | 如何直接表达像素，或学习统一多模态向量？ | [视觉表征与多模态](vision/README.md) | PixelBench／PRT；EmbeddingGemma 2 架构、训练与检索 |
 | 如何判断推理成本与“实时”是否可信？ | [GPU 与内存](diffusion/05-gpu-and-memory-roofline.md) | CUDA 层次、Roofline、视频 token、吞吐与时延 |
-| 如何让代理自动试验，而不被假指标带跑？ | [自动研究与评测](diffusion/04-autoresearch-and-oracles.md) | 实验契约、oracle、正确性准入、持出集 |
+| 如何让代理改进自己，而不被假指标带跑？ | [AI 自我改进与自动科研](self-improvement/README.md) | RSI、改进器、科学家系统、预算归因；连接已有 Autoresearch |
 | 不走普通训练，能否直接读写权重？ | [权重编辑与解释](weight-space-programming.md) | WSP、QK／OV、权重几何、实验权限和回滚 |
 
 ### 目录关系
@@ -25,7 +25,7 @@
 ├─ 扩散与视觉生成：偏好对 → 去噪轨迹 → 奖励设计
 ├─ 视觉表征与多模态：文本像素／PRT；共享骨干／统一向量／检索
 ├─ 推理与硬件：GPU／内存 → 视频成本
-├─ 自动研究与评测：候选程序 → oracle → 保留或回滚
+├─ 自动研究与评测：RSI 对象 → 改进器 → 科研反馈 → oracle／预算 → 保留或回滚
 └─ 权重编辑与解释：WSP → 数学机制 → 权限／证据 → 本地实验
 ```
 
@@ -67,6 +67,10 @@
 
 ## 5. 自动研究与评测
 
+[AI 自我改进与自动科研](self-improvement/README.md)将此前研究重组为八章：先分清答案、系统和改进器，再读智能体演化、参数适应、算法发现、科学家系统与内部研发。六张机制图、术语表、49 组公开引用及三个免费离线练习帮助判断“谁变强了”。
+
+这组材料核验截至 2026-10-17，2026-11-04 整理入 Wiki；没有把入库日期当作全部论文及产品的最新核验日期。[来源与版本边界](self-improvement/sources.md)单独说明作者报告、公司自报与独立复现的区别。
+
 [Autoresearch 与 oracle](diffusion/04-autoresearch-and-oracles.md)讨论搜索程序／配置的外层闭环。[训练配方的评测章](training/rufus-air/infrastructure-and-evaluation.md)讨论模型成绩的测量契约。这里并列的是研究方法，不把自动程序搜索误称为另一种模型损失。
 
 评分器、持出集和预算是共同主题；但训练反馈、候选选择和最终测试应分开。
@@ -98,6 +102,8 @@
 | [10 学习与判断](weight-space-programming.md#wsp-10) | 哪些结论可以带走，哪些暂时不能？ |
 
 ## 建议阅读路线
+
+**想辨认自改进证据**：从 [RSI 导读](self-improvement/README.md)进入 [DGM／Hyperagents／AIDE²](self-improvement/agent-evolution.md)，再做[预算和四格对照](self-improvement/lab.md)。想看行业先读科学家与工业研发两章，不把这些工作全称为严格 RSI。
 
 **想读训练 recipe**：先读 [Rufus-Air 总览](training/rufus-air/README.md)，按四章顺序阅读；用实验页核对 batch 单位和 mask，而不是立即启动大模型训练。
 

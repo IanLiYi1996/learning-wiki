@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="490" viewBox="0 0 1040 490" role="img" aria-labelledby="title desc">
+<title id="title">比较改进策略，先锁定同一个起点</title>
+<desc id="desc">原创整数任务；策略由人指定，不是 Hyperagents 或模型实验成绩。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="490" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">比较改进策略，先锁定同一个起点</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创整数任务；策略由人指定，不是 Hyperagents 或模型实验成绩。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">起点</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">forward</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">two_sided</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">0</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">最终均分 8；增益 2</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">最终均分 10；增益 4</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">2</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">最终均分 7；增益 1</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">最终均分 9；增益 3</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">评价预算</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">每目标四个候选</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">每目标四个候选</text>
+<line x1="40" y1="426" x2="1000" y2="426" stroke="#e0e7e2"/>
+<text x="40" y="450" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">同一行对照方法；初始评分统一提供；没有学习、真实模型或独立留出任务。</text>
+</g>
+</svg>

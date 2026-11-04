@@ -73,8 +73,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 PixelBench 和 EmbeddingGemma 2。
-    meta: 6 个细分方向 · 6 套读本 · 标准库实验
+    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；含 RSI、PixelBench 和 EmbeddingGemma 2。
+    meta: 6 个细分方向 · 7 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -195,6 +195,42 @@ topics:
       - label: Autoresearch 与评估器
         group: 自动研究与评测
         url: /wiki/topics/deep-learning/diffusion/04-autoresearch-and-oracles.html
+      - label: AI 自我改进与自动科研导读
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/
+      - label: RSI 01 概念、理论与元学习
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/concepts-and-foundations.html
+      - label: RSI 02 智能体与改进器
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/agent-evolution.html
+      - label: RSI 03 学习与权重
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/learning-and-weights.html
+      - label: RSI 04 算法与基础设施
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/algorithms-and-infrastructure.html
+      - label: RSI 05 科学家智能体
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/ai-scientists.html
+      - label: RSI 06 工业研发与自动实验
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/industry-and-autoresearch.html
+      - label: RSI 07 评测与安全
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/evaluation-and-safety.html
+      - label: RSI 08 研究路线与因果对照
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/research-roadmap.html
+      - label: RSI 三个离线练习
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/lab.html
+      - label: RSI 术语速查
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/glossary.html
+      - label: RSI 来源与版本边界
+        group: 自动研究与评测
+        url: /wiki/topics/deep-learning/self-improvement/sources.html
       - label: 权重空间编程：图文解读
         group: 权重编辑与解释
         url: /wiki/topics/deep-learning/weight-space-programming.html
