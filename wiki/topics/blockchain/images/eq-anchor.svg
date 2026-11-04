@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="650" viewBox="0 0 1040 650" role="img" aria-labelledby="title desc">
+<title id="title">软锚定：信息进入系统，激励作用于盘口</title>
+<desc id="desc">以 XYZ 为机制案例；Oracle 不是成交指令，反馈不保证价差即时归零。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="650" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">软锚定：信息进入系统，激励作用于盘口</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">以 XYZ 为机制案例；Oracle 不是成交指令，反馈不保证价差即时归零。</text>
+<path d="M 308,195 L 386,195" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 646,195 L 724,195" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 854,250 L 854,380" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="816.0" y="302.0" width="76" height="25" fill="#fff"/>
+<text x="854.0" y="320.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">估值输入</text>
+<path d="M 724,220 L 690,220 L 690,290 L 516,290 L 516,380" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="557.5" y="277.0" width="91" height="25" fill="#fff"/>
+<text x="603.0" y="295.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">资金费参考</text>
+<path d="M 308,435 L 386,435" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="324.0" y="422.0" width="46" height="25" fill="#fff"/>
+<text x="347.0" y="440.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">深度</text>
+<path d="M 178,380 L 178,335 L 814,335 L 814,380" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="428.75" y="322.0" width="134.5" height="25" fill="#fff"/>
+<text x="496.0" y="340.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">盘口也参与 Mark</text>
+<path d="M 516,490 L 516,540 L 178,540 L 178,490" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="286.5" y="527.0" width="121" height="25" fill="#fff"/>
+<text x="347.0" y="545.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">交易者改变挂单</text>
+<rect x="48" y="140" width="260" height="110" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="178.0" y="188.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">外部证券行情</text>
+<text x="178.0" y="223.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">股票市场、盘前后、隔夜</text>
+<rect x="386" y="140" width="260" height="110" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="516.0" y="188.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">数据与 relayer</text>
+<text x="516.0" y="223.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">读取、映射、转换、提交</text>
+<rect x="724" y="140" width="260" height="110" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="854.0" y="188.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Oracle 参考价</text>
+<text x="854.0" y="223.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">外部可用时优先用外部</text>
+<rect x="48" y="380" width="260" height="110" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="178.0" y="428.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">合约订单簿</text>
+<text x="178.0" y="463.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">决定成交与可执行深度</text>
+<rect x="386" y="380" width="260" height="110" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="516.0" y="428.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">资金费与套利</text>
+<text x="516.0" y="463.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">改变持仓成本与买卖激励</text>
+<rect x="724" y="380" width="260" height="110" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="854.0" y="428.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Mark 风险价</text>
+<text x="854.0" y="463.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">保证金、浮盈亏与清算</text>
+<line x1="40" y1="586" x2="1000" y2="586" stroke="#e0e7e2"/>
+<text x="40" y="609" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">蓝色：前向信息　紫色：反馈／再执行</text>
+<text x="40" y="631" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">外部输入不可用时，内部盘口还可推进 Oracle；这里只画主要职责，不复刻完整算法。</text>
+</g>
+</svg>

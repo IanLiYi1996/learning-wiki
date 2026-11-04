@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="598" viewBox="0 0 1040 598" role="img" aria-labelledby="title desc">
+<title id="title">价格像股票，权利可能完全不同</title>
+<desc id="desc">三类产品的学习地图；代币权益必须按发行文件核验，不是投资推荐。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="598" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">价格像股票，权利可能完全不同</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">三类产品的学习地图；代币权益必须按发行文件核验，不是投资推荐。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">问题</text>
+<rect x="220" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">真实股票</text>
+<rect x="480.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="493.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">有储备股票代币</text>
+<rect x="740.0" y="126" width="260.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="753.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">股票永续</text>
+<rect x="40" y="180" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">持有什么</text>
+<rect x="220" y="180" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">公司股份；经中介保管也可有</text>
+<text x="233" y="234" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">实益权益</text>
+<rect x="480.0" y="180" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">发行结构定义的权益或请求权</text>
+<rect x="740.0" y="180" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">股价合约仓位；不是股份</text>
+<rect x="40" y="258" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="287" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">股息与投票</text>
+<rect x="220" y="258" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按股类和公司行动规则</text>
+<rect x="480.0" y="258" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">按发行文件；有些仅传递经济</text>
+<text x="493.0" y="312" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">效果，无投票权</text>
+<rect x="740.0" y="258" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">无直接股东权利</text>
+<rect x="40" y="336" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="365" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">价格连接</text>
+<rect x="220" y="336" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="365" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">交易股票本身</text>
+<rect x="480.0" y="336" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="493.0" y="365" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">储备、申赎与市场；资格可能</text>
+<text x="493.0" y="390" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">有限</text>
+<rect x="740.0" y="336" width="260.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="753.0" y="365" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">Oracle、资金费和套利激励</text>
+<rect x="40" y="414" width="180" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="443" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">退出与风险</text>
+<rect x="220" y="414" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="443" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卖股；市场和托管风险</text>
+<rect x="480.0" y="414" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="493.0" y="443" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">卖代币／合格赎回；额外发行</text>
+<text x="493.0" y="468" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">与托管风险</text>
+<rect x="740.0" y="414" width="260.0" height="78" fill="#fff" stroke="#e0e7e2"/>
+<text x="753.0" y="443" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">平仓／清算／特殊结算；资金</text>
+<text x="753.0" y="468" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">费与系统风险</text>
+<line x1="40" y1="534" x2="1000" y2="534" stroke="#e0e7e2"/>
+<text x="40" y="558" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">1 倍仓位不改变权利；行情参考不是股票储备。资料核验日：2026-11-04。</text>
+</g>
+</svg>

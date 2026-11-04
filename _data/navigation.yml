@@ -411,3 +411,37 @@ topics:
         url: /wiki/topics/blockchain/upgrades/
       - label: 学习路线与自测
         url: /wiki/topics/blockchain/learning-roadmap.html
+      - label: 链上美股与股票永续
+        url: /wiki/topics/blockchain/equity-perpetuals/
+  - label: 链上美股与股票永续
+    title: 链上美股与股票永续
+    url: /wiki/topics/blockchain/equity-perpetuals/
+    description: 从权利与市场角色，理解股价锚定、资金费、套利、保证金、公司行动与风险。
+    meta: 8 章 · 4 张图 · 5 组离线算例 · 20 组一手来源
+    items:
+      - label: 专题导读
+        url: /wiki/topics/blockchain/equity-perpetuals/
+      - label: 01 产品与股东权利
+        url: /wiki/topics/blockchain/equity-perpetuals/01-products-and-rights.html
+      - label: 02 市场与仓位生命周期
+        url: /wiki/topics/blockchain/equity-perpetuals/02-market-and-positions.html
+      - label: 03 价格与软锚定
+        url: /wiki/topics/blockchain/equity-perpetuals/03-prices-and-anchoring.html
+      - label: 04 资金费与基差套利
+        url: /wiki/topics/blockchain/equity-perpetuals/04-funding-and-arbitrage.html
+      - label: 05 保证金、清算与 ADL
+        url: /wiki/topics/blockchain/equity-perpetuals/05-margin-and-liquidation.html
+      - label: 06 时段、分红与拆股
+        url: /wiki/topics/blockchain/equity-perpetuals/06-hours-and-corporate-actions.html
+      - label: 07 风险与保护边界
+        url: /wiki/topics/blockchain/equity-perpetuals/07-risk-and-protection.html
+      - label: 08 合约规格十四问
+        url: /wiki/topics/blockchain/equity-perpetuals/08-reading-a-contract.html
+      - label: 学习路线与产品卡
+        url: /wiki/topics/blockchain/equity-perpetuals/learning-roadmap.html
+      - label: 五组离线算例
+        url: /wiki/topics/blockchain/equity-perpetuals/lab.html
+      - label: 中英术语速查
+        url: /wiki/topics/blockchain/equity-perpetuals/glossary.html
+      - label: 来源、版本与未知项
+        url: /wiki/topics/blockchain/equity-perpetuals/sources.html
