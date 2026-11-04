@@ -239,7 +239,8 @@ class TrainingSiteTests(DeepLearningChecks):
             self.assertEqual(len(grouped.groups), 6)
             self.assertEqual(sum(len(group["links"]) for group in grouped.groups),
                              len(TRAINING_ROUTES) + len(dl.AGENTIC_ROUTES) + len(dl.DIFFUSION_ROUTES) +
-                             len(dl.ROUTES) - 1 + len(dl.LESSONS) + len(dl.VISION_ROUTES))
+                             len(dl.ROUTES) - 1 + len(dl.LESSONS) + len(dl.VISION_ROUTES) +
+                             len(dl.RSI_ROUTES))
 
 
 if __name__ == "__main__":
