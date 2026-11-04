@@ -4,6 +4,8 @@
 
 ## 主题索引
 
+- [Agent 部署的 Sandbox、容器与 microVM](agent-sandbox/README.md)：十章读本，覆盖 Linux、gVisor、Firecracker、Kata、Wasm、机密计算、平台对照、网络与凭证、生命周期、选型架构及生产验收，配四张图和三个离线实验
+- [Unified Training／统一训练](deep-learning/training/unified-training/README.md)：深度学习训练方向新增九页图文读本，拆解共同似然、有限采样、数据调度、实现分母和真实证据
 - [云与应用安全体系 / AWS Continuum L200](security/README.md)：十章安全基础体系与产品读本，连接治理、身份、数据、供应链、Agent、响应和恢复，配图、学习路线与无网络练习
 - [深度学习专题解读](deep-learning/README.md)：六个方向连接训练、生成、视觉表征、硬件、自动研究和权重编辑；新增 PixelBench 与 EmbeddingGemma 2 图文读本，配有离线实验和来源边界
 - [AI 自我改进与自动科研](deep-learning/self-improvement/README.md)：八章读本区分任务收益、改进能力与持续性；带机制图、术语、来源和离线练习

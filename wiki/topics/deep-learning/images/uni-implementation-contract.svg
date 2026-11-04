@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="558" viewBox="0 0 1040 558" role="img" aria-labelledby="title desc">
+<title id="title">一个 trainer，不代表一套默认开关</title>
+<desc id="desc">公开实现的阅读合同；没有安装或执行上游环境。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="558" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">一个 trainer，不代表一套默认开关</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">公开实现的阅读合同；没有安装或执行上游环境。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">对象</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">需要绑定</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">不能误读</text>
+<rect x="40" y="180" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">生成分布</text>
+<rect x="220" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">temperature、top-k／p、策略版本</text>
+<rect x="610.0" y="180" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">可读文本足以恢复所有训练条件</text>
+<rect x="40" y="248" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="277" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">权重／分母</text>
+<rect x="220" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">零权重响应、clip、EOS、response_tokens</text>
+<rect x="610.0" y="248" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="277" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">默认 weights mean 就是论文</text>
+<rect x="40" y="316" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="345" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">来源／混合</text>
+<rect x="220" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">静态 full-vocab CE、RL 支持、token 比例</text>
+<rect x="610.0" y="316" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="345" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">相同文件格式就有相同目标</text>
+<rect x="40" y="384" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="413" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">异步消费</text>
+<rect x="220" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">age、recency、strict、reuse、等待</text>
+<rect x="610.0" y="384" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="413" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">更新更快必定有更多新回答</text>
+<line x1="40" y1="494" x2="1000" y2="494" stroke="#e0e7e2"/>
+<text x="40" y="518" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">论文、配置和实际记录三方对照；支持过滤、基线与归约变化应单独命名。</text>
+</g>
+</svg>

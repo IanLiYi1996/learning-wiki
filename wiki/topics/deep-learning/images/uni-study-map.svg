@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="662" viewBox="0 0 1040 662" role="img" aria-labelledby="title desc">
+<title id="title">Unified Training：规则统一，数据分布持续变化</title>
+<desc id="desc">基于论文与源码重画；不是所有 RL 与所有阶段已无差别。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="662" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">Unified Training：规则统一，数据分布持续变化</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">基于论文与源码重画；不是所有 RL 与所有阶段已无差别。</text>
+<rect x="56" y="125" width="928" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".3"/>
+<text x="76" y="161" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">来源</text>
+<text x="292" y="157" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">静态预训练／中训练语料、示范、生成器验证过的回答</text>
+<rect x="56" y="241" width="928" height="84" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".3"/>
+<text x="76" y="277" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">目标</text>
+<text x="292" y="273" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">每次更新固定目标与比例；下一次再刷新数据分布</text>
+<rect x="56" y="357" width="928" height="84" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".3"/>
+<text x="76" y="393" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">公共更新</text>
+<text x="292" y="389" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">token 序列＋权重＋明确分母 → 同一个似然 trainer</text>
+<rect x="56" y="473" width="928" height="84" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".3"/>
+<text x="76" y="509" font-size="20" fill="#23312b" font-weight="600" text-anchor="start">独立验收</text>
+<text x="292" y="505" font-size="17" fill="#52645a" font-weight="400" text-anchor="start">准确率、覆盖、保留、后续学习与全流程计算分别测</text>
+<line x1="40" y1="598" x2="1000" y2="598" stroke="#e0e7e2"/>
+<text x="40" y="622" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">统一表达不取消奖励器、生成器、mask、配置、策略年龄或能力取舍。</text>
+</g>
+</svg>

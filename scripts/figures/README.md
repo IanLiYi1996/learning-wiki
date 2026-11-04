@@ -41,6 +41,8 @@ SVG 与 PNG 位于各专题的 `images/`；Markdown 用相对 PNG 路径便于 G
 
 视觉表征图组在 `multimodal-representations.json`（14 图）：`rep-` 一张阅读地图、`pxb-` 九张 PixelBench 接口／评测／PRT／离线合同图、`eg2-` 四张统一向量／架构／训练／评测图。资源位于 `deep-learning/images/`，两套嵌套读本用 `../../images/` 引用。分别按三个前缀重建；所有 compare 显式留出 64px 脚注间距。小数组与反例是原创教学，图件不表示跑过论文训练或部署检索。
 
+Unified Training 图组在 `unified-training.json`（10 图），用 `--id-prefix uni-` 独立重建。图解固定目标、问题分布、有限采样、分母、异步交接、混合时钟和证据验收，资源位于 `deep-learning/images/`。compare 图留出 64px 脚注间距；有蓝／紫两类箭头的交接图带图例。数字均为原创教学例，不重画论文曲线或声称运行了模型实验。
+
 Pollen Robotics 图组在 `pollen-robotics.json`（10 图），覆盖本体／SDK、遥操作、感知／仿真、数据／策略、Microduck RL 与执行器。用 `--id-prefix pollen-` 独立重建，资源位于 `physical-ai/images/`。该组设置 `archive_assets: false`，新增图由独立清单与测试验证，不写入 2026-10-29 的旧归档图件校验表；默认未设此字段的旧图仍维持原归档行为。
 
 安全图组在 `security-continuum.json`（9 张概念图），用 `--id-prefix sec-` 独立重建，资源位于 `security/images/`。另有一张使用官方 AWS 图标的客户侧逻辑治理 SVG，不走本通用图组、不生成 PNG；SVG 内嵌 draw.io 可编辑模型。它不是 Continuum 内部部署或内建自动集成，图中服务组合是可另行设计的参考。GA、preview 与计费说明须和正文来源台账同步更新。
@@ -52,6 +54,8 @@ Pollen Robotics 图组在 `pollen-robotics.json`（10 图），覆盖本体／SD
 RSI／自我改进图组在 `self-improvement.json`（6 图、12 处插入），使用 `--id-prefix rsi-` 单独重建。资源位于 `deep-learning/images/`，覆盖对象、修改循环、参数适应、人的科研责任、评测隔离与四格归因；整数策略图有对应标准库测试，均不冒称论文复现或实际部署。
 
 ## Physical AI 原件与图文版
+
+Agent sandbox 图组在 `agent-sandbox.json`（4 图、8 处插入），使用 `--id-prefix agbox-` 独立重建，资源位于 `agent-sandbox/images/`。覆盖四种边界、三条执行路径、生命周期和选型准入；不表示厂商内部架构、性能排行或安全验收。可用 `uv run --no-project --with cairosvg --with pillow python scripts/render_figures.py --embed --id-prefix agbox-` 重建；三个标准库教学练习不依赖图件环境。
 
 2026-10-29 的修订只给 Markdown 正文与分章补图，不改变原文研究日期、引用、产品状态或结论。
 原 PDF、Word 与独立 HTML 导出版保留原字节，不冒称已经重建。

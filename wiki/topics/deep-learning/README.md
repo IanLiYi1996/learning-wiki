@@ -39,6 +39,8 @@
 
 [Agentic-RL Lab 六章解读](training/agentic-rl-lab/README.md)把 Datawhale 仓库的 16 个入口映射到六类学习问题：优化目标、工具环境、在线蒸馏、长程信用分配、多模态与评分器、评测复现。10 张原创图和标准库实验帮助把公式对应到实际源码；同时说明远程训练成本、代码执行隔离与测量合同。
 
+[Unified Training 九页读本](training/unified-training/README.md)把预训练、midtraining、SFT 和合适的 RL 目标放到共同似然视角。10 张机制图拆解成功条件分布、有限采样、token 分母、异步旧策略和混合调度；[离线验算](training/unified-training/lab.md)与[证据边界](training/unified-training/evidence-and-limits.md)帮助区分数学统一、实现一致和性能优劣。
+
 <a id="category-diffusion"></a>
 
 ## 2. 扩散与视觉生成

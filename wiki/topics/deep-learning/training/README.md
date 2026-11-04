@@ -1,6 +1,6 @@
 # LLM 训练与后训练：配方不是一串超参数
 
-研究日期：2026-11-03。[深度学习五方向目录](../README.md#category-training)。
+研究日期：2026-11-03；增补日期：2026-11-04。[深度学习分类目录](../README.md#category-training)。
 
 这一分组讨论“怎样让参数更新可解释、可验证、可复现”。先分清预训练、SFT、偏好优化、可验证奖励 RL 和 Agentic RL，再看数据、环境、计算与评测怎样共同构成 recipe。可从 [Rufus-Air 八阶段配方](rufus-air/README.md)看整条流水线，从 [Agentic-RL Lab](agentic-rl-lab/README.md)看算法到源码；这里不是完整预训练教科书。
 
@@ -28,6 +28,14 @@
 | 评测复现 | [代码合同与检查表](agentic-rl-lab/evaluation-and-reproduction.md) | 题目身份、harness、预算、失败和真实成本 |
 
 [导读与 16 个上游入口映射](agentic-rl-lab/README.md) · [标准库实验](agentic-rl-lab/lab.md) · [固定来源与核验范围](agentic-rl-lab/sources.md)。新增读本不移动 Rufus-Air 页面，也不声称小规模示例已经复现大型 MoE recipe。
+
+## Unified Training：把训练阶段写成数据分布的时间表
+
+[九页图文读本](unified-training/README.md)解读 *Training Foundation Models with a Single Algorithm*。预训练、midtraining、SFT 本来共享最大似然形式；论文进一步把合适的 RL 目标写成成功条件分布拟合，再用共同 token 格式、权重和 trainer 混合静态与生成数据。
+
+学习路线是[目标分布](unified-training/likelihood-and-targets.md) → [MaxRL 与有限采样](unified-training/maxrl-and-finite-sampling.md) → [权重与分母](unified-training/weighted-loss-and-masks.md) → [异步系统](unified-training/asynchronous-system.md) → [混合调度](unified-training/mixing-and-schedules.md)。[证据页](unified-training/evidence-and-limits.md)保留不占优结果、计算口径与 staged 起点描述冲突。
+
+这里不把“共同 loss”说成“所有 RL 都等价于 SFT”，不把“旧策略数据可以拟合”说成“没有 off-policy 差异”。[标准库验算](unified-training/lab.md)和[版本台账](unified-training/sources.md)不启动真实训练。
 
 ## 一份训练合同至少有六部分
 

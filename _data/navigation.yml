@@ -16,6 +16,42 @@ sections:
     icon: inbox
 
 topics:
+  - label: Agent Sandbox 与 microVM
+    title: Agent 部署的 Sandbox、容器与 microVM
+    url: /wiki/topics/agent-sandbox/
+    description: 从 Linux、gVisor、Firecracker、Kata 与 Wasm，到生命周期、平台、网络身份和生产选型。
+    meta: 10 章 · 4 张图 · 3 个离线实验 · 一手来源
+    items:
+      - label: 专题导读与阅读地图
+        url: /wiki/topics/agent-sandbox/
+      - label: 01 系统模型与威胁
+        url: /wiki/topics/agent-sandbox/01-system-model-and-threats.html
+      - label: 02 Linux 与容器
+        url: /wiki/topics/agent-sandbox/02-linux-and-containers.html
+      - label: 03 gVisor 应用内核
+        url: /wiki/topics/agent-sandbox/03-gvisor.html
+      - label: 04 microVM 与 Kata
+        url: /wiki/topics/agent-sandbox/04-microvm-and-kata.html
+      - label: 05 Wasm 与机密计算
+        url: /wiki/topics/agent-sandbox/05-wasm-and-confidential-computing.html
+      - label: 06 生命周期与编排
+        url: /wiki/topics/agent-sandbox/06-lifecycle-and-orchestration.html
+      - label: 07 平台版图与版本差异
+        url: /wiki/topics/agent-sandbox/07-platform-landscape.html
+      - label: 08 选型与参考架构
+        url: /wiki/topics/agent-sandbox/08-selection-and-architectures.html
+      - label: 09 网络、身份与数据
+        url: /wiki/topics/agent-sandbox/09-network-identity-and-data.html
+      - label: 10 生产运维与验收
+        url: /wiki/topics/agent-sandbox/10-production-and-benchmarks.html
+      - label: 学习路线与自测
+        url: /wiki/topics/agent-sandbox/learning-roadmap.html
+      - label: 中英术语速查
+        url: /wiki/topics/agent-sandbox/glossary.html
+      - label: 三个免费离线实验
+        url: /wiki/topics/agent-sandbox/lab.html
+      - label: 一手来源与研究边界
+        url: /wiki/topics/agent-sandbox/sources.html
   - label: 云与应用安全
     title: 云与应用安全体系 / AWS Continuum
     url: /wiki/topics/security/
@@ -73,8 +109,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；含 RSI、PixelBench 和 EmbeddingGemma 2。
-    meta: 6 个细分方向 · 7 套读本 · 标准库实验
+    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 Unified Training 的共同似然与数据调度。
+    meta: 6 个细分方向 · 8 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -129,6 +165,33 @@ topics:
       - label: Lab 源码快照与未执行项
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/agentic-rl-lab/sources.html
+      - label: Unified Training：同一种训练规则
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/
+      - label: 统一 01 似然与目标分布
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/likelihood-and-targets.html
+      - label: 统一 02 MaxRL 与有限采样
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/maxrl-and-finite-sampling.html
+      - label: 统一 03 token 权重与分母
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/weighted-loss-and-masks.html
+      - label: 统一 04 异步与实现合同
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/asynchronous-system.html
+      - label: 统一 05 数据混合与调度
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/mixing-and-schedules.html
+      - label: 统一 06 证据、预算与局限
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/evidence-and-limits.html
+      - label: 统一标准库实验与自测
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/lab.html
+      - label: 统一来源与版本边界
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/unified-training/sources.html
       - label: 扩散后训练与推理工程 101
         group: 扩散与视觉生成
         url: /wiki/topics/deep-learning/diffusion/

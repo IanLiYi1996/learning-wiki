@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+<title id="title">先准入，再比较：速度不能补偿硬约束失败</title>
+<desc id="desc">原创研究合同；未知不当成通过，教学实验不等于生产验收。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="540" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">先准入，再比较：速度不能补偿硬约束失败</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创研究合同；未知不当成通过，教学实验不等于生产验收。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">明确任务与攻击者</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">代码、数据、租户、宿主</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">检查硬门槛</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">runtime、网络、身份、清理</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">验证真实工作负载</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">依赖、文件、进程与设备</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">测试拒绝与恢复</text>
+<text x="856.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">跨租户、撤销、旧句柄</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">测端到端与成本</text>
+<text x="520.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">成功率、尾延迟、成本分母</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">记录决策与未知</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">版本、证据、责任与复验</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="476" x2="1000" y2="476" stroke="#e0e7e2"/>
+<text x="40" y="500" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">真实配置、授权环境和测试证据另行取得；本专题不创建云资源。</text>
+</g>
+</svg>
