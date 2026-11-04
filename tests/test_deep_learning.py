@@ -33,6 +33,10 @@ AGENTIC_FILES = tuple("training/agentic-rl-lab/" + name for name in (
     "README.md", "policy-objectives.md", "tools-and-environments.md",
     "on-policy-distillation.md", "credit-assignment.md", "multimodal-and-judges.md",
     "evaluation-and-reproduction.md", "lab.md", "sources.md"))
+UNIFIED_FILES = tuple("training/unified-training/" + name for name in (
+    "README.md", "likelihood-and-targets.md", "maxrl-and-finite-sampling.md",
+    "weighted-loss-and-masks.md", "asynchronous-system.md", "mixing-and-schedules.md",
+    "evidence-and-limits.md", "lab.md", "sources.md"))
 VISION_FILES = ("vision/README.md",) + tuple("vision/pixelbench/" + name for name in (
     "README.md", "representation-and-tasks.md", "metrics-and-results.md",
     "resolution-and-failure-modes.md", "prt-training.md", "evidence-and-limitations.md",
@@ -52,6 +56,9 @@ TRAINING_ROUTES = {name: "wiki/topics/deep-learning/" +
 AGENTIC_ROUTES = {name: "wiki/topics/deep-learning/" +
                   name.replace("README.md", "index.html").replace(".md", ".html")
                   for name in AGENTIC_FILES}
+UNIFIED_ROUTES = {name: "wiki/topics/deep-learning/" +
+                  name.replace("README.md", "index.html").replace(".md", ".html")
+                  for name in UNIFIED_FILES}
 VISION_ROUTES = {name: "wiki/topics/deep-learning/" +
                  name.replace("README.md", "index.html").replace(".md", ".html")
                  for name in VISION_FILES}
@@ -101,6 +108,9 @@ VISION_VERSIONS = {
     "c095bae7434c98e1529dea0754c5ebf61e10534f": "github.com/HaoquanZhang/PixelBench",
     "f9972ac22e696a105c482202646979e33e4b5a1e": "huggingface.co/google/embeddinggemma-2",
 }
+UNIFIED_VERSIONS = {
+    "5b3eaa0f3ce39f695beb5d27a0bb0f92368b3118": "github.com/yudasong/unified-training",
+}
 
 
 def documents():
@@ -125,6 +135,9 @@ def agentic_figures():
 def vision_figures():
     return json.loads((ROOT / "scripts/figures/multimodal-representations.json").read_text(encoding="utf-8"))
 
+def unified_figures():
+    return json.loads((ROOT / "scripts/figures/unified-training.json").read_text(encoding="utf-8"))
+
 
 def readable_samples(source):
     # Display math and inline TeX are tested in a real browser. Typography in
@@ -145,7 +158,7 @@ class DeepLearningChecks(PaymentsChecks):
         for version in PUBLIC_VERSIONS:
             text = text.replace(version, "")
         for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS,
-                                    **AGENTIC_VERSIONS, **VISION_VERSIONS}.items():
+                                    **AGENTIC_VERSIONS, **VISION_VERSIONS, **UNIFIED_VERSIONS}.items():
             # Exempt only the exact revision in its verified repository URL.
             # Keep the rest of the path visible to all other privacy checks.
             routes = "(?:blob|tree|raw)" if repository == "huggingface.co/google/embeddinggemma-2" \
@@ -157,8 +170,8 @@ class DeepLearningChecks(PaymentsChecks):
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES) | {f"images/{figure['id']}.{suffix}"
-                               for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures()
+        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES) | {f"images/{figure['id']}.{suffix}"
+                               for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures() + unified_figures()
                                for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
                           for path in TOPIC.rglob("*") if path.is_file()}, allowed)
@@ -170,7 +183,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      ROOT / "scripts/figures/diffusion.json",
                      ROOT / "scripts/figures/training-recipes.json",
                      ROOT / "scripts/figures/agentic-rl-lab.json",
-                     ROOT / "scripts/figures/multimodal-representations.json", *TOPIC.rglob("*")]:
+                     ROOT / "scripts/figures/multimodal-representations.json",
+                     ROOT / "scripts/figures/unified-training.json", *TOPIC.rglob("*")]:
             if path.is_file() and path.suffix != ".png":
                 self.assert_public_study(path.read_text(encoding="utf-8"), path.name)
         for value in ("f" * 40, "https://private.sharepoint.com/document",
@@ -282,6 +296,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      for relative in VISION_ROUTES.values()}
         expected |= {"/" + relative.replace("index.html", "")
                      for relative in RSI_ROUTES.values()}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in UNIFIED_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -327,7 +343,8 @@ class DeepLearningSiteTests(DeepLearningChecks):
                          Counter(base + "/" + route.replace("index.html", "")
                                  for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values(),
                                                *TRAINING_ROUTES.values(), *AGENTIC_ROUTES.values(),
-                                               *VISION_ROUTES.values(), *RSI_ROUTES.values()]))
+                                               *VISION_ROUTES.values(), *RSI_ROUTES.values(),
+                                               *UNIFIED_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -375,7 +392,7 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES
+        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES
         allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
             "index.html", "README.html", "diffusion/index.html", "diffusion/README.html",
             "training/index.html", "training/README.html",
@@ -384,9 +401,10 @@ class DeepLearningSiteTests(DeepLearningChecks):
             "vision/index.html", "vision/README.html",
             "vision/pixelbench/index.html", "vision/pixelbench/README.html",
             "vision/embeddinggemma-2/index.html", "vision/embeddinggemma-2/README.html",
-            "self-improvement/index.html"
+            "self-improvement/index.html",
+            "training/unified-training/index.html", "training/unified-training/README.html"
         } | {f"images/{figure['id']}.{suffix}"
-             for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures()
+             for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures() + unified_figures()
              for suffix in ("svg", "png")}
         for path in (SITE / "wiki/topics/deep-learning").rglob("*"):
             if path.is_file():

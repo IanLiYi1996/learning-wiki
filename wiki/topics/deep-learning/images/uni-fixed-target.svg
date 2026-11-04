@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+<title id="title">先构造本次目标，再更新模型，下一轮才刷新</title>
+<desc id="desc">原创求导边界图；前后阶段对应不同对象。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="540" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">先构造本次目标，再更新模型，下一轮才刷新</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创求导边界图；前后阶段对应不同对象。</text>
+<rect x="56" y="128" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">选择数据来源</text>
+<text x="184.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">静态语料／示范／生成策略 ν</text>
+<rect x="392" y="128" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">构造目标</text>
+<text x="520.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">成功条件分布与问题分布</text>
+<rect x="728" y="128" width="256" height="120" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="181.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">固定本次目标</text>
+<text x="856.0" y="216.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">μ、ρ 与来源权重不求导</text>
+<rect x="728" y="308" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="349.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">似然前向</text>
+<text x="856.0" y="384.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">模型 πθ 给目标序列算 log-</text>
+<text x="856.0" y="407.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">prob</text>
+<rect x="392" y="308" width="256" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">参数更新</text>
+<text x="520.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">更新 θ；不改本批目标身份</text>
+<rect x="56" y="308" width="256" height="120" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="361.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">刷新下一轮</text>
+<text x="184.0" y="396.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">新生成、验证与混合计划</text>
+<path d="M 312,188 L 392,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,188 L 728,188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,248 L 856,308" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 728,368 L 648,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,368 L 312,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<line x1="40" y1="476" x2="1000" y2="476" stroke="#e0e7e2"/>
+<text x="40" y="500" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">旧生成策略仍可提供 ν⁺，但一般不是当前策略 MaxRL 的梯度。</text>
+</g>
+</svg>

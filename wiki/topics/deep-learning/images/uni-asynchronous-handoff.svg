@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="660" viewBox="0 0 1040 660" role="img" aria-labelledby="title desc">
+<title id="title">异步交接：生成、消费、发布是三种时刻</title>
+<desc id="desc">原创系统机制图；不是已部署服务或真实训练日志。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="660" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">异步交接：生成、消费、发布是三种时刻</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创系统机制图；不是已部署服务或真实训练日志。</text>
+<path d="M 312,226 L 392,226" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="329.0" y="213.0" width="46" height="25" fill="#fff"/>
+<text x="352.0" y="231.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">数据</text>
+<path d="M 648,226 L 728,226" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="665.0" y="213.0" width="46" height="25" fill="#fff"/>
+<text x="688.0" y="231.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">抽样</text>
+<path d="M 856,292 L 856,450 L 648,450" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="729.0" y="437.0" width="46" height="25" fill="#fff"/>
+<text x="752.0" y="455.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">权重</text>
+<path d="M 392,450 L 184,450 L 184,292" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="257.5" y="437.0" width="61" height="25" fill="#fff"/>
+<text x="288.0" y="455.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">新策略</text>
+<rect x="56" y="160" width="256" height="132" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="207.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">生成与验证</text>
+<text x="184.0" y="242.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">已发布策略 ν</text>
+<text x="184.0" y="265.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">问题、reward、权重</text>
+<rect x="392" y="160" width="256" height="132" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="207.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">完成批次缓冲</text>
+<text x="520.0" y="242.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">静态＋RL 数据</text>
+<text x="520.0" y="265.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">token、mask、来源与版本</text>
+<rect x="728" y="160" width="256" height="132" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="207.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">共同训练器</text>
+<text x="856.0" y="242.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">采样混合、计算分母</text>
+<text x="856.0" y="265.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">更新当前参数 θ</text>
+<rect x="392" y="390" width="256" height="120" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="431.5" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">发布策略快照</text>
+<text x="520.0" y="466.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">周期性同步</text>
+<text x="520.0" y="489.5" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">不改已生成数据的来历</text>
+<line x1="40" y1="596" x2="1000" y2="596" stroke="#e0e7e2"/>
+<text x="40" y="619" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">蓝色：前向信息　紫色：反馈／再执行</text>
+<text x="40" y="641" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">旧 ν⁺ 可拟合，但不自动校正成当前 MaxRL；发布版本、消费年龄和等待独立记录。</text>
+</g>
+</svg>

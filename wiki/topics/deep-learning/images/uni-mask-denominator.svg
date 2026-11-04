@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="568" viewBox="0 0 1040 568" role="img" aria-labelledby="title desc">
+<title id="title">零权重响应与零权重 prompt，分母身份不同</title>
+<desc id="desc">原创例：成功响应 2 tokens × NLL2 × 权重4；错误响应 3 tokens。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="568" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">零权重响应与零权重 prompt，分母身份不同</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">原创例：成功响应 2 tokens × NLL2 × 权重4；错误响应 3 tokens。</text>
+<rect x="40" y="126" width="180" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="53" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">归约</text>
+<rect x="220" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="233" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">分子／分母</text>
+<rect x="610.0" y="126" width="390.0" height="54" fill="#e5f1eb" stroke="#e0e7e2"/>
+<text x="623.0" y="155" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">值及含义</text>
+<rect x="40" y="180" width="180" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="209" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">论文响应 token</text>
+<text x="53" y="234" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">mean</text>
+<rect x="220" y="180" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">16 ／ (2＋3)</text>
+<rect x="610.0" y="180" width="390.0" height="78" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="209" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">3.2；错误响应仍计数</text>
+<rect x="40" y="258" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="287" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">只保留非零权重位置</text>
+<rect x="220" y="258" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">16 ／ 2</text>
+<rect x="610.0" y="258" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="287" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">8；悄悄改变 loss 尺度</text>
+<rect x="40" y="326" width="180" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="53" y="355" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">除以权重和</text>
+<rect x="220" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="233" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">16 ／ 8</text>
+<rect x="610.0" y="326" width="390.0" height="68" fill="#f7f9f8" stroke="#e0e7e2"/>
+<text x="623.0" y="355" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">2；另一种目标归约</text>
+<rect x="40" y="394" width="180" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="53" y="423" font-size="17" fill="#23312b" font-weight="600" text-anchor="start">prompt／padding</text>
+<rect x="220" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="233" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">权重为 0；不计响应分母</text>
+<rect x="610.0" y="394" width="390.0" height="68" fill="#fff" stroke="#e0e7e2"/>
+<text x="623.0" y="423" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">须用独立位置身份，不能由权重猜</text>
+<line x1="40" y1="504" x2="1000" y2="504" stroke="#e0e7e2"/>
+<text x="40" y="528" font-size="15" fill="#63736a" font-weight="400" text-anchor="start">静态 token、EOS、预测对齐与支持集合也要约定；默认值不等于论文配置。</text>
+</g>
+</svg>

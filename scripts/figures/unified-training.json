@@ -1,0 +1,100 @@
+[
+  {
+    "id":"uni-study-map","topic":"deep-learning","kind":"layers",
+    "title":"Unified Training：规则统一，数据分布持续变化",
+    "subtitle":"基于论文与源码重画；不是所有 RL 与所有阶段已无差别。",
+    "layers":[["来源","静态预训练／中训练语料、示范、生成器验证过的回答"],["目标","每次更新固定目标与比例；下一次再刷新数据分布"],["公共更新","token 序列＋权重＋明确分母 → 同一个似然 trainer"],["独立验收","准确率、覆盖、保留、后续学习与全流程计算分别测"]],
+    "note":"统一表达不取消奖励器、生成器、mask、配置、策略年龄或能力取舍。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/README.md","after":"## 1. 这篇统一的是什么"}]
+  },
+  {
+    "id":"uni-fixed-target","topic":"deep-learning","kind":"flow",
+    "title":"先构造本次目标，再更新模型，下一轮才刷新",
+    "subtitle":"原创求导边界图；前后阶段对应不同对象。",
+    "nodes":[["选择数据来源","静态语料／示范／生成策略 ν"],["构造目标","成功条件分布与问题分布"],["固定本次目标","μ、ρ 与来源权重不求导"],["似然前向","模型 πθ 给目标序列算 log-prob"],["参数更新","更新 θ；不改本批目标身份"],["刷新下一轮","新生成、验证与混合计划"]],
+    "note":"旧生成策略仍可提供 ν⁺，但一般不是当前策略 MaxRL 的梯度。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/likelihood-and-targets.md","after":"## 1. 先把“谁提供答案”写出来"}]
+  },
+  {
+    "id":"uni-question-distribution","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"成功答案分布相同，不意味着问题权重相同",
+    "subtitle":"二元、理想 on-policy、无基线的机制对照；有限样本另计。",
+    "columns":["目标","成功回答目标","有效问题质量"],
+    "rows":[["MaxRL","当前成功条件分布 π⁺","保留原问题分布 ρ"],["REINFORCE","同一成功条件分布 π⁺","ρ × 每题成功概率"],["有限 N 的 MaxRL","生成器的成功分布 ν⁺","ρ × 至少一次成功概率"],["旧／其他生成器","固定生成器的 ν⁺","不自动等于当前策略梯度"]],
+    "note":"这不撤销 PPO／GRPO 的裁剪、基线与约束，也不保证每题实际梯度范数相同。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/maxrl-and-finite-sampling.md","after":"## 2. REINFORCE：成功答案相同，问题权重不同"}]
+  },
+  {
+    "id":"uni-finite-sampling","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"四次采样：成功权重校正，难题仍可能无信号",
+    "subtitle":"原创二元四回答例；不是实际模型奖励或成绩。",
+    "columns":["观测","成功回答权重","机制"],
+    "rows":[["1 成功／4 回答","4","题内响应级平均权重为 1"],["3 成功／4 回答","4／3","目标是成功回答的均值"],["0 成功／4 回答","全部 0","无成功目标，不除零"],["理论 p=.25／.75","N=4 至少成功 .6836／.9961","有限样本仍偏向较容易的题"]],
+    "note":"响应长度与 token mean 会影响实际贡献；p=0 不因增加同分布采样变成可学。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/maxrl-and-finite-sampling.md","after":"## 3. 每题采 N 个回答，怎样得到权重"}]
+  },
+  {
+    "id":"uni-mask-denominator","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"零权重响应与零权重 prompt，分母身份不同",
+    "subtitle":"原创例：成功响应 2 tokens × NLL2 × 权重4；错误响应 3 tokens。",
+    "columns":["归约","分子／分母","值及含义"],
+    "rows":[["论文响应 token mean","16 ／ (2＋3)","3.2；错误响应仍计数"],["只保留非零权重位置","16 ／ 2","8；悄悄改变 loss 尺度"],["除以权重和","16 ／ 8","2；另一种目标归约"],["prompt／padding","权重为 0；不计响应分母","须用独立位置身份，不能由权重猜"]],
+    "note":"静态 token、EOS、预测对齐与支持集合也要约定；默认值不等于论文配置。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/weighted-loss-and-masks.md","after":"## 1. 公共格式：序列 z 与权重 w"}]
+  },
+  {
+    "id":"uni-asynchronous-handoff","topic":"deep-learning","kind":"scene","height":660,
+    "title":"异步交接：生成、消费、发布是三种时刻",
+    "subtitle":"原创系统机制图；不是已部署服务或真实训练日志。",
+    "nodes":[
+      {"id":"generator","x":56,"y":160,"w":256,"h":132,"label":"生成与验证","detail":"已发布策略 ν\n问题、reward、权重","color":0},
+      {"id":"buffer","x":392,"y":160,"w":256,"h":132,"label":"完成批次缓冲","detail":"静态＋RL 数据\ntoken、mask、来源与版本","color":1},
+      {"id":"trainer","x":728,"y":160,"w":256,"h":132,"label":"共同训练器","detail":"采样混合、计算分母\n更新当前参数 θ","color":2},
+      {"id":"policy","x":392,"y":390,"w":256,"h":120,"label":"发布策略快照","detail":"周期性同步\n不改已生成数据的来历","color":3}
+    ],
+    "edges":[
+      {"points":[[312,226],[392,226]],"label":"数据"},
+      {"points":[[648,226],[728,226]],"label":"抽样"},
+      {"points":[[856,292],[856,450],[648,450]],"label":"权重","feedback":true,"label_segment":1},
+      {"points":[[392,450],[184,450],[184,292]],"label":"新策略","feedback":true,"label_segment":0}
+    ],
+    "note":"旧 ν⁺ 可拟合，但不自动校正成当前 MaxRL；发布版本、消费年龄和等待独立记录。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/asynchronous-system.md","after":"## 1. 生成器、缓冲区、训练器怎样交接"}]
+  },
+  {
+    "id":"uni-implementation-contract","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"一个 trainer，不代表一套默认开关",
+    "subtitle":"公开实现的阅读合同；没有安装或执行上游环境。",
+    "columns":["对象","需要绑定","不能误读"],
+    "rows":[["生成分布","temperature、top-k／p、策略版本","可读文本足以恢复所有训练条件"],["权重／分母","零权重响应、clip、EOS、response_tokens","默认 weights mean 就是论文"],["来源／混合","静态 full-vocab CE、RL 支持、token 比例","相同文件格式就有相同目标"],["异步消费","age、recency、strict、reuse、等待","更新更快必定有更多新回答"]],
+    "note":"论文、配置和实际记录三方对照；支持过滤、基线与归约变化应单独命名。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/asynchronous-system.md","after":"## 3. 代码核验：哪些配置决定论文目标"}]
+  },
+  {
+    "id":"uni-mixture-clocks","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"比例、调度与计算分别记账",
+    "subtitle":"原创换算与论文调度对照；配置平均不等于实际 token 平均。",
+    "columns":["账本","教学观察","验收条件"],
+    "rows":[["样本 → token","平均长度 2／8，各半样本得 20%／80% tokens","测量长度；想等 token 则样本 80%／20%"],["比例 → 时间","constant／decay／growth／half 平均 0.5%","不同参数状态、不同出现时机"],["token → loss","权重、mask、pooled／separate 都影响贡献","保存原始计数与目标分母"],["处理 → 计算","训练 6N；生成＋训练 8N；prompt 仍处理","估算不是墙钟、验证器或费用"]],
+    "note":"等更新、等曝光、等 token、等 FLOPs 是不同实验；最优曲线还要说明选择过程。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/mixing-and-schedules.md","after":"## 1. 把“占 2%”补成一句完整的话"}]
+  },
+  {
+    "id":"uni-evidence-scorecards","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"四张成绩单，不用一项提高替代所有改善",
+    "subtitle":"原创证据地图；受控与 real-world 实验的样本、预算和协议分开。",
+    "columns":["成绩单","回答什么","不能推出什么"],
+    "rows":[["Accuracy","指定抽样的一次成功率","所有题更好、贪心成绩相同"],["Coverage","给定采样预算至少成功一次","用户能识别并收到正确答案"],["Retention","持出语料损失与多个能力指标","旧知识全部恢复、代码一定提高"],["后续学习","同续训配置下更好的适应结果","所有任务序列永不遗忘"]],
+    "note":"best-observed frontier 是事后选择；原文也有 staged／其他目标较优及描述冲突。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/evidence-and-limits.md","after":"## 2. 四张成绩单，不能合成一句“更强”"}]
+  },
+  {
+    "id":"uni-lab-contracts","topic":"deep-learning","kind":"compare","footer_gap":64,
+    "title":"本地算术验证机制，不复现模型成绩",
+    "subtitle":"所有数字是原创构造；标准库、无模型、无网络、无写入。",
+    "columns":["问题","可验算结果","边界"],
+    "rows":[["成功条件目标","(.6,.2,.2) → (.75,0,.25)","生成器目标，不是新的模型能力"],["分母与 microbatch","16／5＝3.2；均值直接平均得到 4","验证统计量，不模拟 DDP／梯度"],["token 抽样","各半 tokens，长度2／8 → 样本 .8／.2","基于均值，实际长度变化仍会漂移"],["dense 计算","总 1,020,000；额外 420,000 FLOPs","假想 N=1,000；不是硬件速度"]],
+    "note":"有限 N、pass@k 与调度积分也有边界测试；没有运行上游 benchmark 或 trainer。",
+    "placements":[{"file":"wiki/topics/deep-learning/training/unified-training/lab.md","after":"## 1. 四类合同，用小数组拆开"}]
+  }
+]
