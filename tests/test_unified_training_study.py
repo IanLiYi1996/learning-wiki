@@ -163,7 +163,7 @@ class UnifiedBuildTests(DeepLearningChecks):
             self.assertEqual(Counter(grouped.groups[0]["links"]),
                              Counter(base + "/" + r.replace("index.html", "")
                                      for r in [*dl.TRAINING_ROUTES.values(), *dl.AGENTIC_ROUTES.values(),
-                                               *dl.UNIFIED_ROUTES.values()]))
+                                               *dl.UNIFIED_ROUTES.values(), *dl.MOE_SWARM_ROUTES.values()]))
 
     def test_built_images_and_actual_placement_headings(self):
         actual = {}

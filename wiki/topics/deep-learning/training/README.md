@@ -1,8 +1,8 @@
 # LLM 训练与后训练：配方不是一串超参数
 
-研究日期：2026-11-03；增补日期：2026-11-04。[深度学习分类目录](../README.md#category-training)。
+研究日期：2026-11-03；增补日期：2026-11-04；2026-11-09 补充 MoE 与 Swarm。[深度学习分类目录](../README.md#category-training)。
 
-这一分组讨论“怎样让参数更新可解释、可验证、可复现”。先分清预训练、SFT、偏好优化、可验证奖励 RL 和 Agentic RL，再看数据、环境、计算与评测怎样共同构成 recipe。可从 [Rufus-Air 八阶段配方](rufus-air/README.md)看整条流水线，从 [Agentic-RL Lab](agentic-rl-lab/README.md)看算法到源码；这里不是完整预训练教科书。
+这一分组讨论“怎样让参数更新可解释、可验证、可复现”。先分清预训练、SFT、偏好优化、可验证奖励 RL 和 Agentic RL，再看数据、环境、计算与评测怎样共同构成 recipe。可从 [Rufus-Air 八阶段配方](rufus-air/README.md)看整条流水线，从 [Agentic-RL Lab](agentic-rl-lab/README.md)看算法到源码，从 [MoE 与 Swarm](moe-and-swarms/README.md)分清模型内稀疏架构与模型外集体训练；这里不是完整预训练教科书。
 
 ## 当前读本与细分入口
 
@@ -36,6 +36,16 @@
 学习路线是[目标分布](unified-training/likelihood-and-targets.md) → [MaxRL 与有限采样](unified-training/maxrl-and-finite-sampling.md) → [权重与分母](unified-training/weighted-loss-and-masks.md) → [异步系统](unified-training/asynchronous-system.md) → [混合调度](unified-training/mixing-and-schedules.md)。[证据页](unified-training/evidence-and-limits.md)保留不占优结果、计算口径与 staged 起点描述冲突。
 
 这里不把“共同 loss”说成“所有 RL 都等价于 SFT”，不把“旧策略数据可以拟合”说成“没有 off-policy 差异”。[标准库验算](unified-training/lab.md)和[版本台账](unified-training/sources.md)不启动真实训练。
+
+## MoE 与 Swarm：先拆开两层，再读共同问题
+
+| 学习问题 | 入口 | 重点区别 |
+| --- | --- | --- |
+| MoE 的稀疏计算怎么落到训练工程？ | [架构、负载与 EP](moe-and-swarms/moe-training.md) | 激活参数／显存、平衡／z-loss、dropping／dropless |
+| 多智能体怎样学会协作？ | [Swarm 与 RLCR](moe-and-swarms/swarm-rlcr.md) | 共享 policy／各自历史、集体优势／个体贡献、deadline／延迟惩罚 |
+| 两篇材料怎么结合而不混淆？ | [跨层联系与评测合同](moe-and-swarms/connections-and-evaluation.md) | 关键路径／总计算、训练接口、匹配预算与通信消融 |
+
+[专题导读与阅读路线](moe-and-swarms/README.md) · [来源与版本核验](moe-and-swarms/sources.md)。这一组是机制学习和原创算例，没有启动 GPU 训练或复现 Avalon-M1。Expert 与 Agent 不同层，MoE 可以作为集体 policy 的底层架构，但不能据此宣称两者的收益可直接相乘。
 
 ## 一份训练合同至少有六部分
 

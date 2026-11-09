@@ -45,6 +45,9 @@ UNIFIED_FILES = tuple("training/unified-training/" + name for name in (
     "README.md", "likelihood-and-targets.md", "maxrl-and-finite-sampling.md",
     "weighted-loss-and-masks.md", "asynchronous-system.md", "mixing-and-schedules.md",
     "evidence-and-limits.md", "lab.md", "sources.md"))
+MOE_SWARM_FILES = tuple("training/moe-and-swarms/" + name for name in (
+    "README.md", "moe-training.md", "swarm-rlcr.md",
+    "connections-and-evaluation.md", "sources.md"))
 VISION_FILES = ("vision/README.md",) + tuple("vision/pixelbench/" + name for name in (
     "README.md", "representation-and-tasks.md", "metrics-and-results.md",
     "resolution-and-failure-modes.md", "prt-training.md", "evidence-and-limitations.md",
@@ -68,6 +71,9 @@ AGENTIC_ROUTES = {name: "wiki/topics/deep-learning/" +
 UNIFIED_ROUTES = {name: "wiki/topics/deep-learning/" +
                   name.replace("README.md", "index.html").replace(".md", ".html")
                   for name in UNIFIED_FILES}
+MOE_SWARM_ROUTES = {name: "wiki/topics/deep-learning/" +
+                    name.replace("README.md", "index.html").replace(".md", ".html")
+                    for name in MOE_SWARM_FILES}
 VISION_ROUTES = {name: "wiki/topics/deep-learning/" +
                  name.replace("README.md", "index.html").replace(".md", ".html")
                  for name in VISION_FILES}
@@ -120,6 +126,12 @@ VISION_VERSIONS = {
 UNIFIED_VERSIONS = {
     "5b3eaa0f3ce39f695beb5d27a0bb0f92368b3118": "github.com/yudasong/unified-training",
 }
+MOE_SWARM_VERSIONS = {
+    "ef70726e6f8b99d74298a16a4894340f288a58c2":
+        "huggingface.co/spaces/huggingface/moe-blogpost",
+    "d6316eb45bf1bfbb6f1f848c0b56e55166564d80":
+        "github.com/NVIDIA/Megatron-LM",
+}
 
 
 def documents():
@@ -169,7 +181,8 @@ class DeepLearningChecks(PaymentsChecks):
             text = text.replace(version, "")
         for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS,
                                     **AGENTIC_VERSIONS, **VISION_VERSIONS,
-                                    **UNIFIED_VERSIONS, **OPENMOSS_VERSIONS}.items():
+                                    **UNIFIED_VERSIONS, **OPENMOSS_VERSIONS,
+                                    **MOE_SWARM_VERSIONS}.items():
             # Exempt only the exact revision in its verified repository URL.
             # Keep the rest of the path visible to all other privacy checks.
             routes = "(?:blob|tree|raw)" if repository == "huggingface.co/google/embeddinggemma-2" \
@@ -183,7 +196,7 @@ class DeepLearningChecks(PaymentsChecks):
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES) | {f"images/{figure['id']}.{suffix}"
+        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES + MOE_SWARM_FILES) | {f"images/{figure['id']}.{suffix}"
                                for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures() + unified_figures()
                                for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
@@ -315,6 +328,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      for relative in UNIFIED_ROUTES.values()}
         expected |= {"/" + relative.replace("index.html", "")
                      for relative in REALTIME_ROUTES.values()}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in MOE_SWARM_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -362,7 +377,7 @@ class DeepLearningSiteTests(DeepLearningChecks):
                                                *TRAINING_ROUTES.values(), *AGENTIC_ROUTES.values(),
                                                *VISION_ROUTES.values(), *RSI_ROUTES.values(),
                                                *UNIFIED_ROUTES.values(), *OPENMOSS_ROUTES.values(),
-                                               *REALTIME_ROUTES.values()]))
+                                               *REALTIME_ROUTES.values(), *MOE_SWARM_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -410,12 +425,13 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES
+        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES + MOE_SWARM_FILES
         allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
             "index.html", "README.html", "diffusion/index.html", "diffusion/README.html",
             "training/index.html", "training/README.html",
             "training/rufus-air/index.html", "training/rufus-air/README.html",
             "training/agentic-rl-lab/index.html", "training/agentic-rl-lab/README.html",
+            "training/moe-and-swarms/index.html", "training/moe-and-swarms/README.html",
             "vision/index.html", "vision/README.html",
             "vision/pixelbench/index.html", "vision/pixelbench/README.html",
             "vision/embeddinggemma-2/index.html", "vision/embeddinggemma-2/README.html",
