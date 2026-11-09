@@ -1,6 +1,6 @@
 # 深度学习专题解读：从论文主张到可检验的机制
 
-研究日期：2026-11-04。这里按“问题 → 数学直觉 → 实验证据 → 实现 → 边界”解读具体研究，不把单篇文章包装成整个深度学习领域的定论。
+研究日期：2026-11-04；2026-11-09 补充 MoE 与 Swarm 专题。这里按“问题 → 数学直觉 → 实验证据 → 实现 → 边界”解读具体研究，不把单篇文章包装成整个深度学习领域的定论。
 
 目录现拆为六个可折叠方向，新增视觉表征与多模态。学习对象不同，验证方式也不同：训练模型看数据、目标和轨迹，视觉表示看接口与检索空间，编辑权重看计算契约和副作用，推理优化看 FLOPs、IO 与实际延迟。分组是本 Wiki 的阅读组织，不是论文宣称的领域分类；原有文章地址不变。
 
@@ -8,7 +8,7 @@
 
 | 想回答的问题 | 入口 | 当前细分内容 |
 | --- | --- | --- |
-| 如何把 base LLM 训练成能推理、用工具的模型？ | [LLM 训练配方](training/README.md) | Rufus-Air 流水线；Agentic-RL Lab 算法、环境、蒸馏与评测 |
+| 如何训练稀疏模型，以及让模型学会协作和用工具？ | [LLM 训练配方](training/README.md) | MoE 与 Swarm／RLCR；Rufus-Air；Agentic-RL Lab；Unified Training |
 | 如何让图像／视频更符合偏好和任务？ | [扩散与视觉生成](diffusion/README.md) | DPO、去噪链上的 RL、视觉奖励和组合优势 |
 | 如何直接表达像素，或学习统一多模态向量？ | [视觉表征与多模态](vision/README.md) | PixelBench／PRT；EmbeddingGemma 2 架构、训练与检索 |
 | 如何判断推理成本与“实时”是否可信？ | [GPU 与内存](diffusion/05-gpu-and-memory-roofline.md) | CUDA 层次、Roofline、视频 token、吞吐与时延 |
@@ -21,7 +21,8 @@
 深度学习专题
 ├─ LLM 训练与后训练
 │  ├─ Rufus-Air：总览 → 数据／SFT／RLVR → Agent → 奖励 → 工程／评测 → 实验
-│  └─ Agentic-RL Lab：目标 → 工具环境 → 蒸馏 → 信用分配 → 多模态／裁判 → 复现
+│  ├─ Agentic-RL Lab：目标 → 工具环境 → 蒸馏 → 信用分配 → 多模态／裁判 → 复现
+│  └─ MoE 与 Swarm：模型内路由／EP → 模型外 RLCR → 成本／评测 → 来源
 ├─ 扩散与视觉生成：偏好对 → 去噪轨迹 → 奖励设计
 ├─ 视觉表征与多模态：文本像素／PRT；共享骨干／统一向量／检索
 ├─ 推理与硬件：GPU／内存 → 视频成本
@@ -32,6 +33,8 @@
 <a id="category-training"></a>
 
 ## 1. LLM 训练与后训练
+
+[MoE 与 Swarm 五页专题](training/moe-and-swarms/README.md)结合 Hugging Face 训练手册与 General Reasoning 的集体强化学习：先分清 expert 与 Agent，再学习路由、负载、容量、通信、共享优势和截止时间。教学算例与预算匹配检查表帮助区分容量、质量、延迟和成本；作者报告及尚未独立复现的部分单独标注。
 
 [Rufus-Air 图文解读](training/rufus-air/README.md)从一份八阶段配方入手，先分清预训练、SFT、带可验证奖励的 RL、Agentic RL 和最终 RLHF。细分四章，另有标准库实验与来源／复现检查表。
 
@@ -114,6 +117,8 @@
 **想辨认自改进证据**：从 [RSI 导读](self-improvement/README.md)进入 [DGM／Hyperagents／AIDE²](self-improvement/agent-evolution.md)，再做[预算和四格对照](self-improvement/lab.md)。想看行业先读科学家与工业研发两章，不把这些工作全称为严格 RSI。
 
 **想读训练 recipe**：先读 [Rufus-Air 总览](training/rufus-air/README.md)，按四章顺序阅读；用实验页核对 batch 单位和 mask，而不是立即启动大模型训练。
+
+**想理解稀疏计算与集体推理**：从 [MoE 与 Swarm 导读](training/moe-and-swarms/README.md)开始，按模型内机制、模型外 RLCR、跨层评测阅读。特别注意激活参数不等于驻留显存、截止时间不等于连续延迟奖励、通信量不等于协作贡献。
 
 **想读 Agentic RL 代码**：先读 [Lab 导读](training/agentic-rl-lab/README.md)与[优化目标](training/agentic-rl-lab/policy-objectives.md)，再走工具／环境和蒸馏路线。用[免费标准库验算](training/agentic-rl-lab/lab.md)检查学习信号；上游远程模型实验须另行确认预算与安全，不因本地 CPU 可运行就自动启动。
 

@@ -109,14 +109,29 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 Unified Training 的共同似然与数据调度。
-    meta: 6 个细分方向 · 8 套读本 · 标准库实验
+    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；含 Unified Training，新增 MoE 与 Swarm／RLCR。
+    meta: 6 个细分方向 · 9 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
       - label: LLM 训练配方导读
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/
+      - label: MoE 与 Swarm：专题导读
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/moe-and-swarms/
+      - label: 01 MoE 路由、负载与训练
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/moe-and-swarms/moe-training.html
+      - label: 02 Swarm 与集体奖励 RLCR
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/moe-and-swarms/swarm-rlcr.html
+      - label: 03 两层计算与评测合同
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/moe-and-swarms/connections-and-evaluation.html
+      - label: MoE／Swarm 来源与核验
+        group: LLM 训练与后训练
+        url: /wiki/topics/deep-learning/training/moe-and-swarms/sources.html
       - label: Rufus-Air：八阶段配方
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/rufus-air/

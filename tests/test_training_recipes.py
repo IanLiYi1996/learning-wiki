@@ -176,7 +176,7 @@ class TrainingSiteTests(DeepLearningChecks):
         self.assertEqual(Counter(item["url"] for item in selected),
                          Counter(base + "/" + route.replace("index.html", "")
                                  for route in [*TRAINING_ROUTES.values(), *dl.AGENTIC_ROUTES.values(),
-                                               *dl.UNIFIED_ROUTES.values()]))
+                                               *dl.UNIFIED_ROUTES.values(), *dl.MOE_SWARM_ROUTES.values()]))
         for name, route in TRAINING_ROUTES.items():
             page = self.page(route)
             source = documents()[name]
@@ -204,7 +204,7 @@ class TrainingSiteTests(DeepLearningChecks):
             self.assertEqual(Counter(grouped.groups[0]["links"]),
                              Counter(base + "/" + relative.replace("index.html", "")
                                      for relative in [*TRAINING_ROUTES.values(), *dl.AGENTIC_ROUTES.values(),
-                                                      *dl.UNIFIED_ROUTES.values()]))
+                                                      *dl.UNIFIED_ROUTES.values(), *dl.MOE_SWARM_ROUTES.values()]))
 
     def test_built_assets_captions_and_placement_heading(self):
         actual = {}
@@ -242,7 +242,7 @@ class TrainingSiteTests(DeepLearningChecks):
             self.assertEqual(sum(len(group["links"]) for group in grouped.groups),
                              len(TRAINING_ROUTES) + len(dl.AGENTIC_ROUTES) + len(dl.DIFFUSION_ROUTES) +
                              len(dl.ROUTES) - 1 + len(dl.LESSONS) + len(dl.VISION_ROUTES) +
-                             len(dl.RSI_ROUTES) + len(dl.UNIFIED_ROUTES))
+                             len(dl.RSI_ROUTES) + len(dl.UNIFIED_ROUTES) + len(dl.MOE_SWARM_ROUTES))
 
 
 if __name__ == "__main__":
