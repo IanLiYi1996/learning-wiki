@@ -19,6 +19,10 @@ from test_openmoss_study import (
     OPENMOSS_FILES, OPENMOSS_VERSIONS, OPENMOSS_PUBLIC_PDFS,
     ROUTES as OPENMOSS_ROUTES,
 )
+from test_realtime_interaction import (
+    FILES as REALTIME_PAGE_FILES, ROUTES as REALTIME_ROUTES,
+    without_verified_revisions,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +52,7 @@ VISION_FILES = ("vision/README.md",) + tuple("vision/pixelbench/" + name for nam
     "README.md", "architecture.md", "training-recipe.md", "evaluation-and-deployment.md",
     "sources.md"))
 RSI_FILES = tuple("self-improvement/" + name for name in RSI_PAGE_FILES)
+REALTIME_FILES = tuple("realtime-interaction/" + name for name in REALTIME_PAGE_FILES)
 ROUTES = {name: "wiki/topics/deep-learning/" +
           ("index.html" if name == "README.md" else name.replace(".md", ".html"))
           for name in FILES}
@@ -159,6 +164,7 @@ def readable_samples(source):
 
 class DeepLearningChecks(PaymentsChecks):
     def assert_public_study(self, text, label):
+        text = without_verified_revisions(text)
         for version in PUBLIC_VERSIONS:
             text = text.replace(version, "")
         for version, repository in {**DIFFUSION_VERSIONS, **TRAINING_VERSIONS,
@@ -177,7 +183,7 @@ class DeepLearningChecks(PaymentsChecks):
 
 class DeepLearningSourceTests(DeepLearningChecks):
     def test_exact_public_files_and_no_unpublished_attachments(self):
-        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES) | {f"images/{figure['id']}.{suffix}"
+        allowed = set(FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES) | {f"images/{figure['id']}.{suffix}"
                                for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures() + unified_figures()
                                for suffix in ("svg", "png")}
         self.assertEqual({path.relative_to(TOPIC).as_posix()
@@ -307,6 +313,8 @@ class DeepLearningSourceTests(DeepLearningChecks):
                      for relative in OPENMOSS_ROUTES.values()}
         expected |= {"/" + relative.replace("index.html", "")
                      for relative in UNIFIED_ROUTES.values()}
+        expected |= {"/" + relative.replace("index.html", "")
+                     for relative in REALTIME_ROUTES.values()}
         self.assertEqual(urls, expected)
         home = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("](wiki/topics/deep-learning/README.md)", home)
@@ -353,7 +361,8 @@ class DeepLearningSiteTests(DeepLearningChecks):
                                  for route in [*ROUTES.values(), *DIFFUSION_ROUTES.values(),
                                                *TRAINING_ROUTES.values(), *AGENTIC_ROUTES.values(),
                                                *VISION_ROUTES.values(), *RSI_ROUTES.values(),
-                                               *UNIFIED_ROUTES.values(), *OPENMOSS_ROUTES.values()]))
+                                               *UNIFIED_ROUTES.values(), *OPENMOSS_ROUTES.values(),
+                                               *REALTIME_ROUTES.values()]))
         for name, relative in ROUTES.items():
             with self.subTest(page=name):
                 source = documents()[name]
@@ -401,7 +410,7 @@ class DeepLearningSiteTests(DeepLearningChecks):
                 self.assertEqual(placed[(name, figure["id"])], placement["after"].lstrip("# "))
 
     def test_only_expected_public_files_are_published(self):
-        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES
+        all_files = FILES + DIFFUSION_FILES + TRAINING_FILES + AGENTIC_FILES + VISION_FILES + RSI_FILES + UNIFIED_FILES + OPENMOSS_FILES + REALTIME_FILES
         allowed = set(all_files) | {name.replace(".md", ".html") for name in all_files} | {
             "index.html", "README.html", "diffusion/index.html", "diffusion/README.html",
             "training/index.html", "training/README.html",
@@ -412,7 +421,8 @@ class DeepLearningSiteTests(DeepLearningChecks):
             "vision/embeddinggemma-2/index.html", "vision/embeddinggemma-2/README.html",
             "self-improvement/index.html",
             "openmoss/index.html",
-            "training/unified-training/index.html", "training/unified-training/README.html"
+            "training/unified-training/index.html", "training/unified-training/README.html",
+            "realtime-interaction/index.html", "realtime-interaction/README.html"
         } | {f"images/{figure['id']}.{suffix}"
              for figure in figures() + diffusion_figures() + training_figures() + agentic_figures() + vision_figures() + rsi_figures() + unified_figures()
              for suffix in ("svg", "png")}

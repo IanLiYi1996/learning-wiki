@@ -41,7 +41,7 @@
   const topic = document.querySelector(`.nav-topic[data-topic="${base}/wiki/topics/deep-learning/"]`);
   const groups = [...topic.querySelectorAll('.nav-subtopic')];
   const opened = groups.filter(group => group.open);
-  if (!topic.open || groups.length !== 6 || opened.length !== 1 ||
+  if (!topic.open || groups.length !== 7 || opened.length !== 1 ||
       opened[0].dataset.subtopic !== '视觉表征与多模态') throw new Error('Subgroup navigation');
   const records = await fetch(`${base}/search.json`).then(response => {
     if (!response.ok) throw new Error('Search response');

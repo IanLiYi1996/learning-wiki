@@ -109,8 +109,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 六条路线连接训练、生成、视觉表征、硬件、自动研究与权重；新增 Unified Training 的共同似然与数据调度。
-    meta: 6 个细分方向 · 8 套读本 · 标准库实验
+    description: 七条路线连接训练、生成、视觉表征、实时交互、硬件、自动研究与权重；含 Higgs、Unified Training、RSI 与多模态读本。
+    meta: 7 个细分方向 · 9 套读本 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -249,6 +249,36 @@ topics:
       - label: 向量来源与未执行项
         group: 视觉表征与多模态
         url: /wiki/topics/deep-learning/vision/embeddinggemma-2/sources.html
+      - label: 实时全双工交互：专题导读
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/
+      - label: 实时 01 双工与轮次控制
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/01-duplex-and-turn-taking.html
+      - label: 实时 02 编解码与流式预算
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/02-streaming-codecs-and-rendering.html
+      - label: 实时 03 后台推理与工具
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/03-background-reasoning-and-tools.html
+      - label: 实时 04 训练与蒸馏
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/04-training-and-distillation.html
+      - label: 实时 05 评测与安全
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/05-evaluation-and-safety.html
+      - label: 实时 06 Higgs 案例与证据
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/06-higgs-realtime-duplex.html
+      - label: 实时四个离线练习
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/lab.html
+      - label: 实时术语速查
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/glossary.html
+      - label: 实时一手来源与核验
+        group: 实时全双工交互
+        url: /wiki/topics/deep-learning/realtime-interaction/sources.html
       - label: GPU、内存与 Roofline
         group: 推理与硬件
         url: /wiki/topics/deep-learning/diffusion/05-gpu-and-memory-roofline.html

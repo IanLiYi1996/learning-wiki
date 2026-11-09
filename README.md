@@ -17,7 +17,8 @@
 - [Agent Sandbox、容器与 microVM](wiki/topics/agent-sandbox/README.md)：十章讲透隔离原理、生命周期与生产选型；对照 gVisor、Firecracker、Kata、Wasm、机密计算及主流平台，含网络与凭证、四张图、三个离线练习和一手来源
 - [Unified Training／统一训练 101](wiki/topics/deep-learning/training/unified-training/README.md)：九页、十张原创图，从成功条件分布与 MaxRL 到 token 分母、异步系统、混合调度和计算预算；附标准库验算与一手证据边界
 - [云与应用安全体系 / AWS Continuum L200](wiki/topics/security/README.md)：新增十章体系读本，串起治理、身份、网络、数据、应用、供应链、容器、响应、Agent 与恢复；两套读本共 26 张图，含客户方案、学习路线与无网络练习
-- [深度学习专题解读](wiki/topics/deep-learning/README.md)：按六个方向细分，新增视觉表征与多模态；[PixelBench](wiki/topics/deep-learning/vision/pixelbench/README.md) 的文本像素与 PRT、[EmbeddingGemma 2](wiki/topics/deep-learning/vision/embeddinggemma-2/README.md) 的统一向量与训练配方，保留训练、扩散、硬件和权重读本
+- [深度学习专题解读](wiki/topics/deep-learning/README.md)：按七个方向细分，新增实时全双工交互；保留 [PixelBench](wiki/topics/deep-learning/vision/pixelbench/README.md) 的文本像素与 PRT、[EmbeddingGemma 2](wiki/topics/deep-learning/vision/embeddinggemma-2/README.md) 的统一向量与训练配方，以及训练、扩散、硬件和权重读本
+- [实时全双工交互 / Higgs Realtime Duplex](wiki/topics/deep-learning/realtime-interaction/README.md)：六章连接轮次控制、语音编解码、后台工具、MOPD 与交互评测；附术语、一手证据和四个免费离线练习
 - [AI 自我改进与自动科研](wiki/topics/deep-learning/self-improvement/README.md)：八章解释答案、系统和改进器的不同变化，连接算法发现、科学家智能体与工业研发；六张机制图、49 组来源和三个免费离线练习
 - [OpenMOSS 研究路线与技术机制](wiki/topics/deep-learning/openmoss/README.md)：11 条研究方向、14 篇深解，连接多模态表示、语音与视频、具身行动、Agent、后训练、安全与可解释性；附学习路线和固定来源
 - [支付行业 101](wiki/topics/payments/README.md)：22 课、32 张中文机制图，含 12 课主干与 10 课领域补全；从卡、钱包与跨境，扩展到订阅、终端、商户运营、流动性、安全、中国支付和数字货币

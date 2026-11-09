@@ -18,7 +18,7 @@ from test_deep_learning import (
 from test_payments import ILLUSTRATION, Page, markdown_links, normalized
 
 
-GROUPS = ("LLM 训练与后训练", "扩散与视觉生成", "视觉表征与多模态", "推理与硬件",
+GROUPS = ("LLM 训练与后训练", "扩散与视觉生成", "视觉表征与多模态", "实时全双工交互", "推理与硬件",
           "自动研究与评测", "权重编辑与解释")
 COUNTS = (0, 1, 1, 2, 1, 2, 1, 0)
 
@@ -87,12 +87,13 @@ class TrainingSourceTests(DeepLearningChecks):
             "  - label: 支付行业 101\n", 1)[0]
         self.assertEqual(set(re.findall(r"(?m)^\s+group: (.+)$", segment)), set(GROUPS))
         for name in ("category-training", "category-diffusion", "category-inference",
-                     "category-research", "category-weights", "category-vision"):
+                     "category-research", "category-weights", "category-vision",
+                     "category-realtime"):
             self.assertIn(name, Page((TOPIC / "README.md").read_text(encoding="utf-8")).ids)
         for name in (*dl.FILES, *dl.DIFFUSION_FILES):
             self.assertTrue((TOPIC / name).is_file())
         home = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("六个方向细分", home)
+        self.assertIn("七个方向细分", home)
 
     def test_local_links_anchors_and_exact_source_revision_exemptions(self):
         all_text = "\n".join(documents().values())
@@ -238,11 +239,12 @@ class TrainingSiteTests(DeepLearningChecks):
             self.assertNotIn("nav-subtopic", segment)
         for name, route in {**dl.ROUTES, **dl.DIFFUSION_ROUTES}.items():
             grouped = GroupedPage((SITE / route).read_text(encoding="utf-8"))
-            self.assertEqual(len(grouped.groups), 6)
+            self.assertEqual(len(grouped.groups), len(GROUPS))
             self.assertEqual(sum(len(group["links"]) for group in grouped.groups),
                              len(TRAINING_ROUTES) + len(dl.AGENTIC_ROUTES) + len(dl.DIFFUSION_ROUTES) +
                              len(dl.ROUTES) - 1 + len(dl.LESSONS) + len(dl.VISION_ROUTES) +
-                             len(dl.RSI_ROUTES) + len(dl.UNIFIED_ROUTES))
+                             len(dl.RSI_ROUTES) + len(dl.UNIFIED_ROUTES) +
+                             len(dl.REALTIME_ROUTES))
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@
   const topic = document.querySelector(`.nav-topic[data-topic="${base}/wiki/topics/deep-learning/"]`);
   const groups = [...topic.querySelectorAll('.nav-subtopic')];
   const opened = groups.filter(group => group.open);
-  if (!topic.open || groups.length !== 6 || opened.length !== 1 ||
+  if (!topic.open || groups.length !== 7 || opened.length !== 1 ||
       opened[0].dataset.subtopic !== '自动研究与评测') {
     throw new Error('Current subgroup navigation');
   }

@@ -7,7 +7,8 @@
 - [Agent 部署的 Sandbox、容器与 microVM](agent-sandbox/README.md)：十章读本，覆盖 Linux、gVisor、Firecracker、Kata、Wasm、机密计算、平台对照、网络与凭证、生命周期、选型架构及生产验收，配四张图和三个离线实验
 - [Unified Training／统一训练](deep-learning/training/unified-training/README.md)：深度学习训练方向新增九页图文读本，拆解共同似然、有限采样、数据调度、实现分母和真实证据
 - [云与应用安全体系 / AWS Continuum L200](security/README.md)：十章安全基础体系与产品读本，连接治理、身份、数据、供应链、Agent、响应和恢复，配图、学习路线与无网络练习
-- [深度学习专题解读](deep-learning/README.md)：六个方向连接训练、生成、视觉表征、硬件、自动研究和权重编辑；新增 PixelBench 与 EmbeddingGemma 2 图文读本，配有离线实验和来源边界
+- [深度学习专题解读](deep-learning/README.md)：七个方向连接训练、生成、视觉表征、实时交互、硬件、自动研究和权重编辑；保留 PixelBench 与 EmbeddingGemma 2 图文读本，配有离线实验和来源边界
+- [实时全双工交互](deep-learning/realtime-interaction/README.md)：以 Higgs Realtime Duplex 为入口，六章解释听说并行、流式表示、后台任务、训练与评测，配术语、来源和离线练习
 - [AI 自我改进与自动科研](deep-learning/self-improvement/README.md)：八章读本区分任务收益、改进能力与持续性；带机制图、术语、来源和离线练习
 - [OpenMOSS 综合研究](deep-learning/openmoss/README.md)：按 11 条研究方向组织 14 篇项目／论文深解，保留背景、方法、公式、源码与实验局限
 - [支付行业 101](payments/README.md)：22 课、32 张机制图，12 课主干加 10 课领域补全，串起产品、资金、运营、风险和工程
