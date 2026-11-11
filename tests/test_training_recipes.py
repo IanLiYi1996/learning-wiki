@@ -18,7 +18,7 @@ from test_deep_learning import (
 from test_payments import ILLUSTRATION, Page, markdown_links, normalized
 
 
-GROUPS = ("LLM 训练与后训练", "扩散与视觉生成", "视觉表征与多模态", "实时全双工交互", "推理与硬件",
+GROUPS = ("LLM 训练与后训练", "扩散与生成模型", "视觉表征与多模态", "实时全双工交互", "推理与硬件",
           "自动研究与评测", "权重编辑与解释")
 COUNTS = (0, 1, 1, 2, 1, 2, 1, 0)
 
@@ -244,7 +244,8 @@ class TrainingSiteTests(DeepLearningChecks):
                              len(TRAINING_ROUTES) + len(dl.AGENTIC_ROUTES) + len(dl.DIFFUSION_ROUTES) +
                              len(dl.ROUTES) - 1 + len(dl.LESSONS) + len(dl.VISION_ROUTES) +
                              len(dl.RSI_ROUTES) + len(dl.UNIFIED_ROUTES) +
-                             len(dl.REALTIME_ROUTES) + len(dl.MOE_SWARM_ROUTES))
+                             len(dl.REALTIME_ROUTES) + len(dl.MOE_SWARM_ROUTES) +
+                             len(dl.CONTINUOUS_ROUTES))
 
 
 if __name__ == "__main__":

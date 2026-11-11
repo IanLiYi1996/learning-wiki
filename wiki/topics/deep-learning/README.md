@@ -2,7 +2,7 @@
 
 研究日期：2026-11-04；2026-11-09 补充 MoE 与 Swarm、实时全双工交互专题。这里按“问题 → 数学直觉 → 实验证据 → 实现 → 边界”解读具体研究，不把单篇文章包装成整个深度学习领域的定论。各读本保留自己的资料核查日期。
 
-目录现拆为七个可折叠方向，新增实时全双工交互，保留视觉表征与多模态。学习对象不同，验证方式也不同：训练模型看数据、目标和轨迹，视觉表示看接口与检索空间，实时交互看时间、状态与行为，编辑权重看计算契约和副作用，推理优化看 FLOPs、IO 与实际延迟。分组是本 Wiki 的阅读组织，不是论文宣称的领域分类；原有文章地址不变。
+目录现拆为七个可折叠方向。2026-11-11 将扩散方向扩展为“扩散与生成模型”，加入连续扩散／Flow 语言模型，保留实时交互、视觉与其他方向。学习对象不同，验证方式也不同：训练模型看数据、目标和轨迹，视觉表示看接口与检索空间，语言生成看状态与联合依赖，实时交互看时间、状态与行为，编辑权重看计算契约和副作用，推理优化看 FLOPs、IO 与实际延迟。分组是本 Wiki 的阅读组织，不是论文宣称的领域分类；原有文章地址不变。
 
 ## 从这里开始：先选一个问题
 
@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | 如何训练稀疏模型，以及让模型学会协作和用工具？ | [LLM 训练配方](training/README.md) | MoE 与 Swarm／RLCR；Rufus-Air；Agentic-RL Lab；Unified Training |
 | 如何让图像／视频更符合偏好和任务？ | [扩散与视觉生成](diffusion/README.md) | DPO、去噪链上的 RL、视觉奖励和组合优势 |
+| 如何把连续噪声变成联合文本，并学习少步生成？ | [连续语言模型](continuous-language-models/README.md) | 表示、flow matching、flow maps、guidance、规模与评测 |
 | 如何直接表达像素，或学习统一多模态向量？ | [视觉表征与多模态](vision/README.md) | PixelBench／PRT；EmbeddingGemma 2 架构、训练与检索 |
 | 如何让模型边听边说，并在后台做事？ | [实时全双工交互](realtime-interaction/README.md) | 轮次控制、流式 codec、工具状态、MOPD、Higgs 案例与评测 |
 | 如何判断推理成本与“实时”是否可信？ | [GPU 与内存](diffusion/05-gpu-and-memory-roofline.md) | CUDA 层次、Roofline、视频 token、吞吐与时延 |
@@ -24,7 +25,7 @@
 │  ├─ Rufus-Air：总览 → 数据／SFT／RLVR → Agent → 奖励 → 工程／评测 → 实验
 │  ├─ Agentic-RL Lab：目标 → 工具环境 → 蒸馏 → 信用分配 → 多模态／裁判 → 复现
 │  └─ MoE 与 Swarm：模型内路由／EP → 模型外 RLCR → 成本／评测 → 来源
-├─ 扩散与视觉生成：偏好对 → 去噪轨迹 → 奖励设计
+├─ 扩散与生成模型：视觉偏好／奖励；连续语言的表示 → 动力学 → 少步映射 → 评测
 ├─ 视觉表征与多模态：文本像素／PRT；共享骨干／统一向量／检索
 ├─ 实时全双工交互：说话时机 → codec／时间 → 后台任务 → 训练 → 评测与 Higgs 案例
 ├─ 推理与硬件：GPU／内存 → 视频成本
@@ -48,11 +49,13 @@
 
 <a id="category-diffusion"></a>
 
-## 2. 扩散与视觉生成
+## 2. 扩散与生成模型
 
 [扩散读本](diffusion/README.md)仍保留六篇原文的整套阅读路线；这里把其中[偏好数据](diffusion/01-dpo-and-preference-pairs.md)、[奖励更新](diffusion/02-rl-through-denoising.md)、[评分与多目标](diffusion/03-rewards-judges-and-advantages.md)单列。LLM 的 token likelihood 与扩散的去噪 surrogate 不能因为都叫 DPO 就直接互换。
 
 [扩散标准库实验](diffusion/lab.md)保留原位置，跨越奖励、硬件和视频三类教学问题，旁边的来源表也不移动。
+
+[连续扩散与 Flow 语言模型](continuous-language-models/README.md)核查于 2026-11-11，以 Tang 等人的 alphaXiv 综述为入口，新增八章、术语与五个离线练习。先区分离散状态与连续时间，再学联合分布、表示／解码、flow matching、反馈、guidance、少步映射及评测；不将 training-compute gap 改写成推理提速。
 
 <a id="category-vision"></a>
 
@@ -135,6 +138,10 @@
 想学图像／视频生成的后训练与工程，先走[扩散专题的阅读路线](diffusion/README.md)。它独立于下面的权重空间编程路线，无需先读完 WSP。
 
 **想学视觉表示**：先读 [PixelBench](vision/pixelbench/README.md)理解“显式输出什么”和评分器的作用，再读 [EmbeddingGemma 2](vision/embeddinggemma-2/README.md)理解“怎样学习评分／检索用的表示空间”。两套源码／配方阅读不等于真实模型复现。
+
+**想学非自回归生成**：从 [连续语言模型导读](continuous-language-models/README.md)进入；与 [OpenMOSS 的离散扩散与缓存](openmoss/13-diffusion-language-models.md)对读，不把不同状态空间、loss 和 sampler 直接互换。
+
+**想设计 Agent 记忆**：读[独立的记忆专题](../agent-memory/README.md)。它改变跨会话外部状态，不等于一次连续生成内的 self-conditioning，也不自动证明权重更新。
 
 **想理解边听边说的助手**：从 [实时交互导读](realtime-interaction/README.md)走六章路线，先学时机与状态，再用[离线练习](realtime-interaction/lab.md)检查预算、时延、结果失效和提醒评分。Higgs 自报与背景机制、原创教学分别记录。
 

@@ -16,6 +16,32 @@ sections:
     icon: inbox
 
 topics:
+  - label: Agent 记忆系统
+    title: Agent 记忆系统：状态、dreaming 与治理
+    url: /wiki/topics/agent-memory/
+    description: 从跨会话经验、证据与版本，到读写维护、wiki／检索、成本、安全和 Anthropic 案例。
+    meta: 6 章 · 10 项核心来源 · 4 个离线练习
+    items:
+      - label: 记忆专题导读
+        url: /wiki/topics/agent-memory/
+      - label: 记忆 01 状态与学习对象
+        url: /wiki/topics/agent-memory/01-memory-and-state.html
+      - label: 记忆 02 写入、维护与读取
+        url: /wiki/topics/agent-memory/02-write-manage-read.html
+      - label: 记忆 03 表示、索引与检索
+        url: /wiki/topics/agent-memory/03-representations-and-retrieval.html
+      - label: 记忆 04 评测、消融与成本
+        url: /wiki/topics/agent-memory/04-evaluation-and-ablation.html
+      - label: 记忆 05 安全与版本治理
+        url: /wiki/topics/agent-memory/05-safety-and-governance.html
+      - label: 记忆 06 Anthropic 案例与证据
+        url: /wiki/topics/agent-memory/06-anthropic-components.html
+      - label: 记忆四个离线练习
+        url: /wiki/topics/agent-memory/lab.html
+      - label: 记忆术语速查
+        url: /wiki/topics/agent-memory/glossary.html
+      - label: 记忆一手来源与边界
+        url: /wiki/topics/agent-memory/sources.html
   - label: Agent Sandbox 与 microVM
     title: Agent 部署的 Sandbox、容器与 microVM
     url: /wiki/topics/agent-sandbox/
@@ -109,8 +135,8 @@ topics:
   - label: 深度学习专题
     title: 深度学习专题解读
     url: /wiki/topics/deep-learning/
-    description: 七条路线连接训练、生成、视觉表征、实时交互、硬件、自动研究与权重；含 Higgs、MoE／Swarm、Unified Training、RSI 与多模态读本。
-    meta: 7 个细分方向 · 10 套读本 · 标准库实验
+    description: 七条路线连接训练、生成、视觉表征、实时交互、硬件、自动研究与权重；新增连续扩散／Flow 语言模型，保留既有读本。
+    meta: 7 个细分方向 · 持续增补 · 标准库实验
     items:
       - label: 专题导读
         url: /wiki/topics/deep-learning/
@@ -208,20 +234,56 @@ topics:
         group: LLM 训练与后训练
         url: /wiki/topics/deep-learning/training/unified-training/sources.html
       - label: 扩散后训练与推理工程 101
-        group: 扩散与视觉生成
+        group: 扩散与生成模型
         url: /wiki/topics/deep-learning/diffusion/
       - label: 01 DPO 与偏好数据
-        group: 扩散与视觉生成
+        group: 扩散与生成模型
         url: /wiki/topics/deep-learning/diffusion/01-dpo-and-preference-pairs.html
       - label: 02 RL 与去噪轨迹
-        group: 扩散与视觉生成
+        group: 扩散与生成模型
         url: /wiki/topics/deep-learning/diffusion/02-rl-through-denoising.html
       - label: 03 奖励与多目标
-        group: 扩散与视觉生成
+        group: 扩散与生成模型
         url: /wiki/topics/deep-learning/diffusion/03-rewards-judges-and-advantages.html
       - label: 扩散标准库实验与练习
-        group: 扩散与视觉生成
+        group: 扩散与生成模型
         url: /wiki/topics/deep-learning/diffusion/lab.html
+      - label: 连续语言模型：专题导读
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/
+      - label: 连续 01 文本与联合分布
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/01-discrete-text-continuous-state.html
+      - label: 连续 02 表示与解码
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/02-representations-and-decoders.html
+      - label: 连续 03 动力学与训练
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/03-diffusion-and-flow-matching.html
+      - label: 连续 04 调度与反馈
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/04-training-schedules-and-self-conditioning.html
+      - label: 连续 05 推理与 guidance
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/05-sampling-guidance-and-commitment.html
+      - label: 连续 06 少步与 flow maps
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/06-flow-maps-and-few-step-generation.html
+      - label: 连续 07 扩展与评测
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/07-scaling-and-evaluation.html
+      - label: 连续 08 安全与研究路线
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/08-safety-and-research-roadmap.html
+      - label: 连续五个离线练习
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/lab.html
+      - label: 连续术语速查
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/glossary.html
+      - label: 连续原始来源与版本
+        group: 扩散与生成模型
+        url: /wiki/topics/deep-learning/continuous-language-models/sources.html
       - label: 视觉表征与多模态导读
         group: 视觉表征与多模态
         url: /wiki/topics/deep-learning/vision/

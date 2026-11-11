@@ -14,6 +14,8 @@
 
 ## 已整理的专题
 
+- [Agent 记忆系统](wiki/topics/agent-memory/README.md)：六章连接跨会话状态、dreaming、wiki／检索、评测、权限与版本治理；对读 Anthropic 原文，配术语、一手来源和四个离线练习
+- [连续扩散与 Flow 语言模型](wiki/topics/deep-learning/continuous-language-models/README.md)：八章以 alphaXiv 综述为入口，讲透联合分布、表示、flow matching、少步映射和质量／成本；配来源边界与五个离线练习
 - [Agent Sandbox、容器与 microVM](wiki/topics/agent-sandbox/README.md)：十章讲透隔离原理、生命周期与生产选型；对照 gVisor、Firecracker、Kata、Wasm、机密计算及主流平台，含网络与凭证、四张图、三个离线练习和一手来源
 - [Unified Training／统一训练 101](wiki/topics/deep-learning/training/unified-training/README.md)：九页、十张原创图，从成功条件分布与 MaxRL 到 token 分母、异步系统、混合调度和计算预算；附标准库验算与一手证据边界
 - [云与应用安全体系 / AWS Continuum L200](wiki/topics/security/README.md)：新增十章体系读本，串起治理、身份、网络、数据、应用、供应链、容器、响应、Agent 与恢复；两套读本共 26 张图，含客户方案、学习路线与无网络练习

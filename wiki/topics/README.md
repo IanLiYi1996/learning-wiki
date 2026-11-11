@@ -4,6 +4,8 @@
 
 ## 主题索引
 
+- [Agent 记忆系统](agent-memory/README.md)：六章学习跨会话状态、读写与维护、表示／检索、评测与安全，对读 Anthropic 原文；配四个离线练习
+- [连续扩散与 Flow 语言模型](deep-learning/continuous-language-models/README.md)：八章解释离散文本的连续生成、联合依赖、训练、少步映射与评测；配五个离线练习与原始论文
 - [Agent 部署的 Sandbox、容器与 microVM](agent-sandbox/README.md)：十章读本，覆盖 Linux、gVisor、Firecracker、Kata、Wasm、机密计算、平台对照、网络与凭证、生命周期、选型架构及生产验收，配四张图和三个离线实验
 - [Unified Training／统一训练](deep-learning/training/unified-training/README.md)：深度学习训练方向新增九页图文读本，拆解共同似然、有限采样、数据调度、实现分母和真实证据
 - [云与应用安全体系 / AWS Continuum L200](security/README.md)：十章安全基础体系与产品读本，连接治理、身份、数据、供应链、Agent、响应和恢复，配图、学习路线与无网络练习

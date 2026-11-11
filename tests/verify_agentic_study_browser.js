@@ -31,7 +31,7 @@
   if (new Set(ids).size !== ids.length) throw new Error('Duplicate IDs');
   const topic = document.querySelector('.nav-topic[open]');
   const groups = Array.from(topic.querySelectorAll('.nav-subtopic'));
-  const names = ['LLM 训练与后训练', '扩散与视觉生成', '视觉表征与多模态', '实时全双工交互', '推理与硬件',
+  const names = ['LLM 训练与后训练', '扩散与生成模型', '视觉表征与多模态', '实时全双工交互', '推理与硬件',
     '自动研究与评测', '权重编辑与解释'];
   if (JSON.stringify(groups.map(g => g.dataset.subtopic)) !== JSON.stringify(names)) {
     throw new Error('Taxonomy changed');
