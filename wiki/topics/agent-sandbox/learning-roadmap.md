@@ -16,6 +16,8 @@
 
 ## 路线三：产品与云方案讨论
 
+若优先找社区项目，先读 [11 总目录](11-community-project-map.md)，再按目标进入 [12 平台](12-open-platform-projects.md)、[13 Firecracker 工具链](13-microvm-toolchain.md)或 [14 嵌入式与 Wasm](14-embedded-and-wasm-projects.md)。平台品牌、SDK、运行机制与评测适配器分开比较；[来源台账](community-sources.md)说明归档、迁移与许可证检测的边界。
+
 01 → 07 → 08 → 09 → 10。重点阅读平台章的 class／compute type／snapshot type／版本／preview 标签，检查服务是否满足业务约束，而非用启动数字决定采购。
 
 建议带着以下问题与供应商讨论：

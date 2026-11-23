@@ -2,6 +2,8 @@
 
 资料核验：2026-11-04。下文不把启动演示、官方性能宣传或设计原则当成本轮实测结果。
 
+想按社区项目追踪源码和组合关系，续读 [Firecracker 与 microVM 工具链](13-microvm-toolchain.md)：本体、Go SDK、firecracker-containerd、firectl、Flintlock、历史 Ignite，以及其他 VMM／库各处在哪一层。
+
 ## 先分清 KVM、VMM 和 guest
 
 <!-- illustration: agbox-execution-paths-367b12d141 -->

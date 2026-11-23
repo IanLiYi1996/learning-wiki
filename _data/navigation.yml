@@ -45,8 +45,8 @@ topics:
   - label: Agent Sandbox 与 microVM
     title: Agent 部署的 Sandbox、容器与 microVM
     url: /wiki/topics/agent-sandbox/
-    description: 从 Linux、gVisor、Firecracker、Kata 与 Wasm，到生命周期、平台、网络身份和生产选型。
-    meta: 10 章 · 4 张图 · 3 个离线实验 · 一手来源
+    description: 十章机制与生产主线，加四章社区项目；E2B、Firecracker、OpenSandbox、嵌入式和 Wasm 的开放范围与源码入口。
+    meta: 14 章 · 54 个仓库节点 · 4 张图 · 3 个离线实验
     items:
       - label: 专题导读与阅读地图
         url: /wiki/topics/agent-sandbox/
@@ -70,6 +70,14 @@ topics:
         url: /wiki/topics/agent-sandbox/09-network-identity-and-data.html
       - label: 10 生产运维与验收
         url: /wiki/topics/agent-sandbox/10-production-and-benchmarks.html
+      - label: 11 社区目录：E2B、Firecracker 等
+        url: /wiki/topics/agent-sandbox/11-community-project-map.html
+      - label: 12 开源平台与自建范围
+        url: /wiki/topics/agent-sandbox/12-open-platform-projects.html
+      - label: 13 Firecracker 与 microVM 工具链
+        url: /wiki/topics/agent-sandbox/13-microvm-toolchain.html
+      - label: 14 嵌入式、Monty 与 Wasm 项目
+        url: /wiki/topics/agent-sandbox/14-embedded-and-wasm-projects.html
       - label: 学习路线与自测
         url: /wiki/topics/agent-sandbox/learning-roadmap.html
       - label: 中英术语速查
@@ -78,6 +86,8 @@ topics:
         url: /wiki/topics/agent-sandbox/lab.html
       - label: 一手来源与研究边界
         url: /wiki/topics/agent-sandbox/sources.html
+      - label: 社区来源、许可与归档快照
+        url: /wiki/topics/agent-sandbox/community-sources.html
   - label: 云与应用安全
     title: 云与应用安全体系 / AWS Continuum
     url: /wiki/topics/security/

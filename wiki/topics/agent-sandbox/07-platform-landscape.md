@@ -2,6 +2,8 @@
 
 研究日期：2026-11-04。仅使用实时查阅的厂商官方文档、官方发布记录与官方代码仓库；没有部署这些产品，也没有运行逃逸测试或跨平台性能测试。本章比较执行边界、状态语义和责任分工，不做营销排名，不引用缺少同等测试条件的价格或启动速度比较。
 
+本章主要比较托管产品；社区源码、自托管与维护范围另见[开源平台章](12-open-platform-projects.md)和[项目总目录](11-community-project-map.md)。尤其 E2B SDK／runtime、旧 Daytona 仓库和现行服务，不应仅从品牌名合并成同一开源交付物。
+
 ## 1. 先确定比较的是哪一种产品、哪一种版本
 
 “给 agent 一个计算机”和“托管 agent 服务”不是完全相同的需求：前者可能要运行陌生仓库的测试、安装系统包、启动浏览器；后者可能只运行你审核过的编排代码，再调用独立工具。选型应记录四个对象：控制 agent 的可信服务、不可信代码的执行环境、允许访问的数据与凭据、保存产物的存储。下文把产品事实与由事实推导的工程判断分开；“未知”表示本次材料不能证明，不表示产品一定没有该能力。
@@ -45,7 +47,7 @@ E2B 的核心不是在可信 agent 进程中增加一个 `eval`，而是让 SDK 
 
 自托管不能只看 Compose 文件能否启动。当前 Embed Compose README 要求 Linux、KVM、相关设备与宿主内核能力；嵌套虚拟化是 VM 内部署的前提。Compose 启动的是包含真实 Firecracker orchestrator 的单机栈，不是把 microVM 改成普通 Docker 容器。镜像架构、宿主设备、模板构建和快照磁盘容量都属于操作者的责任。[Embed Compose 要求][e2b-compose]
 
-还要注意证据的时间和适用范围：2026-09-30 的 Embed 发布说明明确表示，当时 Embed 不含 secrets、volumes、workload identity 和 BYO proxy；当前 Runtime 总览则列出了这些能力。两份材料证明“代码栈有能力”和“某部署发行包实际支持”不能混为一谈。本次没有逐项审计 Embed 发布制品与功能开关，所以不将这些 Cloud 功能声明为当前 Embed 已全部可用，也不把旧发布说明当成永不变化的限制。[Embed 发布范围][e2b-embed-release] [当前 Runtime][e2b-runtime]
+还要注意证据的时间和适用范围：2026-09-30 的初次发布说明曾表示 Embed 不含部分 secrets、volumes、workload identity 和 proxy 功能。社区扩展的本轮复查读取了[现行 Embed README](https://raw.githubusercontent.com/e2b-dev/runtime/main/embed/README.md)，它已明确声明单机完整运行时与全部功能；因此不能继续把旧发布范围当作现行固定限制。这是更新后的第一方声明，不是本轮已审计所有制品／开关或跑通全部功能；部署前仍要核对选定版本。开源源码与 self-hosting 关系见[第 12 章](12-open-platform-projects.md)。[旧发布记录][e2b-embed-release] [当前 Runtime][e2b-runtime]
 
 ## 3. Modal Sandboxes：先选运行时，再讨论兼容性
 
