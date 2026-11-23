@@ -24,9 +24,11 @@ CHAPTERS = (
     "06-lifecycle-and-orchestration.md", "07-platform-landscape.md",
     "08-selection-and-architectures.md", "09-network-identity-and-data.md",
     "10-production-and-benchmarks.md",
+    "11-community-project-map.md", "12-open-platform-projects.md",
+    "13-microvm-toolchain.md", "14-embedded-and-wasm-projects.md",
 )
 FILES = ("README.md",) + CHAPTERS + (
-    "learning-roadmap.md", "glossary.md", "lab.md", "sources.md",
+    "learning-roadmap.md", "glossary.md", "lab.md", "sources.md", "community-sources.md",
 )
 ROUTES = {name: PREFIX + ("index.html" if name == "README.md" else
                          name.replace(".md", ".html")) for name in FILES}
@@ -44,6 +46,19 @@ def documents():
 
 def manifest():
     return json.loads((ROOT / "scripts/figures/agent-sandbox.json").read_text())
+
+
+def source_ledger_urls(docs):
+    """Only designated ledgers are evidence; arbitrary prose is not a ledger."""
+    sections = [docs["sources.md"], docs["community-sources.md"]]
+    for name in ("12-open-platform-projects.md", "13-microvm-toolchain.md",
+                 "14-embedded-and-wasm-projects.md"):
+        text = docs[name]
+        start, end = "<!-- community-sources:start -->", "<!-- community-sources:end -->"
+        if text.count(start) != 1 or text.count(end) != 1:
+            raise AssertionError(f"Missing or duplicate source-ledger markers: {name}")
+        sections.append(text.split(start, 1)[1].split(end, 1)[0])
+    return {url for section in sections for _, url in markdown_links(section)}
 
 
 class TeachingTests(unittest.TestCase):
@@ -141,8 +156,10 @@ class TeachingTests(unittest.TestCase):
 
 
 class DocumentTests(unittest.TestCase):
-    def test_fifteen_complete_public_pages(self):
+    def test_twenty_complete_public_pages(self):
         docs = documents()
+        self.assertEqual(len(FILES), 20)
+        self.assertEqual(len(CHAPTERS), 14)
         self.assertEqual({path.name for path in TOPIC.glob("*.md")}, set(FILES))
         for name, text in docs.items():
             with self.subTest(page=name):
@@ -175,7 +192,7 @@ class DocumentTests(unittest.TestCase):
 
     def test_sources_cover_all_external_fact_links(self):
         docs = documents()
-        ledger = {url for _, url in markdown_links(docs["sources.md"])}
+        ledger = source_ledger_urls(docs)
         urls = {url for name, text in docs.items() if name != "lab.md"
                 for _, url in markdown_links(text) if urlsplit(url).scheme == "https"}
         self.assertTrue(urls <= ledger, sorted(urls - ledger))
@@ -187,6 +204,47 @@ class DocumentTests(unittest.TestCase):
         self.assertIn("共享 host kernel", docs["07-platform-landscape.md"])
         self.assertIn("已移除", docs["09-network-identity-and-data.md"])
         self.assertIn("不执行网络流量过滤", docs["04-microvm-and-kata.md"])
+
+    def test_community_inventory_is_canonical_scoped_and_visible(self):
+        data = json.loads((TOPIC / "community-repositories.json").read_text())
+        self.assertEqual(data["checked_date"], "2026-11-04")
+        rows = data["repositories"]
+        self.assertEqual(len(rows), 54)
+        self.assertEqual(len({row["repo"].lower() for row in rows}), 54)
+        ledger = source_ledger_urls(documents())
+        visible = {url for _, url in markdown_links(
+            (TOPIC / "11-community-project-map.md").read_text())}
+        for row in rows:
+            self.assertRegex(row["repo"], r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+            self.assertIs(type(row["archived"]), bool)
+            self.assertTrue(row["layer"])
+            self.assertTrue(row["license_detected"] is None or
+                            isinstance(row["license_detected"], str))
+            self.assertIn("https://github.com/" + row["repo"], visible)
+            self.assertIn(data["api_prefix"] + row["repo"], ledger)
+        self.assertEqual({row["repo"] for row in rows if row["archived"]}, {
+            "daytonaio/daytona", "weaveworks/ignite", "rust-vmm/vmm-reference",
+            "hocus-dev/hocus", "chengjiagan/RunD_ATC22",
+        })
+        self.assertIn("not a component-level license audit", data["evidence"])
+        self.assertIn("does not mean production ready", " ".join(data["limitations"]))
+
+    def test_community_entry_points_and_scope_caveats(self):
+        docs = documents()
+        self.assertIn("11-community-project-map.md#community-e2b", docs["README.md"])
+        self.assertIn("11-community-project-map.md#community-firecracker", docs["README.md"])
+        self.assertIn('id="community-e2b"', docs["11-community-project-map.md"])
+        self.assertIn('id="community-firecracker"', docs["11-community-project-map.md"])
+        self.assertIn("SDK", docs["12-open-platform-projects.md"])
+        self.assertIn("归档", docs["12-open-platform-projects.md"])
+        self.assertIn("Go SDK", docs["13-microvm-toolchain.md"])
+        self.assertIn("firecracker-containerd", docs["13-microvm-toolchain.md"])
+        self.assertIn("vmm-reference", docs["13-microvm-toolchain.md"])
+        self.assertIn("beta", docs["14-embedded-and-wasm-projects.md"])
+        self.assertIn("早期开发", docs["14-embedded-and-wasm-projects.md"])
+        self.assertIn("archived", docs["community-sources.md"])
+        self.assertIn("NOASSERTION", docs["community-sources.md"])
+        self.assertIn("检查正文外部引用均有记录", docs["community-sources.md"])
 
     def test_four_distinct_figures_and_eight_local_placements(self):
         rows = manifest()
@@ -244,7 +302,7 @@ class BuiltSiteTests(unittest.TestCase):
                         self.assertIn(unquote(joined.fragment),
                                       Page(candidate.read_text()).ids)
 
-    def test_fifteen_unique_search_routes(self):
+    def test_twenty_unique_search_routes(self):
         records = json.loads((SITE / "search.json").read_text())
         selected = [row for row in records if "/" + PREFIX in row["url"]]
         self.assertEqual(len(selected), len(FILES))

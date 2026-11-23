@@ -1,10 +1,24 @@
-# Agent 部署的 Sandbox、容器与 microVM：从隔离原理到生产选型
+# Agent 部署的 Sandbox、容器与 microVM：原理、社区项目与生产选型
 
 资料核验与整理日期：2026-11-04。定位：面向工程师、平台团队和架构讨论的中文专题读本，不是产品采购排名、安全认证或已执行的云端性能测试。
 
 一个 Agent 能读网页、下载依赖、运行脚本、操作浏览器，也可能持有企业身份。此时问题不只是“代码跑在哪里”，而是：陌生代码能触及哪些内核接口，网络能到哪里，凭证代表谁，任务结束后还留下什么。技术选型必须同时回答这些问题。
 
 本专题用官方文档、项目源码说明和第一方产品资料，分开描述**实现机制、项目声明、原创工程建议、尚未核实事项**。底层源码链接中的 `main`／`master` 是本次阅读入口，不是假装固定到某个发布版；部署前要重新核对稳定版本与实际配置。[来源与研究边界](sources.md)说明核验方法及未执行项。
+
+## 按社区项目找入口
+
+这次补充把原来散落在机制与托管平台中的项目，展开为四章社区读本和 54 个明确仓库节点的快照。平台、SDK、VMM、适配器、语言运行时与评测框架分别归类，不把它们都叫作“沙箱产品”。新读本见[社区项目总地图](11-community-project-map.md)，归档、许可检测与来源见[社区台账](community-sources.md)。
+
+| 你要查什么 | 入口 |
+| --- | --- |
+| E2B 的 SDK、runtime、guest agent 与自建范围 | [E2B 定位](11-community-project-map.md#community-e2b)、[开源平台深解](12-open-platform-projects.md) |
+| Firecracker、Go SDK、containerd、firectl 和社区管理器 | [Firecracker 定位](11-community-project-map.md#community-firecracker)、[microVM 工具链](13-microvm-toolchain.md) |
+| OpenSandbox、CubeSandbox、Agent Sandbox、OpenShell、AIO、SandboxFusion | [公开平台与执行服务](12-open-platform-projects.md) |
+| BoxLite、microsandbox、本地 OS 沙箱与 Monty | [嵌入式项目](14-embedded-and-wasm-projects.md) |
+| Wasmtime、Wasmer、WasmEdge、Extism、Spin、Wassette | [Wasm 工具生态](14-embedded-and-wasm-projects.md) |
+| OpenHands、SWE-ReX、Harbor、Inspect、AgentScope | [Agent／评测接口](11-community-project-map.md) |
+| 旧 Daytona、Ignite、Hocus、vmm-reference、RunD artifact | [维护与开放范围](community-sources.md)、[历史路线](13-microvm-toolchain.md) |
 
 ## 先建立一张分层地图
 
@@ -25,7 +39,7 @@ Sandbox 是受约束的执行环境，不是某个唯一实现。Linux 权限约
 
 这张表是本专题的阅读框架。具体机制见第 02–05 章；平台公开声明见第 07 章。
 
-## 十章阅读地图
+## 十章机制与生产主线
 
 | 章节 | 核心问题 | 应带走的判断 |
 | --- | --- | --- |
@@ -40,7 +54,16 @@ Sandbox 是受约束的执行环境，不是某个唯一实现。Linux 权限约
 | [09 网络、身份与数据](09-network-identity-and-data.md) | 为什么隔离成功仍可能发生数据泄漏或越权？ | 权限、出站与输出需要独立约束 |
 | [10 生产运维与验收](10-production-and-benchmarks.md) | 如何测延迟、可靠性、成本与隔离配置？ | 不以一次启动成功代替验收 |
 
-配套：[学习路线与自测](learning-roadmap.md)、[中英术语](glossary.md)、[免费离线实验](lab.md)、[一手来源与未知项](sources.md)。
+## 四章社区扩展
+
+| 章节 | 新增内容 |
+| --- | --- |
+| [11 社区项目总地图](11-community-project-map.md) | 六层分类、按项目查找、54 个仓库节点、Agent／评测集成与历史项目 |
+| [12 开源平台与执行服务](12-open-platform-projects.md) | E2B、OpenSandbox、SDK／自建范围、工具环境、编排与维护变化 |
+| [13 microVM 工具链](13-microvm-toolchain.md) | Firecracker 本体到 SDK／adapter／管理器、VMM 与 guest 代码入口 |
+| [14 嵌入式与 Wasm 项目](14-embedded-and-wasm-projects.md) | BoxLite、microsandbox、srt、Monty、Wasm 引擎、插件与 MCP |
+
+配套：[学习路线与自测](learning-roadmap.md)、[中英术语](glossary.md)、[免费离线实验](lab.md)、[基础来源](sources.md)、[社区来源与许可／归档](community-sources.md)、[机器可读仓库表](community-repositories.json)。
 
 ## 一分钟选方向：建议，不是产品认证
 
@@ -64,9 +87,9 @@ Sandbox 是受约束的执行环境，不是某个唯一实现。Linux 权限约
 
 ## 研究覆盖与边界
 
-这套读本覆盖执行原语、运行时、编排与产品层，包含四张本地中文机制图和三个标准库教学实验。实验只演示配置准入、容量算术与状态机，**不执行陌生代码，不创建容器／VM，不访问云账户，不证明真实逃逸防御**。
+这套读本共有十四章、20 个 Markdown 页面，覆盖执行原语、运行时、编排、开源社区与托管产品层，保留四张本地中文机制图和三个标准库教学实验，并增加仓库／来源快照。实验只演示配置准入、容量算术与状态机，**不执行陌生代码，不创建容器／VM，不访问云账户，不证明真实逃逸防御**。
 
-本轮未调用独立的 Deep Research 产品；采用多轮实时检索与两个有明确分工的后台研究任务，交叉整理第一方资料。未做全行业穷举、漏洞情报订阅、商用方案账户级测试或付费性能比较。未明确公开的平台内部实现保留为未知，产品架构陈述不提升为独立验证结论。
+没有调用独立的 Deep Research 产品。基础十章采用多轮检索与两个后台研究任务；社区扩展的 microVM 工具链由后台任务整理，平台、目录、嵌入式和来源由主任务核对官方仓库、文档、源码与 Repository API 后完成。未做全行业穷举、漏洞情报订阅、商用方案账户级测试、许可证法律评估或付费性能比较。未明确公开的平台内部实现保留为未知，产品架构陈述不提升为独立验证结论。
 
 ## 与已有 Wiki 衔接
 
