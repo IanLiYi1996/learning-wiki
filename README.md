@@ -29,7 +29,7 @@
 - [链上美股与股票永续](wiki/topics/blockchain/equity-perpetuals/README.md)：八章系统扫盲，分清真实股份、股票代币与永续；讲透价格锚定、资金费、套利、清算、公司行动与保护边界，附四张图、五组离线算例和一手来源
 - [Shader 与 Web 渲染](wiki/topics/rendering/README.md)：GPU 管线、WebGL、Three.js、PBR、性能调试与 WebGPU/TSL
 - [Physical AI](wiki/topics/physical-ai/README.md)：业界产品、底层原理与 GTC 归档；新增 Pollen Robotics 六章图文源码解读，连接 SDK、遥操作、数据、仿真、学习与执行器
-- [大数据技术](wiki/topics/big-data/README.md)：技术分层、学习路线与 Palantir 研究
+- [大数据技术](wiki/topics/big-data/README.md)：技术分层、学习路线与 Palantir 研究；新增 [AWS Context](wiki/topics/big-data/aws-context/README.md) 的业务语义、概念链路、产品边界与可用性核查，配两张图
 
 ## 使用方式
 

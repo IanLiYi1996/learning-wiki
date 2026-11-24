@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="740" viewBox="0 0 1040 740" role="img" aria-labelledby="title desc">
+<title id="title">AWS Context：从业务资产到可治理的上下文</title>
+<desc id="desc">依据官方描述整理的概念链路；不是实际部署拓扑或已开放的 API 调用图。</desc>
+<defs>
+<marker id="main" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#2563eb"/></marker>
+<marker id="feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 3.5 L0 7 Z" fill="#7c3aed"/></marker>
+</defs>
+<g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="1040" height="740" rx="12" fill="#ffffff"/>
+<text x="40" y="47" font-size="25" fill="#23312b" font-weight="700" text-anchor="start">AWS Context：从业务资产到可治理的上下文</text>
+<text x="40" y="78" font-size="16" fill="#63736a" font-weight="400" text-anchor="start">依据官方描述整理的概念链路；不是实际部署拓扑或已开放的 API 调用图。</text>
+<path d="M 312,194 L 392,194" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 648,194 L 728,194" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 856,252 L 856,368" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<rect x="818.0" y="297.0" width="76" height="25" fill="#fff"/>
+<text x="856.0" y="315.0" font-size="15" fill="#2563eb" font-weight="400" text-anchor="middle">审核批准</text>
+<path d="M 728,426 L 648,426" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 392,426 L 312,426" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#main)" stroke-linejoin="round"/>
+<path d="M 184,484 L 184,542 L 24,542 L 24,310 L 520,310 L 520,252" fill="none" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#feedback)" stroke-linejoin="round"/>
+<rect x="66.0" y="529.0" width="76" height="25" fill="#fff"/>
+<text x="104.0" y="547.0" font-size="15" fill="#7c3aed" font-weight="400" text-anchor="middle">使用反馈</text>
+<rect x="56" y="136" width="256" height="116" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="187.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">企业业务资产</text>
+<text x="184.0" y="222.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">数据、元数据与业务知识</text>
+<rect x="392" y="136" width="256" height="116" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="187.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">发现与组织</text>
+<text x="520.0" y="222.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">含义、对象关系与规则</text>
+<rect x="728" y="136" width="256" height="116" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="187.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">管理人员复核</text>
+<text x="856.0" y="222.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">审核关系、补充定义</text>
+<rect x="728" y="368" width="256" height="116" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="856.0" y="419.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">业务上下文图</text>
+<text x="856.0" y="454.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">经治理的共享上下文</text>
+<rect x="392" y="368" width="256" height="116" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="520.0" y="419.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">API / MCP</text>
+<text x="520.0" y="454.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">获取任务相关上下文</text>
+<rect x="56" y="368" width="256" height="116" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-opacity=".4" stroke-width="1.5"/>
+<text x="184.0" y="419.0" font-size="20" fill="#23312b" font-weight="600" text-anchor="middle">Agent 辅助推理</text>
+<text x="184.0" y="454.0" font-size="16" fill="#52645a" font-weight="400" text-anchor="middle">业务查询与操作仍需授权</text>
+<rect x="56" y="586" width="928" height="52" rx="5" fill="#fff7ed" stroke="#c2410c"/>
+<text x="66" y="618.0" font-size="17" fill="#23312b" font-weight="400" text-anchor="start">横切设计：调用者权限与审计；关键元数据以 Iceberg 发布到 S3 / S3 Tables</text>
+<line x1="40" y1="676" x2="1000" y2="676" stroke="#e0e7e2"/>
+<text x="40" y="699" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">蓝色：前向信息　紫色：反馈／再执行</text>
+<text x="40" y="721" font-size="14" fill="#63736a" font-weight="400" text-anchor="start">箭头表示概念信息方向；未核验底层图引擎、接口 schema、延迟或部署。</text>
+</g>
+</svg>

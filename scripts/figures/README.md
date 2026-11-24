@@ -51,6 +51,8 @@ Pollen Robotics 图组在 `pollen-robotics.json`（10 图），覆盖本体／SD
 
 安全体系图组在 `security-foundations.json`（16 图），用 `--id-prefix safe-` 独立重建，资源同样位于 `security/images/`，由 `security-101/` 读本引用。覆盖十章机制、学习路径与四项离线合同；不使用服务图标拼装部署图，不冒充标准或产品内部实现。`safe-` 与既有 Continuum 的 `sec-` 分开核验，旧资产保持不变。
 
+AWS Context 图组在 `aws-context.json`（2 图），用 `--id-prefix awsctx-` 独立重建，资源位于 `big-data/images/`，由 `big-data/aws-context/` 读本引用。覆盖发现／复核／查询／反馈的概念链路，以及业务语义、检索、记忆与输入容量的职责；不冒充厂商内部拓扑、接口合同或生产验证。来源状态固定在 2026-11-24，更新产品结论时须同步复核图件。
+
 RSI／自我改进图组在 `self-improvement.json`（6 图、12 处插入），使用 `--id-prefix rsi-` 单独重建。资源位于 `deep-learning/images/`，覆盖对象、修改循环、参数适应、人的科研责任、评测隔离与四格归因；整数策略图有对应标准库测试，均不冒称论文复现或实际部署。
 
 ## Physical AI 原件与图文版

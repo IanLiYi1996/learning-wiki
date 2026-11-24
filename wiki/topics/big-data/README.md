@@ -145,6 +145,7 @@
 
 ## 当前资料
 
+- [AWS Context：企业 Agent 的业务语义与上下文层](aws-context/README.md)：两张原创概念图，对照检索、记忆、Glue 与 COA；保留公开状态和 PoC 边界
 - [技术版图研究](technology-landscape-research.md)：基于官方资料核对技术分层和代表性系统
 - [Palantir Ontology 深度调研](palantir-ontology.md)：企业业务语义、操作闭环与 AI Agent
 - [Palantir FDE 与 AI FDE](palantir-fde.md)：前线部署工程、产品化交付与 AI FDE Agent

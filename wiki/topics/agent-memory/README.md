@@ -37,6 +37,8 @@
 
 ## 与已有专题连接
 
+[AWS Context 的业务语义与上下文层](../big-data/aws-context/README.md)区分企业业务对象和规则、检索证据、交互记忆及模型输入容量；业务定义的权威性不能仅从历史会话推断。
+
 [OpenMOSS 的记忆与执行评测](../deep-learning/openmoss/06-agent-memory-and-executable-evaluation.md)深入解释“召回 → 采纳 → 行动 → 产物”的区别，及参考历史、固定起点的局限。
 
 [实时助手的任务状态](../deep-learning/realtime-interaction/03-background-reasoning-and-tools.md)讨论用户改口后旧结果如何失效；持续记忆把类似问题延长到多次会话。

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "awsctx-concept-flow",
+    "topic": "big-data",
+    "kind": "scene",
+    "height": 740,
+    "title": "AWS Context：从业务资产到可治理的上下文",
+    "subtitle": "依据官方描述整理的概念链路；不是实际部署拓扑或已开放的 API 调用图。",
+    "nodes": [
+      {
+        "id": "assets",
+        "x": 56, "y": 136, "w": 256, "h": 116,
+        "label": "企业业务资产",
+        "detail": "数据、元数据与业务知识",
+        "color": 0
+      },
+      {
+        "id": "discovery",
+        "x": 392, "y": 136, "w": 256, "h": 116,
+        "label": "发现与组织",
+        "detail": "含义、对象关系与规则",
+        "color": 1
+      },
+      {
+        "id": "review",
+        "x": 728, "y": 136, "w": 256, "h": 116,
+        "label": "管理人员复核",
+        "detail": "审核关系、补充定义",
+        "color": 3
+      },
+      {
+        "id": "graph",
+        "x": 728, "y": 368, "w": 256, "h": 116,
+        "label": "业务上下文图",
+        "detail": "经治理的共享上下文",
+        "color": 1
+      },
+      {
+        "id": "access",
+        "x": 392, "y": 368, "w": 256, "h": 116,
+        "label": "API / MCP",
+        "detail": "获取任务相关上下文",
+        "color": 0
+      },
+      {
+        "id": "agent",
+        "x": 56, "y": 368, "w": 256, "h": 116,
+        "label": "Agent 辅助推理",
+        "detail": "业务查询与操作仍需授权",
+        "color": 2
+      }
+    ],
+    "edges": [
+      {"points": [[312, 194], [392, 194]]},
+      {"points": [[648, 194], [728, 194]]},
+      {"points": [[856, 252], [856, 368]], "label": "审核批准"},
+      {"points": [[728, 426], [648, 426]]},
+      {"points": [[392, 426], [312, 426]]},
+      {
+        "points": [[184, 484], [184, 542], [24, 542], [24, 310], [520, 310], [520, 252]],
+        "label": "使用反馈",
+        "label_segment": 1,
+        "feedback": true
+      }
+    ],
+    "bars": [
+      {
+        "x": 56, "y": 586, "w": 928, "h": 52,
+        "label": "横切设计：调用者权限与审计；关键元数据以 Iceberg 发布到 S3 / S3 Tables",
+        "color": 3
+      }
+    ],
+    "note": "箭头表示概念信息方向；未核验底层图引擎、接口 schema、延迟或部署。",
+    "caption": "自动发现与人工复核分别承担不同责任；查询反馈辅助维护。权限与开放格式是官方描述，不代表本 Wiki 已实测。",
+    "placements": [
+      {
+        "file": "wiki/topics/big-data/aws-context/README.md",
+        "after": "## 官方描述能支持到哪一层架构"
+      }
+    ]
+  },
+  {
+    "id": "awsctx-responsibilities",
+    "topic": "big-data",
+    "kind": "layers",
+    "title": "业务上下文、检索、记忆与输入容量的职责",
+    "subtitle": "原创职责对照；能力存在交叉，不是互斥分类，也不表示产品已按图集成。",
+    "layers": [
+      ["AWS Context", "业务对象是什么？如何关联？哪些定义与规则适用？"],
+      ["Knowledge Bases", "哪些证据或业务数据可取回？也覆盖图与结构化数据"],
+      ["AgentCore Memory", "交互中发生过什么？哪些经历与用户偏好值得保留？"],
+      ["模型上下文窗口", "一次调用能容纳多少输入？不是业务定义或治理系统"]
+    ],
+    "note": "依据 2026-11-24 正文来源作职责概括；不是性能排行或服务开放状态证明。",
+    "caption": "Context 强调企业业务语义，Knowledge Bases 强调检索与数据访问，Memory 强调交互记忆；实际能力并非互斥。",
+    "placements": [
+      {
+        "file": "wiki/topics/big-data/aws-context/README.md",
+        "after": "## 与现有 AWS 能力的关系"
+      }
+    ]
+  }
+]

@@ -610,8 +610,8 @@ topics:
   - label: 大数据与 Palantir
     title: 大数据技术与 Palantir
     url: /wiki/topics/big-data/
-    description: 沿数据生命周期整理技术职责，深入本体、FDE 与产品交付模式。
-    meta: 数据平台 · Ontology · FDE · 组织模式
+    description: 沿数据生命周期整理技术职责，深入本体、FDE、产品交付与 AWS Context 业务上下文。
+    meta: 数据平台 · Ontology · FDE · AWS Context
     items:
       - label: 技术分层与导读
         url: /wiki/topics/big-data/
@@ -619,6 +619,10 @@ topics:
         url: /wiki/topics/big-data/learning-roadmap.html
       - label: 技术版图研究
         url: /wiki/topics/big-data/technology-landscape-research.html
+      - label: AWS Context 业务上下文
+        url: /wiki/topics/big-data/aws-context/
+      - label: Context 一手来源与边界
+        url: /wiki/topics/big-data/aws-context/sources.html
       - label: Palantir Ontology
         url: /wiki/topics/big-data/palantir-ontology.html
       - label: FDE 与 AI FDE

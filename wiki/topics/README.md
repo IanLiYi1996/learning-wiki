@@ -18,5 +18,5 @@
 - [区块链原理、生态与钱包工程](blockchain/README.md)：34 课白话图解与行业现状，从共识与状态到钱包、密钥和云基础设施，含完整新版机制
 - [链上美股与股票永续](blockchain/equity-perpetuals/README.md)：八章解释权利、市场、锚定、资金费、套利、保证金、公司行动与风险，配四张机制图、五组算例、术语与二十组一手来源
 - [Shader 与 Web 渲染](rendering/README.md)：从图形基础到 WebGL、Three.js 和 WebGPU
-- [大数据技术](big-data/README.md)
+- [大数据技术](big-data/README.md)：技术分层、Palantir 与 [AWS Context](big-data/aws-context/README.md)；分清业务语义、检索、记忆及托管服务的公开状态
 - [Physical AI](physical-ai/README.md)：按工程阶段对读产品方案和底层原理
